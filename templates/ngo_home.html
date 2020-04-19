@@ -1,0 +1,60 @@
+{% extends "base_site_auth.html" %}
+
+{% block title %} Login {% endblock title %}
+
+{% block content %}
+
+    <!-- Page content -->
+    <div class="container mt--8 pb-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7">
+          <div class="card bg-secondary shadow border-0">
+            <div class="card-header bg-transparent pb-5">
+
+              <div class="text-muted text-center mt-2 mb-3">
+
+                <h3 class="mb-0">Location(Pincode):</h3>
+              </div>
+<input type="number" class="form-control" id="pincode" placeholder="Enter Pincode">
+
+              <div class="text-muted text-left mt-2 mb-3">
+
+                <h3 class="mt-2 mb-0">COVID-19 HELPLINE</h3>
+                <h3 class="mt-2 mb-0">XXXXXXXXX</h3>
+              </div>
+              
+            </div>
+            <div class="card-body text-center px-lg-5 py-lg-5">
+
+              <div class="text-muted text-center mt-2 mb-3">
+
+                <h3 class="mb-0">Need Help?</h3>
+                </div>
+
+<a href=""><button class="mb-2 btn btn-primary">Food</button></a>
+<a href=""><button class="mb-2 btn btn-primary">Clothing</button></a>
+<a href=""><button class="mb-2 btn btn-primary">Shelter</button></a>
+<a href=""><button class="mb-2 btn btn-primary">Medicine</button></a>
+<a href=""><button class="mb-2 btn btn-primary">Medical Equipments</button></a>
+<a href=""><button class="mb-2 btn btn-primary">Others</button></a>
+<a href=""><button class="mb-2 btn btn-block btn-primary">I Want To Volunteer</button></a>
+            </div>
+            
+            <div class="card-body text-center px-lg-5 py-lg-5">
+
+              <div class="text-muted text-center mt-2 mb-3">
+
+                <h3 class="mb-0">Provide Help?</h3>
+                </div>
+
+<a href="{{ url_for('signup') }}"><button class="mb-2 btn btn-block btn-primary">Register your Service</button></a>
+<a href="{{ url_for('signup') }}"><button class="mb-2 btn btn-block btn-primary">Need Volunteers</button></a>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+{% endblock content %}

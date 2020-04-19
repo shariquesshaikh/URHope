@@ -1,0 +1,48 @@
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+      <div class="container-fluid">
+        <!-- Brand -->
+        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="{{ url_for('home') }}">Home</a>
+        <!-- Form -->
+        
+        <!-- User -->
+        <ul class="navbar-nav align-items-center d-none d-md-flex">
+          <li class="nav-item dropdown">
+            <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <div class="media align-items-center">
+                <span class="avatar avatar-sm rounded-circle">
+                  <img alt="Image placeholder" src="/static/assets/img/theme/profile.png">
+                </span>
+              </div>
+            </a>
+            <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
+              <div class=" dropdown-header noti-title">
+                <h6 class="text-overflow m-0">{{ session['name'] }}</h6>
+              </div>
+              <a href="{{ url_for('profile', username=session['name']) }}" class="dropdown-item">
+                <i class="ni ni-single-02"></i>
+                <span>Profile</span>
+              </a>
+            <a href="{{ url_for('task_list') }}" class="dropdown-item">
+              <i class="ni ni-bullet-list-67"></i>
+              <span>Tasks</span>
+            </a>
+                        
+{% if session['role'] == 'n' %}
+                        <a href="{{ url_for('create_task') }}" class="dropdown-item">
+              <i class="ni ni-bullet-list-67"></i>
+              <span>Create Tasks</span>
+            </a>
+    {% endif %}
+              <div class="dropdown-divider"></div>
+              <a href="/logout" class="dropdown-item">
+                <i class="ni ni-user-run text-red"></i>
+                <span>Logout</span>
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- End Navbar -->

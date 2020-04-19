@@ -1,0 +1,169 @@
+{% extends "base_site_auth.html" %}
+
+{% block title %} Register {% endblock title %}
+
+{% block content %}
+
+<!-- Page content -->
+<div class="container mt--8 pb-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-5 col-md-7">
+      <div class="card bg-secondary shadow border-0">
+        <div class="card-header bg-transparent pb-5">
+
+          <div class="text-muted text-center mt-2 mb-3">
+            <h1 class="text-center">Register</h1>
+            <hr>
+            {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+            {% if (message.startswith("Thanks")) %}
+            <div class="alert alert-success alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                  aria-hidden="true">×</span></button>
+              {{message}}
+            </div>
+            {% else %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                  aria-hidden="true">×</span></button>
+              {{message}}
+            </div>
+            {% endif %}
+
+            {% endfor %} {% endif %} {% endwith %}
+
+
+            <form class="m-t-md" action="/signup/" method="POST">
+
+              <div class="-group mb-3">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-single-02"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Name" required name="name">
+                </div>
+              </div>
+
+              <div class="form-group mb-3">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                  </div>
+                  <input type="email" class="form-control" placeholder="Email" required name="username">
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-user-circle"></i></span>
+                  </div>
+                  <select class="form-control" name="role">
+                    <option selected>---- Select Role ----</option>
+                    <option value="v">Volunteer</option>
+                    <option value="n">NGO</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group mb-3">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-map-pin"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Ex. 110006" required name="pincode">
+
+                </div>
+              </div>
+
+              <div class="form-group mb-3">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="99398XXXXX" required name="phone">
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-hands-helping"></i></span>
+                  </div>
+                  <select class="form-control" name="services">
+                    <option selected>---- Select Services ----</option>
+                    <option value="Food">Food</option>
+                    <option value="Medicine">Medicine</option>
+                    <option value="Shelter">Shelter</option>
+                    <option value="Clothing">Clothing</option>
+                    <option value="Medical Equipments">Medical Equipments</option>
+                    <option value="Others">Others</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-tablet-phone"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Govt. ID (If any)" name="govtID">
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-globe"></i></span>
+                  </div>
+                  <input type="url" class="form-control" placeholder="Website (If any)" name="website">
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-tablet-phone"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Social Media Handles" name="social">
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-ruler-pencil"></i></span>
+                  </div>
+                  <textarea rows="4" name="about" class="form-control form-control-alternative" placeholder="A few words about you ..."></textarea>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                  </div>
+                  <input type="password" class="form-control" placeholder="Password" name="password" required>
+
+                </div>
+              </div>
+              <div class="form-group mb-3">
+                <div class="input-group input-group-alternative">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+
+                    <input type="password" class="form-control" placeholder="Confirm Password" name="confirm" required>
+                  </div>
+                </div>
+
+                <div class="text-center">
+                  <button type="submit" name="register" class="btn btn-primary my-4">Register</button>
+                </div>
+            </form>
+
+          </div>
+        </div>
+        <div class="row mt-3 text-center">
+          <div class="col-12">
+            <a href={{ url_for('login') }} class="text-light"><small>Login</small></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  {% endblock content %}

@@ -1,0 +1,136 @@
+{% extends "base_site.html" %}
+
+{% block title %} Profile {% endblock title %}
+
+{% block stylesheets %}
+  {{ super() }}
+{% endblock stylesheets %}
+
+{% block content %}
+
+    {% include "site_template/navigation.html" %}
+      
+    <!-- Header -->
+    <div class="header pb-3 pt-5 pt-lg-3 d-flex align-items-center" style=" background-size: cover; background-position: center top;">
+    <!-- Mask -->
+    <!-- Header container -->
+    </div>
+      
+    <!-- Page content -->
+
+            <div class="col-xl-8 order-xl-1 container-fluid">
+            <div class="card bg-secondary shadow">
+                <div class="card-header bg-white border-0">
+                <div class="row align-items-center">
+                    
+            {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+            {% if (message.startswith("Thanks")) %}
+            <div class="alert alert-success alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                  aria-hidden="true">×</span></button>
+              {{message}}
+            </div>
+            {% else %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                  aria-hidden="true">×</span></button>
+              {{message}}
+            </div>
+            {% endif %}
+
+            {% endfor %} {% endif %} {% endwith %}
+                    <div class="col-8">
+                    <center><h3 class="mb-0 ml-6">Create Task</h3></center>
+                    </div>
+                </div>
+                </div>
+                <div class="card-body">
+                <form action="/create-task" method="POST">
+                    <div class="pl-lg-4">
+                    <div class="row">
+                        <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-username">Task Name</label>
+                            <input type="text" id="input-username" class="form-control form-control-alternative" 
+                                   placeholder="Task Name" name="task">
+                        </div>
+                        </div>
+                        <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-first-name">Name</label>
+                            <input name="grp" type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="NGO/Group Name" value="{{ session['name'] }}">
+                        </div>
+                        </div>
+                        
+                        <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-control-label" name="website" for="input-email">Website</label>
+                            <input name="website" type="text" id="input-email" class="form-control form-control-alternative" 
+                                   placeholder="Website" value="{{ session['website'] }}">
+                        </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-email">Task Type</label>
+                  <select class="form-control" name="t_type">
+                    <option selected>---- Select Type of Task ----</option>
+                    <option value="Food">Food</option>
+                    <option value="Medicine">Medicine</option>
+                    <option value="Shelter">Shelter</option>
+                    <option value="Clothing">Clothing</option>
+                    <option value="Medical Equipments">Medical Equipments</option>
+                    <option value="Others">Others</option>
+                  </select>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-city">No. Of Volunteers</label>
+                                <input name="vol_num" type="text" id="input-city" class="form-control form-control-alternative" placeholder="No. of Volunteers Needed">
+                            </div>
+                            </div>
+
+                        <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-city">Phone No</label>
+                            <input name="phone" type="text" id="input-city" class="form-control form-control-alternative" placeholder="Phone" value="{{ session['phone'] }}">
+                        </div>
+                        </div>
+                        <div class="col-lg-6">
+                        <div class="form-group">
+                            <label class="form-control-label" for="input-country">Pincode</label>
+                            <input name="pin" type="number" id="input-postal-code" class="form-control form-control-alternative" placeholder="Postal code" value="{{ session['pin'] }}">
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                    <hr class="my-4" />
+                    <!-- Description -->
+                    <div class="pl-lg-4">
+                    <div class="form-group">
+                        <label>Task Detail</label>
+                        <textarea name="task_det" rows="4" class="form-control form-control-alternative" placeholder="Task Detail" ></textarea>
+                    </div>
+                    </div>
+
+                        <div class="text-center">
+                            <button type="submit" name="create" class="btn btn-primary my-4">Create Task</button>
+                          </div>
+                        </form>
+                </form>
+                </div>
+            </div>
+            </div>
+        </div>
+    
+        {% include "site_template/footer.html" %}
+        
+    </div>    
+
+{% endblock content %}
+
+{% block javascripts %}
+  {{ super()}}
+{% endblock javascripts %}
