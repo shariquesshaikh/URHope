@@ -7,9 +7,9 @@
 3. Task Creation, updation, deletion by NGO/Group
 4. Task viewed by volunteers based on their location(pincode)
 
-## Running in Local
+# Running in Local
 
-# To Complete the Dev Setup
+## To complete the dev setup
 ```python
 git clone git@github.com:sk-sharique/urhope.git
 cd urhope
@@ -18,7 +18,7 @@ source urhope.env/bin/activate
 pip install -r requirements.txt
 ```
 
-# To finally run application
+## To finally run the application
 
 ```python
 python app.py
