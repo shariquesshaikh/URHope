@@ -1,6 +1,6 @@
 # urhope
 
-##Tasks completed so far:##
+**Tasks completed so far:**
 
 1. Role based login and sign up for volunteers and NGOs
 2. Role based profile updation 
