@@ -481,7 +481,7 @@ def home():
 
 @app.route('/test')
 def test():
-    return render_template('task_list_n.html')
+    return "It is a test function"
 
 if __name__ == '__main__':
     app.run()  # host='0.0.0.0', port=5000
