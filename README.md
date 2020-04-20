@@ -23,4 +23,4 @@ pip install -r requirements.txt
 ```python
 python app.py
 ```
-Access the application on your localhost with suitable port.
+Access the application on your local server.
