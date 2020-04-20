@@ -74,7 +74,6 @@ def get_db():
 
 
 # Route for Base template
-
 @app.route('/')
 def base():
     return render_template('home.html')
@@ -82,7 +81,6 @@ def base():
 
 @app.route('/signup/', methods=['GET', 'POST'])
 def signup():
-
     if request.method == 'POST' and 'username' in request.form \
         and 'password' in request.form and 'role' in request.form \
         and 'confirm' in request.form:
@@ -93,16 +91,13 @@ def signup():
         pincode = request.form['pincode']
         phone = request.form['phone']
         role = request.form['role']
-
         # address = request.form['address']
-
         services = request.form['services']
         govtID = request.form['govtID']
         website = request.form['website']
         social = request.form['social']
         about = request.form['about']
 
-        print(username, password, confirmpassword, role)
         try:
             db = get_db()
             c = db.cursor()
@@ -114,7 +109,6 @@ def signup():
                 flash('Email already exists please try again with another email!'
                       )
             else:
-
                 if password == confirmpassword:
                     c.execute('insert into members (name, username, phone, pin, role, services, govtID, website, social, about, password ) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, md5(%s))'
                               , (  # address
@@ -137,9 +131,7 @@ def signup():
                 else:
                     flash('Passwords do not match!')
         except Exception as e:
-
             print(e)
-
         return render_template('register.html')
     else:
         return render_template('register.html')
@@ -183,7 +175,6 @@ def login():
                 return render_template('login.html')
         except Exception as e:
             print(e)
-
         return render_template('login.html')
     else:
         return render_template('login.html')
@@ -191,15 +182,10 @@ def login():
 
 @app.route('/logout')
 def logout():
-
-    # Remove session data, this will log the user out
-
     session.pop('logged_in', None)
     session.pop('user_id', None)
     session.pop('username', None)
-
-   # Redirect to login page
-
+          
     return redirect(url_for('login'))
 
 
@@ -217,8 +203,8 @@ def profile(username):
         else:
             return render_template('admin_profile.html',
                                    username=session['username'])
-
-
+          
+          
 @app.route('/edit/<username>/', methods=['GET', 'POST'])
 def edit_profile(username):
     if not session.get('logged_in'):
@@ -244,7 +230,6 @@ def update_pro(uname):
             role = session['role']
 
             if role == 'V' or role == 'v':
-
                 if request.method == 'POST' and 'name' in request.form \
                     and 'pin' and request.form and 'phone' in request.form \
                     and 'address' in request.form and 'about' in request.form:
@@ -274,8 +259,8 @@ def update_pro(uname):
                 else:
                     flash('Profile was not updated')
                     return redirect(url_for('home'))
+          
             elif role == 'n' or role == 'N':
-
                 if request.method == 'POST' and 'name' in request.form \
                     and 'website' in request.form and 'social' in request.form \
                     and 'services' in request.form and 'address' \
@@ -320,9 +305,7 @@ def update_pro(uname):
                     flash('Profile was not updated')
                     return redirect(url_for('home'))
             else:
-
                     # flash("Unrecognized User")
-
                 return redirect(url_for('login'))
 
 
@@ -384,6 +367,7 @@ def edit_task(id):
 
             connect = get_db()
             exe = connect.cursor()
+          
             exe.execute('UPDATE task SET task=%s, grp=%s, website=%s, location=%s, phone=%s, vol_num=%s, task_det=%s, t_type=%s where id= %s'
                         , (
                 task,
@@ -410,7 +394,7 @@ def edit_task(id):
             c.close()
             db.close()
             print(data)
-            return render_template('edit_task.html',data=data)
+            return render_template('edit_task.html',data=data)        
     else:
         return redirect(url_for('home'))
 
@@ -424,6 +408,7 @@ def delete_task(id):
             db = get_db()
             c = db.cursor()
             c.execute('DELETE FROM task WHERE id = %s', id)
+            db.commit()
             c.close()          
             db.close()
 
@@ -447,21 +432,22 @@ def task_list():
         c = db.cursor()
         c.execute('select * from task where grp = %s', grp_name)
         data = c.fetchall()
+        db.commit()
         c.close()          
         db.close()
-        return render_template('task_list_n.html', len=len(data),data=data) 
-    
-    elif session['role'] == 'v':
+        return render_template('task_list_n.html', len=len(data),data=data)
 
+    elif session['role'] == 'v':
         pin = session['pin']
         db = get_db()
         c = db.cursor()
         c.execute('SELECT * FROM task WHERE location = %s', pin)
         data = c.fetchall()
+        db.commit()
         c.close()
         db.close()
-
         return render_template('task_list_v.html', len=len(data), data=data)
+
     else:
         return redirect(url_for('login'))  
 
@@ -481,7 +467,7 @@ def home():
 
 @app.route('/test')
 def test():
-    return "It is a test function"
+    return "This is a testing route"
 
 if __name__ == '__main__':
     app.run()  # host='0.0.0.0', port=5000
