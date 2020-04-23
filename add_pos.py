@@ -6,7 +6,7 @@ db = pymysql.connect(host='localhost', user='root', passwd='',
 c = db.cursor()
 keys = ['pin', 'officename', 'divisionname', 'regionname', 'circlename', 'taluk', 'districtname', 'statename', 'relsuboffice']
 key_map = {}
-with open("/home/jino/Downloads/URHope/india_po_data.csv") as f:
+with open("./india_po_data.csv") as f:
     for i, j in enumerate(f.readlines()):
         headers = []
         if not i:
