@@ -476,10 +476,13 @@ def search_pincode(pincode):
     query = "select phone, pin, services from members where " + where[:-4]
     c.execute(query)
     data = c.fetchall()
+    pod_query = "select pin,districtname,statename from podata where " + where[:-4]
+    c.execute(pod_query)
+    po_data = c.fetchall()
     if data:
         c.close()
         connect.close()
-        return render_template('home.html',data=data)
+        return render_template('home.html', data=data, po=po_data)
     return render_template('home.html',data={})
 
 @app.route('/test')
