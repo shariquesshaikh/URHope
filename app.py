@@ -473,7 +473,7 @@ def search_pincode(pincode):
     where = ""
     for i in [0,-1,+1,-2,+2,-3,+3,-4,+4]:
         where += "m.pin='"+str(pincode+i) + "' OR "
-    query = "select m.pin, phone, services, statename from members m join podata p on m.pin = p.pin where " + where[:-4]
+    query = "select m.pin, phone, services, statename from members m join podata p on m.pin = p.pin where m.role='n' AND (" + where[:-4] +")"
     c.execute(query)
     data = c.fetchall()
     if data:
