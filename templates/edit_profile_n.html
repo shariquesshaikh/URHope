@@ -21,7 +21,7 @@
               <h1 class="display-2 text-white">Hello {{ session['name'] }}</h1>
               <p class="text-white mt-0 mb-5">
                   This is your profile page. </p>
-              <!-- <a href="{{ url_for('edit_profile', username=session['name']) }}" class="btn btn-info">Edit profile</a> -->
+              <!-- <a href="{{ url_for('edit_profile', id=session['user_id']) }}" class="btn btn-info">Edit profile</a> -->
           </div>
           </div>
       </div> 
@@ -43,10 +43,6 @@
                 </div>
                 </div>
                 <div class="card-header text-center border-0 pt-8 pt-md-8 pb-0 pb-md-4">
-                    <div class="d-flex justify-content-between">
-                      <a href="#" class="btn btn-sm btn-info mr-4">Connect</a>
-                      <a href="#" class="btn btn-sm btn-default float-right">Message</a>
-                    </div>
                   </div>
                   <div class="card-body pt-0 pt-md-0">
                     <div class="row">

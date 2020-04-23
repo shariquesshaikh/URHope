@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2020 at 02:57 AM
+-- Generation Time: Apr 23, 2020 at 05:15 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.9
 
@@ -21,6 +21,24 @@ SET time_zone = "+00:00";
 --
 -- Database: `covid`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `application`
+--
+
+CREATE TABLE `application` (
+  `id` int(11) NOT NULL,
+  `grp_email` varchar(255) DEFAULT NULL,
+  `vol_email` varchar(255) DEFAULT NULL,
+  `task_id` int(11) DEFAULT NULL,
+  `vol_id` int(11) NOT NULL,
+  `grp_name` varchar(255) NOT NULL,
+  `vol_name` varchar(255) DEFAULT NULL,
+  `task_name` varchar(255) NOT NULL,
+  `vol_phone` int(15) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -49,16 +67,6 @@ CREATE TABLE `members` (
   `govtID` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `members`
---
-
-INSERT INTO `members` (`id`, `name`, `username`, `password`, `regno`, `phone`, `pin`, `role`, `website`, `age`, `sex`, `currProfile`, `address`, `social`, `services`, `branch`, `about`, `govtID`) VALUES
-(1, 'Zuhair Abbas', 'zuhairabs@gmail.com', 'bf5bd1eb9ec20084c050fe41cd341d39', NULL, '9022122553', '400055', 'v', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 'Sharique', 'sharique.shaikh.0123@gmail.com', '482c811da5d5b4bc6d497ffa98491e38', NULL, '8104150837', '401106', 'v', NULL, NULL, NULL, NULL, 'sharique.shaikh.0123@gmail.com', NULL, NULL, NULL, 'sharique.shaikh.0123@gmail.com', NULL),
-(4, 'Test User', 'testuser@gmail.com', '32250170a0dca92d53ec9624f336ca24', NULL, '9869547044', '401107', 'v', 'https://www.website.com', NULL, NULL, NULL, 'Mumbai', 'www.facebook.com', 'Food', NULL, 'I am a test user', '123123123123'),
-(6, 'User', 'user@gmail.com', 'ee11cbb19052e40b07aac0ca060c23ee', 'None', '9869547044', '401107', 'n', 'https://www.website.com', NULL, NULL, NULL, 'Gujarat', 'www.facebook.com', '---- Select Services ----', 'Mumbai', 'This is an NGO to help people', '123123123123');
-
 -- --------------------------------------------------------
 
 --
@@ -76,23 +84,20 @@ CREATE TABLE `task` (
   `vol_num` int(255) DEFAULT NULL,
   `task_det` varchar(255) DEFAULT NULL,
   `t_type` varchar(255) DEFAULT NULL,
-  `abt_grp` varchar(255) DEFAULT NULL
+  `abt_grp` varchar(255) DEFAULT NULL,
+  `vol_applied` int(11) NOT NULL DEFAULT 0,
+  `grp_email` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `task`
---
-
-INSERT INTO `task` (`id`, `task`, `posted`, `grp`, `website`, `location`, `phone`, `vol_num`, `task_det`, `t_type`, `abt_grp`) VALUES
-(1, 'Task 1', '0000-00-00 00:00:00', 'User', 'https://www.website.com', '401107', 2147483647, 12, 'will delete it', 'Food', NULL),
-(2, 'Task 2', '0000-00-00 00:00:00', 'User', 'https://www.website.com', '401107', 2147483647, 90, 'New', 'Food', NULL),
-(3, 'Task 3', '2020-04-19 03:22:10', 'User', 'https://www.website.com', '401107', 2147483647, 4, 'Updated', 'Shelter', NULL),
-(4, 'Task4', '2020-04-19 04:44:10', 'User', 'https://www.website.com', '401107', 2147483647, 5, 'Task 5 is being added', 'Food', NULL),
-(5, 'Task 8', '2020-04-19 04:49:25', 'User', 'https://www.website.com', '401107', 2147483647, 8, 'New TAsk', 'Medicine', NULL);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `application`
+--
+ALTER TABLE `application`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `members`
@@ -111,16 +116,22 @@ ALTER TABLE `task`
 --
 
 --
+-- AUTO_INCREMENT for table `application`
+--
+ALTER TABLE `application`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `members`
 --
 ALTER TABLE `members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `task`
 --
 ALTER TABLE `task`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

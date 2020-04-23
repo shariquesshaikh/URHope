@@ -1,0 +1,83 @@
+{% extends "base_site.html" %}
+
+{% block title %} Profile {% endblock title %}
+
+{% block stylesheets %}
+  {{ super() }}
+{% endblock stylesheets %}
+
+{% block content %}
+
+    {% include "site_template/navigation.html" %}
+      
+    <!-- Header -->
+    <div class="header pb-3 pt-5 pt-lg-3 d-flex align-items-center" style=" background-size: cover; background-position: center top;">
+    <!-- Mask -->
+    <!-- Header container -->
+    </div>
+      
+    <!-- Page content -->
+                  
+                    
+<div align="center">
+<div class="row mt-5" >
+        <div class="col-xl-8 ml-2 mb-5 mb-xl-0">
+          <div class="card shadow">
+            <div class="card-header border-0">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h1 class="text-center mb-4">Notifications</h1>
+                </div>
+                                     {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}  
+                                                      {% if (message.startswith("Thanks")) %}
+                                                      <div class="alert alert-success alert-dismissible" role="alert">
+                                                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                          {{message}}
+                                                      </div>
+                                                      {% else %}
+                                                      <div class="alert alert-danger alert-dismissible" role="alert">
+                                                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                          {{message}}
+                                                      </div>
+                                                      {% endif %}
+
+                                                      {% endfor %} {% endif %} {% endwith %}  
+               
+  
+            </div>
+            <div class="table-responsive">
+              <!-- Projects table -->
+              <table class="table align-items-center table-flush">
+
+                <tbody>                
+                {% if len > 0 %}
+                    {% for value in data %}
+                        <tr>
+                            <div class="jumbotron" style="">
+                                <h3>{{value[6]}} applied for the task, <a href="{{ url_for('how_is_the_task', id=value[3]) }}">{{value[7]}}</a> . You can contact him/her through, <br> Email ID: {{value[2]}} <br> Contact No: {{value[8]}}</h3>
+                            </div>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <div class="jumbotron" style="height:30px;">
+                            <h3>Sorry! No one has applied for any task created by you.</h3>
+                        </div>
+                    </tr>
+                {% endif %}
+                </tbody>
+
+              </table>
+			  </div>
+            </div>
+          </div>
+        </div>
+    </div>
+        {% include "site_template/footer.html" %}
+        
+    </div>   
+  </div> 
+
+
+	
+{% endblock content %}

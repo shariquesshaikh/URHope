@@ -20,7 +20,7 @@
               <div class=" dropdown-header noti-title">
                 <h6 class="text-overflow m-0">{{ session['name'] }}</h6>
               </div>
-              <a href="{{ url_for('profile', username=session['name']) }}" class="dropdown-item">
+              <a href="{{ url_for('profile', id=session['user_id']) }}" class="dropdown-item">
                 <i class="ni ni-single-02"></i>
                 <span>Profile</span>
               </a>
