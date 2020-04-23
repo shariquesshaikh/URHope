@@ -134,8 +134,7 @@ COMMIT;
 --
 
 CREATE TABLE `podata` (
-  `id` int(11) PRIMARY KEY AUTO_INCREMENT,
-  `pin` char(6) DEFAULT NULL,
+  `pin` char(6) PRIMARY KEY,
   `officename` varchar(100) DEFAULT NULL,
   `divisionname` varchar(100) DEFAULT NULL,
   `regionname` varchar(100) DEFAULT NULL,

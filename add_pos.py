@@ -21,9 +21,14 @@ with open("/home/jino/Downloads/URHope/india_po_data.csv") as f:
                 query += k+", "
                 vals += "'"+j[v]+"', "
             q = query[:-2]+") "+vals[:-2]+");"
-            c.execute(q)
+            print("Processing :%s" % j[key_map['pin']])
+            try:
+                c.execute(q)
+                db.commit()
+            except:
+                pass
 
-        if i ==11:
-            break
-db.commit()
+        # if i ==11:
+        #     break
+
 db.close()
