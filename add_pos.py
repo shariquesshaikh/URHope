@@ -21,7 +21,6 @@ with open("/home/jino/Downloads/URHope/india_po_data.csv") as f:
                 query += k+", "
                 vals += "'"+j[v]+"', "
             q = query[:-2]+") "+vals[:-2]+");"
-            print(q)
             c.execute(q)
 
         if i ==11:
