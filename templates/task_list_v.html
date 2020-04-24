@@ -64,21 +64,20 @@
                   </tr>
                 </thead>
                 <tbody>
-                  {% set count = 0 %}
                   {% for value in data %}
                   <tr>
-                    <th scope="col">
+                    <td scope="col">
                       {{value[0]}}
-                    </th>
-                    <th scope="col">
+                    </td>
+                    <td scope="col">
                       {{value[1]}}
-                    </th>
-                    <th scope="col">
+                    </td>
+                    <td scope="col">
                       {{value[8]}}
-                    </th>
-                    <th scope="col">
+                    </td>
+                    <td scope="col">
                       {{value[3]}}
-                    </th>
+                    </td>
                     <td>
                       {{value[5]}}
                     </td>
@@ -86,8 +85,11 @@
                       {{value[7]}}
                     </td>
                     <td>
+                      {{value[11]}}
+                    </td>
+	            <td>
                       {{value[6]}}
-                    </td> 
+                    </td>
                     <td>
                       <div class="btn btn-outline-secondary">
                         <a href="{{value[4]}}">Link to website</a>  
@@ -107,7 +109,6 @@
                     {% endif %}
                   </td>                
                   </tr>
-                  <!-- {% set count = count + 1 %} -->
                   {% endfor %}
 
                   {% else %}
