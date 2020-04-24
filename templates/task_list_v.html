@@ -45,34 +45,37 @@
                
   
             </div>
+            {% if len>0 %}
             <div class="table-responsive">
               <!-- Projects table -->
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
-                    <th scope="col">Task ID</th>
-                    <th scope="col">Task</th>
-                    <th scope="col">Task Details</th>
-                    <th scope="col">Task Creator</th>
-                    <th scope="col">Location or Pincode</th>
-                    <th scope="col">Required no of volunteers</th>
-                    <th scope="col">Contact Number</th>
-                    <th scope="col">Website</th>
+                    <th scope="col" style="font-size: 12px;">Task ID</th>
+                    <th scope="col" style="font-size: 12px;">Task</th>
+                    <th scope="col" style="font-size: 12px;">Task Details</th>
+                    <th scope="col" style="font-size: 12px;">Task Creator</th>
+                    <th scope="col" style="font-size: 12px;">Location or Pincode</th>
+                    <th scope="col" style="font-size: 12px;">Required no<br>of volunteers</th>
+                    <th scope="col" style="font-size: 12px;">Total volunteers applied</th>
+                    <th scope="col" style="font-size: 12px;">Contact Number</th>
+                    <th scope="col" style="font-size: 12px;">Website</th>
+                    <th scope="col" style="font-size: 12px;">Apply</th>
                   </tr>
                 </thead>
                 <tbody>
                   {% for value in data %}
                   <tr>
-                    <td>
+                    <td scope="col">
                       {{value[0]}}
                     </td>
-                    <td>
+                    <td scope="col">
                       {{value[1]}}
                     </td>
-                    <td>
+                    <td scope="col">
                       {{value[8]}}
                     </td>
-                    <td>
+                    <td scope="col">
                       {{value[3]}}
                     </td>
                     <td>
@@ -82,15 +85,44 @@
                       {{value[7]}}
                     </td>
                     <td>
+                      {{value[11]}}
+                    </td>
+	            <td>
                       {{value[6]}}
-                    </td> 
+                    </td>
                     <td>
-                      <a href="{{value[4]}}">{{value[3]}}</a>  
-                    </td>                  
+                      <div class="btn btn-outline-secondary">
+                        <a href="{{value[4]}}">Link to website</a>  
+                      </div>
+                    </td>  
+                  <td> 
+                    {% if value[0] in applied %} 
+                    <div>
+                      <!-- <button type="button" onclick="this.disabled = 'disabled';">Click Me!</button> -->
+                      <a href="" class="btn btn-success" >Applied</a>
+                    </div>
+                    {% else %}
+                    <div>
+                      <!-- <button type="button" onclick="this.disabled = 'disabled';">Click Me!</button> -->
+                      <a href="{{ url_for('apply_task', id=value[0])}}" class="btn btn-primary">Apply for this task</a>
+                    </div>
+                    {% endif %}
+                  </td>                
                   </tr>
                   {% endfor %}
+
+                  {% else %}
+                  <tr>
+                    <div class="">
+                        <h3>There are no tasks yet</h3>
+                    </div>
+                  </tr>  
+                <td>
+                  {% endif %}
                 </tbody>
+
               </table>
+			  </div>
             </div>
           </div>
         </div>

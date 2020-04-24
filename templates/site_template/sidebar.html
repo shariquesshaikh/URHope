@@ -24,7 +24,7 @@
             <div class=" dropdown-header noti-title">
               <h5 class="text-overflow m-0">{{ session['name'] }}</h5>
             </div>
-            <a href="{{ url_for('profile', username=session['name']) }}" class="dropdown-item">
+            <a href="{{ url_for('profile', id=session['user_id']) }}" class="dropdown-item">
               <i class="ni ni-single-02"></i>
               <span>Profile</span>
             </a>
@@ -90,18 +90,18 @@
         <!-- Navigation -->
         <ul class="navbar-nav mb-md-3">
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="/#about">
               <i class="fa fa-info-circle"></i> About Us
             </a>
           </li>
             <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="">
+              <a class="nav-link nav-link-icon" href="/faq">
                 <i class="fa fa-info"></i>
                 <span class="nav-link-inner-text">FAQ</span>
               </a>
             </li>
           <li class="nav-item">
-            <a class="nav-link" href="">
+            <a class="nav-link" href="/#contact">
               <i class="fa fa-phone"></i> Contact Us
             </a>
           </li>

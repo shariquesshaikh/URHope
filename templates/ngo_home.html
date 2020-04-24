@@ -3,18 +3,23 @@
 {% block title %} Login {% endblock title %}
 
 {% block content %}
-
     <!-- Page content -->
     <div class="container mt--8 pb-5">
+      
       <div class="row justify-content-center">
         <div class="col-lg-5 col-md-7">
+          <div align="center">
+            <h1 class="btn btn-success"> <a href="{{ url_for('notification_page') }}" style="color:white;">Notifications</a></h1>
+          </div>
           <div class="card bg-secondary shadow border-0">
             <div class="card-header bg-transparent pb-5">
 
               <div class="text-muted text-center mt-2 mb-3">
 
                 <h3 class="mb-0">Location(Pincode):</h3>
+                
               </div>
+              
 <input type="number" class="form-control" id="pincode" placeholder="Enter Pincode">
 
               <div class="text-muted text-left mt-2 mb-3">
