@@ -67,19 +67,6 @@ CREATE TABLE `members` (
   `govtID` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `members`
---
-
-INSERT INTO `members` (`id`, `name`, `username`, `password`, `regno`, `phone`, `pin`, `role`, `website`, `age`, `sex`, `currProfile`, `address`, `social`, `services`, `branch`, `about`, `govtID`) VALUES
-(19, 'Jino Jossy', 'jinojossy93@gmail.com', 'bf5bd1eb9ab20084c050fe41cd341d39', NULL, '9746785785', '691306', 'n', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(20, 'Jijo Jossy', 'jinojossy93+asc1@gmail.com', 'bf5bd1eb9ab20084c050fe41cd241d39', NULL, '9746785784', '691305', 'n', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(1, 'Zuhair Abbas', 'zuhairabs@gmail.com', 'bf5bd1eb9ec20084c050fe41cd341d39', NULL, '9022122553', '400055', 'v', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 'Sharique', 'sharique.shaikh.0123@gmail.com', '482c811da5d5b4bc6d497ffa98491e38', NULL, '8104150837', '401106', 'v', NULL, NULL, NULL, NULL, 'sharique.shaikh.0123@gmail.com', NULL, NULL, NULL, 'sharique.shaikh.0123@gmail.com', NULL),
-(4, 'Test User', 'testuser@gmail.com', '32250170a0dca92d53ec9624f336ca24', NULL, '9869547044', '401107', 'v', 'https://www.website.com', NULL, NULL, NULL, 'Mumbai', 'www.facebook.com', 'Food', NULL, 'I am a test user', '123123123123'),
-(6, 'User', 'user@gmail.com', 'ee11cbb19052e40b07aac0ca060c23ee', 'None', '9869547044', '401107', 'n', 'https://www.website.com', NULL, NULL, NULL, 'Gujarat', 'www.facebook.com', '---- Select Services ----', 'Mumbai', 'This is an NGO to help people', '123123123123');
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `task`
