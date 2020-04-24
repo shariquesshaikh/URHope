@@ -607,6 +607,23 @@ def home():
         else:
             return render_template('admin_home.html')
 
+@app.route('/search/<pincode>/', methods=['GET'])
+def search_pincode(pincode):
+    connect = get_db()
+    pincode = int(pincode)
+    c = connect.cursor()
+    counter = 0
+    where = ""
+    for i in [0,-1,+1,-2,+2,-3,+3,-4,+4]:
+        where += "m.pin='"+str(pincode+i) + "' OR "
+    query = "select m.pin, phone, services, statename from members m join podata p on m.pin = p.pin where m.role='n' AND (" + where[:-4] +")"
+    c.execute(query)
+    data = c.fetchall()
+    if data:
+        c.close()
+        connect.close()
+        return render_template('home.html', data=data)
+    return render_template('home.html',data={})
 
 
 @app.route('/test')
