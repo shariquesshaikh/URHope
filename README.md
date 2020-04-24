@@ -12,6 +12,7 @@
 8. A notification is added on notification page of the NGO.
 9. NGO can monitor the tasks.
 10. NGOs can communicate with volunteers via email or phone number or vice versa.
+11. Location/keyword based search for NGO for needy people.
 
 # Running in Local
 
