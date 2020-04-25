@@ -163,43 +163,78 @@
     </div>
   </nav>
   <!-- End Navbar -->
-  <div class="wrapper">
-    <div class="section section-hero section-shaped">
-      <div class="shape shape-style-3 shape-default">
-        <span class="span-150"></span>
-        <span class="span-50"></span>
-        <span class="span-50"></span>
-        <span class="span-75"></span>
-        <span class="span-100"></span>
-        <span class="span-75"></span>
-        <span class="span-50"></span>
-        <span class="span-100"></span>
-        <span class="span-50"></span>
-        <span class="span-100"></span>
-      </div>
-      <div class="page-header">
-        <div class="container shape-container d-flex align-items-center py-lg">
-          <div class="col px-0">
-            <div class="row align-items-center justify-content-center">
-              <div class="col-lg-6 text-center">
+<section class="section section-shaped section-lg">
+    <div class="shape shape-style-1 bg-gradient-default">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+<div class="container mt-5 pb-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7">
+          <div class="card bg-secondary shadow border-0">
+            <div class="card-header bg-transparent pb-5">
 
-  <h1 class="text-white display-1">URHope</h1>
-  <h2 class="display-4 font-weight-normal text-white">A Platform to seek help, volunteer and call out to volunteers</h2>
+              <div class="text-muted text-center mt-2 mb-3">
 
-                <div class="btn-wrapper mt-4">
-
-                </div>
+                <h3 class="mb-0">Location(Pincode):</h3>
               </div>
+<input name="" type="number" class="form-control" id="pincode" placeholder="Enter Pincode">
+
+              <div class="text-muted text-left mt-2 mb-3">
+
+                <h3 class="mt-2 mb-0">COVID-19 Help</h3>
+                <h3 class="mt-2 mb-0">Search</h3>
+                {% for value in data %}
+                  {{value[0]}}
+                  {{value[1]}}
+                  {{value[2]}}
+                  {{value[3]}}
+                </br>
+                {% endfor %}
+              </div>
+              
             </div>
+            <div class="card-body text-center px-lg-5 py-lg-5">
+
+              <div class="text-muted text-center mt-2 mb-3">
+
+                <h3 class="mb-0">Need Help?</h3>
+                </div>
+
+<a href=""><button class="mb-2 btn btn-primary">Food</button></a>
+<a href=""><button class="mb-2 btn btn-primary">Clothing</button></a>
+<a href=""><button class="mb-2 btn btn-primary">Shelter</button></a>
+<a href=""><button class="mb-2 btn btn-primary">Medicine</button></a>
+<a href=""><button class="mb-2 btn btn-primary">Medical Equipments</button></a>
+<a href=""><button class="mb-2 btn btn-primary">Others</button></a>
+<a href=""><button class="mb-2 btn btn-block btn-primary">I Want To Volunteer</button></a>
+            </div>
+            
+            <div class="card-body text-center px-lg-5 py-lg-5">
+
+              <div class="text-muted text-center mt-2 mb-3">
+
+                <h3 class="mb-0">Provide Help?</h3>
+                </div>
+
+<a href="{{ url_for('signup') }}"><button class="mb-2 btn btn-block btn-primary">Register your Service</button></a>
+<a href="{{ url_for('signup') }}"><button class="mb-2 btn btn-block btn-primary">Need Volunteers</button></a>
+            </div>
+
           </div>
+
         </div>
       </div>
-      <div class="separator separator-bottom separator-skew zindex-100">
-        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-          <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
-        </svg>
-      </div>
     </div>
+    </div>
+    </section>
+
     <a id="about">
     <div class="section features-6">
       <div class="container">
@@ -231,13 +266,6 @@
           </div>
           <div class="col-lg-6 col-10 mx-md-auto">
           
-             <a class="twitter-timeline" href="https://twitter.com/urhope_team" data-tweet-limit="3">Tweets by @urhope_team</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-          </div>
-        </div>
-      </div>
-    </div>
-
                 <h3 class="mb-0">Need Help?</h3>
                 </div>
                 <p>Search</p>
@@ -248,6 +276,15 @@
                   {{value[3]}}
                 </br>
                 {% endfor %}
+                
+                <br>
+          
+             <a class="twitter-timeline" href="https://twitter.com/urhope_team" data-tweet-limit="3">Tweets by @urhope_team</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+          </div>
+        </div>
+      </div>
+    </div>
 
     <a id="contact">
         
