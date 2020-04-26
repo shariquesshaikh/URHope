@@ -52,7 +52,7 @@ CREATE TABLE `members` (
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `regno` varchar(100) DEFAULT NULL,
-  `phone` int(11) DEFAULT NULL,
+  `phone` varchar(11) DEFAULT NULL,
   `pin` varchar(6) DEFAULT NULL,
   `role` varchar(100) DEFAULT NULL,
   `website` varchar(100) DEFAULT NULL,
