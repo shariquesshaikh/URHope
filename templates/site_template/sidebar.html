@@ -8,9 +8,10 @@
       </button>
       <!-- Brand -->
       <a class="navbar-brand pt-0" href="/">
-        <img src="/static/assets/img/brand/blue.png" class="navbar-brand-img" alt="Flask Argon Dashboard">
+        <img src="/static/assets/img/brand/blue.png" class="navbar-brand-img center" alt="Flask Argon Dashboard">
       </a>
       <!-- User -->
+{% if session.get('logged_in') == True %}
       <ul class="nav align-items-center d-md-none">
         <li class="nav-item dropdown">
           <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -48,6 +49,7 @@
           </div>
         </li>
       </ul>
+{% endif %}
       <!-- Collapse -->
       <div class="collapse navbar-collapse" id="sidenav-collapse-main">
         <!-- Collapse header -->

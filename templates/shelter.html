@@ -1,0 +1,148 @@
+{% extends "base_site.html" %}
+
+{% block title %} Profile {% endblock title %}
+
+{% block stylesheets %}
+  {{ super() }}
+{% endblock stylesheets %}
+
+{% block content %}
+
+    {% include "site_template/navigation.html" %}
+      
+    <!-- Header -->
+    <div class="header pb-3 pt-5 pt-lg-3 d-flex align-items-center" style=" background-size: cover; background-position: center top;">
+    <!-- Mask -->
+    <!-- Header container -->
+    </div>
+      
+    <!-- Page content -->
+                  
+                    
+<div align="center">
+<div class="row mt-5" >
+        <div class="col-xl-8 ml-2 mb-5 mb-xl-0">
+          <div class="card shadow">
+            <div class="card-header border-0">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h1 class="text-center mb-4">Shelter List</h1>
+                </div>
+                                     {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}  
+                                                      {% if (message.startswith("Thanks")) %}
+                                                      <div class="alert alert-success alert-dismissible" role="alert">
+                                                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                          {{message}}
+                                                      </div>
+                                                      {% else %}
+                                                      <div class="alert alert-danger alert-dismissible" role="alert">
+                                                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                          {{message}}
+                                                      </div>
+                                                      {% endif %}
+
+                                                      {% endfor %} {% endif %} {% endwith %}  
+               
+  
+            </div>
+            <div class="table-responsive">
+              <!-- Projects table -->
+              <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col" style="font-size: 12px;">Task ID</th>
+                    <th scope="col" style="font-size: 12px;">Task</th>
+                    <th scope="col" style="font-size: 12px;">Task Details</th>
+                    <th scope="col" style="font-size: 12px;">Task Creator</th>
+                    <th scope="col" style="font-size: 12px;">Location or Pincode</th>
+                    <th scope="col" style="font-size: 12px;">Required no<br>of volunteers</th>
+                    <th scope="col" style="font-size: 12px;">Total volunteers applied</th>
+                    <th scope="col" style="font-size: 12px;">Contact Number</th>
+                    <th scope="col" style="font-size: 12px;">Website</th>
+                    <th scope="col" style="font-size: 12px;"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                  <tr>
+                    <td scope="col">
+                      
+                    </td>
+                    <td scope="col">
+                      
+                    </td>
+                    <td scope="col">
+                      
+                    </td>
+                    <td scope="col">
+                      
+                    </td>
+                    <td>
+                      
+                    </td>
+                    <td>
+                      
+                    </td>
+                    <td>
+                      
+                    </td>
+	            <td>
+                      
+                    </td>
+                    <td>
+                      <div class="btn btn-outline-secondary">
+                        <a href="">Link to website</a>  
+                      </div>
+                    </td>  
+                  <td> 
+                  </td>                
+                  </tr>
+                  
+
+                  
+                  <tr>
+                    <div class="">
+                        <h3>There are no NGOs/Groups providing this help yet</h3>
+                    </div>
+                  </tr>  
+                <td>
+                  
+                </tbody>
+
+              </table>
+			  </div>
+            </div>
+          </div>
+        </div>
+    </div>
+        
+    </div>   
+  </div> 
+
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    $.getJSON("/tasks_list", function(data){
+
+        if( data["data"].length > 0 ) {
+
+           
+            for(var i = 0; i < data["data"].length; i++)
+            {
+                html_code += data["data"][i]["task"]
+            }
+
+            $("th").html(html_code)
+
+        }
+
+        else {
+
+            $("th").html("Empty Message");
+        }
+</script> -->
+	
+{% endblock content %}
+
+<!-- {% block javascripts %}
+  {{ super()}}
+{% endblock javascripts %} -->

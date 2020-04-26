@@ -625,11 +625,37 @@ def search_pincode(pincode):
         return render_template('home.html', data=data)
     return render_template('home.html',data={})
 
+@app.route('/food')
+def food():
+    return render_template('food.html')
+
+@app.route('/healthcare')
+def healthcare():
+    return render_template('healthcare.html')
+
+@app.route('/clothing')
+def clothing():
+    return render_template('clothing.html')
+
+@app.route('/shelter')
+def shelter():
+    return render_template('shelter.html')
+
+@app.route('/others')
+def others():
+    return render_template('others.html')
+
+@app.route('/medical-equipments')
+def medical_equipments():
+    return render_template('medical_equipment.html')
+
+@app.route('/helpline')
+def helpline():
+    return render_template('helpline.html')
 
 @app.route('/test')
 def test():
     return "This is a testing route"
-
 
 
 if __name__ == '__main__':
