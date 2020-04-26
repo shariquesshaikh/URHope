@@ -26,7 +26,7 @@
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h1 class="text-center mb-4">Clothing List</h1>
+                  <h1 class="text-center mb-4">Food List</h1>
                 </div>
                                      {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}  
                                                       {% if (message.startswith("Thanks")) %}
@@ -47,66 +47,44 @@
             </div>
             <div class="table-responsive">
               <!-- Projects table -->
+              {% if l>0 %}
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
-                    <th scope="col" style="font-size: 12px;">Task ID</th>
-                    <th scope="col" style="font-size: 12px;">Task</th>
-                    <th scope="col" style="font-size: 12px;">Task Details</th>
-                    <th scope="col" style="font-size: 12px;">Task Creator</th>
-                    <th scope="col" style="font-size: 12px;">Location or Pincode</th>
-                    <th scope="col" style="font-size: 12px;">Required no<br>of volunteers</th>
-                    <th scope="col" style="font-size: 12px;">Total volunteers applied</th>
-                    <th scope="col" style="font-size: 12px;">Contact Number</th>
+                    <th scope="col" style="font-size: 12px;">PIN</th>
+                    <th scope="col" style="font-size: 12px;">Name</th>
+                    <th scope="col" style="font-size: 12px;">Contact No</th>
+                    <th scope="col" style="font-size: 12px;">Service</th>
                     <th scope="col" style="font-size: 12px;">Website</th>
-                    <th scope="col" style="font-size: 12px;"></th>
                   </tr>
                 </thead>
                 <tbody>
-                  
+                  {% for value in data %}
                   <tr>
                     <td scope="col">
-                      
+                      {{ value[6] }}
                     </td>
                     <td scope="col">
-                      
+                      {{ value[1] }}
                     </td>
                     <td scope="col">
-                      
+                      {{ value[5] }}
                     </td>
                     <td scope="col">
-                      
+                      {{ value[14] }}
                     </td>
-                    <td>
-                      
+                    <td scope="col">
+                       <a href="{{ value[8] }}"> Website</a>
                     </td>
-                    <td>
-                      
-                    </td>
-                    <td>
-                      
-                    </td>
-	            <td>
-                      
-                    </td>
-                    <td>
-                      <div class="btn btn-outline-secondary">
-                        <a href="">Link to website</a>  
-                      </div>
-                    </td>  
-                  <td> 
-                  </td>                
                   </tr>
-                  
-
-                  
+                  {% endfor %}
+                {% else %}
                   <tr>
                     <div class="">
                         <h3>There are no NGOs/Groups providing this help yet</h3>
                     </div>
-                  </tr>  
-                <td>
-                  
+                  </tr>
+                {% endif %}    
                 </tbody>
 
               </table>

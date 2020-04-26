@@ -1,6 +1,5 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-# My virtual Env : source ../covid/covid_app/venv/Scripts/activate
 
 from __future__ import print_function
 from flask import Flask, render_template, redirect, url_for, request, g
@@ -53,18 +52,18 @@ def serve():
 
 
 #Database Connection
+# def get_db():
+#     db = pymysql.connect(host='localhost', user='root', passwd='CoronaPassword1.#',
+#                          db='covid', charset='utf8mb4')
+#     return db
+
+
+
+
 def get_db():
-    db = pymysql.connect(host='localhost', user='root', passwd='CoronaPassword1.#',
+    db = pymysql.connect(host='localhost', user='root', passwd='',
                          db='covid', charset='utf8mb4')
     return db
-
-
-
-
-# def get_db():
-#    db = pymysql.connect(host='localhost', user='root', passwd='',
-#                         db='covid', charset='utf8mb4')
-#    return db
 
 
 
@@ -607,6 +606,8 @@ def home():
         else:
             return render_template('admin_home.html')
 
+
+
 @app.route('/search/<pincode>/', methods=['GET'])
 def search_pincode(pincode):
     connect = get_db()
@@ -625,36 +626,108 @@ def search_pincode(pincode):
         return render_template('home.html', data=data)
     return render_template('home.html',data={})
 
+
+
 @app.route('/food')
 def food():
-    return render_template('food.html')
+    val="Food"
+    db = get_db()
+    c = db.cursor()
+    c.execute('SELECT * FROM members WHERE services=%s ORDER BY pin ASC',val)
+    data = c.fetchall()
+    db.commit()
+    c.close()
+    db.close()
+    return render_template('food.html',l=len(data),data=data)
+
+
 
 @app.route('/healthcare')
 def healthcare():
-    return render_template('healthcare.html')
+    val="Healthcare"
+    db = get_db()
+    c = db.cursor()
+    c.execute('SELECT * FROM members WHERE services=%s',val)
+    data = c.fetchall()
+    db.commit()
+    c.close()
+    db.close()
+    return render_template('healthcare.html',l=len(data),data=data)
+
+
 
 @app.route('/clothing')
 def clothing():
-    return render_template('clothing.html')
+    val="Clothing"
+    db = get_db()
+    c = db.cursor()
+    c.execute('SELECT * FROM members WHERE services=%s',val)
+    data = c.fetchall()
+    db.commit()
+    c.close()
+    db.close()
+    return render_template('clothing.html',l=len(data),data=data)
+
+
 
 @app.route('/shelter')
 def shelter():
-    return render_template('shelter.html')
+    val="Shelter"
+    db = get_db()
+    c = db.cursor()
+    c.execute('SELECT * FROM members WHERE services=%s',val)
+    data = c.fetchall()
+    db.commit()
+    c.close()
+    db.close()
+    return render_template('shelter.html',l=len(data),data=data)
+
+
 
 @app.route('/others')
 def others():
-    return render_template('others.html')
+    val="Others"
+    db = get_db()
+    c = db.cursor()
+    c.execute('SELECT * FROM members WHERE services=%s ORDER BY pin DESC',val)
+    data = c.fetchall()
+    db.commit()
+    c.close()
+    db.close()
+    return render_template('others.html',l=len(data),data=data)
+
+
 
 @app.route('/medical-equipments')
 def medical_equipments():
-    return render_template('medical_equipment.html')
+    val="Medical Equipments"
+    db = get_db()
+    c = db.cursor()
+    c.execute('SELECT * FROM members WHERE services=%s',val)
+    data = c.fetchall()
+    db.commit()
+    c.close()
+    db.close()
+    return render_template('medical_equipment.html',l=len(data),data=data)
+
+
 
 @app.route('/helpline')
 def helpline():
     return render_template('helpline.html')
 
+
+
 @app.route('/test')
 def test():
+    val="Medical Equipments"
+    db = get_db()
+    c = db.cursor()
+    c.execute('SELECT pi,phone FROM members WHERE services=%s',val)
+    data = c.fetchall()
+    db.commit()
+    c.close()
+    db.close()
     return "This is a testing route"
 
 
