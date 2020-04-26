@@ -633,7 +633,7 @@ def food():
     val="Food"
     db = get_db()
     c = db.cursor()
-    c.execute('SELECT * FROM members WHERE services=%s ORDER BY pin ASC',val)
+    c.execute('SELECT * FROM members WHERE services=%s ORDER BY pin DESC',val)
     data = c.fetchall()
     db.commit()
     c.close()
@@ -647,7 +647,7 @@ def healthcare():
     val="Healthcare"
     db = get_db()
     c = db.cursor()
-    c.execute('SELECT * FROM members WHERE services=%s',val)
+    c.execute('SELECT * FROM members WHERE services=%s ORDER BY pin DESC',val)
     data = c.fetchall()
     db.commit()
     c.close()
@@ -661,7 +661,7 @@ def clothing():
     val="Clothing"
     db = get_db()
     c = db.cursor()
-    c.execute('SELECT * FROM members WHERE services=%s',val)
+    c.execute('SELECT * FROM members WHERE services=%s ORDER BY pin DESC',val)
     data = c.fetchall()
     db.commit()
     c.close()
@@ -675,7 +675,7 @@ def shelter():
     val="Shelter"
     db = get_db()
     c = db.cursor()
-    c.execute('SELECT * FROM members WHERE services=%s',val)
+    c.execute('SELECT * FROM members WHERE services=%s ORDER BY pin DESC',val)
     data = c.fetchall()
     db.commit()
     c.close()
@@ -703,7 +703,7 @@ def medical_equipments():
     val="Medical Equipments"
     db = get_db()
     c = db.cursor()
-    c.execute('SELECT * FROM members WHERE services=%s',val)
+    c.execute('SELECT * FROM members WHERE services=%s ORDER BY pin DESC',val)
     data = c.fetchall()
     db.commit()
     c.close()
@@ -720,14 +720,6 @@ def helpline():
 
 @app.route('/test')
 def test():
-    val="Medical Equipments"
-    db = get_db()
-    c = db.cursor()
-    c.execute('SELECT pi,phone FROM members WHERE services=%s',val)
-    data = c.fetchall()
-    db.commit()
-    c.close()
-    db.close()
     return "This is a testing route"
 
 
