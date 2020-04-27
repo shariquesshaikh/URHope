@@ -33,8 +33,12 @@
                         
             {% if session['role'] == 'n' %}
             <a href="{{ url_for('create_task') }}" class="dropdown-item">
-              <i class="ni ni-bullet-list-67"></i>
+              <i class="ni ni-ruler-pencil"></i>
               <span>Create Tasks</span>
+            </a>
+                        <a href="{{ url_for('notification_page') }}" class="dropdown-item">
+              <i class="ni ni-bell-55 text-blue"></i>
+              <span>Notifications</span>
             </a>
             {% endif %}
             
@@ -68,7 +72,7 @@
           <ul class="navbar-nav ml-auto">
 
             <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="{{ url_for('home') }}">
+              <a class="nav-link nav-link-icon" href="{{ url_for('base') }}">
                 <i class="ni ni-tv-2 text-primary"></i>
                 <span class="nav-link-inner--text">Home</span>
               </a>

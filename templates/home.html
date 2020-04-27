@@ -58,8 +58,12 @@
                         
             {% if session['role'] == 'n' %}
             <a href="{{ url_for('create_task') }}" class="dropdown-item">
-              <i class="ni ni-bullet-list-67"></i>
+              <i class="ni ni-ruler-pencil"></i>
               <span>Create Tasks</span>
+            </a>
+            <a href="{{ url_for('notification_page') }}" class="dropdown-item">
+              <i class="ni ni-bell-55 text-blue"></i>
+              <span>Notifications</span>
             </a>
             {% endif %}
             

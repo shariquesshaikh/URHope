@@ -46,7 +46,7 @@ def serve():
     server.ehlo()
     #Login with sender_email_address on Chrome browser. Search less secure apps on chrome browser and on less secure apps' permission page, enable permission for sender_email_address.
     #server.login('sender_email_address','password')
-    server.login('ur_hope_email_address','password') #authentication
+    server.login('urhope.ngo@gmail.com','covid19farha') #authentication
     return server
 
 
@@ -61,7 +61,7 @@ def serve():
 
 
 def get_db():
-    db = pymysql.connect(host='localhost', user='root', passwd='',
+    db = pymysql.connect(host='localhost', user='root', passwd='CoronaPassword.1#',
                          db='covid', charset='utf8mb4')
     return db
 
@@ -603,11 +603,11 @@ def home():
         return redirect(url_for('login'))
     else:
         if session['role'] == 'v':
-            return render_template('volunteers_home.html')
+            return render_template('home.html')
         elif session['role'] == 'n':
-            return render_template('ngo_home.html')
+            return render_template('home.html')
         else:
-            return render_template('admin_home.html')
+            return render_template('home.html')
 
 
 

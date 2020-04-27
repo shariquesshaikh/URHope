@@ -3,7 +3,7 @@
     <nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
       <div class="container-fluid">
         <!-- Brand -->
-        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="{{ url_for('home') }}">Home</a>
+        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="{{ url_for('base') }}">Home</a>
         <!-- Form -->
         
         <!-- User -->
@@ -32,8 +32,12 @@
                         
 {% if session['role'] == 'n' %}
                         <a href="{{ url_for('create_task') }}" class="dropdown-item">
-              <i class="ni ni-bullet-list-67"></i>
+              <i class="ni ni-ruler-pencil"></i>
               <span>Create Tasks</span>
+            </a>
+                        <a href="{{ url_for('notification_page') }}" class="dropdown-item">
+              <i class="ni ni-bell-55 text-blue"></i>
+              <span>Notifications</span>
             </a>
     {% endif %}
               <div class="dropdown-divider"></div>
