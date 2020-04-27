@@ -26,7 +26,7 @@
             <div class="card-header border-0">
               <div class="row align-items-center">
                 <div class="col">
-                  <h1 class="text-center mb-4">Food List</h1>
+                  <h1 class="text-center mb-4" class="btn-success">Search results for {{ name }}</h1>
                 </div>
                                      {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}  
                                                       {% if (message.startswith("Thanks")) %}

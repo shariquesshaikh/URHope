@@ -72,6 +72,9 @@ def get_db():
 def base():
     return render_template('home.html')
 
+@app.route('/index')
+def index():
+    return render_template('home.html')
 
 
 @app.route('/team')
@@ -515,9 +518,15 @@ def apply_task(id):
     data = c.fetchall()
 	
     if data[0][11] < data[0][7]:
+        
         val = data[0][11]+1
-        c.execute('UPDATE task SET vol_applied=%s WHERE id=%s',(val,id))
 
+        c.execute('UPDATE task SET vol_applied=%s WHERE id=%s',(val,id))
+        c.execute('INSERT INTO application(grp_email,vol_email,task_id,vol_id,grp_name,vol_name,task_name,vol_phone) values(%s,%s,%s,%s,%s,%s,%s,%s)',(data[0][12],session['username'],data[0][0],session['user_id'],data[0][3],session['name'],data[0][1],session['phone']))        
+        db.commit()
+        c.close()
+        db.close()
+        
         subject = "Notification from URHope Team"
         body="Dear "+data[0][3]+",\n\n"+ session['name'] +" has applied for the task "+ data[0][1]+" which has an ID: "+str(data[0][0])+".\n\nSo far the total number of applicaion for this task is " + str(val)+" and "+str(data[0][7]-val)+" more volunteers are required.\n\nClick on the link for more details,\nhttp://www.urhope.in\n\n\nRegards,\nURHope Team"
         msg=f"Subject: {subject}\n\n{body} "
@@ -536,14 +545,8 @@ def apply_task(id):
 							str(data[0][12]), 
 							msg
 							)
-		
-        c.execute('INSERT INTO application(grp_email,vol_email,task_id,vol_id,grp_name,vol_name,task_name,vol_phone) values(%s,%s,%s,%s,%s,%s,%s,%s)',(data[0][12],session['username'],data[0][0],session['user_id'],data[0][3],session['name'],data[0][1],session['phone']))        
-
-        db.commit()
-        c.close()
-        db.close()
         server.quit()
-						
+								
         flash("Applied Successfully")
         return redirect(url_for('task_list'))
         
@@ -628,88 +631,32 @@ def search_pincode(pincode):
 
 
 
-@app.route('/food')
-def food():
-    val="Food"
-    db = get_db()
-    c = db.cursor()
-    c.execute('SELECT * FROM members WHERE services=%s ORDER BY pin DESC',val)
-    data = c.fetchall()
-    db.commit()
-    c.close()
-    db.close()
-    return render_template('food.html',l=len(data),data=data)
+@app.route('/searchresult',methods=['GET','POST'])
+def serch_result():
+    if request.method=="POST":
+        name = request.form['name']
+        pin = request.form['pin']
+        lpin=len(pin)
+        low_name = name.lower()
+        role='n'
 
-
-
-@app.route('/healthcare')
-def healthcare():
-    val="Healthcare"
-    db = get_db()
-    c = db.cursor()
-    c.execute('SELECT * FROM members WHERE services=%s ORDER BY pin DESC',val)
-    data = c.fetchall()
-    db.commit()
-    c.close()
-    db.close()
-    return render_template('healthcare.html',l=len(data),data=data)
-
-
-
-@app.route('/clothing')
-def clothing():
-    val="Clothing"
-    db = get_db()
-    c = db.cursor()
-    c.execute('SELECT * FROM members WHERE services=%s ORDER BY pin DESC',val)
-    data = c.fetchall()
-    db.commit()
-    c.close()
-    db.close()
-    return render_template('clothing.html',l=len(data),data=data)
-
-
-
-@app.route('/shelter')
-def shelter():
-    val="Shelter"
-    db = get_db()
-    c = db.cursor()
-    c.execute('SELECT * FROM members WHERE services=%s ORDER BY pin DESC',val)
-    data = c.fetchall()
-    db.commit()
-    c.close()
-    db.close()
-    return render_template('shelter.html',l=len(data),data=data)
-
-
-
-@app.route('/others')
-def others():
-    val="Others"
-    db = get_db()
-    c = db.cursor()
-    c.execute('SELECT * FROM members WHERE services=%s ORDER BY pin DESC',val)
-    data = c.fetchall()
-    db.commit()
-    c.close()
-    db.close()
-    return render_template('others.html',l=len(data),data=data)
-
-
-
-@app.route('/medical-equipments')
-def medical_equipments():
-    val="Medical Equipments"
-    db = get_db()
-    c = db.cursor()
-    c.execute('SELECT * FROM members WHERE services=%s ORDER BY pin DESC',val)
-    data = c.fetchall()
-    db.commit()
-    c.close()
-    db.close()
-    return render_template('medical_equipment.html',l=len(data),data=data)
-
+        if lpin==6:
+            pin = int(pin)
+            pin=pin
+            db = get_db()
+            c = db.cursor()
+            c.execute('SELECT * FROM members WHERE services=%s and pin=%s and role=%s ORDER BY pin ASC',(name,pin,role))
+            data = c.fetchall()
+            l=len(data)
+            db.commit()
+            c.close()
+            db.close()
+            if(l>0):
+                return render_template('searched.html',l=l,data=data,name=low_name)
+            else:
+                return redirect(url_for('index'))
+        else:
+            return redirect(url_for('index'))
 
 
 @app.route('/helpline')
@@ -720,6 +667,7 @@ def helpline():
 
 @app.route('/test')
 def test():
+
     return "This is a testing route"
 
 

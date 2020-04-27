@@ -156,21 +156,48 @@
       <span></span>
       <span></span>
     </div>
+ 
+
+
 <div class="container mt-5 pb-5">
+  
       <div class="row justify-content-center">
         <div class="col-lg-5 col-md-7">
           <div class="card bg-secondary shadow border-0">
             <div class="card-header bg-transparent pb-5">
 
-<a href="{{ url_for('helpline') }}"><button class="mb-2 btn btn-block btn-primary">Government Initiatives</button></a>
 
               <div class="text-muted text-center mt-2 mb-3">
 
-                <h3 class="mb-0">Location(Pincode):</h3>
-              </div>
-<input name="" type="number" class="form-control" id="pincode" placeholder="Enter Pincode">
+                <h3 class="mb-0">Need Help?</h3>
+              </div> <br>
 
-              <div class="text-muted text-left mt-2 mb-3">
+              
+<!-- {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+{% if (message.startswith("Thanks")) %}
+<div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+      aria-hidden="true">x</span></button>
+  {{message}}
+</div>
+{% else %}
+<div class="alert alert-danger alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+      aria-hidden="true">x</span></button>
+  {{message}}
+</div>
+{% endif %}
+
+{% endfor %} {% endif %} {% endwith %} -->
+
+<form action="/searchresult" method="POST" >
+  <div align="center" >
+  <input name="pin" type="number" class="form-control" id="pincode" placeholder="Enter pincode and click on a service">
+ <div class="btn-primary">
+  <p style="font-size: 12px;"><b>PIN length should be equal to 6.<br>If you don't see any result after you search, then that data is not present in our database.</b> </p>
+</div>
+
+  <!-- <div class="text-muted text-left mt-2 mb-3">
 
                 <h3 class="mt-2 mb-0">COVID-19 Help</h3>
                 <h3 class="mt-2 mb-0">Search</h3>
@@ -181,25 +208,49 @@
                   {{value[3]}}
                 </br>
                 {% endfor %}
-              </div>
+              </div> -->
               
-            </div>
-            <div class="card-body text-center px-lg-5 py-lg-5">
+            <!-- </div> -->
+            <!-- <div class="card-body text-center px-lg-5 py-lg-5">
 
               <div class="text-muted text-center mt-2 mb-3">
 
                 <h3 class="mb-0">Need Help?</h3>
-                </div>
+                </div> -->
 
-<a href="{{ url_for('food') }}"><button class="mb-2 btn btn-primary">Food</button></a>
-<a href="{{ url_for('clothing') }}"><button class="mb-2 btn btn-primary">Clothing</button></a>
-<a href="{{ url_for('shelter') }}"><button class="mb-2 btn btn-primary">Shelter</button></a>
-<a href="{{ url_for('healthcare') }}"><button class="mb-2 btn btn-block btn-primary">Healthcare</button></a>
-<a href="{{ url_for('medical_equipments') }}"><button class="mb-2 btn btn-primary">Medical Equipments</button></a>
-<a href="{{ url_for('others') }}"><button class="mb-2 btn btn-primary">Others</button></a>
-<a href="{{ url_for('signup') }}"><button class="mb-2 btn btn-block btn-primary">I Want To Volunteer</button></a>
-            </div>
-            
+                <!-- <button class="mb-2 btn btn-primary">Food</button> -->
+
+
+
+
+  <input type="submit" class="mb-3 btn btn-outline-primary" style="font-size: 12px;" name="name" id="" value="Food">
+
+  <input type="submit" class="mb-3 btn btn-outline-primary" style="font-size: 12px;" name="name" id="" value="Clothing">
+
+  <input type="submit" class="mb-3 btn btn-outline-primary" style="font-size: 12px;" name="name" id="" value="Shelter">
+
+  <input type="submit" class="mb-3 btn btn-outline-primary" style="font-size: 12px;" name="name" id="" value="Healthcare">
+
+  <input type="submit" class="mb-3 btn btn-outline-primary" style="font-size: 12px;" name="name" id="" value="Medical Equipments">
+
+  <div align="center" >
+    <input type="submit" class="mb-3 btn btn-outline-primary" style="font-size: 12px;" name="name" id="" value="Others">
+  </div>
+
+        </div>
+</div>
+
+</form> 
+
+<div align="center" class="container">
+  <a href="{{ url_for('helpline') }}"><button style="font-size: 15px;" class="mb-2 btn btn-block btn-primary">Government Initiatives</button></a>
+</div>  
+<br>
+<div align="center" class="container">
+<a href="{{ url_for('signup') }}"><button class="mb-2 btn btn-success"> <b>I Want To Volunteer</b></button></a>
+</div> 
+
+
             <div class="card-body text-center px-lg-5 py-lg-5">
 
               <div class="text-muted text-center mt-2 mb-3">
@@ -207,8 +258,8 @@
                 <h3 class="mb-0">Provide Help?</h3>
                 </div>
 
-<a href="{{ url_for('signup') }}"><button class="mb-2 btn btn-block btn-primary">Register your Service</button></a>
-<a href="{{ url_for('signup') }}"><button class="mb-2 btn btn-block btn-primary">Need Volunteers</button></a>
+<a href="{{ url_for('signup') }}"><button class="mb-2 btn btn-outline-success" style="width: 300px; font-size: 15px;">Register your Service</button></a>
+<a href="{{ url_for('signup') }}"><button class="mb-2 btn btn-outline-success" style="width: 300px;font-size: 15px;">Need Volunteers</button></a>
             </div>
 
           </div>
@@ -218,6 +269,7 @@
     </div>
     </div>
     </section>
+    <br><br>
 
     <a id="about">
     <div class="section features-6">
@@ -250,16 +302,16 @@
           </div>
           <div class="col-lg-6 col-10 mx-md-auto">
           
-                <h3 class="mb-0">Need Help?</h3>
+                <!-- <h3 class="mb-0">Need Help?</h3> -->
                 </div>
-                <p>Search</p>
+                <!-- <p>Search</p>
                 {% for value in data %}
                   {{value[0]}}
                   {{value[1]}}
                   {{value[2]}}
                   {{value[3]}}
                 </br>
-                {% endfor %}
+                {% endfor %} -->
                 
                 <br>
           
