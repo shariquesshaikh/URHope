@@ -53,15 +53,15 @@ def serve():
 
 #Database Connection
 # def get_db():
-#     db = pymysql.connect(host='localhost', user='root', passwd='CoronaPassword.1#',
+#     db = pymysql.connect(host='localhost', user='root', passwd='',
 #                          db='covid', charset='utf8mb4')
 #     return db
 
 
 
-
+# No Password Disclosure
 def get_db():
-    db = pymysql.connect(host='localhost', user='root', passwd='CoronaPassword.1#',
+    db = pymysql.connect(host='localhost', user='root', passwd='',
                          db='covid', charset='utf8mb4')
     return db
 
