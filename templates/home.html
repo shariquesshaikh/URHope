@@ -196,7 +196,7 @@
 
 <form action="/searchresult" method="POST" >
   <div align="center" >
-  <input name="pin" type="number" class="form-control" id="pincode" placeholder="Enter pincode and click on a service">
+  <input min="6" max="6" name="pin" type="number" class="form-control" id="pincode" placeholder="Enter pincode and click on a service" required>
  <div class="btn-primary">
   <p style="font-size: 12px;"><b>PIN length should be equal to 6.<br>If you don't see any result after you search, then that data is not present in our database.</b> </p>
 </div>
@@ -250,10 +250,10 @@
   <a href="{{ url_for('helpline') }}"><button style="font-size: 15px;" class="mb-2 btn btn-block btn-primary">Government Initiatives</button></a>
 </div>  
 <br>
+{% if not "logged_in" in session %}
 <div align="center" class="container">
 <a href="{{ url_for('signup') }}"><button class="mb-2 btn btn-success"> <b>I Want To Volunteer</b></button></a>
 </div> 
-
 
             <div class="card-body text-center px-lg-5 py-lg-5">
 
@@ -264,6 +264,23 @@
 
 <a href="{{ url_for('signup') }}"><button class="mb-2 btn btn-outline-success" style="width: 300px; font-size: 15px;">Register your Service</button></a>
 <a href="{{ url_for('signup') }}"><button class="mb-2 btn btn-outline-success" style="width: 300px;font-size: 15px;">Need Volunteers</button></a>
+{% else %}
+{% if session['role'] == 'v' %}
+<div align="center" class="container">
+<a onclick="alert('Go To Task')"><button class="mb-2 btn btn-success"> <b>I Want To Volunteer</b></button></a>
+</div>
+{% endif %}
+
+            <div class="card-body text-center px-lg-5 py-lg-5">
+
+              <div class="text-muted text-center mt-2 mb-3">
+{% if session['role'] == 'n' %}
+                <h3 class="mb-0">Provide Help?</h3>
+                </div>
+                
+<a onclick="alert('Create a Task')"><button class="mb-2 btn btn-outline-success" style="width: 300px;font-size: 15px;">Need Volunteers</button></a>
+{% endif %}
+{% endif %}
             </div>
 
           </div>
@@ -304,18 +321,10 @@
               </div>
             </div>
           </div>
+          
           <div class="col-lg-6 col-10 mx-md-auto">
           
-                <!-- <h3 class="mb-0">Need Help?</h3> -->
                 </div>
-                <!-- <p>Search</p>
-                {% for value in data %}
-                  {{value[0]}}
-                  {{value[1]}}
-                  {{value[2]}}
-                  {{value[3]}}
-                </br>
-                {% endfor %} -->
                 
                 <br>
           

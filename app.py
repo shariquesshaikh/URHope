@@ -47,13 +47,13 @@ def serve():
     #Login with sender_email_address on Chrome browser. Search less secure apps on chrome browser and on less secure apps' permission page, enable permission for sender_email_address.
     #server.login('sender_email_address','password')
     server.login('urhope.ngo@gmail.com','covid19farha') #authentication
-    return server
+    return server #confidential
 
 
 
 #Database Connection
 # def get_db():
-#     db = pymysql.connect(host='localhost', user='root', passwd='CoronaPassword1.#',
+#     db = pymysql.connect(host='localhost', user='root', passwd='CoronaPassword.1#',
 #                          db='covid', charset='utf8mb4')
 #     return db
 
@@ -82,12 +82,13 @@ def team():
     return render_template('team.html')
 
 
-
 @app.route('/form')
 def form():
     return render_template('form.html')
 
-
+@app.route('/relief-call')
+def relief_call():
+    return render_template('relief_call.html')
 
 @app.route('/signup/', methods=['GET', 'POST'])
 def signup():
@@ -663,7 +664,17 @@ def serch_result():
 def helpline():
     return render_template('helpline.html')
 
+@app.errorhandler(403)
+def access_forbidden(error):
+    return render_template('403.html'), 403
 
+@app.errorhandler(404)
+def not_found_error(error):
+    return render_template('404.html'), 404
+
+@app.errorhandler(500)
+def internal_error(error):
+    return render_template('500.html'), 500
 
 @app.route('/test')
 def test():
