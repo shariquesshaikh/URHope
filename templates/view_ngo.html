@@ -18,26 +18,16 @@
       
     <!-- Page content -->
                   
-    <div align="center" class="container">
-      <a href="{{ url_for('relief_call') }}"><button style="font-size: 15px;" class="mb-2 btn btn-primary">Couldn't get the Required Help?</button></a>
-    </div>                   
+                    
 <div align="center">
 <div class="row mt-5" >
-  
         <div class="col-xl-8 ml-2 mb-5 mb-xl-0">
           <div class="card shadow">
             <div class="card-header border-0">
-              
               <div class="row align-items-center">
-                {% if l>0 %}
                 <div class="col">
-                  <h1 class="text-center mb-4" class="btn-success">Search results for {{ name }}</h1>
+                  <h1 class="text-center mb-4" class="btn-success">List of NGOs</h1>
                 </div>
-                {% else %}
-                <div class="col">
-                  <h1 class="text-center mb-4" class="btn-success">Results not found in our Database</h1>
-                </div>
-                {% endif %}
                                      {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}  
                                                       {% if (message.startswith("Thanks")) %}
                                                       <div class="alert alert-success alert-dismissible" role="alert">
@@ -66,7 +56,8 @@
                     <th scope="col" style="font-size: 12px;">Contact No</th>
                     <th scope="col" style="font-size: 12px;">Service</th>
                     <th scope="col" style="font-size: 12px;">Website</th>
-                  </tr> 
+                    <th scope="col" style="font-size: 12px;">Delete Operation</th>
+                  </tr>
                 </thead>
                 <tbody>
                   {% for value in data %}
@@ -86,12 +77,17 @@
                     <td scope="col">
                        <a href="{{ value[8] }}"> Website</a>
                     </td>
+                    <td>
+                        <div class="col text-right">
+                          <a href="{{ url_for('del_ngo', id=value[0])}}" class="btn btn-outline-danger">Delete</a>
+                        </div>
+                      </td>
                   </tr>
                   {% endfor %}
                 {% else %}
                   <tr>
                     <div class="">
-                        <h3>There are no NGOs/Groups providing this help yet</h3>
+                        <h3>There are no NGOs/Groups in the database</h3>
                     </div>
                   </tr>
                 {% endif %}    
@@ -103,6 +99,10 @@
           </div>
         </div>
     </div>
+        
     </div>   
   </div> 
+
+	
 {% endblock content %}
+

@@ -18,26 +18,16 @@
       
     <!-- Page content -->
                   
-    <div align="center" class="container">
-      <a href="{{ url_for('relief_call') }}"><button style="font-size: 15px;" class="mb-2 btn btn-primary">Couldn't get the Required Help?</button></a>
-    </div>                   
+                    
 <div align="center">
 <div class="row mt-5" >
-  
         <div class="col-xl-8 ml-2 mb-5 mb-xl-0">
           <div class="card shadow">
             <div class="card-header border-0">
-              
               <div class="row align-items-center">
-                {% if l>0 %}
                 <div class="col">
-                  <h1 class="text-center mb-4" class="btn-success">Search results for {{ name }}</h1>
+                  <h1 class="text-center mb-4">Task List</h1>
                 </div>
-                {% else %}
-                <div class="col">
-                  <h1 class="text-center mb-4" class="btn-success">Results not found in our Database</h1>
-                </div>
-                {% endif %}
                                      {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}  
                                                       {% if (message.startswith("Thanks")) %}
                                                       <div class="alert alert-success alert-dismissible" role="alert">
@@ -55,46 +45,67 @@
                
   
             </div>
+            {% if len>0 %}
             <div class="table-responsive">
               <!-- Projects table -->
-              {% if l>0 %}
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
-                    <th scope="col" style="font-size: 12px;">PIN</th>
-                    <th scope="col" style="font-size: 12px;">Name</th>
-                    <th scope="col" style="font-size: 12px;">Contact No</th>
-                    <th scope="col" style="font-size: 12px;">Service</th>
+                    <th scope="col" style="font-size: 12px;">Task ID</th>
+                    <th scope="col" style="font-size: 12px;">Task</th>
+                    <th scope="col" style="font-size: 12px;">Task Details</th>
+                    <th scope="col" style="font-size: 12px;">Task Creator</th>
+                    <th scope="col" style="font-size: 12px;">Location or Pincode</th>
+                    <th scope="col" style="font-size: 12px;">Required no<br>of volunteers</th>
+                    <th scope="col" style="font-size: 12px;">Total volunteers applied</th>
+                    <th scope="col" style="font-size: 12px;">Contact Number</th>
                     <th scope="col" style="font-size: 12px;">Website</th>
-                  </tr> 
+                    <!-- <th scope="col" style="font-size: 12px;">Apply</th> -->
+                  </tr>
                 </thead>
                 <tbody>
                   {% for value in data %}
                   <tr>
                     <td scope="col">
-                      {{ value[6] }}
+                      {{value[0]}}
                     </td>
                     <td scope="col">
-                      {{ value[1] }}
+                      {{value[1]}}
                     </td>
                     <td scope="col">
-                      {{ value[5] }}
+                      {{value[8]}}
                     </td>
                     <td scope="col">
-                      {{ value[14] }}
+                      {{value[3]}}
                     </td>
-                    <td scope="col">
-                       <a href="{{ value[8] }}"> Website</a>
+                    <td>
+                      {{value[5]}}
                     </td>
+                    <td>
+                      {{value[7]}}
+                    </td>
+                    <td>
+                      {{value[11]}}
+                    </td>
+	            <td>
+                      {{value[6]}}
+                    </td>
+                    <td>
+                      <div class="btn btn-outline-secondary">
+                        <a href="{{value[4]}}">Link to website</a>  
+                      </div>
+                    </td>  
                   </tr>
                   {% endfor %}
-                {% else %}
+
+                  {% else %}
                   <tr>
                     <div class="">
-                        <h3>There are no NGOs/Groups providing this help yet</h3>
+                        <h3>There are no tasks yet</h3>
                     </div>
-                  </tr>
-                {% endif %}    
+                  </tr>  
+                <td>
+                  {% endif %}
                 </tbody>
 
               </table>
@@ -102,7 +113,36 @@
             </div>
           </div>
         </div>
-    </div>
+    </div></div>
+        {% include "site_template/footer.html" %}
+        
     </div>   
   </div> 
+
+<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    $.getJSON("/tasks_list", function(data){
+
+        if( data["data"].length > 0 ) {
+
+           
+            for(var i = 0; i < data["data"].length; i++)
+            {
+                html_code += data["data"][i]["task"]
+            }
+
+            $("th").html(html_code)
+
+        }
+
+        else {
+
+            $("th").html("Empty Message");
+        }
+</script> -->
+	
 {% endblock content %}
+
+<!-- {% block javascripts %}
+  {{ super()}}
+{% endblock javascripts %} -->

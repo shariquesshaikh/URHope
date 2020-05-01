@@ -21,9 +21,12 @@ import logging
 import string
 import random
 import smtplib #to send emails
+import logging
 # import regex as re
 
 app = Flask(__name__)
+
+logging.basicConfig(filename='logs.log', level=logging.DEBUG)
 
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 
@@ -46,20 +49,20 @@ def serve():
     server.ehlo()
     #Login with sender_email_address on Chrome browser. Search less secure apps on chrome browser and on less secure apps' permission page, enable permission for sender_email_address.
     #server.login('sender_email_address','password')
-    server.login('urhope.ngo@gmail.com','password') #authentication
+    server.login('urhope.ngo@gmail.com','') #authentication
     return server #confidential
 
 
 
 #Database Connection
 # def get_db():
-#     db = pymysql.connect(host='localhost', user='root', passwd='',
+#     db = pymysql.connect(host='localhost', user='root', passwd='CoronaPassword.1#',
 #                          db='covid', charset='utf8mb4')
 #     return db
 
 
 
-# No Password Disclosure
+
 def get_db():
     db = pymysql.connect(host='localhost', user='root', passwd='',
                          db='covid', charset='utf8mb4')
@@ -71,6 +74,8 @@ def get_db():
 @app.route('/')
 def base():
     return render_template('home.html')
+
+
 
 @app.route('/index')
 def index():
@@ -86,9 +91,56 @@ def team():
 def form():
     return render_template('form.html')
 
-@app.route('/relief-call')
+
+@app.route('/relief_call', methods=['GET', 'POST'])
 def relief_call():
     return render_template('relief_call.html')
+
+
+
+@app.route('/relief_send', methods=['GET', 'POST'])
+def relief_send():
+    if request.method=="POST" and 'name' in request.form and 'for_appl' in request.form and 'help_type' in request.form and 'govtID' in request.form and 'address' in request.form and 'phone' in request.form and 'pin' in request.form and 'msg' in request.form:
+        name = request.form['name']
+        for_appl = request.form['for_appl']
+        h_type = request.form['help_type']
+        id = request.form['govtID']
+        address = request.form['address']
+        phone = request.form['phone']
+        pin = request.form['pin']
+        msg = request.form['msg']
+        role='n'
+        db = get_db()
+        c = db.cursor()
+
+        c.execute('select name,username from members where role = %s and pin=%s and services=%s'
+                    , (role,pin,h_type))
+        account = c.fetchall()
+        
+        if len(account)>0:
+            for i in account:
+                server=serve()
+                subject = "URHope: Hey "+i[0]+","+name+"needs some help from you."
+                body= "Hello,\n\nThis is a notification from URHope Team. We request you to look into matter as soon as possible and help this needy person.\n\n"+name+" needs help for "+h_type+" for "+for_appl+".\nContact No: "+phone+"\nAddress: "+address+"\nPincode: "+pin+"\nGovernment ID: "+govtID+"\n\n"+name+"has a message for you,\n"+msg+"\n\nRegards,\nURHope Messenger"
+                msg=f"Subject: {subject}\n\n{body} "
+
+                server.sendmail(
+                                'urhope.ngo@gmail.com', #email ID of URHope or use your email ID for testing
+                                str(i[1]), 
+                                msg
+                                )
+                server.quit()
+            flash("Your message has been sent to nearby NGOs. You will receive help.")
+            return redirect(url_for('relief_call'))
+        else:
+            flash("we could not find any NGO nearby you. Try contacting our team.")
+            return redirect(url_for('relief_call'))
+    else:
+        flash("Fill all the details before sending.")
+        return redirect(url_for('relief_call'))
+    # return render_template('relief_call.html')
+
+
 
 @app.route('/signup/', methods=['GET', 'POST'])
 def signup():
@@ -188,6 +240,40 @@ def login():
 
 
 
+@app.route('/panel') #, methods=['GET', 'POST']
+def admin_panel():
+    return render_template('adminlogin.html')
+
+
+@app.route('/check-admin', methods=['GET', 'POST'])
+def admin_check():
+    if request.method == 'POST' and 'username' in request.form \
+        and 'password' in request.form:
+        try:
+            username = request.form['username']
+            password = request.form['password']
+            db = get_db()
+            c = db.cursor()
+            c.execute('SELECT id,name,username,role FROM admin WHERE username = %s and password = md5(%s)'
+                      , (username, password))
+            account = c.fetchone()
+            if account is not None:
+                session['logged_in'] = True
+                session['user_id'] = account[0]
+                session['username'] = account[2]
+                session['name'] = account[1]
+                session['role'] = account[3]
+                return redirect(url_for('home'))
+            else:
+                flash('Invalid Username or Password')
+                return redirect(url_for('admin_panel'))
+        except Exception as e:
+            print(e)
+            return redirect(url_for('admin_panel'))
+    else:
+        return redirect(url_for('admin_panel'))
+
+
 @app.route('/logout')
 def logout():
     # Remove session data, this will log the user out
@@ -208,10 +294,10 @@ def profile(id):
         if session['role'] == 'v':
             return render_template('volunteers_profile.html',
                                    id=session['user_id'])
-        elif session['role'] == 'n':
+        if session['role'] == 'n':
             return render_template('ngo_profile.html',
                                    id=session['user_id'])
-        else:
+        if session['role'] == 'a':
             return render_template('admin_profile.html',
                                    id=session['user_id'])
 
@@ -463,7 +549,18 @@ def task_list():
         c.close()          
         db.close()
         return render_template('task_list_n.html',len=len(data), data=data) 
-    
+
+    elif session['role'] == 'a':    
+        grp_name = session['name']
+        db = get_db()
+        c = db.cursor()
+        c.execute('select * from task')
+        data = c.fetchall()
+        db.commit()
+        c.close()          
+        db.close()
+        return render_template('task_list.html',len=len(data), data=data)
+
     elif session['role'] == 'v':
         # pin = session['pin']
         db = get_db()
@@ -559,18 +656,16 @@ def apply_task(id):
         flash(x)
         return redirect(url_for('task_list'))
 
-
-
+                             
 @app.route('/notification_page/', methods=['GET', 'POST'])
 def notification_page():
     if not session.get('logged_in'):
         return redirect(url_for('login'))
-
     db = get_db()
     c = db.cursor()
     c.execute('SELECT * FROM application WHERE grp_email=%s ORDER BY id DESC',session['username'])
     data = c.fetchall()
-    db.commit()
+    db.commit() 
     c.close()
     db.close()
     return render_template('notification_page.html',len=len(data),data=data)
@@ -605,10 +700,10 @@ def home():
     else:
         if session['role'] == 'v':
             return render_template('home.html')
-        elif session['role'] == 'n':
+        if session['role'] == 'n':
             return render_template('home.html')
-        else:
-            return render_template('home.html')
+        if session['role'] == 'a':
+            return render_template('admin_profile.html')
 
 
 
@@ -655,9 +750,112 @@ def serch_result():
             if(l>0):
                 return render_template('searched.html',l=l,data=data,name=low_name)
             else:
-                return redirect(url_for('index'))
+                return render_template('searched.html',l=0)
         else:
-            return redirect(url_for('index'))
+                return render_template('searched.html',l=0)
+
+
+
+@app.route('/reg_ngos')
+def reg_ngos():
+        if not session.get('logged_in'):
+            return redirect(url_for('login'))
+        db = get_db()
+        c = db.cursor()
+        role="n"
+        c.execute('SELECT * FROM members WHERE role=%s ORDER BY name',(role))
+        data = c.fetchall()
+        l=len(data)
+        db.commit()
+        c.close()
+        db.close()
+        return render_template('view_ngo.html',data=data,l=len(data))
+
+
+
+@app.route('/del_ngo/<id>',methods=['GET','POST'])
+def del_ngo(id):
+    id=id
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+    db = get_db()
+    c = db.cursor()
+    role="n"
+    c.execute('SELECT username FROM members WHERE id = %s', id)
+    data = c.fetchone()
+
+    uname = data[0]
+    c.execute('DELETE FROM application WHERE grp_email = %s', uname)
+    c.execute('DELETE FROM task WHERE grp_email = %s', uname)
+    c.execute('DELETE FROM members WHERE id = %s', id)
+
+    db.commit()
+    c.close()
+    db.close()
+    return redirect(url_for('reg_ngos'))
+
+
+
+@app.route('/reg_vols')
+def reg_vols():
+        if not session.get('logged_in'):
+            return redirect(url_for('login'))
+        db = get_db()
+        c = db.cursor()
+        role="v"
+        c.execute('SELECT * FROM members WHERE role=%s ORDER BY name',(role))
+        data = c.fetchall()
+        l=len(data)
+        db.commit()
+        c.close()
+        db.close()
+        return render_template('view_volun.html',data=data,l=len(data))
+
+
+
+@app.route('/del_vol/<id>')
+def del_vol(id):
+    id=id
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+    db = get_db()
+    c = db.cursor()
+    role="v"
+    c.execute('SELECT username FROM members WHERE id = %s', id)
+    data = c.fetchone()
+    vol_mail = data[0]
+    
+    c.execute('SELECT grp_email FROM application WHERE vol_email = %s', vol_mail)
+    gdata = c.fetchall()
+
+    if len(gdata) > 0:
+        for i in gdata:
+            c.execute('SELECT vol_applied FROM task WHERE grp_email=%s', (i[0])) #deletes all the volunteer applications
+            val=c.fetchone()
+            val=val[0]-1
+            c.execute('UPDATE task SET vol_applied= %s WHERE grp_email=%s', (val,i[0]))
+        c.execute('DELETE FROM application WHERE vol_email = %s', vol_mail) 
+ 
+    c.execute('DELETE FROM members WHERE id = %s', id)
+
+    db.commit()
+    c.close()   
+    db.close()
+    return redirect(url_for('reg_vols'))
+
+
+
+@app.route('/logs')
+def logs():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+
+    log_file = open('logs.log', 'r')
+
+    if os.stat("logs.log").st_size == 0:
+        return render_template('log.html',logs=log_file,l=0)
+    else: 
+        return render_template('log.html',logs=log_file,l=1)
 
 
 @app.route('/helpline')

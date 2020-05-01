@@ -1,0 +1,72 @@
+{% extends "base_site_auth.html" %}
+
+{% block title %} Login {% endblock title %}
+
+{% block content %}
+
+<!-- Page content -->
+<div class="container mt--8 pb-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-5 col-md-7">
+      <div class="card bg-secondary shadow border-0">
+        <div class="card-header bg-transparent pb-5">
+
+          <div class="text-muted text-center mt-2 mb-3">
+            <h1 class="text-center">Login</h1>
+            {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+            {% if (message.startswith("Thanks")) %}
+            <div class="alert alert-success alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                  aria-hidden="true">×</span></button>
+              {{message}}
+            </div>
+            {% else %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                  aria-hidden="true">×</span></button>
+              {{message}}
+            </div>
+            {% endif %}
+
+            {% endfor %} {% endif %} {% endwith %}
+
+          </div>
+
+        </div>
+        <div class="card-body px-lg-5 py-lg-5">
+
+          <form action="/check-admin"  method="POST">
+
+            <div class="form-group mb-3">
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-single-02"></i></span>
+                </div>
+                <input type="email" class="form-control" placeholder="Email" name="username" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-group input-group-alternative">
+                <div class="input-group-prepend">
+                  <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                </div>
+                <input type="password" class="form-control" placeholder="Password" name="password" required>
+              </div>
+            </div>
+
+            <div class="text-center">
+              <button type="submit" name="login" class="btn btn-primary my-4">Sign in</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- <div class="row mt-3 text-center">
+        <div class="col-12">
+          <a href={{ url_for('signup') }} class="text-light"><small>Create new account</small></a>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
