@@ -49,7 +49,7 @@ def serve():
     server.ehlo()
     #Login with sender_email_address on Chrome browser. Search less secure apps on chrome browser and on less secure apps' permission page, enable permission for sender_email_address.
     #server.login('sender_email_address','password')
-    server.login('urhope.ngo@gmail.com','covid19farha') #authentication
+    server.login('urhope.ngo@gmail.com','') #authentication
     return server #confidential
 
 
