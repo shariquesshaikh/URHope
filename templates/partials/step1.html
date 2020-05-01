@@ -1,0 +1,92 @@
+<div class="pincode-div ">
+    <h3 class="mb-0 row justify-content-center">Need Help?</h3>
+    <div class="row justify-content-center">
+        <h6 class="mt-3 mb-3">Enter Pincode</h6>
+    </div>
+
+    <div class="row justify-content-center">
+        <input class="pincode" id="codeBox1" type="number" maxlength="1"
+               onkeyup="onKeyUpEvent(1, event)"
+               onfocus="onFocusEvent(1)"/>
+        <input class="pincode" id="codeBox2" type="number" maxlength="1"
+               onkeyup="onKeyUpEvent(2, event)"
+               onfocus="onFocusEvent(2)"/>
+        <input class="pincode" id="codeBox3" type="number" maxlength="1"
+               onkeyup="onKeyUpEvent(3, event)"
+               onfocus="onFocusEvent(3)"/>
+        <input class="pincode" id="codeBox4" type="number" maxlength="1"
+               onkeyup="onKeyUpEvent(4, event)"
+               onfocus="onFocusEvent(4)"/>
+        <input class="pincode" id="codeBox5" type="number" maxlength="1"
+               onkeyup="onKeyUpEvent(5, event)"
+               onfocus="onFocusEvent(5)"/>
+        <input class="pincode" id="codeBox6" type="number" maxlength="1"
+               onkeyup="onKeyUpEvent(6, event)"
+               onfocus="onFocusEvent(6)"/>
+    </div>
+
+    <div style="font-size: 10px; color: darkblue" class="pincode-location mt-3 mb-3 row justify-content-center"><i
+            style="color: red;"
+            class="fas fa-map-marker-alt"></i>&nbsp
+        Vijayawada, Andhra Pradesh, India.
+    </div>
+    <div class="row justify-content-center">
+        <button type="submit" class="mb-3 btn btn-outline-dark next-btn"
+                style="font-size: 12px; border-radius: 5px;"
+                name="name" id="">Next <i class="fas fa-arrow-right"></i></button>
+    </div>
+
+</div>
+
+<script>
+    var lastUpdatedElement = 0;
+
+    function getCodeBoxElement(index) {
+        return document.getElementById('codeBox' + index);
+    }
+
+    function onKeyUpEvent(index, event) {
+        const eventCode = event.which || event.keyCode;
+        const previous_val = getCodeBoxElement(index).value;
+        console.log(getCodeBoxElement(index).value);
+        if (getCodeBoxElement(index).value.length === 1) {
+            if (index !== 6) {
+                getCodeBoxElement(index + 1).focus();
+            } else {
+                getCodeBoxElement(index).blur();
+                console.log('submit code ');
+            }
+        }
+        if (getCodeBoxElement(index).value.length > 1 && event.key <= 9 && event.key >= 0) {
+            if (index !== 6) {
+                document.getElementById('codeBox' + index).value = event.key;
+                getCodeBoxElement(index + 1).focus();
+            } else {
+                document.getElementById('codeBox' + index).value = event.key;
+                getCodeBoxElement(index).blur();
+                console.log(event.key);
+            }
+        }
+
+        if (eventCode === 8 && index !== 1) {
+            getCodeBoxElement(index - 1).focus();
+        }
+    }
+
+
+    function onFocusEvent(index) {
+        console.log(getCodeBoxElement(index).value);
+        /*
+        console.log(getCodeBoxElement(index).value);
+        for (var item = 1; item < index; item++) {
+            const currentElement = getCodeBoxElement(item);
+            if (!currentElement.value) {
+                currentElement.focus();
+                break;
+            }
+        }
+
+         */
+    }
+
+</script>
