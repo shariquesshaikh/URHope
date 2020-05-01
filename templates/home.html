@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="static/assets2/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="static/assets2/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/static/assets2/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="/static/assets2/img/favicon.png">
   <title>
     URHope - Where Hope Prevails
   </title>
@@ -13,14 +13,13 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
   <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
   <!-- Nucleo Icons -->
-  <link href="static/assets2/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="static/assets2/css/nucleo-svg.css" rel="stylesheet" />
+  <link href="/static/assets2/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="/static/assets2/css/nucleo-svg.css" rel="stylesheet" />
   <!-- Font Awesome Icons -->
-  <link href="static/assets2/css/font-awesome.css" rel="stylesheet" />
-  <link href="static/assets2/css/nucleo-svg.css" rel="stylesheet" />
-  <link href="static/assets2/css/my.css" rel="stylesheet" />
+  <link href="/static/assets2/css/font-awesome.css" rel="stylesheet" />
+  <link href="/static/assets2/css/nucleo-svg.css" rel="stylesheet" />
   <!-- CSS Files -->
-  <link href="static/assets2/css/argon-design-system.css?v=1.2.0" rel="stylesheet" />
+  <link href="/static/assets2/css/argon-design-system.css?v=1.2.0" rel="stylesheet" />
 </head>
 
 <body class="landing-page">
@@ -28,7 +27,7 @@
   <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom">
     <div class="container">
       <a class="navbar-brand mr-lg-5" href="../index.html">
-        <img src="static/assets2/img/brand/white.png">
+        <img src="/static/assets2/img/brand/white.png">
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -81,7 +80,7 @@
           <div class="row">
             <div class="col-6 collapse-brand">
               <a href="../../../index.html">
-                <img src="static/assets2/img/brand/blue.png">
+                <img src="/static/assets2/img/brand/blue.png">
               </a>
             </div>
             <div class="col-6 collapse-close">
@@ -196,23 +195,22 @@
 
 <form action="/searchresult" method="POST" >
   <div align="center" >
-  <input maxlength="5" minlength="6" name="pin" type="number" class="form-control" id="pincode" placeholder="Enter pincode and click on a service" required>
+  <input name="pin" type="number" pattern="[1-9][0-9]{5}" class="form-control" id="pincode" placeholder="Enter pincode and click on a service">
  <div class="btn-primary">
   <p style="font-size: 12px;"><b>PIN length should be equal to 6.<br>If you don't see any result after you search, then that data is not present in our database.</b> </p>
 </div>
 
   <!-- <div class="text-muted text-left mt-2 mb-3">
 
-                <h3 class="mt-2 mb-0">COVID-19 Help</h3>
-                <h3 class="mt-2 mb-0">Search</h3>
-                {% for value in data %}
-                  {{value[0]}}
-                  {{value[1]}}
-                  {{value[2]}}
-                  {{value[3]}}
-                </br>
-                {% endfor %}
-              </div> -->
+      <h3 class="mt-2 mb-0">Search</h3>
+      {% for value in data %}
+        {{value[0]}}
+        {{value[1]}}
+        {{value[2]}}
+        {{value[3]}}
+      </br>
+      {% endfor %}
+  </div>  -->
               
             <!-- </div> -->
             <!-- <div class="card-body text-center px-lg-5 py-lg-5">
@@ -440,20 +438,18 @@
     </footer>
   </div>
   <!--   Core JS Files   -->
-  <script src="static/assets2/js/core/jquery.min.js" type="text/javascript"></script>
-  <script src="static/assets2/js/core/popper.min.js" type="text/javascript"></script>
-  <script src="static/assets2/js/core/bootstrap.min.js" type="text/javascript"></script>
-  <script src="static/assets2/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <script src="/static/assets2/js/core/jquery.min.js" type="text/javascript"></script>
+  <script src="/static/assets2/js/core/popper.min.js" type="text/javascript"></script>
+  <script src="/static/assets2/js/core/bootstrap.min.js" type="text/javascript"></script>
+  <script src="/static/assets2/js/plugins/perfect-scrollbar.jquery.min.js"></script>
   <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-  <script src="static/assets2/js/plugins/bootstrap-switch.js"></script>
+  <script src="/static/assets2/js/plugins/bootstrap-switch.js"></script>
   <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-  <script src="static/assets2/js/plugins/nouislider.min.js" type="text/javascript"></script>
-  <script src="static/assets2/js/plugins/moment.min.js"></script>
-  <script src="static/assets2/js/plugins/datetimepicker.js" type="text/javascript"></script>
-  <script src="static/assets2/js/plugins/bootstrap-datepicker.min.js"></script>
+  <script src="/static/assets2/js/plugins/nouislider.min.js" type="text/javascript"></script>
+  <script src="/static/assets2/js/plugins/moment.min.js"></script>
+  <script src="/static/assets2/js/plugins/datetimepicker.js" type="text/javascript"></script>
+  <script src="/static/assets2/js/plugins/bootstrap-datepicker.min.js"></script>
   
-<script>
- <!-- Global site tag (gtag.js) - Google Analytics -->
  <script async src="https://www.googletagmanager.com/gtag/js?id=G-83CH6CWM21"></script>
  <script>
    window.dataLayer = window.dataLayer || [];
