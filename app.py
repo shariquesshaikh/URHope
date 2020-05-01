@@ -49,7 +49,7 @@ def serve():
     server.ehlo()
     #Login with sender_email_address on Chrome browser. Search less secure apps on chrome browser and on less secure apps' permission page, enable permission for sender_email_address.
     #server.login('sender_email_address','password')
-    server.login('urhope.ngo@gmail.com','') #authentication
+    server.login('urhope.ngo@gmail.com','covid19farha') #authentication
     return server #confidential
 
 
@@ -100,11 +100,11 @@ def relief_call():
 
 @app.route('/relief_send', methods=['GET', 'POST'])
 def relief_send():
-    if request.method=="POST" and 'name' in request.form and 'for_appl' in request.form and 'help_type' in request.form and 'govtID' in request.form and 'address' in request.form and 'phone' in request.form and 'pin' in request.form and 'msg' in request.form:
+    if request.method=="POST" and 'name' in request.form and 'for_appl' in request.form and 'h_type' in request.form and 'govtID' in request.form and 'address' in request.form and 'phone' in request.form and 'pin' in request.form and 'msg' in request.form:
         name = request.form['name']
         for_appl = request.form['for_appl']
-        h_type = request.form['help_type']
-        id = request.form['govtID']
+        h_type = request.form['h_type']
+        govtID = request.form['govtID']
         address = request.form['address']
         phone = request.form['phone']
         pin = request.form['pin']
