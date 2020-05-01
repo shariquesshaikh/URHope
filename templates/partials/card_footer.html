@@ -1,0 +1,43 @@
+<div class="card-footer-custom mt-2 mt-lg-0">
+
+    <div class="row mt-3">
+        <div class="col">
+            <h6>Do you want to volunteer?</h6>
+        </div>
+        <div class="col" align="right">
+                <a href="{{ url_for('signup') }}">
+                    <button class="btn btn-success btn-sm">
+                        <b>Yes</b>
+                    </button>
+                </a>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+        <div class="col">
+            <h6>Are you an N.G.O?</h6>
+        </div>
+        <div align="right" class="col justify-content-end">
+            <a href="{{ url_for('signup') }}">
+                <button class="btn btn-sm btn-primary">Find Volunteers <i class="fa fa-search"></i></button>
+
+            </a>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class=" mb-2 row ">
+        <div class="col">
+            <h6>Government Initiatives </h6>
+        </div>
+        <div align="right" class="col">
+            <a href="{{ url_for('helpline') }}">
+                {#            <button style="font-size: 10px;" class="btn btn-block btn-primary">View</button>#}
+                View&nbsp&nbsp<i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</div>

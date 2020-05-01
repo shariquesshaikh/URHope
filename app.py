@@ -81,6 +81,9 @@ def index():
 def team():
     return render_template('team.html')
 
+@app.route('/initiatives')
+def initiatives():
+    return render_template('initiatives.html')
 
 @app.route('/form')
 def form():
