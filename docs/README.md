@@ -4,6 +4,7 @@ https://thakurfurqaan.github.io/urhope/
 
 # Pending Tasks  
 
+- Change in layout of initiatives table
 - Registration Page
   - Form 
     - Separate for Volunteers and NGOs
