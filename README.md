@@ -1,6 +1,6 @@
 # urhope
 
-**Tasks completed so far:**
+**Tasks completed**
 
 1. Role based sign up and login for volunteers and NGOs
 2. Role based profile updation for volunteers and NGOs
@@ -17,6 +17,9 @@
 13. Admin Rights
 14. Implementation of couldn't help module
 
+**Tasks Remaining**
+1. Integration of Jino's work
+2. Releasing fully functional Version 1
 
 # Running in Local
 
