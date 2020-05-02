@@ -45,7 +45,7 @@
                 </div>
                 </div>
                 <div class="card-body">
-                <form action="/relief-call" method="POST">
+                <form action="{{ url_for('relief_send') }}" method="POST">
                     <div class="pl-lg-4">
                     <div class="row">
                         <div class="col-lg-6">
@@ -59,7 +59,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-email">Who are seeking Help For?</label>
-                  <select class="form-control" name="t_type" required>
+                  <select class="form-control" name="for_appl" required>
                     <option value="Self">Self</option>
                     <option value="Someone closely associated">Someone closely associated</option>
                     <option value="Others">Others</option>
@@ -86,7 +86,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-email">Type of Help needed</label>
-                  <select class="form-control" name="t_type" required>
+                  <select class="form-control" name="h_type" required>
                     <option selected>---- Select Type of Help ----</option>
                     <option value="Food">Food</option>
                     <option value="Healthcare">Healthcare</option>
@@ -131,7 +131,7 @@
                 </div>
             </div>
             </div>
-        </div>
+        </div></div>
     
         {% include "site_template/footer.html" %}
         

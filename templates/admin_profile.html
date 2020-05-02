@@ -21,7 +21,7 @@
             <h1 class="display-2 text-white">Hello {{ session['name'] }}</h1>
             <p class="text-white mt-0 mb-5">
                 This is your profile page. </p>
-            <a href="#!" class="btn btn-info">Edit profile</a>
+            <!-- <a href="{{ url_for('edit_profile', id=session['user_id']) }}" class="btn btn-info">Edit profile</a> -->
         </div>
         </div>
     </div>
@@ -31,7 +31,7 @@
     <div class="container-fluid mt--7">
 
         <div class="row">
-            <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
+            <div class="col-xl-4 order-xl-2 mb-3 mb-xl-0">
             <div class="card card-profile shadow">
                 <div class="row justify-content-center">
                 <div class="col-lg-3 order-lg-2">
@@ -42,8 +42,37 @@
                     </div>
                 </div>
                 </div>
-                <div class="mt-5 card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+                <div class="card-header text-center border-0 pt-8 pt-md-8 pb-0 pb-md-4">
+                 <div class="d-flex justify-content-between">
+                      <a href="http://{{ session['social'] }}" class="btn btn-sm btn-info mr-4">Connect</a>
+                      <a href="https://wa.me/{{ session['phone'] }}?text=Contacted%20From%20URHope" class="btn btn-sm btn-default float-right">Message</a>
+                    </div> 
+				  </div>
+                  <div class="card-body pt-0 pt-md-0">
+                    <div class="row">
+                      <div class="col">
+                        <div class="card-profile-stats d-flex justify-content-center mt-md-5">
+                          <div>
+                            <span class="heading">{{ session['name'] }}</span>
+                            <!-- <span class="description">{{ session['currProfile'] }}</span> -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <div class="text-center">
+                      <h3>
+                        {{ session['name'] }}
+                      </h3>
+                      <div class="h5 font-weight-300">
+                        <i class="ni location_pin mr-2"></i>{{ session['address'] }}
+                      </div>
+                      <hr class="my-4" />
+                      <p>{{ session['about'] }}</p>
+                      <a href="{{ session['website'] }}">Website</a>
+                    </div> -->
+                  </div>
                 </div>
+              </div>
 
             <div class="col-xl-8 order-xl-1">
             <div class="card bg-secondary shadow">
@@ -56,13 +85,13 @@
                 </div>
                 <div class="card-body">
                 <form>
-                    <h6 class="heading-small text-muted mb-4">User information - {{ session['user_id'] }}</h6>
+                    <h6 class="heading-small text-muted mb-4">User ID - {{ session['user_id'] }}</h6>
                     <div class="pl-lg-4">
                     <div class="row">
                         <div class="col-lg-6">
                         <div class="form-group">
                             <label class="form-control-label" for="input-username">Username</label>
-                            <input type="text" id="input-username" class="form-control form-control-alternative" 
+                            <input type="email" id="input-username" class="form-control form-control-alternative" 
                                    placeholder="Username" value="{{ session['username'] }}" disabled>
                         </div>
                         </div>
@@ -73,11 +102,25 @@
                         </div>
                         </div>
                         
+                        <!-- <div class="col-lg-6"> -->
+                        <!-- <div class="form-group">
+                            <label class="form-control-label" for="input-email">Website</label>
+                            <input type="text" id="input-email" class="form-control form-control-alternative" 
+                                   placeholder="Website" value="{{ session['website'] }}" disabled>
+                        </div>
+                        </div>
                         <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="form-control-label" for="input-email">Email address</label>
-                            <input type="email" id="input-email" class="form-control form-control-alternative" 
-                                   placeholder="Email" value="{{ session['username'] }}" disabled>
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-email">Social</label>
+                                <input type="text" id="input-email" class="form-control form-control-alternative" 
+                                       placeholder="Social" value="{{ session['social'] }}" disabled>
+                        </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-email">Services</label>
+                                <input type="text" id="input-email" class="form-control form-control-alternative" 
+                                       placeholder="Services" value="{{ session['services'] }}" disabled>
                         </div>
                         </div>
                     </div>
@@ -86,23 +129,35 @@
 
                     </div>
                     </div>
-                    <hr class="my-4" />
+                    <hr class="my-4" /> -->
                     <!-- Address -->
-                    <h6 class="heading-small text-muted mb-4">Contact information</h6>
+                    <!-- <h6 class="heading-small text-muted mb-4">Contact Information</h6>
                     <div class="pl-lg-4">
                     <div class="row">
                         <div class="col-md-12">
                         <div class="form-group">
                             <label class="form-control-label" for="input-address">Address</label>
-                            <input id="input-address" class="form-control form-control-alternative" placeholder="Home Address" value="{{ session['username'] }}" type="text" disabled>
+                            <input id="input-address" class="form-control form-control-alternative" placeholder="Address" value="{{ session['address'] }}" type="text" disabled>
                         </div>
                         </div>
-                    </div>
-                    <div class="row">
+                    </div> -->
+                    <!-- <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="input-city">Registration No.</label>
+                                <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="Registration No." value="{{ session['regno'] }}" disabled>
+                            </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-city">Branch</label>
+                                    <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="Branch" value="{{ session['branch'] }}" disabled>
+                                </div>
+                                </div>
                         <div class="col-lg-4">
                         <div class="form-group">
                             <label class="form-control-label" for="input-city">Phone No</label>
-                            <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="City" value="{{ session['phone'] }}" disabled>
+                            <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="Phone" value="{{ session['phone'] }}" disabled>
                         </div>
                         </div>
                         <div class="col-lg-4">
@@ -112,16 +167,16 @@
                         </div>
                         </div>
                     </div>
-                    </div>
-                    <hr class="my-4" />
+                    </div> -->
+                    <!-- <hr class="my-4" /> -->
                     <!-- Description -->
-                    <h6 class="heading-small text-muted mb-4">About me</h6>
+                    <!-- <h6 class="heading-small text-muted mb-4">About Us</h6>
                     <div class="pl-lg-4">
                     <div class="form-group">
                         <label>About Me</label>
-                        <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ..." disabled>{{ session['username'] }}</textarea>
+                        <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ..." disabled>{{ session['about'] }}</textarea>
                     </div>
-                    </div>
+                    </div> -->
                 </form>
                 </div>
             </div>

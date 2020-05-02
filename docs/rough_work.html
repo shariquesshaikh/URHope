@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let jsondata;
+    var arr;
+    console.log(arr);
+    fetch('POTABLE.txt').then(
+        function (u) {
+            return u.json();
+        }
+    ).then(
+        function (json) {
+            jsondata = json;
+            arr = jsondata;
+            console.log(jsondata[0]);
+        }
+    );
+
+
+
+</script>
+
+
+</body>
+</html>

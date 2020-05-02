@@ -1,0 +1,92 @@
+{% extends "base_site.html" %}
+
+{% block title %} Profile {% endblock title %}
+
+{% block stylesheets %}
+  {{ super() }}
+{% endblock stylesheets %}
+
+{% block content %}
+
+    {% include "site_template/navigation.html" %}
+      
+    <!-- Header -->
+    <div class="header pb-3 pt-5 pt-lg-3 d-flex align-items-center" style=" background-size: cover; background-position: center top;">
+    <!-- Mask -->
+    <!-- Header container -->
+    </div>
+      
+    <!-- Page content -->
+                  
+                          <a href="#down" class="btn center btn-outline-success"><i class="fa fa-arrow-down"></i>    Go Down</a>
+                    <a id="up"></a>
+<div align="center">
+<div class="row mt-5" >
+        <div class="col-xl-8 ml-2 mb-5 mb-xl-0">
+          <div class="card shadow">
+            <div class="card-header border-0">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h1 class="text-center mb-4" class="btn-success">LOGS</h1>
+                </div>
+                                     {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}  
+                                                      {% if (message.startswith("Thanks")) %}
+                                                      <div class="alert alert-success alert-dismissible" role="alert">
+                                                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                          {{message}}
+                                                      </div>
+                                                      {% else %}
+                                                      <div class="alert alert-danger alert-dismissible" role="alert">
+                                                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                          {{message}}
+                                                      </div>
+                                                      {% endif %}
+
+                                                      {% endfor %} {% endif %} {% endwith %}  
+               
+  
+            </div>
+            <div class="table-responsive">
+              <!-- Projects table -->
+              {% if l>0 %}
+              <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                  <tr>
+                    <!-- <th scope="col" style="font-size: 12px;">PIN</th> -->
+                    <!-- <th scope="col" style="font-size: 12px;" >LOGS</th> -->
+                    <!-- <th scope="col" style="font-size: 12px;">Contact No</th> -->
+                    <!-- <th scope="col" style="font-size: 12px;">Service</th> -->
+                    <!-- <th scope="col" style="font-size: 12px;">Website</th> -->
+                    <!-- <th scope="col" style="font-size: 12px;">Delete Operation</th>
+                  </tr>
+                </thead> -->
+                <tbody>
+                  {% for value in logs %}
+                  <tr>
+                    <td scope="col">
+                      {{ value }}
+                    </td>
+                  </tr>
+                  {% endfor %}
+                {% else %}
+                  <tr>
+                    <div class="">
+                        <h3>There are no logs</h3>
+                    </div>
+                  </tr>
+                {% endif %}    
+                </tbody>
+
+              </table>
+			  </div>
+            </div>
+          </div>
+        </div>
+                          <a href="#up" class="btn center btn-outline-success"><i class="fa fa-arrow-up"></i>    Go UP</a>
+                          <br><br>
+
+<a id="down"></a></div>
+
+{% include "site_template/footer.html" %}
+{% endblock content %}
+

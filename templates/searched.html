@@ -18,16 +18,26 @@
       
     <!-- Page content -->
                   
-                    
+    <div align="center" class="container">
+      <a href="{{ url_for('relief_call') }}"><button style="font-size: 15px;" class="mb-2 btn btn-primary">Couldn't get the Required Help?</button></a>
+    </div>                   
 <div align="center">
 <div class="row mt-5" >
+  
         <div class="col-xl-8 ml-2 mb-5 mb-xl-0">
           <div class="card shadow">
             <div class="card-header border-0">
+              
               <div class="row align-items-center">
+                {% if l>0 %}
                 <div class="col">
                   <h1 class="text-center mb-4" class="btn-success">Search results for {{ name }}</h1>
                 </div>
+                {% else %}
+                <div class="col">
+                  <h1 class="text-center mb-4" class="btn-success">Results not found in our Database</h1>
+                </div>
+                {% endif %}
                                      {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}  
                                                       {% if (message.startswith("Thanks")) %}
                                                       <div class="alert alert-success alert-dismissible" role="alert">
@@ -56,7 +66,7 @@
                     <th scope="col" style="font-size: 12px;">Contact No</th>
                     <th scope="col" style="font-size: 12px;">Service</th>
                     <th scope="col" style="font-size: 12px;">Website</th>
-                  </tr>
+                  </tr> 
                 </thead>
                 <tbody>
                   {% for value in data %}
@@ -93,38 +103,6 @@
           </div>
         </div>
     </div>
-        
-<div align="center" class="container">
-  <a href="{{ url_for('relief_call') }}"><button style="font-size: 15px;" class="mb-2 btn btn-block btn-primary">Couldn't get the Required Help?</button></a>
-</div> 
-        
     </div>   
   </div> 
-
-<!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script>
-    $.getJSON("/tasks_list", function(data){
-
-        if( data["data"].length > 0 ) {
-
-           
-            for(var i = 0; i < data["data"].length; i++)
-            {
-                html_code += data["data"][i]["task"]
-            }
-
-            $("th").html(html_code)
-
-        }
-
-        else {
-
-            $("th").html("Empty Message");
-        }
-</script> -->
-	
 {% endblock content %}
-
-<!-- {% block javascripts %}
-  {{ super()}}
-{% endblock javascripts %} -->
