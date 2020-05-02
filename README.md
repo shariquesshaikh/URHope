@@ -12,7 +12,11 @@
 8. A notification is added on notification page of the NGO.
 9. NGO can monitor the tasks.
 10. NGOs can communicate with volunteers via email or phone number or vice versa.
-11. Location/keyword based search for NGO for needy people.
+11. Pin based search for NGO for needy people.
+12. Admin Panel
+13. Admin Rights
+14. Implementation of couldn't help module
+
 
 # Running in Local
 
@@ -22,7 +26,7 @@ git clone git@github.com:sk-sharique/urhope.git
 cd urhope
 python3 -m venv urhope.env
 source urhope.env/bin/activate
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ## To finally run the application
