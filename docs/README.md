@@ -4,7 +4,6 @@ https://thakurfurqaan.github.io/urhope/
 
 # Pending Tasks  
 
-- Navbar Font Weight Increment
 - Registration Page
   - Form 
     - Separate for Volunteers and NGOs
@@ -20,6 +19,7 @@ https://thakurfurqaan.github.io/urhope/
 - Overall Website
   - Logo
   - Make phone numbers dialable
+  - Navbar Font Weight Increment
 - Homepage
   - Navbar
   - Help Section
@@ -83,4 +83,5 @@ https://thakurfurqaan.github.io/urhope/
 - Make phone numbers dialable
 - Homepage Help Section Redesign
 - Find Relief Anywhere Page Created
+- Navbar Font Weight Increment
 
