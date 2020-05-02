@@ -1,38 +1,70 @@
 <!-- Navbar-->
-<header class="header" >
-<nav class="navbar navbar-expand-lg fixed-top py-3" >
-    <div class="container">
-        <a href="#" class="navbar-brand font-weight-bolder">URHope</a>
-        <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
-                class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
+<header class="header">
+    <nav class="navbar navbar-expand-lg fixed-top py-3">
+        <div class="container">
+            <a class="navbar-brand p-0" href="#">
+                <img class="navbar-logo" src="static/assets/img/Logos/Logo2.jpeg" height="25" alt="">
+            </a>
+            <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                    class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
 
-        <div id="navbarSupportedContent" class="collapse navbar-collapse">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active"><a href="index.html" class="nav-link  font-weight-bold">Home <span
-                        class="sr-only">(current)</span></a></li>
-                <li class="nav-item"><a href="form.html" class="nav-link  ">Form</a></li>
-                <li class="nav-item"><a href="register.html" class="nav-link  ">Register</a></li>
-                <li class="nav-item"><a href="login.html" class="nav-link  ">Login</a></li>
-                <li class="nav-item"><a href="FAQ.html" class="nav-link  ">FAQ</a></li>
-                <li class="nav-item"><a href="about_us.html" class="nav-link  ">About Us</a></li>
-                <li class="nav-item"><a href="team.html" class="nav-link  ">Team</a></li>
-                <li class="nav-item"><a href="contact_us.html" class="nav-link  ">Contact Us</a></li>
-            </ul>
+            <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active"><a href="index.html" class="nav-link  font-weight-bold">Home <span
+                            class="sr-only">(current)</span></a></li>
+                    <li class="nav-item"><a href="form.html" class="nav-link  ">Form</a></li>
+                    <li class="nav-item"><a href="register.html" class="nav-link  ">Register</a></li>
+                    <li class="nav-item"><a href="login.html" class="nav-link  ">Login</a></li>
+                    <li class="nav-item"><a href="FAQ.html" class="nav-link  ">FAQ</a></li>
+                    <li class="nav-item"><a href="about_us.html" class="nav-link  ">About Us</a></li>
+                    <li class="nav-item"><a href="team.html" class="nav-link  ">Team</a></li>
+                    <li class="nav-item"><a href="contact_us.html" class="nav-link  ">Contact Us</a></li>
+                </ul>
+            </div>
         </div>
+    </nav>
+    <div id="users-device-size">
+        <div id="xs" class="d-block d-sm-none"></div>
+        <div id="sm" class="d-none d-sm-block d-md-none"></div>
+        <div id="md" class="d-none d-md-block d-lg-none"></div>
+        <div id="lg" class="d-none d-lg-block d-xl-none"></div>
+        <div id="xl" class="d-none d-xl-block"></div>
     </div>
-</nav>
 </header>
+
 
 <script>
 
     $(function () {
+        function getBootstrapDeviceSize() {
+            return $('#users-device-size').find('div:visible').first().attr('id');
+        }
+
+        if (((getBootstrapDeviceSize() == 'lg') || (getBootstrapDeviceSize() == 'xl'))) {
+            $('.navbar-logo').addClass('hidden');
+        }
+
+        function makeLogoVisible() {
+            if ($(window).scrollTop() > 10)
+                $('.navbar-logo').removeClass('hidden');
+        }
+
         $(window).on('scroll', function () {
             if ($(window).scrollTop() > 10) {
                 $('.navbar').addClass('active');
+                console.log($(window).scrollTop())
+                if ($('.navbar-logo').hasClass('hidden')) {
+                    console.log('Here');
+                    setTimeout(makeLogoVisible, 100);
+                }
             } else {
                 $('.navbar').removeClass('active');
+                if (((getBootstrapDeviceSize() == 'lg') || (getBootstrapDeviceSize() == 'xl')))
+                    $('.navbar-logo').addClass('hidden');
             }
         });
     });
+
+
 </script>
