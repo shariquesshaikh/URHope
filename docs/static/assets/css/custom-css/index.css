@@ -164,11 +164,25 @@
 
 }
 
+.navbar .nav-link{
+    font-weight: 500;
+}
+
+.nav-link::before {
+    display: block;
+    content: attr(title);
+    font-weight: bold;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+}
+
 .navbar .nav-link:hover,
 .navbar .nav-link:focus {
     /*color: #fff;*/
     text-decoration: none;
-    font-weight: bold;
+    /*font-weight: 600;*/
+    text-shadow: 0 0 .65px #333, 0 0 .65px #333;
 }
 
 .navbar .navbar-brand {
@@ -189,8 +203,9 @@
 .navbar.active .nav-link:hover,
 .navbar.active .nav-link:focus {
     /*color: #555;*/
-    font-weight: bold;
+    text-shadow: 0 0 .65px #333, 0 0 .65px #333;
     text-decoration: none;
+    font-family: 'Poppins', sans-serif;
 }
 
 .navbar.active .navbar-brand {
@@ -492,7 +507,7 @@
 }
 
 .card-text {
-    font-weight: lighter !important;
+    font-weight: 300 !important;
     color: gray;
 }
 
