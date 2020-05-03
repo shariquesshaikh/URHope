@@ -6,9 +6,8 @@ https://thakurfurqaan.github.io/urhope/
 
 - Change in layout of initiatives table
 - Registration Page
-  - Form 
-    - Separate for Volunteers and NGOs
-    - Addition of more fields
+  - NGO Form 
+    - Modify Branch Table Layout
 - Profile Page
   - Edit Profile
   - Display Profile
@@ -30,7 +29,8 @@ https://thakurfurqaan.github.io/urhope/
   - Twitter Posts Section
   - Footer
 - Registration Page
-  - Form
+  - Volunteer Registration Form
+  - NGO Registration Form
 - Login Page
   - Form
 - FAQ Page
@@ -47,6 +47,7 @@ https://thakurfurqaan.github.io/urhope/
   - Filtering System for table
 - Find Relief Anywhere Page
   - 50% of Homepage
+- Find Relief Pincode Page
 
 # Task Completion Timeline
 
@@ -86,3 +87,8 @@ https://thakurfurqaan.github.io/urhope/
 - Find Relief Anywhere Page Created
 - Navbar Font Weight Increment
 
+3/5/20
+- Registration Form created for NGO and Volunteers
+- Modified Navbar
+- Modified Homepage
+- New find_relief_pincode_page.html page created
