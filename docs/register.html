@@ -47,7 +47,8 @@
           href="{% static 'webapp/Login/Login_v6/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Cabin+Sketch:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+          rel="stylesheet">
 
     <!-- Font Awesome Icons -->
     <link href="static/assets/css/font-awesome.min.css" rel="stylesheet"/>
@@ -55,7 +56,7 @@
 </head>
 
 <body class="landing-page"
-      style="background-size: cover; background: url('static/assets/img/background.png') no-repeat center;">
+      style="background-size: cover; background: url('static/assets/img/background.png') no-repeat fixed center;">
 
 <!-- Navbar -->
 <div class="partials_navbar_import"></div>
@@ -69,11 +70,11 @@
 <div class="container-fluid">
     <div class="col page-title">
         <div class="row align-items-center justify-content-center" align="center">
-            <h1 class="font-weight-bolder">UR</h1>
-            <h1>Hope</h1>
+            <h1 class="font-weight-bolder">Registration</h1>
         </div>
         <div class="row align-items-center justify-content-center">
-            <h6>We provide information regarding health, food, shelter, etc. across India</h6>
+            <h6>If you provide any kind of support to needy at this critical time, kindly fill this form so that we
+                can enable the needy to contact you for help</h6>
         </div>
         <div class="row mt-4" hidden>
             <div class="col" align="right">
@@ -87,36 +88,150 @@
 </div>
 
 <div class="container mt-0">
-    <div class="row justify-content-center">
-        <div class="col-lg-5 col-12">
-            <div class="card-custom mt-2 mt-lg-0 help-card">
-                <form action="list_of_initiatives.html">
-                    <h4 class="font-weight-bold my-3" style="text-align: center">Register</h4>
-                    <div class="input-group mb-3 px-lg-3">
-
+    <form action="list_of_initiatives.html">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-12 px-lg-3">
+                <div class="card-custom mt-2 mt-lg-0 help-card">
+                    <h6 class="my-3" style="">Basic Details</h6>
+                    <div class="input-group mb-3 ">
                         <input type="text" class="form-control" placeholder="Name" aria-label="Username"
                                aria-describedby="basic-addon1">
                     </div>
-                    <div class="input-group mb-3 px-lg-3">
+                    <div class="input-group mb-3 ">
                         <input type="email" class="form-control" placeholder="Email" aria-label="Username"
                                aria-describedby="basic-addon1">
                     </div>
-                      <div class="input-group mb-3 px-lg-3">
+                    <div class="input-group mb-3 ">
+
+                        <input type="password" class="form-control" placeholder="Password" aria-label="Username"
+                               aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3 ">
+
+                        <input type="password" class="form-control" placeholder="Confirm Password"
+                               aria-label="Username"
+                               aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3  volunteer-field">
+                        <input type="number" class="form-control" placeholder="Pincode" aria-label="Username"
+                               aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3 ">
+                        <input type="tel" class="form-control" placeholder="Phone No" aria-label="Username"
+                               aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3  volunteer-field">
+                        <input type="number" class="form-control" placeholder="Age" aria-label="Username"
+                               aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3  who-are-you">
                         <select class="custom-select" id="inputGroupSelect03">
-                            <option selected>--- Select Role ---</option>
+                            <option selected>--- Who are you? ---</option>
                             <option value="1">Volunteer</option>
                             <option value="2">NGO</option>
                         </select>
                     </div>
-                    <div class="input-group mb-3 px-lg-3">
+                    <div class="input-group mb-3  volunteer-field">
+                        <select class="custom-select" id="inputGroupSelect03">
+                            <option selected>--- Sex ---</option>
+                            <option value="1">Male</option>
+                            <option value="2">Female</option>
+                            <option value="3">Others</option>
+                            <option value="4">Prefer not to say</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-3  volunteer-field">
+                        <select class="custom-select" id="inputGroupSelect03">
+                            <option selected>--- Current Profile ---</option>
+                            <option value="1">Student</option>
+                            <option value="2">Working Professional</option>
+                            <option value="3">Home Maker</option>
+                            <option value="4">Others</option>
+                        </select>
+                    </div>
+                    <div class="input-group mb-3  ngo-field">
+                        <input type="text" class="form-control" placeholder="Registration No." aria-label="Username"
+                               aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3  ngo-field">
+                        <input type="text" class="form-control" placeholder="Branch (Optional)" aria-label="Username"
+                               aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3  ngo-field">
+                        <input type="url" class="form-control" placeholder="Website (Optional)" aria-label="Username"
+                               aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3  ngo-field">
+                        <input type="text" class="form-control" placeholder="Social Media Handle (Optional)"
+                               aria-label="Username"
+                               aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group my-3 ngo-field">
+                        <textarea rows="5" class="form-control" aria-label="With textarea"
+                                  placeholder="About the NGO"></textarea>
+                    </div>
+                    <div style="text-align: center" class="volunteer-field mb-3 ">
+                        <button class="btn btn-outline-primary" style="width: 100%">Register</button>
+                    </div>
+                    <div style="text-align: center" class=" mb-3  volunteer-field">
+                        <p>Already have an account? <a href="login.html">Login</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-12 ngo-field px-lg-3">
+                <div class="card-custom mt-2 mt-lg-0 help-card">
+                    <h6 class="my-3" style="">Service Details</h6>
+
+                    <div class="input-group mb-3 ">
+                        <input type="text" class="form-control" placeholder="Locations where you operate"
+                               aria-label="Username"
+                               aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group mb-3 ">
                         <input type="number" class="form-control" placeholder="Pincode" aria-label="Username"
                                aria-describedby="basic-addon1">
                     </div>
-                    <div class="input-group mb-3 px-lg-3">
-                        <input type="tel" class="form-control" placeholder="Phone No" aria-label="Username"
-                               aria-describedby="basic-addon1">
+
+                    <h6 class="my-3" style="">Select Services that you provide</h6>
+
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="food">
+                        <label class="custom-control-label" for="food">
+                            Food
+                        </label>
                     </div>
-                      <div class="input-group mb-3 px-lg-3">
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="medicines">
+                        <label class="custom-control-label" for="medicines">
+                            Medicines
+                        </label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="shelter">
+                        <label class="custom-control-label" for="shelter">
+                            Shelter
+                        </label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="clothing">
+                        <label class="custom-control-label" for="clothing">
+                            Clothing
+                        </label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="medical">
+                        <label class="custom-control-label" for="medical">
+                            Medical Equipment
+                        </label>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" id="others">
+                        <label class="custom-control-label" for="others">
+                            Others
+                        </label>
+                    </div>
+                    <div class="input-group mb-3 " hidden>
                         <select class="custom-select" id="inputGroupSelect03">
                             <option selected>--- Select Services ---</option>
                             <option value="1">Food</option>
@@ -128,29 +243,69 @@
                             <option value="2">Others</option>
                         </select>
                     </div>
-
-
-                    <div class="input-group mb-3 px-lg-3">
-
-                        <input type="password" class="form-control" placeholder="Password" aria-label="Username"
-                               aria-describedby="basic-addon1">
+                    <hr>
+                    <h6 class="my-3" style="">Other Branch Details</h6>
+                    <form>
+                        <div class="input-group mb-3 ">
+                            <input id="branch-name" type="text" class="form-control" placeholder="Branch Name"
+                                   aria-label="Username"
+                                   aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group mb-3 ">
+                            <input id="branch-phone" type="tel" class="form-control" placeholder="Branch Phone No."
+                                   aria-label="Username"
+                                   aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group mb-3 ">
+                            <input id="branch-email" type="email" class="form-control" placeholder="Branch Email ID"
+                                   aria-label="Username"
+                                   aria-describedby="basic-addon1">
+                        </div>
+                        <div class=" mb-3 ">
+                            <button type="button" value="Add Row" class="add-row btn btn-success btn-sm" style="">Add
+                                Branch
+                            </button>
+                        </div>
+                    </form>
+                    <table class="branch-details-table step3-table">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Phone No.</th>
+                            <th>Email</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <div class='custom-control custom-checkbox'>
+                                    <input name='select-branch' type='checkbox' class='custom-control-input' id='1'>
+                                    <label class='custom-control-label' for='1'></label>
+                                </div>
+                            </td>
+                            <td>Mumbai</td>
+                            <td>1234567890</td>
+                            <td>peterparker@mail.com</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class=" mb-3 ">
+                        <button type="button" class="delete-row btn btn-danger btn-sm" style="">Remove Branch
+                        </button>
                     </div>
-                    <div class="input-group mb-3 px-lg-3">
-
-                        <input type="password" class="form-control" placeholder="Confirm Password" aria-label="Username"
-                               aria-describedby="basic-addon1">
-                    </div>
-                    <div style="text-align: center" class=" mb-3 px-lg-3">
+                    <hr>
+                    <div style="text-align: center" class=" mb-3 ">
                         <button class="btn btn-outline-primary" style="width: 100%">Register</button>
                     </div>
-                    <div style="text-align: center" class=" mb-3 px-lg-3 ">
+                    <div style="text-align: center" class=" mb-3  ">
                         <p>Already have an account? <a href="login.html">Login</a></p>
                     </div>
-                </form>
-
+                </div>
             </div>
+
         </div>
-    </div>
+    </form>
 </div>
 
 <br/><br/>
@@ -178,6 +333,61 @@
             });
         });
 
+    });
+</script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        if ($('.branch-details-table tbody').is(':empty'))
+            $('.branch-details-table').hide();
+        else
+            $('.branch-details-table').show();
+        var last_id = 2;
+        $(".add-row").click(function () {
+            var branch_name = $("#branch-name").val();
+            var branch_email = $("#branch-email").val();
+            var branch_phone = $("#branch-phone").val();
+            var markup = "<tr><td><div class='custom-control custom-checkbox'>\n" +
+                "                                    <input name='select-branch' type='checkbox' class='custom-control-input' id='" + last_id + "'>\n" +
+                "                                    <label class='custom-control-label' for='" + last_id + "'></label>\n" +
+                "                                </div>"
+                + branch_name + "</td><td>" + branch_phone + "</td><td>" + branch_email + "</td></tr>";
+            $(".branch-details-table tbody").append(markup);
+            last_id++;
+            $('.branch-details-table').show();
+        });
+
+        // Find and remove selected table rows
+        $(".delete-row").click(function () {
+            $(".branch-details-table tbody").find('input[name="select-branch"]').each(function () {
+                if ($(this).is(":checked")) {
+                    $(this).parents("tr").remove();
+                }
+                if ($('.branch-details-table tbody').is(':empty')) {
+                    $('.branch-details-table').hide();
+                    console.log("empty");
+                }
+            });
+        });
+    });
+
+    $(document).ready(function () {
+        $('.volunteer-field').hide();
+        $('.ngo-field').hide();
+        $(".who-are-you select").change(function () {
+            var selectedOption = $(this).children("option:selected").val();
+            if (selectedOption === '1') {
+                $('.volunteer-field').show();
+                $('.ngo-field').hide();
+            } else if (selectedOption === '2') {
+                $('.volunteer-field').hide();
+                $('.ngo-field').show();
+            } else {
+                $('.volunteer-field').hide();
+                $('.ngo-field').hide();
+            }
+        });
     });
 </script>
 </body>
