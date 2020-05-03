@@ -14,7 +14,7 @@
     <div class="header pb-3 pt-5 pt-lg-3 d-flex align-items-center" style=" background-size: cover; background-position: center top;">
     <!-- Mask -->
     <!-- Header container -->
-    </div>
+    </div> 
       
     <!-- Page content -->
                   
@@ -74,12 +74,21 @@
                     <td scope="col">
                       {{ value[14] }}
                     </td>
+                    {% if value[18]==1 %}
+                    <td scope="col">
+                       Active Now
+                    </td>
+                    {% else %}
+                    <td scope="col">
+                      Inactive
+                   </td>
+                   {% endif %}
                     <td scope="col">
                        <a href="{{ value[8] }}"> Website</a>
                     </td>
                     <td>
                         <div class="col text-right">
-                          <a href="{{ url_for('del_ngo', id=value[0])}}" class="btn btn-outline-danger">Delete</a>
+                          <a href="{{ url_for('del_ngo', id=value[0])}}" class="btn btn-outline-danger" onclick="return confirm('Are you sure you want to delete this NGO?');" >Delete</a>
                         </div>
                       </td>
                   </tr>

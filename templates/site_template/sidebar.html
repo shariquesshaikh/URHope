@@ -29,33 +29,11 @@
               <i class="ni ni-single-02"></i>
               <span>Profile</span>
             </a>
-{% if session['role'] != 'a' %}
             <a href="{{ url_for('task_list') }}" class="dropdown-item">
               <i class="ni ni-bullet-list-67"></i>
               <span>Tasks</span>
-            </a> 
-{% endif %}
+            </a>
                         
-    {% if session['role'] == 'a' %}
-            <a href="{{ url_for('reg_ngos') }}" class="dropdown-item">
-              <i class="ni ni-building text-green"></i>
-              <span>View Registered NGOs</span>
-            </a>
-                        <a href="{{ url_for('reg_vols') }}" class="dropdown-item">
-              <i class="ni ni-hat-3 text-blue"></i>
-              <span>View Registered Volunteers</span>
-            </a>
-
-            <a href="{{ url_for('task_list') }}" class="dropdown-item">
-              <i class="ni ni-bullet-list-67"></i>
-              <span>View tasks created by NGOs</span>
-            </a>
-
-            <a href="{{ url_for('logs') }}" class="dropdown-item">
-              <i class="ni ni-single-copy-04 text-orange"></i>
-              <span>View Logs</span>
-            </a>
-    {% endif %}
 {% if session['role'] == 'n' %}
                         <a href="{{ url_for('create_task') }}" class="dropdown-item">
               <i class="ni ni-ruler-pencil"></i>
