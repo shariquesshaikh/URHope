@@ -195,9 +195,9 @@
 
 <form action="/searchresult" method="POST" >
   <div align="center" >
-  <input name="pin" type="number" pattern="[1-9][0-9]{5}" class="form-control" id="pincode" placeholder="Enter pincode and click on a service">
+  <input maxlength="6" minlength="6" name="pin" type="number" class="form-control" id="pincode" placeholder="Enter pincode and click on a service" required>
  <div class="btn-primary">
-  <p style="font-size: 12px;"><b>PIN length should be equal to 6.<br>If you don't see any result after you search, then that data is not present in our database.</b> </p>
+  <p style="font-size: 12px;"><b>PIN length should be equal to 6.</b> </p>
 </div>
 
   <!-- <div class="text-muted text-left mt-2 mb-3">
@@ -239,6 +239,7 @@
     <input type="submit" class="mb-3 btn btn-outline-primary" style="font-size: 12px;" name="name" id="" value="Others">
   </div>
 
+
         </div>
 </div>
 
@@ -260,6 +261,7 @@
                 <h3 class="mb-0">Provide Help?</h3>
                 </div>
 
+                
 <a href="{{ url_for('signup') }}"><button class="mb-2 btn btn-outline-success" style="width: 300px; font-size: 15px;">Register your Service</button></a>
 <a href="{{ url_for('signup') }}"><button class="mb-2 btn btn-outline-success" style="width: 300px;font-size: 15px;">Need Volunteers</button></a>
 {% else %}

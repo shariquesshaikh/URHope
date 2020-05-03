@@ -1,12 +1,15 @@
 #!/usr/bin/python
+
 # -*- coding: utf-8 -*-
+
+# __author__ = 'URHope Tech Team'
 
 from __future__ import print_function
 from flask import Flask, render_template, redirect, url_for, request, g
 from flask import session, abort, flash, jsonify
-# from flask_sslify import SSLify
-# from flask_caching import Cache
-# from flask_mysqlpool import MySQLPool
+from flask_sslify import SSLify
+from flask_caching import Cache
+from flask_mysqlpool import MySQLPool
 import json
 import os
 import datetime
@@ -20,57 +23,75 @@ import urllib.request
 import logging
 import string
 import random
-import smtplib #to send emails
+import smtplib
 import logging
-# import regex as re
+import regex as re
+import pyodbc
+import pandas as pd
 
 app = Flask(__name__)
-
-logging.basicConfig(filename='logs.log', level=logging.DEBUG)
 
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 
 hst = 'localhost'
 usr = 'root'
 pwd = ''
+
 app.debug = True
+
 config = {'CACHE_TYPE': 'redis',
           'CACHE_REDIS_URL': 'redis://localhost:6379/3'}
 
 app.secret_key = os.urandom(12)
 
+logging.basicConfig(filename='logs.log', level=logging.DEBUG)
 
+
+
+
+
+
+
+
+
+
+'''
+                        WRITE FUNCTIONS HERE
+'''
 #server object creation to send emails
 def serve():
-    #Email Notification Setup
-    server = smtplib.SMTP('smtp.gmail.com',587) #server object
+    server = smtplib.SMTP('smtp.gmail.com',587)
     server.ehlo()
     server.starttls()
     server.ehlo()
-    #Login with sender_email_address on Chrome browser. Search less secure apps on chrome browser and on less secure apps' permission page, enable permission for sender_email_address.
-    #server.login('sender_email_address','password')
-    server.login('urhope.ngo@gmail.com','') #authentication
-    return server #confidential
+    #authentication
+    server.login('urhope.ngo@gmail.com','covid19farha') 
+    return server
 
 
-
-#Database Connection
 # def get_db():
 #     db = pymysql.connect(host='localhost', user='root', passwd='CoronaPassword.1#',
 #                          db='covid', charset='utf8mb4')
 #     return db
 
 
-
-
-def get_db():
+def get_db(): #Sharique's DB Configuration
     db = pymysql.connect(host='localhost', user='root', passwd='',
                          db='covid', charset='utf8mb4')
     return db
 
 
 
-# Route for Base template
+
+
+
+
+
+
+
+'''
+                        WRITE ROUTES HERE
+'''
 @app.route('/')
 def base():
     return render_template('home.html')
@@ -82,69 +103,9 @@ def index():
     return render_template('home.html')
 
 
-@app.route('/team')
-def team():
-    return render_template('team.html')
-
-
-@app.route('/form')
-def form():
-    return render_template('form.html')
-
-
-@app.route('/relief_call', methods=['GET', 'POST'])
-def relief_call():
-    return render_template('relief_call.html')
-
-
-
-@app.route('/relief_send', methods=['GET', 'POST'])
-def relief_send():
-    if request.method=="POST" and 'name' in request.form and 'for_appl' in request.form and 'h_type' in request.form and 'govtID' in request.form and 'address' in request.form and 'phone' in request.form and 'pin' in request.form and 'msg' in request.form:
-        name = request.form['name']
-        for_appl = request.form['for_appl']
-        h_type = request.form['h_type']
-        govtID = request.form['govtID']
-        address = request.form['address']
-        phone = request.form['phone']
-        pin = request.form['pin']
-        msg = request.form['msg']
-        role='n'
-        db = get_db()
-        c = db.cursor()
-
-        c.execute('select name,username from members where role = %s and pin=%s and services=%s'
-                    , (role,pin,h_type))
-        account = c.fetchall()
-        
-        if len(account)>0:
-            for i in account:
-                server=serve()
-                subject = "URHope: Hey "+i[0]+","+name+"needs some help from you."
-                body= "Hello,\n\nThis is a notification from URHope Team. We request you to look into matter as soon as possible and help this needy person.\n\n"+name+" needs help for "+h_type+" for "+for_appl+".\nContact No: "+phone+"\nAddress: "+address+"\nPincode: "+pin+"\nGovernment ID: "+govtID+"\n\n"+name+"has a message for you,\n"+msg+"\n\nRegards,\nURHope Messenger"
-                msg=f"Subject: {subject}\n\n{body} "
-
-                server.sendmail(
-                                'urhope.ngo@gmail.com', #email ID of URHope or use your email ID for testing
-                                str(i[1]), 
-                                msg
-                                )
-                server.quit()
-            flash("Your message has been sent to nearby NGOs. You will receive help.")
-            return redirect(url_for('relief_call'))
-        else:
-            flash("we could not find any NGO nearby you. Try contacting our team.")
-            return redirect(url_for('relief_call'))
-    else:
-        flash("Fill all the details before sending.")
-        return redirect(url_for('relief_call'))
-    # return render_template('relief_call.html')
-
-
 
 @app.route('/signup/', methods=['GET', 'POST'])
 def signup():
-
     if request.method == 'POST' and 'username' in request.form \
         and 'password' in request.form and 'role' in request.form \
         and 'confirm' in request.form:
@@ -157,7 +118,6 @@ def signup():
         role = request.form['role']
         # address = request.form['address']
         services = request.form['services']
-
         try:
             db = get_db()
             c = db.cursor()
@@ -227,7 +187,14 @@ def login():
                 session['about'] = account[15]
                 session['govtID'] = account[16]
                 session['website'] = account[17]
+                
+                active = 1
+                c.execute('UPDATE members SET active = %s where username = %s and password = md5(%s)'
+                      , (active,username, password))
 
+                db.commit()
+                c.close()
+                db.close()
                 return redirect(url_for('home'))
             else:
                 flash('Invalid Username or Password')
@@ -240,9 +207,56 @@ def login():
 
 
 
-@app.route('/panel') #, methods=['GET', 'POST']
+@app.route('/logout')
+def logout():
+    if session['role']!='a':
+        id = session['user_id']
+        active = 0
+        db = get_db()
+        c = db.cursor()
+        c.execute('UPDATE members SET active = %s where id = %s'
+                , (active,id))
+        db.commit()
+        c.close()
+        db.close()
+        
+    session.pop('logged_in', None)
+    session.pop('user_id', None)
+    session.pop('username', None)
+    return redirect(url_for('login'))
+
+
+
+@app.route('/team')
+def team():
+    return render_template('team.html')
+
+
+
+@app.route('/form')
+def form():
+    return render_template('form.html')
+
+
+
+@app.route('/home', methods=['GET', 'POST'])
+def home():
+    if not session.get('logged_in'):
+        return redirect(url_for('logout'))
+    else:
+        if session['role'] == 'v':
+            return render_template('home.html')
+        if session['role'] == 'n':
+            return render_template('home.html')
+        if session['role'] == 'a':
+            return render_template('admin_profile.html')
+
+
+
+@app.route('/panel') #Admin Login
 def admin_panel():
     return render_template('adminlogin.html')
+
 
 
 @app.route('/check-admin', methods=['GET', 'POST'])
@@ -274,22 +288,160 @@ def admin_check():
         return redirect(url_for('admin_panel'))
 
 
-@app.route('/logout')
-def logout():
-    # Remove session data, this will log the user out
-    session.pop('logged_in', None)
-    session.pop('user_id', None)
-    session.pop('username', None)
 
-   # Redirect to login page
-    return redirect(url_for('login'))
+@app.route('/reg_ngos')
+def reg_ngos():
+        if not session.get('logged_in'):
+            return redirect(url_for('logout'))
+        db = get_db()
+        c = db.cursor()
+        role="n"
+        c.execute('SELECT * FROM members WHERE role=%s ORDER BY active DESC',(role))
+        data = c.fetchall()
+        l=len(data)
+        db.commit()
+        c.close()
+        db.close()
+        return render_template('view_ngo.html',data=data,l=len(data))
+
+
+
+@app.route('/del_ngo/<id>',methods=['GET','POST'])
+def del_ngo(id):
+    id=id
+    if not session.get('logged_in'):
+        return redirect(url_for('logout'))
+    db = get_db()
+    c = db.cursor()
+    role="n"
+
+    c.execute('SELECT username FROM members WHERE id = %s', id)
+    data = c.fetchone()
+    uname = data[0]
+
+    c.execute('DELETE FROM application WHERE grp_email = %s', uname)
+    c.execute('DELETE FROM task WHERE grp_email = %s', uname)
+    c.execute('DELETE FROM members WHERE id = %s', id)
+
+    db.commit()
+    c.close()
+    db.close()
+    return redirect(url_for('reg_ngos'))
+
+
+
+@app.route('/reg_vols')
+def reg_vols():
+        if not session.get('logged_in'):
+            return redirect(url_for('logout'))
+        db = get_db()
+        c = db.cursor()
+        role="v"
+        c.execute('SELECT * FROM members WHERE role=%s ORDER BY active DESC',(role))
+        data = c.fetchall()
+        l=len(data)
+        db.commit()
+        c.close()
+        db.close()
+        return render_template('view_volun.html',data=data,l=len(data))
+
+
+
+@app.route('/del_vol/<id>')
+def del_vol(id):
+    id=id
+    if not session.get('logged_in'):
+        return redirect(url_for('logout'))
+    db = get_db()
+    c = db.cursor()
+    role="v"
+    
+    c.execute('SELECT username FROM members WHERE id = %s', id)
+    data = c.fetchone()
+    vol_mail = data[0]
+
+    c.execute('SELECT grp_email FROM application WHERE vol_email = %s', vol_mail)
+    gdata = c.fetchall()
+
+    if len(gdata) > 0:
+        for i in gdata:
+            #deletes all the volunteer applications
+            c.execute('SELECT vol_applied FROM task WHERE grp_email=%s', (i[0])) 
+            val=c.fetchone()
+            val=val[0]-1
+            c.execute('UPDATE task SET vol_applied= %s WHERE grp_email=%s', (val,i[0]))
+        c.execute('DELETE FROM application WHERE vol_email = %s', vol_mail) 
+
+    c.execute('DELETE FROM members WHERE id = %s', id)
+    db.commit()
+    c.close()   
+    db.close()
+    return redirect(url_for('reg_vols'))
+
+
+
+@app.route('/download_data/<id>/',methods=["GET","POST"])
+def download_data(id):
+    id=id
+    connect = get_db()
+    cursor = connect.cursor()
+    cursor.execute("SELECT * FROM application WHERE task_id=%s",id)
+    data = cursor.fetchall()
+    id=data[0][3]
+
+    if(len(data)>0):
+        naming = data[0][7]
+        grp_name = data[0][5]
+
+        cursor.execute("SELECT vol_name,vol_email,vol_phone FROM application WHERE task_id=%s",id)
+        
+        columns = ['Volunteer Name', 'Volunteer Email','Volunteer Contact No']
+        data = cursor.fetchall()
+        df = pd.DataFrame(list(data), columns=columns)
+        
+        filename = naming+"_Volunteers.xlsx"
+        writer = pd.ExcelWriter(filename)
+        df.to_excel(writer, sheet_name='Task Volunteer')
+        
+        writer.save()
+
+        cursor.execute('select * from task where grp = %s', grp_name)
+        data = cursor.fetchall()
+
+        connect.commit()
+        cursor.close()
+        connect.close()
+        
+        download =1
+
+        return render_template('task_list_n.html',len=len(data), data=data,download=download,false_id=id,filename=filename)
+    else:
+        connect.commit()
+        cursor.close()
+        connect.close()        
+        flash("You can't download because there aren't any volunteer who has applied for this task") 
+        return redirect(url_for('task_list'))
+
+
+
+@app.route('/logs')
+def logs():
+    if not session.get('logged_in'):
+        return redirect(url_for('logout'))
+
+    log_file = open('logs.log', 'r')
+
+    if os.stat("logs.log").st_size == 0:
+        return render_template('log.html',logs=log_file,l=0)
+    else: 
+        return render_template('log.html',logs=log_file,l=1)
 
 
 
 @app.route('/<id>/', methods=['GET', 'POST'])
 def profile(id):
     if not session.get('logged_in'):
-        return redirect(url_for('login'))
+        return redirect(url_for('logout'))
     else:
         if session['role'] == 'v':
             return render_template('volunteers_profile.html',
@@ -306,7 +458,7 @@ def profile(id):
 @app.route('/edit/<id>/', methods=['GET', 'POST'])
 def edit_profile(id):
     if not session.get('logged_in'):
-        return redirect(url_for('login'))
+        return redirect(url_for('logout'))
     else:
         if session['role'] == 'v':
             return render_template('edit_profile_v.html',
@@ -323,7 +475,7 @@ def edit_profile(id):
 @app.route('/update/<uname>/', methods=['GET', 'POST'])
 def update_pro(uname):
     if not session.get('logged_in'):
-        return redirect(url_for('login'))
+        return redirect(url_for('logout'))
     else:
             username = session['username']
             role = session['role']
@@ -406,14 +558,14 @@ def update_pro(uname):
             else:
 
                 flash("Sorry! You can't update.")
-                return redirect(url_for('login'))
+                return redirect(url_for('logout'))
 
 
 
 @app.route('/create-task', methods=['GET', 'POST'])
 def create_task():
     if not session.get('logged_in'):
-        return redirect(url_for('login'))
+        return redirect(url_for('logout'))
     elif session['role'] == 'n':
         if request.method == 'POST':
             task = request.form['task']
@@ -458,7 +610,7 @@ def create_task():
 def edit_task(id):
     id=id
     if not session.get('logged_in'):
-        return redirect(url_for('login'))
+        return redirect(url_for('logout'))
     elif session['role'] == 'n':
         if request.method == 'POST':
             task = request.form['task']
@@ -509,7 +661,7 @@ def edit_task(id):
 def delete_task(id):
     id=id
     if not session.get('logged_in'):
-        return redirect(url_for('login'))
+        return redirect(url_for('logout'))
     elif session['role'] == 'n':
             db = get_db()
             c = db.cursor()
@@ -521,7 +673,7 @@ def delete_task(id):
             	c.execute('DELETE FROM applications WHERE task_id = %s', id)
             
             db.commit()
-            c.close()          
+            c.close()
             db.close()
 
             x="Task with ID "+str(id)+" has been deleted successfully. If you had any volunteer applied for this task their application has also been deleted."
@@ -537,7 +689,7 @@ def delete_task(id):
 @app.route('/task_list')
 def task_list():
     if not session.get('logged_in'):
-        return redirect(url_for('login'))
+        return redirect(url_for('logout'))
 
     elif session['role'] == 'n':    
         grp_name = session['name']
@@ -548,7 +700,7 @@ def task_list():
         db.commit()
         c.close()          
         db.close()
-        return render_template('task_list_n.html',len=len(data), data=data) 
+        return render_template('task_list_n.html',len=len(data), data=data,download=0,false_id=-1) 
 
     elif session['role'] == 'a':    
         grp_name = session['name']
@@ -562,10 +714,8 @@ def task_list():
         return render_template('task_list.html',len=len(data), data=data)
 
     elif session['role'] == 'v':
-        # pin = session['pin']
         db = get_db()
         c = db.cursor()
-		# c.execute('SELECT * FROM task WHERE location = %s', pin)
         c.execute('SELECT * FROM task ORDER BY location ASC')
         data = c.fetchall()
 
@@ -582,12 +732,9 @@ def task_list():
         for i in app_data:
             if i[1]==session['user_id']:
                 applied.append(i[0])
-
-        print(applied)
-
         return render_template('task_list_v.html', id=id,l=len(app_data),applied=applied,len=len(data),data=data, app_data=app_data)
     else:
-        return redirect(url_for('login'))  
+        return redirect(url_for('logout'))  
 
 
 
@@ -595,7 +742,7 @@ def task_list():
 def apply_task(id):
     id=id
     if not session.get('logged_in'):
-        return redirect(url_for('login'))
+        return redirect(url_for('logout'))
     
     db = get_db()
     c = db.cursor()
@@ -613,12 +760,10 @@ def apply_task(id):
         return redirect(url_for('task_list'))
 
     c.execute('SELECT * FROM task where id=%s',id)
-    data = c.fetchall()
-	
-    if data[0][11] < data[0][7]:
-        
-        val = data[0][11]+1
+    data = c.fetchall()	
 
+    if data[0][11] < data[0][7]:        
+        val = data[0][11]+1
         c.execute('UPDATE task SET vol_applied=%s WHERE id=%s',(val,id))
         c.execute('INSERT INTO application(grp_email,vol_email,task_id,vol_id,grp_name,vol_name,task_name,vol_phone) values(%s,%s,%s,%s,%s,%s,%s,%s)',(data[0][12],session['username'],data[0][0],session['user_id'],data[0][3],session['name'],data[0][1],session['phone']))        
         db.commit()
@@ -630,8 +775,8 @@ def apply_task(id):
         msg=f"Subject: {subject}\n\n{body} "
 
         server.sendmail(
-						'ur_hope_email_address', #email ID of URHope or use your email ID for testing
-						str(data[0][12]), #email id of receiver ie. data[0][12], NGO's email ID or use any other known email ID for testing
+						'urhope.ngo@gmail.com',
+						str(data[0][12]),
 						msg
 						)
 		
@@ -639,15 +784,13 @@ def apply_task(id):
             body= "Dear "+data[0][3]+",\n\nFor the task "+data[0][1]+", you have sufficient volunteers. Now you can proceed for further steps.\n\n\nRegards,\nURHope Team"
             msg=f"Subject: {subject}\n\n{body} "
             server.sendmail(
-							'urhope_email_address', 
+							'urhope.ngo@gmail.com', 
 							str(data[0][12]), 
 							msg
 							)
-        server.quit()
-								
+        server.quit()								
         flash("Applied Successfully")
-        return redirect(url_for('task_list'))
-        
+        return redirect(url_for('task_list'))        
     else:
         db.commit()
         c.close()
@@ -656,11 +799,52 @@ def apply_task(id):
         flash(x)
         return redirect(url_for('task_list'))
 
+
+
+@app.route('/back_application/<id>/', methods=['GET', 'POST'])
+def back_application(id):
+    id=id
+    if not session.get('logged_in'):
+        return redirect(url_for('logout'))
+    
+    db = get_db()
+    c = db.cursor()
+
+    c.execute('DELETE FROM application WHERE vol_email=%s and task_id=%s',(session['username'],id))
+    c.execute('SELECT * FROM task WHERE id=%s',id)
+    data = c.fetchall()
+    val = data[0][11]
+    task_name = data[0][1]
+    task_id = data[0][0]
+    vol_req= data[0][7]
+
+    val = val - 1 
+    c.execute('UPDATE task SET vol_applied=%s WHERE id=%s',(val,id))
+
+    server=serve()
+    subject = "Notification from URHope Team"
+    body="Dear "+data[0][3]+",\n\n"+session['name'] +" has taken back application for the task "+task_name+" which has an ID: "+str(task_id)+".\n\nSo far the total number of applicaion for this task is " + str(val)+" and "+str(vol_req-val)+" more volunteers are required.\n\nClick on the link for more details,\nhttp://www.urhope.in\n\n\nRegards,\nURHope Team"
+    msg=f"Subject: {subject}\n\n{body} "
+
+    server.sendmail(
+                    'urhope.ngo@gmail.com_address',
+                    str(data[0][12]),
+                    msg
+                    )
+
+    db.commit()
+    c.close()
+    db.close()
+    server.quit()								
+    flash("Changes applied successfully.")
+    return redirect(url_for('task_list'))        
+
                              
+
 @app.route('/notification_page/', methods=['GET', 'POST'])
 def notification_page():
     if not session.get('logged_in'):
-        return redirect(url_for('login'))
+        return redirect(url_for('logout'))
     db = get_db()
     c = db.cursor()
     c.execute('SELECT * FROM application WHERE grp_email=%s ORDER BY id DESC',session['username'])
@@ -675,7 +859,8 @@ def notification_page():
 @app.route('/how_is_the_task/<id>/', methods=['GET', 'POST'])
 def how_is_the_task(id):
     if not session.get('logged_in'):
-        return redirect(url_for('login'))
+        return redirect(url_for('logout'))
+    
     id=id
     db = get_db()
     c = db.cursor()
@@ -684,26 +869,10 @@ def how_is_the_task(id):
     db.commit()
     c.close()
     db.close()
-	# print(data)
 
     x = "Hey "+session['name']+",for the task '"+data[0][1]+"', total number of applications are "+ str(data[0][11])+". You need "+str(data[0][7] - data[0][11])+" more volunteer to start the task."
     flash(x)
-
     return redirect(url_for('notification_page'))
-
-
-
-@app.route('/home', methods=['GET', 'POST'])
-def home():
-    if not session.get('logged_in'):
-        return redirect(url_for('login'))
-    else:
-        if session['role'] == 'v':
-            return render_template('home.html')
-        if session['role'] == 'n':
-            return render_template('home.html')
-        if session['role'] == 'a':
-            return render_template('admin_profile.html')
 
 
 
@@ -756,129 +925,114 @@ def serch_result():
 
 
 
-@app.route('/reg_ngos')
-def reg_ngos():
-        if not session.get('logged_in'):
-            return redirect(url_for('login'))
+@app.route('/relief_call', methods=['GET', 'POST'])
+def relief_call():
+    return render_template('relief_call.html')
+
+
+
+@app.route('/relief_send', methods=['GET', 'POST'])
+def relief_send():
+    if request.method=="POST" and 'name' in request.form and 'for_appl' in request.form and 'help_type' in request.form and 'govtID' in request.form and 'address' in request.form and 'phone' in request.form and 'pin' in request.form and 'msg' in request.form:
+        name = request.form['name']
+        for_appl = request.form['for_appl']
+        h_type = request.form['help_type']
+        id = request.form['govtID']
+        address = request.form['address']
+        phone = request.form['phone']
+        pin = request.form['pin']
+        msg = request.form['msg']
+        role='n'
         db = get_db()
         c = db.cursor()
-        role="n"
-        c.execute('SELECT * FROM members WHERE role=%s ORDER BY name',(role))
-        data = c.fetchall()
-        l=len(data)
-        db.commit()
-        c.close()
-        db.close()
-        return render_template('view_ngo.html',data=data,l=len(data))
 
+        c.execute('select name,username from members where role = %s and pin=%s and services=%s'
+                    , (role,pin,h_type))
+        account = c.fetchall()
+        
+        if len(account)>0:
+            for i in account:
+                server=serve()
+                subject = "URHope: Hey "+i[0]+","+name+"needs some help from you."
+                body= "Hello,\n\nThis is a notification from URHope Team. We request you to look into matter as soon as possible and help this needy person.\n\n"+name+" needs help for "+h_type+" for "+for_appl+".\nContact No: "+phone+"\nAddress: "+address+"\nPincode: "+pin+"\nGovernment ID: "+govtID+"\n\n"+name+"has a message for you,\n"+msg+"\n\nRegards,\nURHope Team"
+                msg=f"Subject: {subject}\n\n{body} "
 
+                server.sendmail(
+                                'urhope.ngo@gmail.com', #email ID of URHope or use your email ID for testing
+                                str(i[1]), 
+                                msg
+                                )
+                server.quit()
+            flash("Your message has been sent to nearby NGOs. You will receive help.")
+            return redirect(url_for('relief_call'))
+        else:
+            server=serve()
+            subject = "URHope Messenger :,"+name+"needs some help from you."
+            body= "Hello,\n\nWe request you to look into matter as soon as possible and help this needy person.\n\n"+name+" needs help for "+h_type+" for "+for_appl+".\nContact No: "+phone+"\nAddress: "+address+"\nPincode: "+pin+"\nGovernment ID: "+govtID+"\n\n"+name+"has a message for you,\n"+msg+"\n\nRegards,\nURHope Messenger"
+            msg=f"Subject: {subject}\n\n{body} "
 
-@app.route('/del_ngo/<id>',methods=['GET','POST'])
-def del_ngo(id):
-    id=id
-    if not session.get('logged_in'):
-        return redirect(url_for('login'))
-    db = get_db()
-    c = db.cursor()
-    role="n"
-    c.execute('SELECT username FROM members WHERE id = %s', id)
-    data = c.fetchone()
+            server.sendmail(
+                            'urhope.ngo@gmail.com', #email ID of URHope or use your email ID for testing
+                            'urhope.ngo@gmail.com', 
+                            msg
+                            )
+            server.quit()
+            flash("We could not find any NGO nearby you. An email is sent to URHope team. You will get required help soon.")
+            return redirect(url_for('relief_call'))
+    else:
+        flash("Fill all the details before sending.")
+        return redirect(url_for('relief_call'))
 
-    uname = data[0]
-    c.execute('DELETE FROM application WHERE grp_email = %s', uname)
-    c.execute('DELETE FROM task WHERE grp_email = %s', uname)
-    c.execute('DELETE FROM members WHERE id = %s', id)
-
-    db.commit()
-    c.close()
-    db.close()
-    return redirect(url_for('reg_ngos'))
-
-
-
-@app.route('/reg_vols')
-def reg_vols():
-        if not session.get('logged_in'):
-            return redirect(url_for('login'))
-        db = get_db()
-        c = db.cursor()
-        role="v"
-        c.execute('SELECT * FROM members WHERE role=%s ORDER BY name',(role))
-        data = c.fetchall()
-        l=len(data)
-        db.commit()
-        c.close()
-        db.close()
-        return render_template('view_volun.html',data=data,l=len(data))
-
-
-
-@app.route('/del_vol/<id>')
-def del_vol(id):
-    id=id
-    if not session.get('logged_in'):
-        return redirect(url_for('login'))
-    db = get_db()
-    c = db.cursor()
-    role="v"
-    c.execute('SELECT username FROM members WHERE id = %s', id)
-    data = c.fetchone()
-    vol_mail = data[0]
-    
-    c.execute('SELECT grp_email FROM application WHERE vol_email = %s', vol_mail)
-    gdata = c.fetchall()
-
-    if len(gdata) > 0:
-        for i in gdata:
-            c.execute('SELECT vol_applied FROM task WHERE grp_email=%s', (i[0])) #deletes all the volunteer applications
-            val=c.fetchone()
-            val=val[0]-1
-            c.execute('UPDATE task SET vol_applied= %s WHERE grp_email=%s', (val,i[0]))
-        c.execute('DELETE FROM application WHERE vol_email = %s', vol_mail) 
- 
-    c.execute('DELETE FROM members WHERE id = %s', id)
-
-    db.commit()
-    c.close()   
-    db.close()
-    return redirect(url_for('reg_vols'))
-
-
-
-@app.route('/logs')
-def logs():
-    if not session.get('logged_in'):
-        return redirect(url_for('login'))
-
-    log_file = open('logs.log', 'r')
-
-    if os.stat("logs.log").st_size == 0:
-        return render_template('log.html',logs=log_file,l=0)
-    else: 
-        return render_template('log.html',logs=log_file,l=1)
 
 
 @app.route('/helpline')
 def helpline():
     return render_template('helpline.html')
 
+
+
+@app.route('/test')
+def test():
+    return "This is a testing route"
+
+
+
+
+
+
+
+
+
+
+'''
+                        ERROR HANDLING
+'''
 @app.errorhandler(403)
 def access_forbidden(error):
     return render_template('403.html'), 403
+
+
 
 @app.errorhandler(404)
 def not_found_error(error):
     return render_template('404.html'), 404
 
+
+
 @app.errorhandler(500)
 def internal_error(error):
     return render_template('500.html'), 500
 
-@app.route('/test')
-def test():
-
-    return "This is a testing route"
 
 
+
+
+
+
+
+
+'''
+                        APP RUNNER
+'''
 if __name__ == '__main__':
     app.run()  # host='0.0.0.0', port=5000

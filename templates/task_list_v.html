@@ -100,6 +100,7 @@
                     <div>
                       <!-- <button type="button" onclick="this.disabled = 'disabled';">Click Me!</button> -->
                       <a href="" class="btn btn-success" >Applied</a>
+                      <a href="{{ url_for('back_application', id=value[0])}}" class="btn btn-danger" >Take your application back</a>
                     </div>
                     {% else %}
                     <div>
