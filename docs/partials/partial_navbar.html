@@ -10,16 +10,42 @@
                     class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
 
             <div id="navbarSupportedContent" class="collapse navbar-collapse">
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ml-auto align-items-lg-center align-items-md-start">
                     <li class="nav-item active"><a href="index.html" class="nav-link  font-weight-bold">Home <span
                             class="sr-only">(current)</span></a></li>
                     <li class="nav-item"><a href="form.html" class="nav-link  ">Form</a></li>
-                    <li class="nav-item"><a href="register.html" class="nav-link  ">Register</a></li>
-                    <li class="nav-item"><a href="login.html" class="nav-link  ">Login</a></li>
                     <li class="nav-item"><a href="FAQ.html" class="nav-link  ">FAQ</a></li>
                     <li class="nav-item"><a href="about_us.html" class="nav-link  ">About Us</a></li>
                     <li class="nav-item"><a href="team.html" class="nav-link  ">Team</a></li>
                     <li class="nav-item"><a href="contact_us.html" class="nav-link  ">Contact Us</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link d-none d-lg-block" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            <i style="font-size: x-large;" class="fa fa-user-circle"></i>
+                        </a>
+                        <a class="nav-link dropdown-toggle d-md-block d-lg-none" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Account
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="login.html">Login</a>
+                            <a class="dropdown-item" href="register.html">Register</a>
+                            <a class="dropdown-item" href="#">Settings</a>
+                            <a class="dropdown-item" href="#">Tasks</a>
+                            <a class="dropdown-item" href="#">Logout</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown d-none d-lg-block">
+                        <a class="nav-link p-0" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            <img style="border-radius: 50%" height="30" src="static/assets/img/Profile_pic.jpg" alt="">
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">Settings</a>
+                            <a class="dropdown-item" href="#">Tasks</a>
+                            <a class="dropdown-item" href="#">Logout</a>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </div>
