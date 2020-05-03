@@ -65,7 +65,7 @@ def serve():
     server.starttls()
     server.ehlo()
     #authentication
-    server.login('urhope.ngo@gmail.com','covid19farha') 
+    server.login('urhope.ngo@gmail.com','') 
     return server
 
 
