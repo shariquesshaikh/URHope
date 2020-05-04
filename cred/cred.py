@@ -1,5 +1,5 @@
 username='root'
-password=''
+password='URHope@h@ndl3R'
 host='localhost'
 db_name='covid'
 urhope_mail='urhope.ngo@gmail.com'
