@@ -1,0 +1,55 @@
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:37:21] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:37:22] "[33mGET /static/assets2/css/my.css HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:37:24] "[32mGET /sjjs/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:37:24] "[35m[1mGET /logout HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:37:24] "[37mGET /logout?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:37:24] "[37mGET /logout?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:37:24] "[37mGET /logout?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:37:24] "[37mGET /logout?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:37:24] "[37mGET /logout?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:37:24] "[37mGET /logout?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 333-234-847
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:40:29] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:40:29] "[33mGET /static/assets2/css/my.css HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:40:30] "[32mGET /index.html HTTP/1.1[0m" 308 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:40:30] "[32mGET /index.html/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:40:30] "[35m[1mGET /logout HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:40:30] "[37mGET /logout?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:40:30] "[37mGET /logout?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:40:30] "[37mGET /logout?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:40:30] "[37mGET /logout?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:40:30] "[37mGET /logout?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:40:30] "[37mGET /logout?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:41:12] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:41:12] "[33mGET /static/assets2/css/my.css HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:41:14] "[32mGET /index.html HTTP/1.1[0m" 308 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:41:14] "[32mGET /index.html/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:41:14] "[35m[1mGET /logout HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:41:14] "[37mGET /logout?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:41:14] "[37mGET /logout?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:41:14] "[37mGET /logout?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:41:14] "[37mGET /logout?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:41:14] "[37mGET /logout?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:41:14] "[37mGET /logout?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:44:05] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:44:05] "[37mGET /static/assets2/css/font-awesome.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:44:05] "[33mGET /static/assets2/css/my.css HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:44:05] "[37mGET /static/assets2/css/nucleo-icons.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:44:05] "[37mGET /static/assets2/css/nucleo-svg.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:44:05] "[37mGET /static/assets2/css/argon-design-system.css?v=1.2.0 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:44:05] "[37mGET /static/assets2/img/brand/white.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:44:05] "[37mGET /static/assets2/js/core/jquery.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:44:05] "[37mGET /static/assets2/js/plugins/perfect-scrollbar.jquery.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:44:05] "[37mGET /static/assets2/js/core/popper.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:44:05] "[37mGET /static/assets2/js/core/bootstrap.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:44:05] "[37mGET /static/assets2/js/plugins/bootstrap-switch.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:44:05] "[37mGET /static/assets2/js/plugins/moment.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:44:05] "[37mGET /static/assets2/js/plugins/nouislider.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:44:05] "[37mGET /static/assets2/js/plugins/datetimepicker.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:44:05] "[37mGET /static/assets2/img/brand/blue.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:44:05] "[37mGET /static/assets2/js/plugins/bootstrap-datepicker.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:44:05] "[37mGET /static/assets2/fonts/fontawesome-webfont.woff2?v=4.7.0 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [04/May/2020 22:44:05] "[37mGET /static/assets2/fonts/nucleo-icons.woff2 HTTP/1.1[0m" 200 -

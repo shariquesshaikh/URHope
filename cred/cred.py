@@ -1,0 +1,6 @@
+username='root'
+password=''
+host='localhost'
+db_name='covid'
+urhope_mail='urhope.ngo@gmail.com'
+urhope_pass='covid19farha'
