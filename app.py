@@ -436,7 +436,7 @@ def logs():
 @app.route('/<id>/', methods=['GET', 'POST'])
 def profile(id):
     if not session.get('logged_in'):
-        return redirect(url_for('logout'))
+        return redirect(url_for('login'))
     else:
         if session['role'] == 'v':
             return render_template('volunteers_profile.html',
