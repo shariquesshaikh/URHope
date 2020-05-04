@@ -27,8 +27,8 @@ import random
 import smtplib
 import logging
 import regex as re
-#import pyodbc
-#import pandas as pd
+import pyodbc
+import pandas as pd
 
 app = Flask(__name__)
 sslify = SSLify(app)
