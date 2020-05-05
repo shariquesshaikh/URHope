@@ -27,8 +27,8 @@ import random
 import smtplib
 import logging
 import regex as re
-import pyodbc
-import pandas as pd
+#import pyodbc
+#import pandas as pd
 
 app = Flask(__name__)
 sslify = SSLify(app)
@@ -95,9 +95,11 @@ def base():
 
 @app.route('/index')
 def index():
-    return render_template('home.html')
+    return render_template('index.html')
 
-
+@app.route('/find-relief-search')
+def find_relief():
+    return render_template('find_relief_search.html')
 
 @app.route('/signup/', methods=['GET', 'POST'])
 def signup():
@@ -237,7 +239,7 @@ def form():
 @app.route('/home', methods=['GET', 'POST'])
 def home():
     if not session.get('logged_in'):
-        return redirect(url_for('logout'))
+        return redirect(url_for('login'))
     else:
         if session['role'] == 'v':
             return render_template('home.html')
@@ -287,7 +289,7 @@ def admin_check():
 @app.route('/reg_ngos')
 def reg_ngos():
         if not session.get('logged_in'):
-            return redirect(url_for('logout'))
+            return redirect(url_for('login'))
         db = get_db()
         c = db.cursor()
         role="n"
@@ -328,7 +330,7 @@ def del_ngo(id):
 @app.route('/reg_vols')
 def reg_vols():
         if not session.get('logged_in'):
-            return redirect(url_for('logout'))
+            return redirect(url_for('login'))
         db = get_db()
         c = db.cursor()
         role="v"
@@ -346,7 +348,7 @@ def reg_vols():
 def del_vol(id):
     id=id
     if not session.get('logged_in'):
-        return redirect(url_for('logout'))
+        return redirect(url_for('login'))
     db = get_db()
     c = db.cursor()
     role="v"
@@ -422,7 +424,7 @@ def download_data(id):
 @app.route('/logs')
 def logs():
     if not session.get('logged_in'):
-        return redirect(url_for('logout'))
+        return redirect(url_for('login'))
 
     log_file = open('logs.log', 'r')
 
@@ -436,7 +438,7 @@ def logs():
 @app.route('/<id>/', methods=['GET', 'POST'])
 def profile(id):
     if not session.get('logged_in'):
-        return redirect(url_for('logout'))
+        return redirect(url_for('login'))
     else:
         if session['role'] == 'v':
             return render_template('volunteers_profile.html',
@@ -470,7 +472,7 @@ def edit_profile(id):
 @app.route('/update/<uname>/', methods=['GET', 'POST'])
 def update_pro(uname):
     if not session.get('logged_in'):
-        return redirect(url_for('logout'))
+        return redirect(url_for('login'))
     else:
             username = session['username']
             role = session['role']
@@ -560,7 +562,7 @@ def update_pro(uname):
 @app.route('/create-task', methods=['GET', 'POST'])
 def create_task():
     if not session.get('logged_in'):
-        return redirect(url_for('logout'))
+        return redirect(url_for('login'))
     elif session['role'] == 'n':
         if request.method == 'POST':
             task = request.form['task']
@@ -605,7 +607,7 @@ def create_task():
 def edit_task(id):
     id=id
     if not session.get('logged_in'):
-        return redirect(url_for('logout'))
+        return redirect(url_for('login'))
     elif session['role'] == 'n':
         if request.method == 'POST':
             task = request.form['task']
@@ -656,7 +658,7 @@ def edit_task(id):
 def delete_task(id):
     id=id
     if not session.get('logged_in'):
-        return redirect(url_for('logout'))
+        return redirect(url_for('login'))
     elif session['role'] == 'n':
             db = get_db()
             c = db.cursor()
@@ -684,7 +686,7 @@ def delete_task(id):
 @app.route('/task_list')
 def task_list():
     if not session.get('logged_in'):
-        return redirect(url_for('logout'))
+        return redirect(url_for('login'))
 
     elif session['role'] == 'n':    
         grp_name = session['name']
@@ -729,7 +731,7 @@ def task_list():
                 applied.append(i[0])
         return render_template('task_list_v.html', id=id,l=len(app_data),applied=applied,len=len(data),data=data, app_data=app_data)
     else:
-        return redirect(url_for('logout'))  
+        return redirect(url_for('login'))  
 
 
 
@@ -737,7 +739,7 @@ def task_list():
 def apply_task(id):
     id=id
     if not session.get('logged_in'):
-        return redirect(url_for('logout'))
+        return redirect(url_for('login'))
     
     db = get_db()
     c = db.cursor()
@@ -800,7 +802,7 @@ def apply_task(id):
 def back_application(id):
     id=id
     if not session.get('logged_in'):
-        return redirect(url_for('logout'))
+        return redirect(url_for('login'))
     
     db = get_db()
     c = db.cursor()
