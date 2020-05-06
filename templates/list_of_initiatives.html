@@ -1,0 +1,181 @@
+{% extends "base_site.html" %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row mt-5">
+        <div class="col mt-lg-0">
+            <div class="card-custom p-lg-5 step3-table-div">
+                <div class="step3-title row justify-content-between align-items-center mb-4">
+                    <h4 class="mb-0 col-6 font-weight-bold">{{type}}</h4>
+                    <div class="search-filter col-6">
+                        <div class="row justify-content-end align-items-center">
+
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-sm btn-light"
+                                        data-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false" style="text-transform: capitalize">
+                                    <select class="custom-select-sm custom-select filter">
+                                        <option selected>Choose Filter...</option>
+                                        {% for i in dropdown%}
+                                            <option value="{{i}}">{{i}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <input id="myInput" type="text" placeholder="Search.." hidden>
+
+
+                <div class="row mt-2">
+                    <nav class="step3-table-nav">
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home"
+                               role="tab"
+                               aria-controls="nav-home" aria-selected="true">Govt.</a>
+                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
+                               role="tab"
+                               aria-controls="nav-profile" aria-selected="false">NGO</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact"
+                               role="tab"
+                               aria-controls="nav-contact" aria-selected="false">Community</a>
+                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact"
+                               role="tab"
+                               aria-controls="nav-contact" aria-selected="false">Individual</a>
+                        </div>
+                    </nav>
+                    <div class="tab-content" id="nav-tabContent" style="width: 100%">
+                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
+                             aria-labelledby="nav-home-tab">
+
+                            <table class="table step3-table filter-this-table">
+                                <thead>
+                                <tr>
+                                    <th scope="col"><h6>Initiatives</h6></th>
+                                    <th scope="col"><h6>Contact No</h6></th>
+                                    <th scope="col"><h6>Link</h6></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    {% for k,data in data.items() %}
+                                        {% for v in data %}
+                                        <tr>
+                                            <td class="align-middle">
+                                                <div class="initiative-heading pt-4">
+                                                    <a href="#" data-toggle="modal" data-target="#exampleModalCenter" onclick="
+                                                    updateModal(
+                                                     {
+                                                    'title': '{{v.title}}',
+                                                    'description': '{{v.description}}',
+                                                    'phone': {{v.helplinenumbers}},
+                                                    'eligibility': '{{v.eligibility}}',
+                                                    'documents': '{{v.documents}}',
+                                                    'duration': '{{v.duration}}',
+                                                    'source': '{{v.sourcelink}}'
+                                                    }
+                                                   );"><h6 class="font-weight-bold mb-0">{{v.title}}</h6></a>
+
+                                                </div>
+                                                <div class="initiative-description">
+                                                    <p class="text-muted">{{v.description}}</p>
+                                                </div>
+                                            </td>
+                                            <td class="align-middle">
+                                                <div class="initiative-contact align-content-around">
+                                                    {% for phone_no in v.helplinenumbers %}
+                                                        <button class="btn btn-sm btn-outline-primary mt-1"><a href="tel:{{phone_no}}">{{phone_no}}</a></button>
+                                                    {% endfor %}
+                                                </div>
+                                            </td>
+                                            <td><a href="{{v.links}}">View</a></td>
+                                            <td class="align-middle" hidden>
+                                                {{v.dropdown}}
+                                            </td>
+                                        </tr>
+                                        
+                                    {% endfor %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header pb-0" style="border-bottom: none">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body pb-0">
+                <div class="initiative-heading px-2">
+                    <h4 class="font-weight-bold link-modal-title">Public Food Shelter with a long name for 2
+                        lines</h4>
+
+                </div>
+                <div class="initiative-description px-2">
+                    <p class="text-muted mb-0 link-modal-description">Noti Karanprayag Rd, near Tehsil Office,
+                        Karanprayag,
+                        Uttarakkhand
+                        246444</p>
+                </div>
+
+                <table class="table step3-table">
+                    <tbody>
+                    <tr style="border: none">
+                        <th class="align-middle font-weight-bold">Contact No</th>
+                        <td class="align-middle">
+                            <div class="initiative-contact align-content-around link-modal-contact">
+
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="align-middle font-weight-bold">Eligibility</th>
+                        <td class="align-middle">
+                            <p class="m-0 link-modal-eligibility">None</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="align-middle font-weight-bold">Documents</th>
+                        <td class="align-middle">
+                            <p class="m-0 link-modal-documents">None Required</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="align-middle font-weight-bold">Duration</th>
+                        <td class="align-middle">
+                            <p class="m-0 link-modal-duration">6 Months</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th class="align-middle font-weight-bold">Source</th>
+                        <td class="align-middle">
+                            <p class="m-0 link-modal-sources"></p>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="modal-footer align-middle justify-content-center pt-0" style="border-top: none">
+                <!-- <button type="button" class="btn btn-success"><i class="fa fa-share-alt" aria-hidden="true"></i> Share
+                </button> -->
+                <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End  Modal -->
+{% endblock %}
+
