@@ -1,466 +1,114 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base_site.html" %}
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="/static/assets2/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="/static/assets2/img/favicon.png">
-  <title>
-    URHope - Where Hope Prevails
-  </title>
-  <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-  <!-- Nucleo Icons -->
-  <link href="/static/assets2/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="/static/assets2/css/nucleo-svg.css" rel="stylesheet" />
-  <!-- Font Awesome Icons -->
-  <link href="/static/assets2/css/font-awesome.css" rel="stylesheet" />
-  <link href="/static/assets2/css/nucleo-svg.css" rel="stylesheet" />
-  <!-- CSS Files -->
-  <link href="/static/assets2/css/argon-design-system.css?v=1.2.0" rel="stylesheet" />
-</head>
+{% block content %}
 
-<body class="landing-page">
-  <!-- Navbar -->
-  <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom">
-    <div class="container">
-      <a class="navbar-brand mr-lg-5" href="../index.html">
-        <img src="/static/assets2/img/brand/white.png">
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-{% if 'logged_in' in session %}
-      <ul class="nav align-items-center d-md-none">
-        <li class="nav-item dropdown">
-          <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <div class="media align-items-center">
-              <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="/static/assets/img/theme/profile.png">
-              </span>
+<!-- Page Content -->
+<div class="container mt-2">
+    <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+            <div class="options" onclick="location.href='/relief';" style="cursor: pointer">
+                <div>
+                    <img src="../static/assets/img/BG.jpeg" class="options-img"/>
+                </div>
+                <div class="options-title p-2"><i style="font-size: xx-large" class="fa fa-map-marker"
+                                                  aria-hidden="true"></i><br>
+                    Find relief anywhere
+                </div>
             </div>
-          </a>
-          <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-            <div class=" dropdown-header noti-title">
-              <h5 class="text-overflow m-0">{{ session['name'] }}</h5>
-            </div>
-            <a href="{{ url_for('profile', id=session['user_id']) }}" class="dropdown-item">
-              <i class="ni ni-single-02"></i>
-              <span>Profile</span>
-            </a>
-            <a href="{{ url_for('task_list') }}" class="dropdown-item">
-              <i class="ni ni-bullet-list-67"></i>
-              <span>Tasks</span>
-            </a>
-                        
-            {% if session['role'] == 'n' %}
-            <a href="{{ url_for('create_task') }}" class="dropdown-item">
-              <i class="ni ni-ruler-pencil"></i>
-              <span>Create Tasks</span>
-            </a>
-            <a href="{{ url_for('notification_page') }}" class="dropdown-item">
-              <i class="ni ni-bell-55 text-blue"></i>
-              <span>Notifications</span>
-            </a>
-            {% endif %}
-            
-            <div class="dropdown-divider"></div>
-            <a href="{{ url_for('logout') }}" class="dropdown-item">
-              <i class="ni ni-user-run text-red"></i>
-              <span>Logout</span>
-            </a>
-          </div>
-        </li>
-      </ul>
-          {% endif %}
-      <div class="navbar-collapse collapse" id="navbar_global">
-        <div class="navbar-collapse-header">
-          <div class="row">
-            <div class="col-6 collapse-brand">
-              <a href="../../../index.html">
-                <img src="/static/assets2/img/brand/blue.png">
-              </a>
-            </div>
-            <div class="col-6 collapse-close">
-              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-              </button>
-            </div>
-          </div>
         </div>
-        <ul class="navbar-nav align-items-lg-center ml-lg-auto">
-          <li class="nav-item">
-            <a class="nav-link nav-link-icon" href="/" data-toggle="tooltip" title="about">
-              <i class="fa fa-home"></i>
-              <span class="nav-link-inner--text d-lg-none" >Home</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link nav-link-icon" href="/form" data-toggle="tooltip" title="Form">
-                
-              <i class="fa fa-wpforms"></i>
-              <span class="nav-link-inner--text d-lg-none" >Form</span>
-            </a>
-          </li>
-          {% if not 'logged_in' in session %}
-            <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="{{ url_for('login') }}">
-                <i class="ni ni-single-02"></i>
-                <span class="nav-link-inner--text">Login</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="{{ url_for('signup') }}">
-                <i class="fa fa-plus"></i>
-                <span class="nav-link-inner--text">Join Us</span>
-              </a>
-            </li>
-            {% else %}
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('logout') }}">
-                <i class="ni ni-user-run text-red"></i> Logout
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('profile', id=session['user_id']) }}">
-                <i class="ni ni-single-02"></i> Profile
-              </a>
-            </li>
-          {% endif %}
-          <li class="nav-item">
-            <a class="nav-link nav-link-icon" href="/team" data-toggle="tooltip" title="about">
-                
-              <i class="fa fa-users"></i>
-              <span class="nav-link-inner--text d-lg-none">Team Members</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link nav-link-icon" href="/#contact" data-toggle="tooltip" title="about">
-              <i class="fa fa-phone"></i>
-              <span class="nav-link-inner--text d-lg-none">Contact Us</span>
-            </a>
-          </li>
-        </ul>
-      </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+            <div class="options" onclick="location.href='find_relief.html';" style="cursor: pointer">
+                <div>
+                    <img src="../static/assets/img/Volunteer.jpeg" class="options-img"/>
+                </div>
+                <div class="options-title p-2"><i style="font-size: xx-large" class="fa fa-user" aria-hidden="true"></i><br>
+                    Do you want to <br>volunteer?
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+            <div class="options" onclick="location.href='find_relief.html';" style="cursor: pointer">
+                <div>
+                    <img src="../static/assets/img/Find_volunteers.jpeg" class="options-img"/>
+                </div>
+                <div class="options-title p-2"><i style="font-size: xx-large" class="fa fa-search"
+                                                  aria-hidden="true"></i><br>
+                    Find Volunteers
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+            <div class="options" onclick="location.href='find_relief.html';" style="cursor: pointer">
+                <div>
+                    <img src="../static/assets/img/NPO.jpeg" class="options-img"/>
+                </div>
+                <div class="options-title p-2"><i style="font-size: xx-large" class="fa fa-handshake-o"
+                                                  aria-hidden="true"></i><br>
+                    Are you an NGO?
+                </div>
+            </div>
+        </div>
     </div>
-  </nav>
-  <!-- End Navbar -->
-<section class="section section-shaped section-lg">
-    <div class="shape shape-style-1 bg-gradient-default">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
- 
-
-
-<div class="container mt-5 pb-5">
-  
-      <div class="row justify-content-center">
-        <div class="col-lg-5 col-md-7">
-          <div class="card bg-secondary shadow border-0">
-            <div class="card-header bg-transparent pb-5">
-
-
-              <div class="text-muted text-center mt-2 mb-3">
-
-                <h3 class="mb-0">Need Help?</h3>
-              </div> <br>
-
-              
-<!-- {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
-{% if (message.startswith("Thanks")) %}
-<div class="alert alert-success alert-dismissible" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-      aria-hidden="true">x</span></button>
-  {{message}}
-</div>
-{% else %}
-<div class="alert alert-danger alert-dismissible" role="alert">
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-      aria-hidden="true">x</span></button>
-  {{message}}
-</div>
-{% endif %}
-
-{% endfor %} {% endif %} {% endwith %} -->
-
-<form action="/searchresult" method="POST" >
-  <div align="center" >
-  <input maxlength="6" minlength="6" name="pin" type="number" class="form-control" id="pincode" placeholder="Enter pincode and click on a service" required>
- <div class="btn-primary">
-  <p style="font-size: 12px;"><b>PIN length should be equal to 6.</b> </p>
 </div>
 
-  <!-- <div class="text-muted text-left mt-2 mb-3">
-
-      <h3 class="mt-2 mb-0">Search</h3>
-      {% for value in data %}
-        {{value[0]}}
-        {{value[1]}}
-        {{value[2]}}
-        {{value[3]}}
-      </br>
-      {% endfor %}
-  </div>  -->
-              
-            <!-- </div> -->
-            <!-- <div class="card-body text-center px-lg-5 py-lg-5">
-
-              <div class="text-muted text-center mt-2 mb-3">
-
-                <h3 class="mb-0">Need Help?</h3>
-                </div> -->
-
-                <!-- <button class="mb-2 btn btn-primary">Food</button> -->
-
-
-
-
-  <input type="submit" class="mb-3 btn btn-outline-primary" style="font-size: 12px;" name="name" id="" value="Food">
-
-  <input type="submit" class="mb-3 btn btn-outline-primary" style="font-size: 12px;" name="name" id="" value="Clothing">
-
-  <input type="submit" class="mb-3 btn btn-outline-primary" style="font-size: 12px;" name="name" id="" value="Shelter">
-
-  <input type="submit" class="mb-3 btn btn-outline-primary" style="font-size: 12px;" name="name" id="" value="Healthcare">
-
-  <input type="submit" class="mb-3 btn btn-outline-primary" style="font-size: 12px;" name="name" id="" value="Medical Equipments">
-
-  <div align="center" >
-    <input type="submit" class="mb-3 btn btn-outline-primary" style="font-size: 12px;" name="name" id="" value="Others">
-  </div>
-
-
+<div class="container mt-5">
+    <div class="card-columns">
+        <div class="card p-4 mb-4">
+            <div class="card-block">
+                <h4 class="card-title">About Us</h4>
+                <p class="card-text">We make the navigation of the relief process easy by creating a common platform to
+                    connect the people
+                    who need relief with those (Govt. initiatives/NGOs/groups/individuals) who are providing relief and
+                    also to people who want to volunteer</p>
+                <a href="https://www.facebook.com/URHope.team/">Learn More</a>
+            </div>
         </div>
+
+        <div class="card p-4 mb-5">
+            <div class="card-block">
+                <h5 class="card-title">Who are we?</h5>
+                <p class="card-text">We are a group of enthusiasts comprising of students and
+                    working professionals from
+                    IIT Bombay and
+                    beyond coming from the fields ranging from engineering, management, biosciences to Humanities and
+                    Social Sciences who are passionate towards the issues of social justice. We have come together to
+                    make the navigation of the relief process easy in the times of Covid19 crisis. There is a barrage of
+                    information circulating around regarding the relief programmes; on the one hand, it is a kind and
+                    responsible gesture, however, on the other, at times, the people who actually need relief are not
+                    able to navigate the enormous amount of information available and reach the suitable relief
+                    providers in their vicinity. So, we decided to create a common platform to bring together the people
+                    who need relief, people (Govt. initiatives/NGOs/groups/individuals) who are already providing the
+                    relief and the ones who want to volunteer in such relief programmes.</p>
+                <a href="https://www.facebook.com/URHope.team/">Learn More</a>
+            </div>
+        </div>
+
+        <div class="card p-4 mb-5">
+            <div class="card-block">
+                <h4 class="card-title">What we do?</h4>
+                <p class="card-text">There are people who want to contribute to society-as helping hand, as donors, as
+                    volunteers and
+                    then
+                    there are NGOs and Governments-who want help from these people to solve some of the biggest problems
+                    of society. And in times like today, with pandemic like COVID-19/corona-many people are in need of
+                    urgent help. These are the times when we need cooperation and help more than anything else. So, we
+                    are providing a platform/interface for people, NGO and Government organizations to connect and solve
+                    the humanitarian crisis originated through COVID-19. People can register as volunteers or someone
+                    who needs help (for food, medicine, accommodation etc.) and NGOs/groups/individuals can register as
+                    the ones helping people through the volunteers, our platform connects these two.</p>
+                <a href="https://www.facebook.com/URHope.team/">Learn More</a>
+            </div>
+        </div>
+    </div>
 </div>
 
-</form> 
-
-<div align="center" class="container">
-  <a href="{{ url_for('helpline') }}"><button style="font-size: 15px;" class="mb-2 btn btn-block btn-primary">Government Initiatives</button></a>
-</div>  
-<br>
-{% if not "logged_in" in session %}
-<div align="center" class="container">
-<a href="{{ url_for('signup') }}"><button class="mb-2 btn btn-success"> <b>I Want To Volunteer</b></button></a>
-</div> 
-
-            <div class="card-body text-center px-lg-5 py-lg-5">
-
-              <div class="text-muted text-center mt-2 mb-3">
-
-                <h3 class="mb-0">Provide Help?</h3>
-                </div>
-
-                
-<a href="{{ url_for('signup') }}"><button class="mb-2 btn btn-outline-success" style="width: 300px; font-size: 15px;">Register your Service</button></a>
-<a href="{{ url_for('signup') }}"><button class="mb-2 btn btn-outline-success" style="width: 300px;font-size: 15px;">Need Volunteers</button></a>
-{% else %}
-{% if session['role'] == 'v' %}
-<div align="center" class="container">
-<a onclick="alert('Go To Task')"><button class="mb-2 btn btn-success"> <b>I Want To Volunteer</b></button></a>
+<!-- Twitter -->
+<div class="container">
+    <a class="twitter-timeline" href="https://twitter.com/urhope_team?ref_src=twsrc%5Etfw">Tweets by urhope_team</a>
+    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
-{% endif %}
+<!-- End Twitter -->
 
-            <div class="card-body text-center px-lg-5 py-lg-5">
+<!--End Page Content -->
 
-              <div class="text-muted text-center mt-2 mb-3">
-{% if session['role'] == 'n' %}
-                <h3 class="mb-0">Provide Help?</h3>
-                </div>
-                
-<a onclick="alert('Create a Task')"><button class="mb-2 btn btn-outline-success" style="width: 300px;font-size: 15px;">Need Volunteers</button></a>
-{% endif %}
-{% endif %}
-            </div>
-
-          </div>
-
-        </div>
-      </div>
-    </div>
-    </div>
-    </section>
-    <br><br>
-
-    <a id="about">
-    <div class="section features-6">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-lg-6">
-            <div class="info info-horizontal info-hover-primary">
-              <div class="description pl-4">
-                <h5 class="title">About Us</h5>
-                <p>We make the navigation of the relief process easy by creating a common platform to connect the people who need relief with those (Govt. initiatives/NGOs/groups/individuals) who are providing relief and also to people who want to volunteer</p>
-                <a href="https://facebook.com/URHope.team/" class="text-info">Learn more</a>
-              </div>
-            </div>
-            <div class="info info-horizontal info-hover-primary mt-5">
-              <div class="description pl-4">
-                <h5 class="title">Who Are We</h5>
-                <p>We are a group of enthusiasts comprising of students and working professionals from IIT Bombay and beyond coming from the fields ranging from engineering, management, biosciences to Humanities and Social Sciences who are passionate towards the issues of social justice. We have come together to make the navigation of the relief process easy in the times of Covid19 crisis. There is a barrage of information circulating around regarding the relief programmes; on the one hand, it is a kind and responsible gesture, however, on the other, at times, the people who actually need relief are not able to navigate the enormous amount of information available and reach the suitable relief providers in their vicinity. So, we decided to create a common platform to bring together the people who need relief, people (Govt. initiatives/NGOs/groups/individuals) who are already providing the relief and the ones who want to volunteer in such relief programmes.
-</p>
-                <a href="https://facebook.com/URHope.team/" class="text-info">Learn more</a>
-              </div>
-            </div>
-            <div class="info info-horizontal info-hover-primary mt-5">
-              <div class="description pl-4">
-                <h5 class="title">What We Do</h5>
-                <p>There are people who want to contribute to society-as helping hand, as donors, as volunteers and then there are NGOs and Governments-who want help from these people to solve some of the biggest problems of society. And in times like today, with pandemic like COVID-19/corona-many people are in need of urgent help. These are the times when we need cooperation and help more than anything else. So, we are providing a platform/interface for people, NGO and Government organizations to connect and solve the humanitarian crisis originated through COVID-19. People can register as volunteers or someone who needs help (for food, medicine, accommodation etc.) and NGOs/groups/individuals can register as the ones helping people through the volunteers, our platform connects these two.
-</p>
-                <a href="https://facebook.com/URHope.team/" class="text-info">Learn more</a>
-              </div>
-            </div>
-          </div>
-          
-          <div class="col-lg-6 col-10 mx-md-auto">
-          
-                </div>
-                
-                <br>
-          
-             <a class="twitter-timeline" href="https://twitter.com/urhope_team" data-tweet-limit="3">Tweets by @urhope_team</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <a id="contact">
-        
-<section class="section section-shaped section-lg">
-    <div class="shape shape-style-1 bg-gradient-default">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-    <div class="container pt-lg-7">
-      <div class="row justify-content-center">
-        <div class="col-lg-5">
-          <div class="card bg-secondary shadow border-0">
-            <div class="card-header bg-white pb-5">
-              <div class="mb--3 text-muted text-center mb-3"><h2>Contact Us</h2></div>
-            </div>
-            <div class="card-body px-lg-5 py-lg-5">
-              <form action="https://formspree.io/xnqbrrnp"
-  method="POST" role="form">
-                <div class="form-group mb-3">
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-single-02"></i></span>
-                    </div>
-                    <input class="form-control" placeholder="Your Name" type="text" name="name" required>
-                  </div>
-                </div>
-               
-                <div class="form-group mb-3">
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-email-83"></i></span>
-                    </div>
-                    <input class="form-control" name="_replyto" placeholder="Email" type="text" required>
-                  </div>
-                </div>
-                <div class="form-group focused">
-                  <div class="input-group input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-chat-round"></i></span>
-                    </div>
-<textarea rows="7" cols="50" placeholder="Message" class="form-control" name="message" required></textarea>
-                  </div>
-                </div>
-                <div class="text-center">
-                  <button type="submit" class="btn btn-primary my-4">Send</button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</a>
-</a>
-    <br /><br />
-    <footer class="footer">
-      <div class="container">
-        <div class="row row-grid align-items-center mb-5">
-          <div class="col-lg-6">
-            <h3 class="text-primary font-weight-light mb-2">Thank you for supporting us!</h3>
-            <h4 class="mb-0 font-weight-light">Let's get in touch on any of these platforms.</h4>
-          </div>
-          <div class="col-lg-6 text-lg-center btn-wrapper">
-            <button target="_blank" onclick="window.location='https://twitter.com/urhope_team';" class="btn btn-icon-only btn-twitter rounded-circle">
-              <span class="btn-inner--icon"><i class="fa fa-twitter"></i></span>
-            </button>
-            <button target="_blank" onclick="window.location='https://facebook.com/URHope.team/';" class="btn-icon-only rounded-circle btn btn-facebook">
-              <span class="btn-inner--icon"><i class="fab fa-facebook"></i></span>
-            </button>
-            <button target="_blank" onclick="window.location='https://instagram.com/urhope_team';" class="btn btn-icon-only btn-instagram rounded-circle">
-              <span class="btn-inner--icon"><i class="fa fa-instagram"></i></span>
-            </button>
-          </div>
-        </div>
-        <hr>
-        <div class="row align-items-center justify-content-md-between">
-          <div class="col-md-6">
-            <div class="copyright">
-              &copy; 2020 <a href="#" target="_blank">URHOPE</a>.
-            </div>
-          </div>
-          <div class="col-md-6">
-            <ul class="nav nav-footer justify-content-end">
-              <li class="nav-item">
-                <a href="/" class="nav-link">Home</a>
-              </li>
-              <li class="nav-item">
-                <a href="/form" class="nav-link">Form</a>
-              </li>
-              <li class="nav-item">
-                <a href="/team" class="nav-link">Team Members</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </div>
-  <!--   Core JS Files   -->
-  <script src="/static/assets2/js/core/jquery.min.js" type="text/javascript"></script>
-  <script src="/static/assets2/js/core/popper.min.js" type="text/javascript"></script>
-  <script src="/static/assets2/js/core/bootstrap.min.js" type="text/javascript"></script>
-  <script src="/static/assets2/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-  <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-  <script src="/static/assets2/js/plugins/bootstrap-switch.js"></script>
-  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-  <script src="/static/assets2/js/plugins/nouislider.min.js" type="text/javascript"></script>
-  <script src="/static/assets2/js/plugins/moment.min.js"></script>
-  <script src="/static/assets2/js/plugins/datetimepicker.js" type="text/javascript"></script>
-  <script src="/static/assets2/js/plugins/bootstrap-datepicker.min.js"></script>
-  
- <script async src="https://www.googletagmanager.com/gtag/js?id=G-83CH6CWM21"></script>
- <script>
-   window.dataLayer = window.dataLayer || [];
-   function gtag(){dataLayer.push(arguments);}
-   gtag('js', new Date());
- 
-   gtag('config', 'G-83CH6CWM21');
- </script>
-  
-</body>
-
-</html>
+{% endblock %}
