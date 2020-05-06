@@ -94,6 +94,43 @@ CREATE TABLE `podata` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Table structure for table `govt_data`
+--
+
+CREATE TABLE `govtdata` (
+  `id` SERIAL PRIMARY KEY,
+  `statename` varchar(100) DEFAULT NULL,
+  `districtname` varchar(100) DEFAULT NULL,
+  `kindname` varchar(100) DEFAULT NULL,
+  `type` TEXT DEFAULT NULL,
+  `dropdown` varchar(100) DEFAULT NULL,
+  `tabname` varchar(100) DEFAULT NULL,
+  `title` TEXT DEFAULT NULL,
+  `description` TEXT DEFAULT NULL,
+  `helplinenumbers` varchar(100) DEFAULT NULL,
+  `link` TEXT DEFAULT NULL,
+  `eligibility` TEXT DEFAULT NULL,
+  `documents` TEXT DEFAULT NULL,
+  `duration` TEXT DEFAULT NULL,
+  `relevantinfo` TEXT DEFAULT NULL,
+  `sourcelink` TEXT DEFAULT NULL,
+  `created_on` TIMESTAMP DEFAULT NOW()  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `statewisehelplinenos`
+--
+
+CREATE TABLE `statewisehelplinenos` (
+  `id` SERIAL PRIMARY KEY,
+  `statename` varchar(100) DEFAULT NULL,
+  `districtname` varchar(100) DEFAULT NULL,
+  `districthelpline` varchar(100) DEFAULT NULL,
+  `statehelpline` varchar(100) DEFAULT NULL,
+  `created_on` TIMESTAMP DEFAULT NOW()  
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
 -- Dumping data for table `podata`
 --
 
