@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" sizes="76x76" href="static/assets2/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="static/assets2/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/static/assets2/img/apple-icon.png">
+    <link rel="icon" type="image/png" href="/static/assets2/img/favicon.png">
     <title>
         URHope - Where Hope Prevails
     </title>
@@ -13,13 +13,13 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <!-- Nucleo Icons -->
-    <link href="static/assets2/css/nucleo-icons.css" rel="stylesheet"/>
-    <link href="static/assets2/css/nucleo-svg.css" rel="stylesheet"/>
+    <link href="/static/assets2/css/nucleo-icons.css" rel="stylesheet"/>
+    <link href="/static/assets2/css/nucleo-svg.css" rel="stylesheet"/>
     <!-- Font Awesome Icons -->
-    <link href="static/assets2/css/font-awesome.css" rel="stylesheet"/>
-    <link href="static/assets2/css/nucleo-svg.css" rel="stylesheet"/>
+    <link href="/static/assets2/css/font-awesome.css" rel="stylesheet"/>
+    <link href="/static/assets2/css/nucleo-svg.css" rel="stylesheet"/>
     <!-- CSS Files -->
-    <link href="static/assets2/css/argon-design-system.css?v=1.2.0" rel="stylesheet"/>
+    <link href="/static/assets2/css/argon-design-system.css?v=1.2.0" rel="stylesheet"/>
 </head>
 <style>
 
@@ -173,7 +173,7 @@ input[type=number]::-webkit-outer-spin-button {
 <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom">
     <div class="container">
         <a class="navbar-brand mr-lg-5" href="../index.html">
-            <img src="static/assets2/img/brand/white.png">
+            <img src="/static/assets2/img/brand/white.png">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_global"
                 aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
@@ -186,7 +186,7 @@ input[type=number]::-webkit-outer-spin-button {
                        aria-expanded="false">
                         <div class="media align-items-center">
               <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="/static/assets/img/theme/profile.png">
+                <img alt="Image placeholder" src="//static/assets/img/theme/profile.png">
               </span>
                         </div>
                     </a>
@@ -228,7 +228,7 @@ input[type=number]::-webkit-outer-spin-button {
                 <div class="row">
                     <div class="col-6 collapse-brand">
                         <a href="../../../index.html">
-                            <img src="static/assets2/img/brand/blue.png">
+                            <img src="/static/assets2/img/brand/blue.png">
                         </a>
                     </div>
                     <div class="col-6 collapse-close">
@@ -316,17 +316,17 @@ input[type=number]::-webkit-outer-spin-button {
 
 </div>
 <!--   Core JS Files   -->
-<script src="static/assets2/js/core/jquery.min.js" type="text/javascript"></script>
-<script src="static/assets2/js/core/popper.min.js" type="text/javascript"></script>
-<script src="static/assets2/js/core/bootstrap.min.js" type="text/javascript"></script>
-<script src="static/assets2/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+<script src="/static/assets2/js/core/jquery.min.js" type="text/javascript"></script>
+<script src="/static/assets2/js/core/popper.min.js" type="text/javascript"></script>
+<script src="/static/assets2/js/core/bootstrap.min.js" type="text/javascript"></script>
+<script src="/static/assets2/js/plugins/perfect-scrollbar.jquery.min.js"></script>
 <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-<script src="static/assets2/js/plugins/bootstrap-switch.js"></script>
+<script src="/static/assets2/js/plugins/bootstrap-switch.js"></script>
 <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-<script src="static/assets2/js/plugins/nouislider.min.js" type="text/javascript"></script>
-<script src="static/assets2/js/plugins/moment.min.js"></script>
-<script src="static/assets2/js/plugins/datetimepicker.js" type="text/javascript"></script>
-<script src="static/assets2/js/plugins/bootstrap-datepicker.min.js"></script>
+<script src="/static/assets2/js/plugins/nouislider.min.js" type="text/javascript"></script>
+<script src="/static/assets2/js/plugins/moment.min.js"></script>
+<script src="/static/assets2/js/plugins/datetimepicker.js" type="text/javascript"></script>
+<script src="/static/assets2/js/plugins/bootstrap-datepicker.min.js"></script>
 
 <script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -347,5 +347,29 @@ input[type=number]::-webkit-outer-spin-button {
 </script>
 
 </body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.partials_footer').load('partials/partial_footer.html');
+    });
+
+    $(document).ready(function () {
+        $("select.filter").change(function () {
+            var selectedOption = $(this).children("option:selected").val();
+            if (selectedOption === 'Choose Filter...') {
+                var value = '';
+                $(".step3-table tbody > tr ").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            } else {
+                var value = selectedOption.toLowerCase();
+                $(".step3-table tbody > tr ").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            }
+        });
+    });
+
+
+</script>
 
 </html>
