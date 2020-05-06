@@ -12,24 +12,25 @@ from flask_caching import Cache
 from flask_mysqlpool import MySQLPool
 import json
 import os
+import re
+from config import host, username,password, db_name, urhope_mail, urhope_pass
 import datetime
 import pymysql
 import requests
 import socket
 import os.path
 import flask
-import re
 import urllib.request
 import logging
 import string
 import random
 import smtplib
 import logging
-import regex as re
-import pyodbc
+# import pyodbc
 import pandas as pd
 
 app = Flask(__name__)
+sslify = SSLify(app)
 
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 
@@ -44,8 +45,7 @@ config = {'CACHE_TYPE': 'redis',
 
 app.secret_key = os.urandom(12)
 
-logging.basicConfig(filename='logs.log', level=logging.DEBUG)
-
+logging.basicConfig(filename='logs.log', level=logging.ERROR)
 
 
 
@@ -65,19 +65,13 @@ def serve():
     server.starttls()
     server.ehlo()
     #authentication
-    server.login('urhope.ngo@gmail.com','covid19farha') 
+    server.login(urhope_mail, urhope_pass) 
     return server
 
 
-# def get_db():
-#     db = pymysql.connect(host='localhost', user='root', passwd='CoronaPassword.1#',
-#                          db='covid', charset='utf8mb4')
-#     return db
-
-
-def get_db(): #Sharique's DB Configuration
-    db = pymysql.connect(host='localhost', user='root', passwd='',
-                         db='covid', charset='utf8mb4')
+def get_db():
+    db = pymysql.connect(host=host, user=username, passwd=password,
+                         db=db_name, charset='utf8mb4')
     return db
 
 
@@ -441,7 +435,7 @@ def logs():
 @app.route('/<id>/', methods=['GET', 'POST'])
 def profile(id):
     if not session.get('logged_in'):
-        return redirect(url_for('logout'))
+        return redirect(url_for('login'))
     else:
         if session['role'] == 'v':
             return render_template('volunteers_profile.html',
@@ -895,6 +889,107 @@ def search_pincode(pincode):
     return render_template('home.html',data={})
 
 
+# @app.route('/home', methods=['GET', 'POST'])
+# def home():
+#     if not session.get('logged_in'):
+#         return redirect(url_for('login'))
+#     else:
+#         if session['role'] == 'v':
+#             return render_template('home.html')
+#         if session['role'] == 'n':
+#             return render_template('home.html')
+#         if session['role'] == 'a':
+#             return render_template('admin_profile.html')
+
+
+
+# @app.route('/msearch/<pincode>/', methods=['GET'])
+# def msearch_pincode(pincode):
+#     if pincode and re.fullmatch("[1-9][0-9]{5}", pincode):
+#         connect = get_db()
+#         pincode = int(pincode)
+#         c = connect.cursor()
+#         counter = 0
+#         where = ""
+#         for i in [0,-1,+1,-2,+2,-3,+3,-4,+4]:
+#             where += "m.pin='"+str(pincode+i) + "' OR "
+#         query = "select m.pin, phone, services, statename from members m join podata p on m.pin = p.pin where m.role='n' AND (" + where[:-4] +")"
+#         c.execute(query)
+#         data = c.fetchall()
+#         if data:
+#             c.close()
+#             connect.close()
+#             return render_template('home.html', data=data)
+#     return render_template('home.html',data={})
+
+@app.route('/relief')
+def relief():
+    return render_template('relief_pincode_page.html')
+
+@app.route('/find_relief', methods=['GET'])
+def find_relief():
+    pincode=request.args.get("pincode")
+    if pincode and re.fullmatch("[1-9][0-9]{5}", pincode):
+        connect = get_db()
+        pincode = int(pincode)
+        c = connect.cursor()
+        counter = 0
+        where = ""
+        for i in [0,-1,+1,-2,+2,-3,+3,-4,+4]:
+            where += "pin='"+str(pincode+i) + "' OR "
+        query = "select distinct p.statename, p.districtname, s.districthelpline, s.statehelpline, s.created_on from statewisehelplinenos s join podata p on s.statename = p.statename where (" + where[:-4] +")"
+        c.execute(query)
+        print(query)
+        data = c.fetchone()
+        if data:
+            c.close()
+            connect.close()
+            return render_template('find_relief.html', data=data, pin=str(pincode))
+    return render_template('find_relief.html',data={}, pin=str(pincode))
+
+@app.route('/initiatives/', methods=['GET'])
+def initiatives():
+    pincode = request.args.get("pincode")
+    type = request.args.get("type")
+    if pincode and re.fullmatch("[1-9][0-9]{5}", pincode):
+        connect = get_db()
+        pincode = int(pincode)
+        type = " ".join(type.split("_"))
+        c = connect.cursor()
+        counter = 0
+        where = ""
+        for i in [0,-1,+1,-2,+2,-3,+3,-4,+4]:
+            where += "p.pin='"+str(pincode+i) + "' OR "
+        query = "select distinct g.statename, g.districtname, title, description, helplinenumbers, link, eligibility, documents, duration, created_on, dropdown, g.id, g.sourcelink, g.relevantinfo from govtdata g join podata p on g.statename = p.statename where (" + where[:-4] +")" + " AND type='" + type + "'"
+        c.execute(query)
+        print(query)
+        data = c.fetchall()
+        if data:
+            pdata={'data':[]}
+            dropdown = []
+            for d in data:
+                pdata['data'].append({ 
+                    "statename": d[0], 
+                    "districtname": d[1], 
+                    "title": d[2], 
+                    "description": d[3],
+                    "helplinenumbers": d[4].split(";") if d[4] else [], 
+                    "links": d[5], 
+                    "eligibility": d[6], 
+                    "documents": d[7], 
+                    "duration": d[8],
+                    "created_on": d[9],
+                    "dropdown": d[10],
+                    "id": d[11],
+                    "sourcelink": d[12].replace("\n", "") if d[12] else "",
+                    "relevantinfo": d[13]
+                })
+                dropdown.append(d[10])
+        if data:
+            c.close()
+            connect.close()
+            return render_template('list_of_initiatives.html', data=pdata, type=type, dropdown=list(set(dropdown)))
+    return render_template('list_of_initiatives.html',data={}, type=type)
 
 @app.route('/searchresult',methods=['GET','POST'])
 def serch_result():
