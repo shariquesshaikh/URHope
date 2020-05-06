@@ -102,7 +102,7 @@ CREATE TABLE `govtdata` (
   `statename` varchar(100) DEFAULT NULL,
   `districtname` varchar(100) DEFAULT NULL,
   `kindname` varchar(100) DEFAULT NULL,
-  `type` TEXT DEFAULT NULL,
+  `type` varchar(100) DEFAULT NULL,
   `dropdown` varchar(100) DEFAULT NULL,
   `tabname` varchar(100) DEFAULT NULL,
   `title` TEXT DEFAULT NULL,
