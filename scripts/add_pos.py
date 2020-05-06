@@ -11,7 +11,7 @@ db = pymysql.connect(host='localhost', user='root', passwd='',
 def string(s):
     return "'"+s+"'" if s else "''"
 
-files = ["Goa.csv", "UT.csv", "Initiatives-05-05-2020.csv"]
+files = ["GoaC.csv", "UTC.csv", "Initiatives-05-05-2020C.csv"]
 for file in files:
     with open("./Initiatives/"+file) as f:
         for c,i in enumerate(f.readlines()):
