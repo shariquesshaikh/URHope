@@ -90,7 +90,9 @@ def get_db():
 def base():
     return render_template('home.html')
 
-
+@app.route('/relief/', methods=['GET'])
+def relief():
+    return render_template('relief_pincode_page.html')
 
 @app.route('/index')
 def index():
@@ -434,20 +436,20 @@ def logs():
 
 
 
-@app.route('/<id>/', methods=['GET', 'POST'])
-def profile(id):
-    if not session.get('logged_in'):
-        return redirect(url_for('login'))
-    else:
-        if session['role'] == 'v':
-            return render_template('volunteers_profile.html',
-                                   id=session['user_id'])
-        if session['role'] == 'n':
-            return render_template('ngo_profile.html',
-                                   id=session['user_id'])
-        if session['role'] == 'a':
-            return render_template('admin_profile.html',
-                                   id=session['user_id'])
+# @app.route('/<id>/', methods=['GET', 'POST'])
+# def profile(id):
+#     if not session.get('logged_in'):
+#         return redirect(url_for('login'))
+#     else:
+#         if session['role'] == 'v':
+#             return render_template('volunteers_profile.html',
+#                                    id=session['user_id'])
+#         if session['role'] == 'n':
+#             return render_template('ngo_profile.html',
+#                                    id=session['user_id'])
+#         if session['role'] == 'a':
+#             return render_template('admin_profile.html',
+#                                    id=session['user_id'])
 
 
 
@@ -923,10 +925,6 @@ def search_pincode(pincode):
 #             connect.close()
 #             return render_template('home.html', data=data)
 #     return render_template('home.html',data={})
-
-@app.route('/relief')
-def relief():
-    return render_template('relief_pincode_page.html')
 
 @app.route('/find_relief', methods=['GET'])
 def find_relief():
