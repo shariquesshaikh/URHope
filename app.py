@@ -1082,7 +1082,7 @@ def relief_send():
 
 @app.route('/helpline')
 def helpline():
-    return render_template('helpline.html')
+    return render_template('helpline/index.html')
 
 
 
