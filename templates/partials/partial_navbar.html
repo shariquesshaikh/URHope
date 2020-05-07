@@ -2,7 +2,7 @@
 <header class="header">
     <nav class="navbar navbar-expand-lg fixed-top py-3">
         <div class="container">
-            <a class="navbar-brand p-0" href="#">
+            <a class="navbar-brand p-0" href="/">
                 <img class="navbar-logo" src="static/assets2/img/Logos/Logo2.jpeg" height="25" alt="">
             </a>
             <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -11,13 +11,21 @@
 
             <div id="navbarSupportedContent" class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto align-items-lg-center align-items-md-start">
-                    <li class="nav-item active"><a href="index.html" class="nav-link  font-weight-bold">Home <span
+                    <li class="nav-item active"><a href="/" class="nav-link  font-weight-bold">Home <span
                             class="sr-only">(current)</span></a></li>
-                    <li class="nav-item"><a href="form.html" class="nav-link  ">Form</a></li>
-                    <li class="nav-item"><a href="FAQ.html" class="nav-link  ">FAQ</a></li>
-                    <li class="nav-item"><a href="about_us.html" class="nav-link  ">About Us</a></li>
-                    <li class="nav-item"><a href="team.html" class="nav-link  ">Team</a></li>
-                    <li class="nav-item"><a href="contact_us.html" class="nav-link  ">Contact Us</a></li>
+                    <li class="nav-item"><a href="/form" class="nav-link  ">Form</a></li>
+                    <li class="nav-item"><a href="/faq" class="nav-link  ">FAQ</a></li>
+                    <li class="nav-item"><a href="/#about" class="nav-link  ">About Us</a></li>
+                    <li class="nav-item"><a href="/team" class="nav-link  ">Team</a></li>
+                    <li class="nav-item"><a href="/#contact" class="nav-link  ">Contact Us</a></li>
+                    {% if not 'logged_in' in session %}
+                    <li class="nav-item"><a href="/login" class="nav-link  ">Login</a></li>
+                    <li class="nav-item"><a href="/signup" class="nav-link  ">Signup</a></li>
+                    {% else %}
+                   
+                    <li class="nav-item"><a href="/logout" class="nav-link  ">Logout</a></li>
+                    <li class="nav-item"><a href="{{ url_for('profile', id=session['user_id']) }}" class="nav-link  ">Profile</a></li>
+{% endif %}
                     <li class="nav-item dropdown">
                         <a class="nav-link d-none d-lg-block" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
@@ -38,7 +46,7 @@
                     <li class="nav-item dropdown d-none d-lg-block">
                         <a class="nav-link p-0" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
-                            <img style="border-radius: 50%" height="30" src="img/Profile_pic.jpg" alt="">
+                            <img style="border-radius: 50%" height="30" src="static/assets2/img/Profile_pic.jpg" alt="">
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="#">Settings</a>
