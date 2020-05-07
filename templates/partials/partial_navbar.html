@@ -79,7 +79,6 @@
         $(window).on('scroll', function () {
             if ($(window).scrollTop() > 10) {
                 $('.navbar').addClass('active');
-                console.log($(window).scrollTop())
                 if ($('.navbar-logo').hasClass('hidden')) {
                     console.log('Here');
                     setTimeout(makeLogoVisible, 100);

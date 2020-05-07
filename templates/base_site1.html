@@ -108,6 +108,42 @@
 
     });
 </script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.partials_footer').load('partials/partial_footer.html');
+    });
+    $(document).ready(function () {
+        $("select.filter").change(function () {
+            var selectedOption = $(this).children("option:selected").val();
+            if (selectedOption === 'Choose Filter...') {
+                var value = '';
+                $(".step3-table tbody > tr ").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            } else {
+                var value = selectedOption.toLowerCase();
+                $(".step3-table tbody > tr ").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            }
+        });
+    });
+
+    function updateModal(d) {
+        $('.link-modal-title').html(d['title']);
+        $('.link-modal-description').html(d['description']);
+        $('.link-modal-eligibility').html(d['eligibility']);
+        $('.link-modal-documents').html(d['documents']);
+        $('.link-modal-duration').html(d['duration']);
+        var contact = '';
+        console.log(d['title']);
+        for (var i = 0; i < d['phone'].length; i++)
+            contact += "<a href='tel:" + d['phone'][i] + "'> <button class='btn btn-sm btn-outline-primary my-1'>" + d['phone'][i] + "</button> </a>";
+        $('.link-modal-contact').html(contact);
+        $('.link-modal-sources').html("<a href='" + d['source'] + "'>View Source</a>");
+    }
+</script>
+
 
 </body>
 

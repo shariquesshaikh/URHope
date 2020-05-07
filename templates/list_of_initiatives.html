@@ -1,4 +1,4 @@
-{% extends "base_site.html" %}
+{% extends "base_site1.html" %}
 
 {% block content %}
 
@@ -7,7 +7,7 @@
         <div class="col mt-lg-0">
             <div class="card-custom p-lg-5 step3-table-div">
                 <div class="step3-title row justify-content-between align-items-center mb-4">
-                    <h4 class="mb-0 col-6 font-weight-bold">Food</h4>
+                    <h4 class="mb-0 col-6 font-weight-bold">{{type}}</h4>
                     <div class="search-filter col-6">
                         <div class="row justify-content-end align-items-center">
 
@@ -16,12 +16,11 @@
                                         data-toggle="dropdown"
                                         aria-haspopup="true"
                                         aria-expanded="false" style="text-transform: capitalize">
-                                    <select
-                                            class="custom-select-sm custom-select filter">
+                                    <select class="custom-select-sm custom-select filter">
                                         <option selected>Choose Filter...</option>
-                                        <option value="State Government">State Government</option>
-                                        <option value="Central Government">Central Government</option>
-                                        <option value="Others">Others</option>
+                                        {% for i in dropdown%}
+                                            <option value="{{i}}">{{i}}</option>
+                                        {% endfor %}
                                     </select>
                                 </button>
                             </div>
@@ -62,204 +61,52 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td class="align-middle">
-                                        <div class="initiative-heading pt-4">
-                                            <h6 class="font-weight-bold mb-0">We are Central Government Based</h6>
+                                    {% for k,data in data.items() %}
+                                        {% for v in data %}
+                                        <tr>
+                                            <td class="align-middle">
+                                                <div class="initiative-heading pt-4">
+                                                    <a href="#" data-toggle="modal" data-target="#exampleModalCenter" onclick="
+                                                    updateModal(
+                                                     {
+                                                    'title': '{{v.title}}',
+                                                    'description': '{{v.description}}',
+                                                    'phone': {{v.helplinenumbers}},
+                                                    'eligibility': '{{v.eligibility}}',
+                                                    'documents': '{{v.documents}}',
+                                                    'duration': '{{v.duration}}',
+                                                    'source': '{{v.sourcelink}}'
+                                                    }
+                                                   );"><h6 class="font-weight-bold mb-0">{{v.title}}</h6></a>
 
-                                        </div>
-                                        <div class="initiative-description">
-                                            <p class="text-muted">Noti Karanprayag Rd, near Tehsil Office, Karanprayag,
-                                                Uttarakkhand
-                                                246444</p>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle">
-                                        <div class="initiative-contact align-content-around">
-                                            <a href="tel:1077-240486">
-                                                <button class="btn btn-sm btn-outline-primary mt-1">01334-235010
-                                                </button>
-                                            </a>
-                                            <a href="tel:1077-240486">
-                                                <button class="btn btn-sm btn-outline-primary mt-1">01334-235010
-                                                </button>
-                                            </a>
-                                            <a href="tel:1077-240486">
-                                                <button class="btn btn-sm btn-outline-primary mt-1">9897059100</button>
-                                            </a>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle">
-                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
-                                                data-target="#exampleModalCenter" onclick="
-                                                updateModal(
-                                                 {
-                                                'title': 'New title',
-                                                'description': 'New description',
-                                                'phone': ['123456-678','098765-987'],
-                                                'eligibility': 'Senior Citizen',
-                                                'documents': 'Senior Citizen Card',
-                                                'duration': '12 Months',
-                                                'source': 'url',
-                                                }
-                                               );">
-                                            View
-                                        </button>
-                                    </td>
-                                    <td class="align-middle" hidden>
-                                        Central Government
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="align-middle">
-                                        <div class="initiative-heading pt-4">
-                                            <h6 class="font-weight-bold mb-0">We are based in both CG and O</h6>
-
-                                        </div>
-                                        <div class="initiative-description">
-                                            <p class="text-muted">We are located in gujarat</p>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle">
-                                        <div class="initiative-contact align-content-around">
-                                            <button class="btn btn-sm btn-outline-primary mt-1">01334-235010</button>
-                                            <button class="btn btn-sm btn-outline-primary mt-1">01334-235010</button>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle">
-                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
-                                                data-target="#exampleModalCenter">
-                                            View
-                                        </button>
-                                    </td>
-                                    <td class="align-middle" hidden>
-                                        Central Government Others
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="align-middle">
-                                        <div class="initiative-heading pt-4">
-                                            <h6 class="font-weight-bold mb-0">We are a State Government Org</h6>
-
-                                        </div>
-                                        <div class="initiative-description">
-                                            <p class="text-muted">We operate at state government level</p>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle">
-                                        <div class="initiative-contact align-content-around">
-                                            <button class="btn btn-sm btn-outline-primary mt-1">01334-235010</button>
-                                            <button class="btn btn-sm btn-outline-primary mt-1">01334-235010</button>
-                                            <button class="btn btn-sm btn-outline-primary mt-1">9897059100</button>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle">
-                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
-                                                data-target="#exampleModalCenter">
-                                            View
-                                        </button>
-                                    </td>
-                                    <td class="align-middle" hidden>
-                                        State Government
-                                    </td>
-                                </tr>
+                                                </div>
+                                                <div class="initiative-description">
+                                                    <p class="text-muted">{{v.description}}</p>
+                                                </div>
+                                            </td>
+                                            <td class="align-middle">
+                                                <div class="initiative-contact align-content-around">
+                                                    {% for phone_no in v.helplinenumbers %}
+                                                        <button class="btn btn-sm btn-outline-primary mt-1"><a href="tel:{{phone_no}}">{{phone_no}}</a></button>
+                                                    {% endfor %}
+                                                </div>
+                                            </td>
+                                            <td><a href="{{v.links}}">View</a></td>
+                                            <td class="align-middle" hidden>
+                                                {{v.dropdown}}
+                                            </td>
+                                        </tr>
+                                        
+                                    {% endfor %}
+                                {% endfor %}
                                 </tbody>
                             </table>
                         </div>
-
-
-                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-
-                            <table class="table step3-table">
-                                <thead>
-                                <tr>
-                                    <th scope="col"><h6>Initiatives</h6></th>
-                                    <th scope="col"><h6>Contact No</h6></th>
-                                    <th scope="col"><h6>Link</h6></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td class="align-middle">
-                                        <div class="initiative-heading pt-4">
-                                            <h6 class="font-weight-bold mb-0">We are based in both Others and Central
-                                                Government</h6>
-
-                                        </div>
-                                        <div class="initiative-description">
-                                            <p class="text-muted">Noti Karanprayag Rd, near Tehsil Office, Karanprayag,
-                                                Uttarakkhand
-                                                246444</p>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle">
-                                        <div class="initiative-contact align-content-around">
-                                            <button class="btn btn-sm btn-outline-primary mt-1">01334-235010</button>
-                                            <button class="btn btn-sm btn-outline-primary mt-1">01334-235010</button>
-                                            <button class="btn btn-sm btn-outline-primary mt-1">9897059100</button>
-                                        </div>
-                                    </td>
-                                    <td class="align-middle">
-                                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal"
-                                                data-target="#exampleModalCenter">
-                                            View
-                                        </button>
-                                    </td>
-                                    <td class="align-middle" hidden>
-                                        Central Government Others
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-
-
-                        </div>
-                        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                            <table class="table step3-table">
-                                <thead>
-                                <tr>
-                                    <th scope="col"><h6>Initiatives</h6></th>
-                                    <th scope="col"><h6>Contact No</h6></th>
-                                    <th scope="col"><h6>Link</h6></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td colspan="3" class="align-middle">
-                                        <p>Nothing to show :(</p>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-                            <table class="table step3-table">
-                                <thead>
-                                <tr>
-                                    <th scope="col"><h6>Initiatives</h6></th>
-                                    <th scope="col"><h6>Contact No</h6></th>
-                                    <th scope="col"><h6>Link</h6></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td colspan="3" class="align-middle">
-                                        <p>Nothing to show :(</p>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
      aria-hidden="true">
@@ -322,62 +169,13 @@
 
             </div>
             <div class="modal-footer align-middle justify-content-center pt-0" style="border-top: none">
-                <button type="button" class="btn btn-success"><i class="fa fa-share-alt" aria-hidden="true"></i> Share
-                </button>
+                <!-- <button type="button" class="btn btn-success"><i class="fa fa-share-alt" aria-hidden="true"></i> Share
+                </button> -->
                 <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
 <!--End  Modal -->
-
-<script type="text/javascript">
-
-    $(document).ready(function () {
-        $('.partials_footer').load('partials/partial_footer.html');
-        $("select.filter").change(function () {
-            var selectedOption = $(this).children("option:selected").val();
-            if (selectedOption === 'Choose Filter...') {
-                var value = '';
-                $(".filter-this-table tbody > tr ").filter(function () {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
-            } else {
-                var value = selectedOption.toLowerCase();
-                $(".filter-this-table tbody > tr ").filter(function () {
-                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-                });
-            }
-        });
-    });
-
-    function updateModal(d) {
-        $('.link-modal-title').html(d['title']);
-        $('.link-modal-description').html(d['description']);
-        $('.link-modal-eligibility').html(d['eligibility']);
-        $('.link-modal-documents').html(d['documents']);
-        $('.link-modal-duration').html(d['duration']);
-        var contact = '';
-        console.log(d['phone']);
-        for (var i = 0; i < d['phone'].length; i++)
-            contact += "<a href='tel:" + d['phone'][i] + "'> <button class='btn btn-sm btn-outline-primary my-1'>" + d['phone'][i] + "</button> </a>";
-        $('.link-modal-contact').html(contact);
-        $('.link-modal-sources').html("<a href='" + d['source'] + "'>View Source</a>");
-    }
-
-    //Search Input Field (DONOT REMOVE)
-    /*
-    $(document).ready(function () {
-        $("#myInput").on("keyup", function () {
-            var value = $(this).val().toLowerCase();
-            $(".step3-table tbody > tr ").filter(function () {
-                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-            });
-        });
-    });
-    */
-
-
-</script>
-
 {% endblock %}
+

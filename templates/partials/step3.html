@@ -1,0 +1,58 @@
+<div class="step3-table-div pt-4 pb-4" style="background-color: white">
+    <div class="step3-title row justify-content-between">
+        <h4 class="col-6">{{type}}</h4>
+        <div class="search-filter col-6">
+            <div class="row justify-content-end align-items-center">
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-transform: capitalize">
+                        <select  class="custom-select-sm custom-select filter">
+                            <option selected>Choose Filter...</option>
+                            {% for i in dropdown%}
+                                <option value="{{i}}">{{i}}</option>
+                            {% endfor %}
+                        </select>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <table class="table step3-table">
+            <thead>
+            <tr>
+                <th scope="col">Initiative</th>
+                <th scope="col">Contact No</th>
+                <th scope="col">Link</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for k,data in data.items() %}
+                    {% for v in data %}
+                    <tr>
+                        <td>
+                            <div class="initiative-heading">
+                                <h6>{{v.title}}</h6>
+
+                            </div>
+                            <div class="initiative-description">
+                                <p>{{v.description}}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="initiative-contact">
+                                <p><a href="tel:{{v.helplinenumbers}}">{{v.helplinenumbers}}</p>
+                            </div>
+                        </td>
+                        <td><a href="{{v.links}}">View</a></td>
+                        <td class="align-middle" hidden>{{v.dropdown}}</td>
+                    </tr>
+                    {% endfor %}
+                {% endfor %}
+                
+            </tbody>
+        </table>
+    </div>
+</div>

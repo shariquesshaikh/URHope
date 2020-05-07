@@ -1,0 +1,43 @@
+<div class="step2-div">
+    <div class="row justify-content-center">
+        <h6 class="mt-3 ">What do you need help with?</h6>
+    </div>
+
+    <input type="submit" class=" btn-sm mb-2 btn btn-outline-warning help-options" style=""
+           name="name" id="" value="Food" Selected="False">
+
+    <input type="submit" class=" btn btn-sm mb-2  btn-outline-info help-options" style=""
+           name="name" id="" value="Clothing" Selected="False">
+
+    <input type="submit" class=" btn btn-sm mb-2 btn-outline-danger help-options" style=""
+           name="name" id="" value="Shelter" Selected="False">
+
+    <input type="submit" class=" btn btn-sm mb-2 btn-outline-success help-options" style=""
+           name="name" id="" value="Healthcare" Selected="False">
+
+    <input type="submit" class=" btn btn-sm mb-2 btn-outline-dark help-options" style=""
+           name="name" id="" value="Medical Equipments" Selected="False">
+
+    <div align="center">
+        <input type="submit" class=" btn btn-sm mb-2 btn-outline-light help-options" style=""
+               name="name" id="" value="Others" Selected="False">
+    </div>
+
+    <div class="row justify-content-center">
+        <button type="submit" class=" btn btn-sm mb-2  btn-outline-dark next-btn"
+                style=" border-radius: 5px;"
+                name="name" id="">Find Help <i class="fas fa-arrow-right"></i></button>
+    </div>
+</div>
+
+
+<script>
+    $('.help-options').onclick(function () {
+        if ($(this).attr("Selected") === 'False') {
+            $(this).attr("Selected", "True");
+            $(this).removeClass();
+
+        }
+
+    });
+</script>

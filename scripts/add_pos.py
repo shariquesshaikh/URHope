@@ -5,8 +5,38 @@ import os
 
 from zipfile import ZipFile 
 
-db = pymysql.connect(host='localhost', user='root', passwd='CoronaPassword.1#',
+db = pymysql.connect(host='localhost', user='root', passwd='',
                          db='covid', charset='utf8mb4')
+
+def string(s):
+    return "'"+s+"'" if s else "''"
+
+# files = ["GoaC.csv", "UTC.csv", "Initiatives-05-05-2020C.csv"]
+# for file in files:
+#     with open("./Initiatives/"+file) as f:
+#         for c,i in enumerate(f.readlines()):
+#             if not c:
+#                 continue
+#             q = "insert into govtdata values (DEFAULT,"
+#             data = i.split(",")
+#             for i in range(15):
+#                 qry_rem = "'', "*(15-len(data))
+#                 if type(i) != tuple and len(data) >= i+1:
+#                     q += string(data[i]) + ", "
+#                 elif type(i) == tuple:
+#                     if len(data) == i[1]:
+#                         q += string(data[i[0]] + ", " + data[i[1]]) + ", "
+#                     elif len(data)>= i[0]:
+#                         q += string(data[i[0]]) + ", "
+#             fin_q = q + qry_rem[:-2]+", DEFAULT);" if qry_rem else  q[:-2]+", DEFAULT);"
+#             print(fin_q)
+#             cur = db.cursor()
+#             cur.execute(fin_q)
+#             cur.close()
+#             db.commit()
+# db.close()
+
+
 c = db.cursor()
 keys = ['pin', 'officename', 'divisionname', 'regionname', 'circlename', 'taluk', 'districtname', 'statename', 'relsuboffice']
 key_map = {}

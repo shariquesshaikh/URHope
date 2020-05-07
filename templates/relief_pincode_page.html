@@ -1,0 +1,36 @@
+{% extends "base_site.html" %}
+
+{% block content %}
+
+<!-- Page Content -->
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-12">
+            <div class="card-custom mt-2 mt-lg-0 pb-5">
+                <h5 class="mb-3 mt-3 row justify-content-center font-weight-bold">Find relief anywhere</h5>
+                <!--
+                <div class="row justify-content-center">
+                    <h6 class="mt-3 mb-3">Enter your pincode, city or state</h6>
+                </div>
+                -->
+                <form id="find_relief" action="/find_relief">
+                    <div class="autocomplete row justify-content-center px-lg-5 px-md-1">
+                        <div class="input-group flex-nowrap">
+                            <input style="" id="myInput" type="text" name="pincode"
+                                   class="form-control pincode-input-field"
+                                   placeholder="Enter your pincode, city or state" aria-label="Username"
+                                   aria-describedby="addon-wrapping" autocomplete="autocomplete_off_hack_xfr4!k">
+                            <button type="reset" class="btn btn-danger btn-sm pincode-reset-btn" value="Reset"><i
+                                    class="fa fa-times-circle"></i></button>
+
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Page Content -->
+
+{% endblock %}
