@@ -436,20 +436,20 @@ def logs():
 
 
 
-# @app.route('/<id>/', methods=['GET', 'POST'])
-# def profile(id):
-#     if not session.get('logged_in'):
-#         return redirect(url_for('login'))
-#     else:
-#         if session['role'] == 'v':
-#             return render_template('volunteers_profile.html',
-#                                    id=session['user_id'])
-#         if session['role'] == 'n':
-#             return render_template('ngo_profile.html',
-#                                    id=session['user_id'])
-#         if session['role'] == 'a':
-#             return render_template('admin_profile.html',
-#                                    id=session['user_id'])
+@app.route('/<id>/', methods=['GET', 'POST'])
+def profile(id):
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+    else:
+        if session['role'] == 'v':
+            return render_template('volunteers_profile.html',
+                                   id=session['user_id'])
+        if session['role'] == 'n':
+            return render_template('ngo_profile.html',
+                                   id=session['user_id'])
+        if session['role'] == 'a':
+            return render_template('admin_profile.html',
+                                   id=session['user_id'])
 
 
 
