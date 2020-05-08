@@ -91,6 +91,9 @@ def get_db():
 def base():
     return render_template('home.html')
 
+@app.route('/relief/', methods=['GET'])
+def relief():
+    return render_template('relief_pincode_page.html')
 
 @app.route('/signup/', methods=['GET', 'POST'])
 def signup():
@@ -881,10 +884,6 @@ def search_pincode(pincode):
         connect.close()
         return render_template('home.html', data=data)
     return render_template('home.html',data={})
-
-@app.route('/relief')
-def relief():
-    return render_template('relief_pincode_page.html')
 
 @app.route('/find_relief', methods=['GET'])
 def find_relief():
