@@ -19,6 +19,7 @@ import requests
 import socket
 import os.path
 import flask
+import re
 import urllib.request
 import logging
 import string
@@ -26,7 +27,7 @@ import random
 import smtplib
 import logging
 import re
-#import pyodbc
+# import pyodbc
 import pandas as pd
 
 app = Flask(__name__)
@@ -90,17 +91,6 @@ def get_db():
 def base():
     return render_template('home.html')
 
-@app.route('/relief/', methods=['GET'])
-def relief():
-    return render_template('relief_pincode_page.html')
-
-@app.route('/index')
-def index():
-    return render_template('index.html')
-
-# @app.route('/find-relief-search')
-# def find_relief():
-#     return render_template('find_relief_search.html')
 
 @app.route('/signup/', methods=['GET', 'POST'])
 def signup():
@@ -892,39 +882,9 @@ def search_pincode(pincode):
         return render_template('home.html', data=data)
     return render_template('home.html',data={})
 
-
-# @app.route('/home', methods=['GET', 'POST'])
-# def home():
-#     if not session.get('logged_in'):
-#         return redirect(url_for('login'))
-#     else:
-#         if session['role'] == 'v':
-#             return render_template('home.html')
-#         if session['role'] == 'n':
-#             return render_template('home.html')
-#         if session['role'] == 'a':
-#             return render_template('admin_profile.html')
-
-
-
-# @app.route('/msearch/<pincode>/', methods=['GET'])
-# def msearch_pincode(pincode):
-#     if pincode and re.fullmatch("[1-9][0-9]{5}", pincode):
-#         connect = get_db()
-#         pincode = int(pincode)
-#         c = connect.cursor()
-#         counter = 0
-#         where = ""
-#         for i in [0,-1,+1,-2,+2,-3,+3,-4,+4]:
-#             where += "m.pin='"+str(pincode+i) + "' OR "
-#         query = "select m.pin, phone, services, statename from members m join podata p on m.pin = p.pin where m.role='n' AND (" + where[:-4] +")"
-#         c.execute(query)
-#         data = c.fetchall()
-#         if data:
-#             c.close()
-#             connect.close()
-#             return render_template('home.html', data=data)
-#     return render_template('home.html',data={})
+@app.route('/relief')
+def relief():
+    return render_template('relief_pincode_page.html')
 
 @app.route('/find_relief', methods=['GET'])
 def find_relief():
