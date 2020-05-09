@@ -893,12 +893,10 @@ def find_relief():
         c = connect.cursor()
         query = "select distinct p.statename, p.districtname, s.districthelpline, s.statehelpline, s.created_on from statewisehelplinenos s join podata p on s.districtname = p.districtname where pin='%s'" % pincode
         c.execute(query)
-        print(query)
         data = c.fetchone()
         if not data:
             query = "select distinct p.statename, p.districtname, s.districthelpline, s.statehelpline, s.created_on from statewisehelplinenos s join podata p on s.statename = p.statename where pin='%s'" % pincode
             c.execute(query)
-            print(query)
             data = c.fetchone()
         if data:
             c.close()
@@ -921,7 +919,6 @@ def initiatives():
             where += "p.pin='"+str(pincode+i) + "' OR "
         query = "select distinct g.statename, g.districtname, title, description, helplinenumbers, link, eligibility, documents, duration, created_on, dropdown, g.id, g.sourcelink, g.relevantinfo from govtdata g join podata p on g.statename = p.statename where (" + where[:-4] +")" + " AND type='" + type + "'"
         c.execute(query)
-        print(query)
         data = c.fetchall()
         if data:
             pdata={'data':[]}
