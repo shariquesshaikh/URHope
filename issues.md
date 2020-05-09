@@ -24,6 +24,6 @@
 11. If anyone doesn't logout and closes his browser 
        _He will be "active now" in Admin panel_
 12. List_of_Initiatives.html UI issue.
-13. Navbar/Account Click issues.
+~~13. Navbar/Account Click issues.~~
 14. Relief Call button (Couldn't get required help)
 15. Acknowledgement Mail sending after Registeration of any User
