@@ -890,16 +890,16 @@ def find_relief():
     pincode=request.args.get("pincode")
     if pincode and re.fullmatch("[1-9][0-9]{5}", pincode):
         connect = get_db()
-        pincode = int(pincode)
         c = connect.cursor()
-        counter = 0
-        where = ""
-        for i in [0,-1,+1,-2,+2,-3,+3,-4,+4]:
-            where += "pin='"+str(pincode+i) + "' OR "
-        query = "select distinct p.statename, p.districtname, s.districthelpline, s.statehelpline, s.created_on from statewisehelplinenos s join podata p on s.statename = p.statename where (" + where[:-4] +")"
+        query = "select distinct p.statename, p.districtname, s.districthelpline, s.statehelpline, s.created_on from statewisehelplinenos s join podata p on s.districtname = p.districtname where pin='%s'" % pincode
         c.execute(query)
         print(query)
         data = c.fetchone()
+        if not data:
+            query = "select distinct p.statename, p.districtname, s.districthelpline, s.statehelpline, s.created_on from statewisehelplinenos s join podata p on s.statename = p.statename where pin='%s'" % pincode
+            c.execute(query)
+            print(query)
+            data = c.fetchone()
         if data:
             c.close()
             connect.close()
