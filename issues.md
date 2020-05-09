@@ -1,4 +1,6 @@
-# Zuhair Abbas Time: Morning Sat, 9th May, 2020
+# Add Issues/Bugs you noticed while testing/coding/suggestions from someone if it is resolved remove it from here
+
+## Zuhair Abbas Time: Morning Sat, 9th May, 2020
 1. Issue with Active Now/Inactive
      _I logged in again and logout then it is inactive_
 2. Contact No. at Notification is same for me too 
@@ -23,3 +25,5 @@
        _He will be "active now" in Admin panel_
 12. List_of_Initiatives.html UI issue.
 13. Navbar/Account Click issues.
+14. Relief Call button (Couldn't get required help)
+15. Acknowledgement Mail sending after Registeration of any User
