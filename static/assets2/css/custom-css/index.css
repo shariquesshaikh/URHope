@@ -565,7 +565,7 @@
 
 @media (min-width: 992px) {
     .card-columns {
-        column-count: 2 !important;
+        column-count: 1 !important;
     }
 
     .card-columns.team {
@@ -583,7 +583,7 @@
 
 @media (min-width: 1200px) {
     .card-columns {
-        column-count: 2 !important;
+        column-count: 1 !important;
     }
 
     .card {
