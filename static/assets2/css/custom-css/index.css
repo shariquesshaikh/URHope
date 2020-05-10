@@ -187,7 +187,7 @@
 
 .navbar .dropdown-item {
     color: #555555;
-    font-size: small;
+    font-size: medium;
     font-weight: 500;
     font-family: 'Poppins', sans-serif;
 }
@@ -195,7 +195,7 @@
 .navbar .nav-link {
     font-weight: 500;
     color: #fff;
-    font-size: small;
+    font-size: medium;
 }
 
 @media (max-width: 576px) {

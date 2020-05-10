@@ -6,52 +6,47 @@
                 <img class="navbar-logo" src="/static/assets2/img/Logos/Logo2.jpeg" height="25" alt="">
             </a>
             <button type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
-                    class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler navbar-toggler-right"><i class="fa fa-bars"></i></button>
 
             <div id="navbarSupportedContent" class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto align-items-lg-center align-items-md-start">
                     <li class="nav-item active"><a href="/" class="nav-link  font-weight-bold">Home <span
-                            class="sr-only">(current)</span></a></li>
-                    <li class="nav-item"><a href="/form" class="nav-link  ">Form</a></li>
-                    <li class="nav-item"><a href="/faq" class="nav-link  ">FAQ</a></li>
+                                class="sr-only">(current)</span></a></li>
+                    <li class="nav-item"><a href="{{ url_for('form') }}" class="nav-link  ">Form</a></li>
+                    <li class="nav-item"><a href="{{ url_for('faq') }}" class="nav-link  ">FAQ</a></li>
                     <li class="nav-item"><a href="/#about" class="nav-link  ">About Us</a></li>
-                    <li class="nav-item"><a href="/team" class="nav-link  ">Team</a></li>
+                    <li class="nav-item"><a href="{{ url_for('team') }}" class="nav-link  ">Team</a></li>
                     <li class="nav-item"><a href="/#contact" class="nav-link  ">Contact Us</a></li>
                     {% if not 'logged_in' in session %}
-                    <li class="nav-item"><a href="/login" class="nav-link  ">Login</a></li>
-                    <li class="nav-item"><a href="/signup" class="nav-link  ">Signup</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url_for('signup') }}"><button
+                        class="btn btn-primary">Signup</button></a></li>
                     {% else %}
-                   
-                    <li class="nav-item"><a href="/logout" class="nav-link  ">Logout</a></li>
-                    <li class="nav-item"><a href="{{ url_for('profile', id=session['user_id']) }}" class="nav-link  ">Profile</a></li>
-{% endif %}
                     <li class="nav-item dropdown">
-                        <a class="nav-link d-none d-lg-block" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link d-none d-lg-block" href="#" id="navbarDropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i style="font-size: x-large;" class="fa fa-user-circle"></i>
                         </a>
-                        <a class="nav-link dropdown-toggle d-md-block d-lg-none" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle d-md-block d-lg-none" href="#" id="navbarDropdownMenuLink"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Account
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="login.html">Login</a>
-                            <a class="dropdown-item" href="register.html">Register</a>
-                            <a class="dropdown-item" href="#">Settings</a>
-                            <a class="dropdown-item" href="#">Tasks</a>
-                            <a class="dropdown-item" href="#">Logout</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown d-none d-lg-block">
-                        <a class="nav-link p-0" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">
-                            <img style="border-radius: 50%" height="30" src="/static/assets2/img/Profile_pic.jpg" alt="">
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Settings</a>
-                            <a class="dropdown-item" href="#">Tasks</a>
-                            <a class="dropdown-item" href="#">Logout</a>
+                            {% if session['role'] == 'n' %}
+                            <a class="dropdown-item" href="{{ url_for('profile', id=session['user_id']) }}">Profile</a>
+                            <a class="dropdown-item" href="{{ url_for('task_list') }}">My Tasks</a>
+                            <a class="dropdown-item" href="{{ url_for('notification_page') }}">Notification</a>
+                            <a class="dropdown-item" href="{{ url_for('create_task') }}">Create Task</a>
+                            <a class="dropdown-item" href="{{ url_for('logout') }}"><button
+                                    class="btn btn-sm btn-outline-danger">Logout</button></a>
+                            {% elif session['role'] == 'v' %}
+                            <a class="dropdown-item" href="{{ url_for('profile', id=session['user_id']) }}">Profile</a>
+                            <a class="dropdown-item" href="{{ url_for('task_list') }}">Tasks</a>
+                            <a class="dropdown-item" href="{{ url_for('logout') }}"><button
+                                    class="btn btn-sm btn-outline-danger">Logout</button></a>
+                            {% endif %}
+                            {% endif %}
                         </div>
                     </li>
                 </ul>

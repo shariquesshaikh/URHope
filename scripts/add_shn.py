@@ -5,7 +5,7 @@ import os
 
 # from zipfile import ZipFile 
 
-db = pymysql.connect(host='localhost', user='root', passwd='',
+db = pymysql.connect(host='localhost', user='root', passwd='zuhair',
                          db='covid', charset='utf8mb4')
 cur = db.cursor()
 

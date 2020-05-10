@@ -116,31 +116,17 @@
                                    placeholder="Email" value="{{ session['username'] }}" disabled>
                         </div>
                         </div>
-						<div class="col-lg-6">
-						<div class="form-group">
-                            <label class="form-control-label" for="input-email">Website</label>
-                            <input type="text" id="input-email" class="form-control form-control-alternative" 
-                                   placeholder="Website" value="{{ session['website'] }}" >
-                        </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label class="form-control-label" for="input-email">Social</label>
-                                <input type="text" id="input-email" class="form-control form-control-alternative" 
-                                       placeholder="Social" value="{{ session['social'] }}" >
-                        </div>
-                        </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-email">Age</label>
-                                <input type="number" id="input-email" class="form-control form-control-alternative" 
+                                <input type="number" name="age" id="input-email" class="form-control form-control-alternative" 
                                        placeholder="Age" value="{{ session['age'] }}" >
                         </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label class="form-control-label" for="input-email">Current Profile</label>
-                                <input type="text" id="input-email" class="form-control form-control-alternative" 
+                                <input name="currProfile" type="text" id="input-email" class="form-control form-control-alternative" 
                                        placeholder="Current Profile" value="{{ session['currProfile'] }}">
                         </div>
                         </div>
@@ -148,7 +134,7 @@
                           <div class="form-group">
                               <label class="form-control-label" for="input-email">Services</label>
                               <select class="form-control" name="services">
-                    <option selected>---- Select Services ----</option>
+                    <option disabled selected>---- Select Services ----</option>
                     <option value="Food">Food</option>
                     <option value="Healthcare">Healthcare</option>
                     <option value="Shelter">Shelter</option>
