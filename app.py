@@ -190,7 +190,7 @@ def login():
                 db.commit()
                 c.close()
                 db.close()
-                return redirect(url_for('base'))
+                return redirect(url_for('home'))
             else:
                 flash('Invalid Username or Password')
                 return render_template('login.html')
@@ -236,17 +236,17 @@ def faq():
     return render_template('faq.html')
 
 
-# @app.route('/home', methods=['GET', 'POST'])
-# def home():
-#     if not session.get('logged_in'):
-#         return redirect(url_for('login'))
-#     else:
-#         if session['role'] == 'v':
-#             return render_template('home.html')
-#         if session['role'] == 'n':
-#             return render_template('home.html')
-#         if session['role'] == 'a':
-#             return render_template('admin_profile.html')
+@app.route('/home', methods=['GET', 'POST'])
+def home():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+    else:
+        if session['role'] == 'v':
+            return render_template('home.html')
+        if session['role'] == 'n':
+            return render_template('home.html')
+        if session['role'] == 'a':
+            return render_template('admin_profile.html')
 
 
 
@@ -274,7 +274,7 @@ def admin_check():
                 session['username'] = account[2]
                 session['name'] = account[1]
                 session['role'] = account[3]
-                return redirect(url_for('base'))
+                return redirect(url_for('home'))
             else:
                 flash('Invalid Username or Password')
                 return redirect(url_for('admin_panel'))
@@ -511,7 +511,7 @@ def update_pro(uname):
                     return redirect(url_for('logout'))
                 else:
                     flash('Profile was not updated')
-                    return redirect(url_for('base'))
+                    return redirect(url_for('home'))
 
             elif role == 'n' or role == 'N':
                 if request.method == 'POST' and 'name' in request.form \
@@ -556,7 +556,7 @@ def update_pro(uname):
                     return redirect(url_for('logout'))
                 else:
                     flash('Profile was not updated')
-                    return redirect(url_for('base'))
+                    return redirect(url_for('home'))
             else:
 
                 flash("Sorry! You can't update.")
@@ -655,7 +655,7 @@ def edit_task(id):
             db.close()
             return render_template('edit_task.html',data=data)
     else:
-        return redirect(url_for('base'))
+        return redirect(url_for('home'))
 
 
 
