@@ -95,6 +95,10 @@ def base():
 def relief():
     return render_template('relief_pincode_page.html')
 
+@app.route('/relief_call/', methods=['GET'])
+def relief_call():
+    return render_template('relief_call.html')
+
 @app.route('/signup/', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST' and 'username' in request.form \
@@ -874,25 +878,25 @@ def how_is_the_task(id):
 
 
 
-@app.route('/search/<pincode>/', methods=['GET'])
-def search_pincode(pincode):
-    connect = get_db()
-    pincode = int(pincode)
-    c = connect.cursor()
-    counter = 0
-    where = ""
-    for i in [0,-1,+1,-2,+2,-3,+3,-4,+4]:
-        where += "m.pin='"+str(pincode+i) + "' OR "
-    query = "select m.pin, phone, services, statename from members m join podata p on m.pin = p.pin where m.role='n' AND (" + where[:-4] +")"
-    c.execute(query)
-    data = c.fetchall()
-    if data:
-        c.close()
-        connect.close()
-        return render_template('home.html', data=data)
-    return render_template('home.html',data={})
+# @app.route('/search/<pincode>/', methods=['GET'])
+# def search_pincode(pincode):
+#     connect = get_db()
+#     pincode = int(pincode)
+#     c = connect.cursor()
+#     counter = 0
+#     where = ""
+#     for i in [0,-1,+1,-2,+2,-3,+3,-4,+4]:
+#         where += "m.pin='"+str(pincode+i) + "' OR "
+#     query = "select m.pin, phone, services, statename from members m join podata p on m.pin = p.pin where m.role='n' AND (" + where[:-4] +")"
+#     c.execute(query)
+#     data = c.fetchall()
+#     if data:
+#         c.close()
+#         connect.close()
+#         return render_template('home.html', data=data)
+#     return render_template('home.html',data={})
 
-@app.route('/find_relief', methods=['GET'])
+@app.route('/find_relief/', methods=['GET'])
 def find_relief():
     pincode=request.args.get("pincode")
     if pincode and re.fullmatch("[1-9][0-9]{5}", pincode):
@@ -914,11 +918,10 @@ def find_relief():
 @app.route('/initiatives/', methods=['GET'])
 def initiatives():
     pincode = request.args.get("pincode")
-    type = request.args.get("type")
+    type = " ".join(request.args.get("type").split("_"))
     if pincode and re.fullmatch("[1-9][0-9]{5}", pincode):
         connect = get_db()
         pincode = int(pincode)
-        type = " ".join(type.split("_"))
         c = connect.cursor()
         counter = 0
         where = ""
@@ -958,39 +961,32 @@ def initiatives():
             return render_template('list_of_initiatives.html', data=pdata, type=type, dropdown=list(set(dropdown)))
     return render_template('list_of_initiatives.html',data={}, type=type)
 
-@app.route('/searchresult',methods=['GET','POST'])
-def serch_result():
-    if request.method=="POST":
-        name = request.form['name']
-        pin = request.form['pin']
-        lpin=len(pin)
-        low_name = name.lower()
-        role='n'
+# @app.route('/searchresult',methods=['GET','POST'])
+# def serch_result():
+#     if request.method=="POST":
+#         name = request.form['name']
+#         pin = request.form['pin']
+#         lpin=len(pin)
+#         low_name = name.lower()
+#         role='n'
 
-        if lpin==6:
-            pin = int(pin)
-            pin=pin
-            db = get_db()
-            c = db.cursor()
-            c.execute('SELECT * FROM members WHERE services=%s and pin=%s and role=%s ORDER BY pin ASC',(name,pin,role))
-            data = c.fetchall()
-            l=len(data)
-            db.commit()
-            c.close()
-            db.close()
-            if(l>0):
-                return render_template('searched.html',l=l,data=data,name=low_name)
-            else:
-                return render_template('searched.html',l=0)
-        else:
-                return render_template('searched.html',l=0)
-
-
-
-@app.route('/relief_call', methods=['GET', 'POST'])
-def relief_call():
-    return render_template('relief_call.html')
-
+#         if lpin==6:
+#             pin = int(pin)
+#             pin=pin
+#             db = get_db()
+#             c = db.cursor()
+#             c.execute('SELECT * FROM members WHERE services=%s and pin=%s and role=%s ORDER BY pin ASC',(name,pin,role))
+#             data = c.fetchall()
+#             l=len(data)
+#             db.commit()
+#             c.close()
+#             db.close()
+#             if(l>0):
+#                 return render_template('searched.html',l=l,data=data,name=low_name)
+#             else:
+#                 return render_template('searched.html',l=0)
+#         else:
+#                 return render_template('searched.html',l=0)
 
 
 @app.route('/relief_send', methods=['GET', 'POST'])
