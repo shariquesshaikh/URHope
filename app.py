@@ -41,9 +41,6 @@ pwd = ''
 
 app.debug = True
 
-config = {'CACHE_TYPE': 'redis',
-          'CACHE_REDIS_URL': 'redis://localhost:6379/3'}
-
 app.secret_key = os.urandom(12)
 
 logging.basicConfig(filename='logs.log', level=logging.ERROR)
