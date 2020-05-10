@@ -5,7 +5,7 @@ import os
 
 from zipfile import ZipFile 
 
-db = pymysql.connect(host='localhost', user='root', passwd='CoronaPassword.1#',
+db = pymysql.connect(host='localhost', user='root', passwd='',
                          db='covid', charset='utf8mb4')
 c = db.cursor()
 keys = ['pin', 'officename', 'divisionname', 'regionname', 'circlename', 'taluk', 'districtname', 'statename', 'relsuboffice']

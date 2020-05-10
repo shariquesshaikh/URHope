@@ -57,7 +57,7 @@
                     <span class="input-group-text"><i class="fa fa-user-circle"></i></span>
                   </div>
                   <select class="form-control" name="role">
-                    <option selected>---- Select Role ----</option>
+                    <option disabled selected>---- Select Role ----</option>
                     <option value="v">Volunteer</option>
                     <option value="n">NGO</option>
                   </select>
@@ -88,7 +88,7 @@
                     <span class="input-group-text"><i class="fa fa-hands-helping"></i></span>
                   </div>
                   <select class="form-control" name="services">
-                    <option selected>---- Select Services ----</option>
+                    <option disabled selected>---- Select Services ----</option>
                     <option value="Food">Food</option>
                     <option value="Healthcare">Healthcare</option>
                     <option value="Shelter">Shelter</option>
@@ -126,7 +126,7 @@
         </div>
         <div class="row mt-3 text-center">
           <div class="col-12">
-            <a href={{ url_for('login') }} class="text-light"><small>Login</small></a>
+            <a href="{{ url_for('login') }}" class="text-light"><small>Login</small></a>
           </div>
         </div>
       </div>

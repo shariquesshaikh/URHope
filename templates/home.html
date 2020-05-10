@@ -51,6 +51,7 @@
     </div>
 </div>
 
+<a id="about"></a>
 <div class="container mt-5">
     <div class="card-columns">
         <div class="card p-4 mb-4">
@@ -103,11 +104,43 @@
 </div>
 
 <!-- Twitter -->
-<div class="container">
+<div class="container col-md-6">
     <a class="twitter-timeline" href="https://twitter.com/urhope_team?ref_src=twsrc%5Etfw">Tweets by urhope_team</a>
     <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </div>
 <!-- End Twitter -->
+
+<a id="contact"></a>
+<div class="container mt-0">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-12">
+            <div class="card-custom mt-2 mt-lg-0 help-card">
+                <form action="https://formspree.io/xnqbrrnp" method="POST" role="form">
+                    <h4 class="font-weight-bold my-3" style="text-align: center">Contact Us</h4>
+                    <div class="input-group mb-3 px-lg-3">
+                        <input type="text" class="form-control" name="name" placeholder="Your Name" aria-label="Your Name"
+                               aria-describedby="basic-addon1" required>
+                    </div>
+                    <div class="input-group mb-3 px-lg-3">
+                        <input name="_replyto" type="email" class="form-control" placeholder="Email" aria-label="Email"
+                               aria-describedby="basic-addon1" required>
+                    </div>
+                    <div class="input-group mb-3 px-lg-3">
+                        <textarea rows="5" class="form-control" name="message" aria-label="With textarea" placeholder="Message Body" required></textarea>
+                    </div>
+
+                    <input type="hidden" name="_next" value="https://urhope.in/submitted"/>
+
+                    <div style="text-align: center" class=" mb-3 px-lg-3">
+                        <button class="btn btn-outline-primary" style="width: 100%">Send Message</button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 <!--End Page Content -->
 

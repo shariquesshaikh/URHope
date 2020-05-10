@@ -2,55 +2,6 @@
 
 {% block content %}
 
-<!-- Page Content -->
-<div class="container mt-2">
-    <div class="row">
-        <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-            <div class="options" onclick="location.href='{{ url_for('find_relief') }}';" style="cursor: pointer">
-                <div>
-                    <img src="static/assets2/img/BG.jpeg" class="options-img"/>
-                </div>
-                <div class="options-title p-2"><i style="font-size: xx-large" class="fa fa-map-marker"
-                                                  aria-hidden="true"></i><br>
-                    Find relief anywhere
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-            <div class="options" onclick="location.href='find_relief.html';" style="cursor: pointer">
-                <div>
-                    <img src="static/assets2/img/Volunteer.jpeg" class="options-img"/>
-                </div>
-                <div class="options-title p-2"><i style="font-size: xx-large" class="fa fa-user" aria-hidden="true"></i><br>
-                    Do you want to <br>volunteer?
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-            <div class="options" onclick="location.href='find_relief.html';" style="cursor: pointer">
-                <div>
-                    <img src="static/assets2/img/Find_volunteers.jpeg" class="options-img"/>
-                </div>
-                <div class="options-title p-2"><i style="font-size: xx-large" class="fa fa-search"
-                                                  aria-hidden="true"></i><br>
-                    Find Volunteers
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-            <div class="options" onclick="location.href='find_relief.html';" style="cursor: pointer">
-                <div>
-                    <img src="static/assets2/img/NPO.jpeg" class="options-img"/>
-                </div>
-                <div class="options-title p-2"><i style="font-size: xx-large" class="fa fa-handshake-o"
-                                                  aria-hidden="true"></i><br>
-                    Are you an NGO?
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="container mt-5">
     <div class="card-columns">
         <div class="card p-4 mb-4">
@@ -102,14 +53,4 @@
     </div>
 </div>
 
-<!-- Twitter -->
-<div class="container">
-    <a class="twitter-timeline" href="https://twitter.com/urhope_team?ref_src=twsrc%5Etfw">Tweets by urhope_team</a>
-    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-</div>
-<!-- End Twitter -->
-
-<!--End Page Content -->
-
 {% endblock %}
-

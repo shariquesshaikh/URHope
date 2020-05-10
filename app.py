@@ -200,7 +200,7 @@ def login():
 
 @app.route('/logout')
 def logout():
-    if session['role']!='a':
+    if session['role'] != 'a':
         id = session['user_id']
         active = 0
         db = get_db()
@@ -223,11 +223,13 @@ def team():
     return render_template('team.html')
 
 
-
 @app.route('/form')
 def form():
     return render_template('form.html')
 
+@app.route('/faq')
+def faq():
+    return render_template('faq.html')
 
 
 @app.route('/home', methods=['GET', 'POST'])
@@ -458,8 +460,7 @@ def edit_profile(id):
             return render_template('edit_profile_n.html',
                                    id=session['user_id'])
         else:
-            return render_template('edit_profile_a.html',
-                                   id=session['user_id'])
+            return render_template('home.html')
 
 
 
@@ -478,17 +479,23 @@ def update_pro(uname):
                     name = request.form['name']
                     pincode = request.form['pin']
                     phone = request.form['phone']
+                    services = request.form['services']
                     address = request.form['address']
+                    age = request.form['age']
+                    currProfile = request.form['currProfile']
                     about = request.form['about']
 
                     connect = get_db()
                     exe = connect.cursor()
 
-                    exe.execute('UPDATE members SET name=%s,pin=%s, phone=%s,address=%s,about=%s WHERE username = %s '
+                    exe.execute('UPDATE members SET name=%s,pin=%s, phone=%s, services=%s, age=%s, currProfile=%s, address=%s,about=%s WHERE username = %s '
                                 , (
                         name,
                         pincode,
                         phone,
+                        services,
+                        age,
+                        currProfile,
                         address,
                         about,
                         username,
