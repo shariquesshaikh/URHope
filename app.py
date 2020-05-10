@@ -917,9 +917,13 @@ def initiatives():
         where = ""
         for i in [0,-1,+1,-2,+2,-3,+3,-4,+4]:
             where += "p.pin='"+str(pincode+i) + "' OR "
-        query = "select distinct g.statename, g.districtname, title, description, helplinenumbers, link, eligibility, documents, duration, created_on, dropdown, g.id, g.sourcelink, g.relevantinfo from govtdata g join podata p on g.statename = p.statename where (" + where[:-4] +")" + " AND type='" + type + "'"
+        query = "select distinct g.statename, g.districtname, title, description, helplinenumbers, link, eligibility, documents, duration, created_on, dropdown, g.id, g.sourcelink, g.relevantinfo from govtdata g join podata p on g.districtname = p.districtname where (" + where[:-4] +")" + " AND type='" + type + "'"
         c.execute(query)
         data = c.fetchall()
+        if not data:
+            query = "select distinct g.statename, g.districtname, title, description, helplinenumbers, link, eligibility, documents, duration, created_on, dropdown, g.id, g.sourcelink, g.relevantinfo from govtdata g join podata p on g.statename = p.statename where (" + where[:-4] +")" + " AND type='" + type + "'"
+            c.execute(query)
+            data = c.fetchall()
         if data:
             pdata={'data':[]}
             dropdown = []
