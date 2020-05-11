@@ -35,6 +35,9 @@
         </div>
         <div class="card-body px-lg-5 py-lg-5">
 
+{% if "logged_in" in session %}
+ <p>You are already Logged In. Please <a href="{{ url_for('logout') }}">Logout</a></p>
+{% endif %}
           <form action="/check-admin"  method="POST">
 
             <div class="form-group mb-3">
