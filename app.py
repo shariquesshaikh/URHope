@@ -151,7 +151,7 @@ def signup():
 
                     server = serve()
                     subject = "Notification from URHope Team"
-                    body="Dear "+name+",\n\n"+"Your have regisered successfully on pur website.\n\n Click here to login.\nhttp://urhope.in/login/\n\nThanks for choosing us. Have a nice day :)\n\nRegards\nURHope Team"
+                    body="Dear "+name+",\n\nYou have regisered successfully on our website.\n\nUsername: "+username+"\nPassword: "+password+"\nClick here to login.\nhttp://urhope.in/login/\n\nThanks for choosing us. Have a nice day :)\n\nRegards\nURHope Team"
                     msg=f"Subject: {subject}\n\n{body} "
                     server.sendmail(
                                     'urhope.ngo@gmail.com',
@@ -1043,8 +1043,8 @@ def relief_send():
         if len(account)>0:
             for i in account:
                 server=serve()
-                subject = "URHope: Hey "+i[0]+","+name+"needs some help from you."
-                body= "Hello,\n\nThis is a notification from URHope Team. We request you to look into matter as soon as possible and help this needy person.\n\n"+name+" needs help for "+h_type+" for "+for_appl+".\nContact No: "+phone+"\nAddress: "+address+"\nPincode: "+pin+"\nGovernment ID: "+govtID+"\n\n"+name+"has a message for you,\n"+msg+"\n\nRegards,\nURHope Team"
+                subject = "URHope: Hey "+i[0]+","+name+" needs some help from you."
+                body= "Hello,\n\nThis is a notification from URHope Team. We request you to look into matter as soon as possible and help this needy person.\n\n"+name+" needs help for "+h_type+" for "+for_appl+".\nContact No: "+phone+"\nAddress: "+address+"\nPincode: "+pin+"\nGovernment ID: "+govtID+"\n\n"+name+", has a message for you,\n"+msg+"\n\nRegards,\nURHope Team"
                 msg=f"Subject: {subject}\n\n{body} "
 
                 server.sendmail(
@@ -1057,8 +1057,8 @@ def relief_send():
             return redirect(url_for('relief_call'))
         else:
             server=serve()
-            subject = "URHope Messenger :,"+name+"needs some help from you."
-            body= "Hello,\n\nWe request you to look into matter as soon as possible and help this needy person.\n\n"+name+" needs help for "+h_type+" for "+for_appl+".\nContact No: "+phone+"\nAddress: "+address+"\nPincode: "+pin+"\nGovernment ID: "+govtID+"\n\n"+name+"has a message for you,\n"+msg+"\n\nRegards,\nURHope Messenger"
+            subject = "URHope Messenger : "+name+" needs some help from you."
+            body= "Hello,\n\nWe request you to look into matter as soon as possible and help this needy person.\n\n"+name+" needs help for "+h_type+" for "+for_appl+".\nContact No: "+phone+"\nAddress: "+address+"\nPincode: "+pin+"\nGovernment ID: "+govtID+"\n\nAlso, "+name+" has a message for you,\n"+msg+"\n\nRegards,\nURHope Messenger"
             msg=f"Subject: {subject}\n\n{body} "
 
             server.sendmail(
