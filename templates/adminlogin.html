@@ -13,7 +13,7 @@
       <div class="card bg-secondary shadow border-0">
         <div class="card-header bg-transparent pb-5">
           {% if "logged_in" in session %}
-          <h3> <div align="center">You are already Logged In.</div></h3>
+          <h3> <div align="center">You are already Logged In.<a href="{{ url_for('logout') }}">Please Logout</a></div></h3>
          {% else %}
 
           <div class="text-muted text-center mt-2 mb-3">
