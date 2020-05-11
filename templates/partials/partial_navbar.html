@@ -44,7 +44,7 @@
                             <a class="dropdown-item" href="{{ url_for('profile', id=session['user_id']) }}">Profile</a>
                             <a class="dropdown-item" href="{{ url_for('task_list') }}">Tasks</a>
                             <a class="dropdown-item" href="{{ url_for('logout') }}"><button
-                                    class="btn btn-sm btn-outline-danger">Logout</button></a>
+                                    class="btn btn-sm btn-outline-danger"><i class='ni ni-user-run' style='color:red'></i>   Logout</button></a>
                             {% endif %}
                             {% endif %}
                         </div>
