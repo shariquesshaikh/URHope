@@ -4,6 +4,8 @@
 
 # __author__ = 'URHope Tech Team'
 
+# __Core_Developers__ = 'Zuhair, Jino, Sharique'
+
 from __future__ import print_function
 from flask import Flask, render_template, redirect, url_for, request, g
 from flask import session, abort, flash, jsonify
@@ -27,7 +29,7 @@ import random
 import smtplib
 import logging
 import re
-# import pyodbc
+import pyodbc
 import pandas as pd
 
 app = Flask(__name__)
