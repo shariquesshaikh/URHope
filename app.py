@@ -28,7 +28,7 @@ import smtplib
 import logging
 import re
 # import pyodbc
-import pandas as pd
+#import pandas as pd
 
 app = Flask(__name__)
 sslify = SSLify(app)
