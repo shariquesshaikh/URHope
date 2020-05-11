@@ -26,7 +26,7 @@ import string
 import random
 import smtplib
 import logging
-import regex as re
+import re
 import pyodbc
 import pandas as pd
 
@@ -40,9 +40,6 @@ usr = 'root'
 pwd = ''
 
 app.debug = True
-
-config = {'CACHE_TYPE': 'redis',
-          'CACHE_REDIS_URL': 'redis://localhost:6379/3'}
 
 app.secret_key = os.urandom(12)
 
@@ -76,6 +73,11 @@ def get_db():
     return db
 
 
+# def get_db(): #Sharique's DB Configuration
+#     db = pymysql.connect(host='localhost', user='root', passwd='',
+#                          db='covid', charset='utf8mb4')
+#     return db
+
 
 
 
@@ -93,9 +95,15 @@ def base():
 
 
 
-@app.route('/index')
-def index():
-    return render_template('home.html')
+@app.route('/relief/', methods=['GET'])
+def relief():
+    return render_template('relief_pincode_page.html')
+
+
+
+@app.route('/relief_call/', methods=['GET'])
+def relief_call():
+    return render_template('relief_call.html')
 
 
 
@@ -136,10 +144,23 @@ def signup():
                         password,
                         ))
                     db.commit()
-                    # flash('Registered Successfully, Check your mail for confirmation!')
-                    flash('Registered Successfully.')
                     c.close()
                     db.close()
+
+                    flash('Registered Successfully, Check your mail for confirmation!')
+
+                    server = serve()
+                    subject = "Notification from URHope Team"
+                    body="Dear "+name+",\n\n"+"Your have regisered successfully on pur website.\n\n Click here to login.\nhttp://urhope.in/login/\n\nThanks for choosing us. Have a nice day :)\n\nRegards\nURHope Team"
+                    msg=f"Subject: {subject}\n\n{body} "
+                    server.sendmail(
+                                    'urhope.ngo@gmail.com',
+                                    str(username), #this might misbehave, typecast/antitype it.
+                                    msg
+                                    )
+
+                    server.quit()
+
                     return redirect(url_for('login'))
                 else:
                     flash('Passwords do not match!')
@@ -204,7 +225,7 @@ def login():
 
 @app.route('/logout')
 def logout():
-    if session['role']!='a':
+    if session['role'] != 'a':
         id = session['user_id']
         active = 0
         db = get_db()
@@ -234,10 +255,16 @@ def form():
 
 
 
+@app.route('/faq')
+def faq():
+    return render_template('faq.html')
+
+
+
 @app.route('/home', methods=['GET', 'POST'])
 def home():
     if not session.get('logged_in'):
-        return redirect(url_for('logout'))
+        return redirect(url_for('login'))
     else:
         if session['role'] == 'v':
             return render_template('home.html')
@@ -287,7 +314,7 @@ def admin_check():
 @app.route('/reg_ngos')
 def reg_ngos():
         if not session.get('logged_in'):
-            return redirect(url_for('logout'))
+            return redirect(url_for('login'))
         db = get_db()
         c = db.cursor()
         role="n"
@@ -328,7 +355,7 @@ def del_ngo(id):
 @app.route('/reg_vols')
 def reg_vols():
         if not session.get('logged_in'):
-            return redirect(url_for('logout'))
+            return redirect(url_for('login'))
         db = get_db()
         c = db.cursor()
         role="v"
@@ -346,7 +373,7 @@ def reg_vols():
 def del_vol(id):
     id=id
     if not session.get('logged_in'):
-        return redirect(url_for('logout'))
+        return redirect(url_for('login'))
     db = get_db()
     c = db.cursor()
     role="v"
@@ -422,7 +449,7 @@ def download_data(id):
 @app.route('/logs')
 def logs():
     if not session.get('logged_in'):
-        return redirect(url_for('logout'))
+        return redirect(url_for('login'))
 
     log_file = open('logs.log', 'r')
 
@@ -462,15 +489,14 @@ def edit_profile(id):
             return render_template('edit_profile_n.html',
                                    id=session['user_id'])
         else:
-            return render_template('edit_profile_a.html',
-                                   id=session['user_id'])
+            return render_template('home.html')
 
 
 
 @app.route('/update/<uname>/', methods=['GET', 'POST'])
 def update_pro(uname):
     if not session.get('logged_in'):
-        return redirect(url_for('logout'))
+        return redirect(url_for('login'))
     else:
             username = session['username']
             role = session['role']
@@ -482,17 +508,23 @@ def update_pro(uname):
                     name = request.form['name']
                     pincode = request.form['pin']
                     phone = request.form['phone']
+                    services = request.form['services']
                     address = request.form['address']
+                    age = request.form['age']
+                    currProfile = request.form['currProfile']
                     about = request.form['about']
 
                     connect = get_db()
                     exe = connect.cursor()
 
-                    exe.execute('UPDATE members SET name=%s,pin=%s, phone=%s,address=%s,about=%s WHERE username = %s '
+                    exe.execute('UPDATE members SET name=%s,pin=%s, phone=%s, services=%s, age=%s, currProfile=%s, address=%s,about=%s WHERE username = %s '
                                 , (
                         name,
                         pincode,
                         phone,
+                        services,
+                        age,
+                        currProfile,
                         address,
                         about,
                         username,
@@ -560,7 +592,7 @@ def update_pro(uname):
 @app.route('/create-task', methods=['GET', 'POST'])
 def create_task():
     if not session.get('logged_in'):
-        return redirect(url_for('logout'))
+        return redirect(url_for('login'))
     elif session['role'] == 'n':
         if request.method == 'POST':
             task = request.form['task']
@@ -605,7 +637,7 @@ def create_task():
 def edit_task(id):
     id=id
     if not session.get('logged_in'):
-        return redirect(url_for('logout'))
+        return redirect(url_for('login'))
     elif session['role'] == 'n':
         if request.method == 'POST':
             task = request.form['task']
@@ -656,7 +688,7 @@ def edit_task(id):
 def delete_task(id):
     id=id
     if not session.get('logged_in'):
-        return redirect(url_for('logout'))
+        return redirect(url_for('login'))
     elif session['role'] == 'n':
             db = get_db()
             c = db.cursor()
@@ -684,7 +716,7 @@ def delete_task(id):
 @app.route('/task_list')
 def task_list():
     if not session.get('logged_in'):
-        return redirect(url_for('logout'))
+        return redirect(url_for('login'))
 
     elif session['role'] == 'n':    
         grp_name = session['name']
@@ -729,7 +761,7 @@ def task_list():
                 applied.append(i[0])
         return render_template('task_list_v.html', id=id,l=len(app_data),applied=applied,len=len(data),data=data, app_data=app_data)
     else:
-        return redirect(url_for('logout'))  
+        return redirect(url_for('login'))  
 
 
 
@@ -737,7 +769,7 @@ def task_list():
 def apply_task(id):
     id=id
     if not session.get('logged_in'):
-        return redirect(url_for('logout'))
+        return redirect(url_for('login'))
     
     db = get_db()
     c = db.cursor()
@@ -800,7 +832,7 @@ def apply_task(id):
 def back_application(id):
     id=id
     if not session.get('logged_in'):
-        return redirect(url_for('logout'))
+        return redirect(url_for('login'))
     
     db = get_db()
     c = db.cursor()
@@ -871,58 +903,121 @@ def how_is_the_task(id):
 
 
 
-@app.route('/search/<pincode>/', methods=['GET'])
-def search_pincode(pincode):
-    connect = get_db()
-    pincode = int(pincode)
-    c = connect.cursor()
-    counter = 0
-    where = ""
-    for i in [0,-1,+1,-2,+2,-3,+3,-4,+4]:
-        where += "m.pin='"+str(pincode+i) + "' OR "
-    query = "select m.pin, phone, services, statename from members m join podata p on m.pin = p.pin where m.role='n' AND (" + where[:-4] +")"
-    c.execute(query)
-    data = c.fetchall()
-    if data:
-        c.close()
-        connect.close()
-        return render_template('home.html', data=data)
-    return render_template('home.html',data={})
+# @app.route('/search/<pincode>/', methods=['GET'])
+# def search_pincode(pincode):
+#     connect = get_db()
+#     pincode = int(pincode)
+#     c = connect.cursor()
+#     counter = 0
+#     where = ""
+#     for i in [0,-1,+1,-2,+2,-3,+3,-4,+4]:
+#         where += "m.pin='"+str(pincode+i) + "' OR "
+#     query = "select m.pin, phone, services, statename from members m join podata p on m.pin = p.pin where m.role='n' AND (" + where[:-4] +")"
+#     c.execute(query)
+#     data = c.fetchall()
+#     if data:
+#         c.close()
+#         connect.close()
+#         return render_template('home.html', data=data)
+#     return render_template('home.html',data={})
 
 
 
-@app.route('/searchresult',methods=['GET','POST'])
-def serch_result():
-    if request.method=="POST":
-        name = request.form['name']
-        pin = request.form['pin']
-        lpin=len(pin)
-        low_name = name.lower()
-        role='n'
-
-        if lpin==6:
-            pin = int(pin)
-            pin=pin
-            db = get_db()
-            c = db.cursor()
-            c.execute('SELECT * FROM members WHERE services=%s and pin=%s and role=%s ORDER BY pin ASC',(name,pin,role))
-            data = c.fetchall()
-            l=len(data)
-            db.commit()
+@app.route('/find_relief/', methods=['GET'])
+def find_relief():
+    pincode=request.args.get("pincode")
+    if pincode and re.fullmatch("[1-9][0-9]{5}", pincode):
+        connect = get_db()
+        c = connect.cursor()
+        query = "select distinct p.statename, p.districtname, s.districthelpline, s.statehelpline, s.created_on from statewisehelplinenos s join podata p on s.districtname = p.districtname where pin='%s'" % pincode
+        c.execute(query)
+        data = c.fetchone()
+        if not data:
+            query = "select distinct p.statename, p.districtname, s.districthelpline, s.statehelpline, s.created_on from statewisehelplinenos s join podata p on s.statename = p.statename where pin='%s'" % pincode
+            c.execute(query)
+            data = c.fetchone()
+        if data:
             c.close()
-            db.close()
-            if(l>0):
-                return render_template('searched.html',l=l,data=data,name=low_name)
-            else:
-                return render_template('searched.html',l=0)
-        else:
-                return render_template('searched.html',l=0)
+            connect.close()
+            return render_template('find_relief.html', data=data, pin=str(pincode))
+    return render_template('find_relief.html',data={}, pin=str(pincode))
 
 
 
-@app.route('/relief_call', methods=['GET', 'POST'])
-def relief_call():
-    return render_template('relief_call.html')
+@app.route('/initiatives/', methods=['GET'])
+def initiatives():
+    pincode = request.args.get("pincode")
+    type = " ".join(request.args.get("type").split("_"))
+    if pincode and re.fullmatch("[1-9][0-9]{5}", pincode):
+        connect = get_db()
+        pincode = int(pincode)
+        c = connect.cursor()
+        counter = 0
+        where = ""
+        for i in [0,-1,+1,-2,+2,-3,+3,-4,+4]:
+            where += "p.pin='"+str(pincode+i) + "' OR "
+        query = "select distinct g.statename, g.districtname, title, description, helplinenumbers, link, eligibility, documents, duration, created_on, dropdown, g.id, g.sourcelink, g.relevantinfo from govtdata g join podata p on g.districtname = p.districtname where (" + where[:-4] +")" + " AND type='" + type + "'"
+        c.execute(query)
+        data = c.fetchall()
+        if not data:
+            query = "select distinct g.statename, g.districtname, title, description, helplinenumbers, link, eligibility, documents, duration, created_on, dropdown, g.id, g.sourcelink, g.relevantinfo from govtdata g join podata p on g.statename = p.statename where (" + where[:-4] +")" + " AND type='" + type + "'"
+            c.execute(query)
+            data = c.fetchall()
+        if data:
+            pdata={'data':[]}
+            dropdown = []
+            for d in data:
+                pdata['data'].append({ 
+                    "statename": d[0], 
+                    "districtname": d[1], 
+                    "title": d[2], 
+                    "description": d[3],
+                    "helplinenumbers": d[4].split(";") if d[4] else [], 
+                    "links": d[5], 
+                    "eligibility": d[6], 
+                    "documents": d[7], 
+                    "duration": d[8],
+                    "created_on": d[9],
+                    "dropdown": d[10],
+                    "id": d[11],
+                    "sourcelink": d[12].replace("\n", "") if d[12] else "",
+                    "relevantinfo": d[13]
+                })
+                dropdown.append(d[10])
+        if data:
+            c.close()
+            connect.close()
+            return render_template('list_of_initiatives.html', data=pdata, type=type, dropdown=list(set(dropdown)))
+    return render_template('list_of_initiatives.html',data={}, type=type)
+
+
+
+# @app.route('/searchresult',methods=['GET','POST'])
+# def serch_result():
+#     if request.method=="POST":
+#         name = request.form['name']
+#         pin = request.form['pin']
+#         lpin=len(pin)
+#         low_name = name.lower()
+#         role='n'
+
+#         if lpin==6:
+#             pin = int(pin)
+#             pin=pin
+#             db = get_db()
+#             c = db.cursor()
+#             c.execute('SELECT * FROM members WHERE services=%s and pin=%s and role=%s ORDER BY pin ASC',(name,pin,role))
+#             data = c.fetchall()
+#             l=len(data)
+#             db.commit()
+#             c.close()
+#             db.close()
+#             if(l>0):
+#                 return render_template('searched.html',l=l,data=data,name=low_name)
+#             else:
+#                 return render_template('searched.html',l=0)
+#         else:
+#                 return render_template('searched.html',l=0)
 
 
 
@@ -932,7 +1027,7 @@ def relief_send():
         name = request.form['name']
         for_appl = request.form['for_appl']
         h_type = request.form['help_type']
-        id = request.form['govtID']
+        govtID = request.form['govtID']
         address = request.form['address']
         phone = request.form['phone']
         pin = request.form['pin']
@@ -982,7 +1077,7 @@ def relief_send():
 
 @app.route('/helpline')
 def helpline():
-    return render_template('helpline.html')
+    return render_template('helpline/index.html')
 
 
 
@@ -1031,3 +1126,12 @@ def internal_error(error):
 '''
 if __name__ == '__main__':
     app.run()  # host='0.0.0.0', port=5000
+
+
+
+
+
+
+
+
+

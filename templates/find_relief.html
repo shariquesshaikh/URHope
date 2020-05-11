@@ -1,0 +1,182 @@
+{% extends "base_site1.html" %}
+
+{% block content %}
+
+<!-- Page Content -->
+
+<center><a href="{{ url_for('helpline') }}"><button class=" mt-4 btn btn-outline-success" style="width: 300px; font-size: 15px;">Covid Relief Initiatives (govt.) across UTs and States: Consolidated File</button></a></center>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-6 col-12">
+            <div class="card-custom mt-2 mt-lg-0 pb-5">
+                <h5 class="mb-3 mt-3 row justify-content-center font-weight-bold">Find relief anywhere</h5>
+                <!--
+                <div class="row justify-content-center">
+                    <h6 class="mt-3 mb-3">Enter your pincode, city or state</h6>
+                </div>
+                -->
+                <form action="{{ url_for('find_relief') }}">
+                    <div class="row justify-content-center px-lg-5 px-md-1">
+                        <div class="input-group flex-nowrap">
+                            <input style="" id="myInput" type="text" name="pincode"
+                                   class="form-control pincode-input-field"
+                                   placeholder="Enter your pincode, city or state"
+                                   value="{{pin}}"
+                                   aria-label="Username"
+                                   aria-describedby="addon-wrapping">
+                            <button type="reset" class="btn btn-danger btn-sm pincode-reset-btn" value="Reset"><i
+                                    class="fa fa-times-circle"></i></button>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-3">Change</button>
+                    </div>
+                </form>
+
+                <div class="row mt-4 help-card">
+                    <div class="col">
+                        <div class="row justify-content-center" style="text-align: center">
+                            <h6>District Helpline</h6>
+                        </div>
+                        <div class="row justify-content-center">
+                            <a href="tel:{{data[2]}}"><h4 class="font-weight-bold">{{data[2]}}</h4></a>
+                        </div>
+                        {% if data %}
+                            <div class="row justify-content-center mt-2">
+                                <a href="/static/assets/pdf/{{data[0]}}.pdf" class="btn btn-primary" role="button">View All Helplines</a>
+                            </div>
+                        {% else %}
+                        <div class="row justify-content-center mt-2">
+                            <a href="#" class="btn btn-info" role="button">No Helplines Available</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="col" align="right">
+                        <div class="row justify-content-center">
+                            <h6>State Helpline</h6>
+                        </div>
+                        <div class="row justify-content-center">
+                            <a href="tel:{{data[3]}}"><h4>{{data[3]}}</h4></a>
+                        </div>
+                        <div class="row justify-content-center mt-2">
+                            <h6>National Helpline</h6>
+                        </div>
+                        <div class="row justify-content-center">
+                            <a href="tel:1077"><h4>1077</h4></a>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <a target="_blank" href="{{ url_for('relief_call') }}"><button class="btn btn-outline-danger" style="width: 100%">Couldn't get required help?</button></a>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-12">
+            <div class="card-custom mt-2 mt-lg-0 pb-5">
+
+                <div class="row justify-content-center font-weight-bold">
+                    <h5 class="mb-3 mt-3 row justify-content-center font-weight-bold">Initiatives</h5>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                        <div class="options" onclick="location.href='/initiatives/?type=Food_View&pincode={{pin}}';"
+                             style="cursor: pointer">
+                            <div>
+                                <img src="../static/assets2/img/Food.png" class="options-img"/>
+                            </div>
+                            <div class="options-title">
+                                Food
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                        <div class="options" onclick="location.href='/initiatives/?type=Health_View&pincode={{pin}}';"
+                             style="cursor: pointer">
+                            <div>
+                                <img src="../static/assets2/img/Helath.png" class="options-img"/>
+                            </div>
+                            <div class="options-title">
+                                Health
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                        <div class="options" onclick="location.href='/initiatives/?type=Shelter_View&pincode={{pin}}';"
+                             style="cursor: pointer">
+                            <div>
+                                <img src="../static/assets2/img/Shelter.png" class="options-img"/>
+                            </div>
+                            <div class="options-title">
+                                Shelter
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                        <div class="options" onclick="location.href='/initiatives/?type=E-Pass_View&pincode={{pin}}';"
+                             style="cursor: pointer">
+                            <div>
+                                <img src="../static/assets2/img/E-Pass.png" class="options-img"/>
+                            </div>
+                            <div class="options-title">
+                                E-Pass
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-6">
+                        <div class="options" onclick="location.href='/initiatives/?type=Others&pincode={{pin}}';"
+                             style="cursor: pointer">
+                            <div>
+                                <img src="../static/assets2/img/Others.png" class="options-img"/>
+                            </div>
+                            <div class="options-title">
+                                Others
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="help-options row justify-content-center mb-5" align="center" hidden>
+                    <button type="submit" class=" btn mb-2 btn help-options mr-1"
+                            style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('../static/assets/img/Food.png') no-repeat center;"
+                            name="name" id="" Selected="False">Food
+                    </button>
+
+                    <button type="submit" class=" btn mb-2 mx-1 btn help-options"
+                            style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('../static/assets/img/Helath.png') no-repeat center;"
+                            name="name" id="" Selected="False">Health
+                    </button>
+
+                    <button type="submit" class=" btn mb-2 mx-1 btn help-options"
+                            style="background:linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('../static/assets/img/Shelter.png') no-repeat center;"
+                            name="name" id="" Selected="False">Shelter
+                    </button>
+
+                    <button type="submit" class=" btn mb-2 btn mx-1 help-options"
+                            style="background:linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('../static/assets/img/E-Pass.png') no-repeat center;"
+                            name="name" id="" Selected="False">E-Pass
+                    </button>
+
+                    <button type="submit" class=" btn mb-2 btn ml-1 help-options"
+                            style="background:linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('../static/assets/img/Others.png') no-repeat center;"
+                            name="name" id="" Selected="False">Others
+                    </button>
+
+                    <div class="row justify-content-center" hidden>
+                        <button type="submit" class=" btn btn-sm mb-2  btn-outline-dark next-btn"
+                                style=" border-radius: 5px;"
+                                name="name" id="">Find Help <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                <div class="row justify-content-center mt-1 mb-3" hidden>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--End Page Content -->
+
+{% endblock %}

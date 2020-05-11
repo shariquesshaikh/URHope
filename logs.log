@@ -1,1 +1,221 @@
-
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:41:50] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:41:51] "[37mGET /static/assets2/css/custom-css/index.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:41:51] "[37mGET /static/assets2/js/custom-js/index.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:41:51] "[37mGET /static/assets2/css/font-awesome.min.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:41:51] "[37mGET /static/assets2/js/plugins/bootstrap-switch.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:41:51] "[37mGET /static/assets2/js/plugins/nouislider.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:41:52] "[37mGET /static/assets2/js/plugins/moment.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:41:52] "[37mGET /static/assets2/js/plugins/datetimepicker.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:41:53] "[37mGET /static/assets2/js/plugins/bootstrap-datepicker.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:41:53] "[37mGET /static/assets2/img/Logos/Logo2.jpeg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:41:53] "[37mGET /static/assets2/img/Logos/Logo3.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:41:53] "[37mGET /static/assets2/img/BG.jpeg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:41:54] "[37mGET /static/assets2/img/Volunteer.jpeg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:41:54] "[37mGET /static/assets2/img/Find_volunteers.jpeg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:41:54] "[37mGET /static/assets2/img/NPO.jpeg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:41:56] "[37mGET /static/assets2/js/custom-js/POTABLE.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:41:57] "[37mGET /static/assets2/img/background.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:41:58] "[37mGET /static/assets2/fonts/fontawesome-webfont.woff2?v=4.7.0 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:42:08] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:42:09] "[37mGET /static/assets/js/plugins/%40fortawesome/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:42:09] "[37mGET /static/assets/js/plugins/nucleo/css/nucleo.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:42:09] "[37mGET /static/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:42:09] "[37mGET /static/assets/css/argon-dashboard.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:42:09] "[37mGET /static/assets/js/plugins/chart.js/dist/Chart.extension.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:42:09] "[37mGET /static/assets/js/plugins/chart.js/dist/Chart.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:42:09] "[37mGET /static/assets/img/brand/white.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:42:10] "[37mGET /static/assets/img/brand/blue.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:42:10] "[37mGET /static/assets/js/argon-dashboard.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:42:10] "[37mGET /static/assets/js/plugins/jquery/dist/jquery.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:42:10] "[37mGET /static/assets/js/plugins/%40fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:42:10] "[37mGET /static/assets/js/plugins/nucleo/fonts/nucleo-icons.woff2 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:42:22] "[32mPOST /login/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:42:22] "[37mGET /home HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:42:47] "[37mGET /17/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:42:47] "[37mGET /static/assets/img/theme/profile.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:42:47] "[37mGET /static/assets/img/theme/profile-cover.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:42:53] "[37mGET /task_list HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:43:05] "[37mGET /notification_page/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:43:10] "[32mGET /how_is_the_task/12/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:43:10] "[37mGET /notification_page/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:43:13] "[32mGET /how_is_the_task/10/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:43:13] "[37mGET /notification_page/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:43:17] "[32mGET /how_is_the_task/12/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:43:17] "[37mGET /notification_page/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:43:24] "[37mGET /17/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:43:26] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:43:40] "[37mGET /team HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:43:40] "[37mGET /static/assets2/img/team/farha.jpg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:43:40] "[37mGET /static/assets2/img/team/siddhant.jpg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:43:40] "[37mGET /static/assets2/img/team/priya.jpg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:43:40] "[37mGET /static/assets2/img/team/siraj.jpg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:43:40] "[37mGET /static/assets2/img/team/zuhair.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:43:41] "[37mGET /static/assets2/img/team/sharique.jpg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:43:41] "[37mGET /static/assets2/img/team/saket.jpg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:43:41] "[37mGET /static/assets2/img/team/pranav.jpg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:43:41] "[37mGET /static/assets2/img/team/vivek_g.jpg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:43:41] "[37mGET /static/assets2/img/team/jino.jpg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:43:41] "[37mGET /static/assets2/img/team/neelam.jpg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:43:41] "[37mGET /static/assets2/img/team/aashita.jpg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:43:41] "[37mGET /static/assets2/img/team/aparna.jpg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:44:19] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:44:29] "[37mGET /form HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:44:31] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:55:38] "[37mGET /create-task HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:55:48] "[32mGET /logout HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:55:48] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:55:50] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:55:55] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:56:01] "[32mGET /relief HTTP/1.1[0m" 308 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:56:01] "[37mGET /relief/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:56:11] "[32mGET /find_relief?pincode=123456 HTTP/1.1[0m" 308 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:56:12] "[37mGET /find_relief/?pincode=123456 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:56:12] "[37mGET /static/assets2/img/Food.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:56:12] "[37mGET /static/assets2/img/Helath.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:56:12] "[37mGET /static/assets2/img/Shelter.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:56:12] "[37mGET /static/assets2/img/Others.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:56:12] "[37mGET /static/assets2/img/E-Pass.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:56:16] "[37mGET /relief_call/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:56:49] "[35m[1mGET /initiatives/?type=Food_View&pincode=123456 HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:56:49] "[37mGET /initiatives/?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:56:50] "[37mGET /initiatives/?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:56:50] "[37mGET /initiatives/?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:56:51] "[37mGET /initiatives/?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:56:51] "[37mGET /initiatives/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:56:51] "[37mGET /initiatives/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:56:59] "[35m[1mGET /initiatives/?type=Health_View&pincode=123456 HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:56:59] "[37mGET /initiatives/?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:56:59] "[37mGET /initiatives/?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:56:59] "[37mGET /initiatives/?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:56:59] "[37mGET /initiatives/?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:56:59] "[37mGET /initiatives/?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:58:08] "[37mGET /helpline HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:58:08] "[37mGET /static/assets2/css/resources/sheet.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:58:12] "[32mGET /favicon.ico HTTP/1.1[0m" 308 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:58:12] "[32mGET /favicon.ico/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 04:58:12] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 05:34:24] "[37mGET /find_relief/?pincode=123456 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 05:34:27] "[37mGET /relief_call/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 05:35:14] "[37mGET /faq HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 05:36:14] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 05:36:16] "[32mGET /signup HTTP/1.1[0m" 308 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 05:36:17] "[37mGET /signup/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 05:36:21] "[32mGET /login HTTP/1.1[0m" 308 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 05:36:21] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 05:36:25] "[37mGET /signup/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 05:41:19] "[37mGET /relief_call/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 05:41:42] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 05:41:46] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 05:41:49] "[37mGET /faq HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 05:41:52] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'E:\\Unexpected\\final\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\Unexpected\\final\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\Unexpected\\final\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\Unexpected\\final\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\Unexpected\\final\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\Unexpected\\final\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\Unexpected\\final\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\Unexpected\\final\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\Unexpected\\final\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\Unexpected\\final\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\Unexpected\\final\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\Unexpected\\final\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\Unexpected\\final\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\Unexpected\\final\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 05:59:29] "[37mGET /relief/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 05:59:34] "[37mGET /relief/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 05:59:41] "[37mGET /helpline HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 05:59:53] "[32mGET /find_relief?pincode=403001 HTTP/1.1[0m" 308 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 05:59:54] "[37mGET /find_relief/?pincode=403001 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 05:59:58] "[37mGET /relief_call/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 06:00:24] "[35m[1mPOST /relief_send HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 06:00:24] "[37mGET /relief_send?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 06:00:25] "[37mGET /relief_send?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 06:00:25] "[37mGET /relief_send?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 06:00:26] "[37mGET /relief_send?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 06:00:26] "[37mGET /relief_send?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 06:00:26] "[37mGET /relief_send?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'E:\\Unexpected\\final\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 06:02:26] "[37mGET /relief_call/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 06:02:28] "[37mGET /relief_call/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 06:03:32] "[32mPOST /relief_send HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [11/May/2020 06:03:32] "[37mGET /relief_call/ HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'E:\\Unexpected\\final\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\Unexpected\\final\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\Unexpected\\final\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)

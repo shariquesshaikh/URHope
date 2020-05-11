@@ -1,0 +1,206 @@
+<style>
+
+.pincode {
+    height: 45px;
+    width: 29px;
+    font-size: 25px;
+    text-align: center;
+    border: none;
+    background-color: white;
+    border-bottom: 1px solid #000000;
+    color: transparent;
+    outline: none;
+    text-shadow: 0 0 0 #000000;
+    font-weight: bold;
+    margin: 0px 5px;
+    padding: 5px 5px;
+    border-radius: 1px;
+    user-select: none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -o-user-select: none;
+}
+
+.pincode:focus {
+    background-color: #e2e2e2;
+    -webkit-box-shadow: 0px 1px 0px 5px rgb(225, 225, 225);
+    -moz-box-shadow: 0px 1px 0px 5px rgb(225, 225, 225);
+    box-shadow: 0px 1px 0px 5px rgb(225, 225, 225);
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.next-btn {
+    -webkit-box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
+    -moz-box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
+    box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 1);
+}
+
+.next-btn:hover {
+    background-color: black;
+}
+
+.card-footer-custom,
+.pincode-div,
+.step2-div {
+    background-color: white;
+    border-radius: 5px;
+    padding: 20px 30px;
+    border: 1px solid black;
+}
+
+.card-footer-custom button,
+.card-footer-custom a,
+.card-footer-custom h6 {
+    padding: 5px 10px;
+    font-size: 17px;
+!important text-transform: capitalize;
+    margin-bottom: 0px;
+}
+
+.card-footer-custom hr {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.step2-div input{
+    font-size: x-small;
+}
+
+
+.step3-table {
+    font-size: small;
+    margin-top: 20px;
+}
+
+@media (max-width: 576px) {
+    .step3-table h6 {
+        font-size: x-small;
+    !important;
+    }
+
+    .step3-table p {
+        font-size: xx-small;
+    !important;
+    }
+
+    .card-footer-custom button,
+    .card-footer-custom a,
+    .card-footer-custom h6 {
+        padding: 5px 10px;
+        font-size: 12px;
+    !important text-transform: capitalize;
+        margin-bottom: 0px;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .step3-table h6 {
+        font-size: small;
+    !important;
+    }
+
+    .step3-table p {
+        font-size: x-small;
+    !important;
+    }
+
+}
+
+.step3-table th {
+    border: none;
+}
+
+.step3-table > thead > tr > td,
+.step3-table > thead > tr > th {
+    border: none;
+}
+
+.step3-table > tbody > tr > td,
+.step3-table > tbody > tr > th,
+.step3-table > tfoot > tr > td,
+.step3-table > tfoot > tr > th,
+.step3-table > thead > tr > td,
+.step3-table > thead > tr > th {
+    padding: 5px;
+}
+
+.step3-table > thead > tr > th {
+    font-weight: bold;
+}
+
+.step3-table-div th {
+    border-top: none;
+    border: none;
+}
+
+.step3-table-div {
+    border-radius: 5px;
+    padding: 50px 30px;
+}
+</style>
+
+<div class="step3-table-div pt-4 pb-4" style="background-color: white">
+    <div class="step3-title row justify-content-between">
+        <h4 class="col-6">{{type}}</h4>
+        <div class="search-filter col-6">
+            <div class="row justify-content-end align-items-center">
+
+                <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="text-transform: capitalize">
+                        <select  class="custom-select-sm custom-select filter">
+                            <option selected>Choose Filter...</option>
+                            {% for i in dropdown%}
+                                <option value="{{i}}">{{i}}</option>
+                            {% endfor %}
+                        </select>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <table class="table step3-table">
+            <thead>
+            <tr>
+                <th scope="col">Initiative</th>
+                <th scope="col">Contact No</th>
+                <th scope="col">Link</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for k,data in data.items() %}
+                    {% for v in data %}
+                    <tr>
+                        <td>
+                            <div class="initiative-heading">
+                                <h6>{{v.title}}</h6>
+
+                            </div>
+                            <div class="initiative-description">
+                                <p>{{v.description}}</p>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="initiative-contact">
+                                <p><a href="tel:{{v.helplinenumbers}}">{{v.helplinenumbers}}</p>
+                            </div>
+                        </td>
+                        <td><a href="{{v.links}}">View</a></td>
+                        <td class="align-middle" hidden>{{v.dropdown}}</td>
+                    </tr>
+                    {% endfor %}
+                {% endfor %}
+                
+            </tbody>
+        </table>
+    </div>
+</div>

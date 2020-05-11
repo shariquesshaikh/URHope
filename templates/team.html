@@ -1,193 +1,6 @@
+{% extends "base_site1.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="apple-touch-icon" sizes="76x76" href="static/assets2/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="static/assets2/img/favicon.png">
-  <title>
-    URHope - Where Hope Prevails
-  </title>
-  <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-  <!-- Nucleo Icons -->
-  <link href="static/assets2/css/nucleo-icons.css" rel="stylesheet" />
-  <link href="static/assets2/css/nucleo-svg.css" rel="stylesheet" />
-  <!-- Font Awesome Icons -->
-  <link href="static/assets2/css/font-awesome.css" rel="stylesheet" />
-  <link href="static/assets2/css/nucleo-svg.css" rel="stylesheet" />
-  <link href="static/assets2/css/my.css" rel="stylesheet" />
-  <!-- CSS Files -->
-  <link href="static/assets2/css/argon-design-system.css?v=1.2.0" rel="stylesheet" />
-</head>
-
-<body class="landing-page">
-  <!-- Navbar -->
-  <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light headroom">
-    <div class="container">
-      <a class="navbar-brand mr-lg-5" href="../index.html">
-        <img src="static/assets2/img/brand/white.png">
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-{% if 'logged_in' in session %}
-      <ul class="nav align-items-center d-md-none">
-        <li class="nav-item dropdown">
-          <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <div class="media align-items-center">
-              <span class="avatar avatar-sm rounded-circle">
-                <img alt="Image placeholder" src="/static/assets/img/theme/profile.png">
-              </span>
-            </div>
-          </a>
-          <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
-            <div class=" dropdown-header noti-title">
-              <h5 class="text-overflow m-0">{{ session['name'] }}</h5>
-            </div>
-            <a href="{{ url_for('profile', id=session['user_id']) }}" class="dropdown-item">
-              <i class="ni ni-single-02"></i>
-              <span>Profile</span>
-            </a>
-            <a href="{{ url_for('task_list') }}" class="dropdown-item">
-              <i class="ni ni-bullet-list-67"></i>
-              <span>Tasks</span>
-            </a>
-                        
-            {% if session['role'] == 'n' %}
-            <a href="{{ url_for('create_task') }}" class="dropdown-item">
-              <i class="ni ni-ruler-pencil"></i>
-              <span>Create Tasks</span>
-            </a>
-            <a href="{{ url_for('notification_page') }}" class="dropdown-item">
-              <i class="ni ni-bell-55 text-blue"></i>
-              <span>Notifications</span>
-            </a>
-            {% endif %}
-            
-            <div class="dropdown-divider"></div>
-            <a href="{{ url_for('logout') }}" class="dropdown-item">
-              <i class="ni ni-user-run text-red"></i>
-              <span>Logout</span>
-            </a>
-          </div>
-        </li>
-      </ul>
-          {% endif %}
-      <div class="navbar-collapse collapse" id="navbar_global">
-        <div class="navbar-collapse-header">
-          <div class="row">
-            <div class="col-6 collapse-brand">
-              <a href="../../../index.html">
-                <img src="static/assets2/img/brand/blue.png">
-              </a>
-            </div>
-            <div class="col-6 collapse-close">
-              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
-                <span></span>
-                <span></span>
-              </button>
-            </div>
-          </div>
-        </div>
-        <ul class="navbar-nav align-items-lg-center ml-lg-auto">
-          <li class="nav-item">
-            <a class="nav-link nav-link-icon" href="/" data-toggle="tooltip" title="about">
-              <i class="fa fa-home"></i>
-              <span class="nav-link-inner--text d-lg-none" >Home</span>
-            </a>
-          </li>
-          {% if not 'logged_in' in session %}
-            <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="{{ url_for('login') }}">
-                <i class="ni ni-single-02"></i>
-                <span class="nav-link-inner--text">Login</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link nav-link-icon" href="{{ url_for('signup') }}">
-                <i class="fa fa-plus"></i>
-                <span class="nav-link-inner--text">Join Us</span>
-              </a>
-            </li>
-            {% else %}
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('logout') }}">
-                <i class="ni ni-user-run text-red"></i> Logout
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{{ url_for('profile', id=session['user_id']) }}">
-                <i class="ni ni-single-02"></i> Profile
-              </a>
-            </li>
-          {% endif %}
-          <li class="nav-item">
-            <a class="nav-link nav-link-icon" href="/form" data-toggle="tooltip" title="Form">
-                
-              <i class="fa fa-wpforms"></i>
-              <span class="nav-link-inner--text d-lg-none" >Form</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link nav-link-icon" href="/team" data-toggle="tooltip" title="about">
-                
-              <i class="fa fa-users"></i>
-              <span class="nav-link-inner--text d-lg-none">Team Members</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link nav-link-icon" href="/#contact" data-toggle="tooltip" title="about">
-              <i class="fa fa-phone"></i>
-              <span class="nav-link-inner--text d-lg-none">Contact Us</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <!-- End Navbar -->
-  <div class="wrapper">
-    <div class="section section-hero section-shaped">
-      <div class="shape shape-style-3 shape-default">
-        <span class="span-150"></span>
-        <span class="span-50"></span>
-        <span class="span-50"></span>
-        <span class="span-75"></span>
-        <span class="span-100"></span>
-        <span class="span-75"></span>
-        <span class="span-50"></span>
-        <span class="span-100"></span>
-        <span class="span-50"></span>
-        <span class="span-100"></span>
-      </div>
-      <div class="page-header">
-        <div class="container shape-container d-flex align-items-center py-lg">
-          <div class="col px-0">
-            <div class="row align-items-center justify-content-center">
-              <div class="col-lg-6 text-center">
-
-  <h1 class="text-white display-1">URHope</h1>
-  <h2 class="display-4 font-weight-normal text-white">A Platform to seek help, volunteer and call out to volunteers</h2>
-
-                <div class="btn-wrapper mt-4">
-
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="separator separator-bottom separator-skew zindex-100">
-        <svg x="0" y="0" viewBox="0 0 2560 100" preserveAspectRatio="none" version="1.1" xmlns="http://www.w3.org/2000/svg">
-          <polygon class="fill-white" points="2560 0 2560 100 0 100"></polygon>
-        </svg>
-      </div>
-    </div>
-    
+{% block content %}
 <style>
 
   .profile-placeholder{
@@ -213,15 +26,30 @@
   }
 
   .social-links{
-    font-size: 24px;
+    font-size: 27px;
   }
 
+.badge {
+font-size: 15px;
+margin-top:4px;
+margin-bottom:4px;
+}
+
+.badge-outline {
+    color: #007bff;
+    border: 2px solid #999;
+    border-radius: 33pX;
+    background-color: transparent;
+}
+
+.badge-outline.badge-primary {
+    border-color: #007bff;
+}
 </style>
-</head>
- <body class="landing-page"> 
+       
         <div class = "col-md-12">
 
-                <h3 class="text-center">Meet Our Core Team</h3>
+                <h3 class="text-center mt-4 mb-5">Meet Our Core Team</h3>
 
             <div class = "row">
 
@@ -235,8 +63,8 @@
                         <div class = "social-links"> <a href = "https://linkedin.com/in/siddhantminocha"> <i class = "fa fa-linkedin-square"></i> </a> <a href = "https://twitter.com/siddhantmin"> <i class = "fa fa-twitter-square"></i> </a> </div>
 </p>
 
-<span class="badge badge-pill badge-primary">Web Development</span>
-<span class="badge badge-pill badge-primary">Team leader</span>
+<span class="badge badge-outline badge-primary">Web Development</span>
+<span class="badge badge-outline badge-primary">Tech Mentor</span>
                     </div>
                     </div>
                     </div>
@@ -251,8 +79,8 @@
                         <div class = "social-links"> <a href = "https://www.linkedin.com/in/farha-memon-b292991a2/"> <i class = "fa fa-linkedin-square"></i> </a> </div>
 </p>
 
-<span class="badge badge-pill badge-primary">Operations</span>
-<span class="badge badge-pill badge-primary">Leader</span>
+<span class="badge badge-outline badge-primary">Operations</span>
+<span class="badge badge-outline badge-primary">Leader</span>
                     </div>
                     </div>
                     </div>
@@ -267,8 +95,8 @@
                         <div class = "social-links"> <a href = "https://www.linkedin.com/in/priya-sharma-47589b188"> <i class = "fa fa-linkedin-square"></i> </a> </div>
 </p>
 
-<span class="badge badge-pill badge-primary">Data Collection</span>
-<span class="badge badge-pill badge-primary">Team Leader</span>
+<span class="badge badge-outline badge-primary">Data Management and Handling</span>
+<span class="badge badge-outline badge-primary">Lead</span>
                     </div>
                     </div>
                     </div>
@@ -279,13 +107,13 @@
                   <div class="tab-content" id="myTabContent"><a id="zuhair"></a>
                     <div class = "profile-placeholder"> <img src = "/static/assets2/img/team/zuhair.png" class = "profile-pic"> </div>
                     <div class="tab-pane fade show active" id="tabs-icons-text-1" role="tabpanel" aria-labelledby="tabs-icons-text-1-tab">
-                      <p class="description"><strong> Zuhair </strong> is a Engineering student at K.C College Of Engineering, Thane. He is a enthusiastic coder who has worked on the URHome platform from begining. This young guy is not just a coder, his compassion to the part of society in need reflects in the fact that he has been working as a ground volunteer in Bandra, Mumbai to put food to plates of migrant worker.  
+                      <p class="description"><strong> Zuhair </strong> is a Engineering student at K.C College Of Engineering, Thane. He is a enthusiastic coder who has worked on the URHope platform from begining. This young guy is not just a coder, his compassion to the part of society in need reflects in the fact that he has been working as a ground volunteer in Bandra, Mumbai to put food to plates of migrant worker.  
                         <div class = "social-links"> <a href = "https://linkedin.com/in/zuhairabs"> <i class = "fa fa-linkedin-square"></i> </a> <a href = "https://twitter.com/zuhairabs"> <i class = "fa fa-twitter-square"></i> </a><a href = "http://zuhairabs.github.io"> <i class = "fa fa-globe"></i> </a>  </div>
 </p>
 
-<span class="badge badge-pill badge-primary">Web Development</span>
-<span class="badge badge-pill badge-primary">Backend</span>
-<span class="badge badge-pill badge-primary">Frontend</span>
+<span class="badge badge-outline badge-primary">Web Development</span>
+<span class="badge badge-outline badge-primary">Backend</span>
+<span class="badge badge-outline badge-primary">Frontend</span>
                     </div>
                     </div>
                     </div>
@@ -301,8 +129,8 @@
                         <div class = "social-links"> <a href = "https://www.linkedin.com/in/sharique-shaikh/"> <i class = "fa fa-linkedin-square"></i> </a> <a href = "https://twitter.com/iamsksharique/"> <i class = "fa fa-twitter-square"></i> </a> </div>
 </p>
 
-<span class="badge badge-pill badge-primary">Web Development</span>
-<span class="badge badge-pill badge-primary">Backend</span>
+<span class="badge badge-outline badge-primary">Web Development</span>
+<span class="badge badge-outline badge-primary">Backend</span>
                     </div>
                     </div>
                     </div>
@@ -317,7 +145,7 @@
                         <div class = "social-links"> <a href = "https://www.linkedin.com/in/siraj-ansari-2aa937182/"> <i class = "fa fa-linkedin-square"></i> </a> </div>
 </p>
 
-<span class="badge badge-pill badge-primary">Data Collection</span>
+<span class="badge badge-outline badge-primary">Data Collection</span>
                     </div>
                     </div>
                     </div>
@@ -332,7 +160,7 @@
                         <div class = "social-links"> <a href = "https://www.linkedin.com/mwlite/in/pranav-jeevan-p-96aa7290"> <i class = "fa fa-linkedin-square"></i></a></div>
 </p>
 
-<span class="badge badge-pill badge-primary">Social Media</span>
+<span class="badge badge-outline badge-primary">Social Media</span>
                     </div>
                     </div>
                     </div>
@@ -347,7 +175,7 @@
                         <div class = "social-links"> <a href = "https://www.linkedin.com/in/saket-bhardwaj/"> <i class = "fa fa-linkedin-square"></i></a></div>
 </p>
 
-<span class="badge badge-pill badge-primary">Product Management</span>
+<span class="badge badge-outline badge-primary">Product Management</span>
                     </div>
                     </div>
                     </div>
@@ -362,7 +190,7 @@
                         <div class = "social-links"> <a href = "https://in.linkedin.com/in/aashita-swami-391890165"> <i class = "fa fa-linkedin-square"></i> </a> </div>
 </p>
 
-<span class="badge badge-pill badge-primary">Data Collection</span>
+<span class="badge badge-outline badge-primary">Data Collection</span>
                     </div>
                     </div>
                     </div>
@@ -377,8 +205,8 @@
                         <div class = "social-links"> <a href = "https://in.linkedin.com/in/jino-jossy"> <i class = "fa fa-linkedin-square"></i> </a> <a href = "https://twitter.com/jinojossy93"> <i class = "fa fa-twitter-square"></i> </a><a href = "http://jino.work/"> <i class = "fa fa-globe"></i> </a>  </div>
 </p>
 
-<span class="badge badge-pill badge-primary">Web Development</span>
-<span class="badge badge-pill badge-primary">Backend</span>
+<span class="badge badge-outline badge-primary">Web Development</span>
+<span class="badge badge-outline badge-primary">Backend</span>
                     </div>
                     </div>
                     </div>
@@ -393,7 +221,7 @@
                         <div class = "social-links"> <a href = "https://www.linkedin.com/in/neelamrathore/"> <i class = "fa fa-linkedin-square"></i> </a> </div>
 </p>
 
-<span class="badge badge-pill badge-primary">Operations</span>
+<span class="badge badge-outline badge-primary">Operations</span>
                     </div>
                     </div>
                     </div>
@@ -408,7 +236,7 @@
                         <div class = "social-links"> <a href = "https://www.linkedin.com/in/vivekgunawat/"> <i class = "fa fa-linkedin-square"></i></a> <a href = "https://twitter.com/iamgunti"> <i class = "fa fa-twitter-square"></i> </a></div>
 </p>
 
-<span class="badge badge-pill badge-primary">Operations</span>
+<span class="badge badge-outline badge-primary">Operations</span>
                     </div>
                     </div>
                     </div>
@@ -422,7 +250,7 @@
                       <p class="description"><strong> Aparna Rao</strong> is a Senior Project Manager at DSSE , IITBombay and mentors IIT Bombay student startups. She is associated with  Mumbai University, Dibrugarh University and Andhra Pradesh university as well. She is engaged with social initives under Deshpande Foundation, Skill in Village programs and curriculum development Hubli.. She has associated  with several engineering and business schools in Mumbai including SPCE, SPIT, Fr. Agnel’s, DBIT, JBIMS, KJ Somaiya’s IMSR, SIESCOMS and Chetana’s She is a mentor for Aspire for Her Foundation for young girls aspiring for career development guidance.
 </p>
 
-<span class="badge badge-pill badge-primary">Mentor</span>
+<span class="badge badge-outline badge-primary">Mentor</span>
                     </div>
                     </div>
                     </div>
@@ -505,73 +333,4 @@
                </div>       
                   
                   </div>
-                  
-    <br /><br />
-    <footer class="footer">
-      <div class="container">
-        <div class="row row-grid align-items-center mb-5">
-          <div class="col-lg-6">
-            <h3 class="text-primary font-weight-light mb-2">Thank you for supporting us!</h3>
-            <h4 class="mb-0 font-weight-light">Let's get in touch on any of these platforms.</h4>
-          </div>
-          <div class="col-lg-6 text-lg-center btn-wrapper">
-            <button target="_blank" onclick="window.location='https://twitter.com/urhope_team';" class="btn btn-icon-only btn-twitter rounded-circle">
-              <span class="btn-inner--icon"><i class="fa fa-twitter"></i></span>
-            </button>
-            <button target="_blank" onclick="window.location='https://facebook.com/URHope.team/';" class="btn-icon-only rounded-circle btn btn-facebook">
-              <span class="btn-inner--icon"><i class="fab fa-facebook"></i></span>
-            </button>
-            <button target="_blank" onclick="window.location='https://instagram.com/urhope_team';" class="btn btn-icon-only btn-instagram rounded-circle">
-              <span class="btn-inner--icon"><i class="fa fa-instagram"></i></span>
-            </button>
-          </div>
-        </div>
-        <hr>
-        <div class="row align-items-center justify-content-md-between">
-          <div class="col-md-6">
-            <div class="copyright">
-              &copy; 2020 <a href="#" target="_blank">URHOPE</a>.
-            </div>
-          </div>
-          <div class="col-md-6">
-            <ul class="nav nav-footer justify-content-end">
-              <li class="nav-item">
-                <a href="/" class="nav-link">Home</a>
-              </li>
-              <li class="nav-item">
-                <a href="/form" class="nav-link">Form</a>
-              </li>
-              <li class="nav-item">
-                <a href="/team" class="nav-link">Team Members</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </div>
-  <!--   Core JS Files   -->
-  <script src="static/assets2/js/core/jquery.min.js" type="text/javascript"></script>
-  <script src="static/assets2/js/core/popper.min.js" type="text/javascript"></script>
-  <script src="static/assets2/js/core/bootstrap.min.js" type="text/javascript"></script>
-  <script src="static/assets2/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-  <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-  <script src="static/assets2/js/plugins/bootstrap-switch.js"></script>
-  <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-  <script src="static/assets2/js/plugins/nouislider.min.js" type="text/javascript"></script>
-  <script src="static/assets2/js/plugins/moment.min.js"></script>
-  <script src="static/assets2/js/plugins/datetimepicker.js" type="text/javascript"></script>
-  <script src="static/assets2/js/plugins/bootstrap-datepicker.min.js"></script>
-
-<script>
- <!-- Global site tag (gtag.js) - Google Analytics -->
- <script async src="https://www.googletagmanager.com/gtag/js?id=G-83CH6CWM21"></script>
- <script>
-   window.dataLayer = window.dataLayer || [];
-   function gtag(){dataLayer.push(arguments);}
-   gtag('js', new Date());
- 
-   gtag('config', 'G-83CH6CWM21');
- </script>
-                </body>
-              </html>
+{% endblock %}
