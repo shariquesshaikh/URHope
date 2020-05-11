@@ -67,16 +67,11 @@ def serve():
     return server
 
 
-# def get_db():
-#     db = pymysql.connect(host=host, user=username, passwd=password,
-#                          db=db_name, charset='utf8mb4')
-#     return db
-
-
-def get_db(): #Sharique's DB Configuration
-    db = pymysql.connect(host='localhost', user='root', passwd='',
-                         db='covid', charset='utf8mb4')
+def get_db():
+    db = pymysql.connect(host=host, user=username, passwd=password,
+                         db=db_name, charset='utf8mb4')
     return db
+
 
 
 
