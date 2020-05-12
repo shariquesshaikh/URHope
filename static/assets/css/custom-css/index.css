@@ -142,25 +142,29 @@
 }
 
 .pincode-input-field {
-    font-size: small !important;
-    border-top-right-radius: 0px !important;
-    border-bottom-right-radius: 0px !important;
-    border-right: none !important;
-}
-
-.pincode-input-field {
+    font-size: medium !important;
+    border: none !important;
+    -webkit-box-shadow: 0 10px 35px rgba(0, 0, 0, .1) !important;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, .1) !important;
+    height: 60px !important;
+    width: calc(100% - 4rem) !important;
     outline: none !important;
-    border-color: #ced4da !important;
-    box-shadow: none !important;
+    text-align: center;
+    background-color: white !important;
 }
 
 .pincode-reset-btn {
-    background-color: transparent !important;
+    background-color: white !important;
     color: #495057 !important;
+    border-radius: 5px;
     border-top-left-radius: 0px !important;
     border-bottom-left-radius: 0px !important;
-    border-left: none !important;
+    border: none !important;
     border-color: #ced4da !important;
+    z-index: 10;
+    height: 60px;
+    -webkit-box-shadow: 0 10px 35px rgba(0, 0, 0, .1) !important;
+    box-shadow: 25px 10px 35px rgba(0, 0, 0, .1) !important;
 }
 
 .pincode-reset-btn:focus {
