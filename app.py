@@ -2,9 +2,7 @@
 
 # -*- coding: utf-8 -*-
 
-# __author__ = 'URHope Tech Team'
-
-# __Core_Developers__ = 'Zuhair, Jino, Sharique'
+#__copyright__ = 'URHope'
 
 from __future__ import print_function
 from flask import Flask, render_template, redirect, url_for, request, g
@@ -90,13 +88,19 @@ def get_db():
 def base():
     return render_template('home.html')
 
+
+
 @app.route('/relief/', methods=['GET'])
 def relief():
     return render_template('relief_pincode_page.html')
 
+
+
 @app.route('/relief_call/', methods=['GET'])
 def relief_call():
     return render_template('relief_call.html')
+
+
 
 @app.route('/signup/', methods=['GET', 'POST'])
 def signup():
@@ -135,10 +139,24 @@ def signup():
                         password,
                         ))
                     db.commit()
-                    # flash('Registered Successfully, Check your mail for confirmation!')
-                    flash('Registered Successfully.')
+
+                    flash('Registered Successfully, Check your mail for confirmation!')
+
+                    server = serve()
+                    subject = "Notification from URHope Team"
+                    body="Dear "+name+",\n\nYou have regisered successfully on our website.\n\nUsername: "+username+"\nPassword: "+password+"\nClick here to login.\nhttp://urhope.in/login/\n\nThanks for choosing us. Have a nice day :)\n\nRegards\nURHope Team"
+                    msg=f"Subject: {subject}\n\n{body} "
+                    server.sendmail(
+                                    'urhope.ngo@gmail.com',
+                                    str(username), #this might misbehave, typecast/antitype it.
+                                    msg
+                                    )
+
+                    server.quit()
+
                     c.close()
                     db.close()
+
                     return redirect(url_for('login'))
                 else:
                     flash('Passwords do not match!')
@@ -226,13 +244,17 @@ def team():
     return render_template('team.html')
 
 
+
 @app.route('/form')
 def form():
     return render_template('form.html')
 
+
+
 @app.route('/faq')
 def faq():
     return render_template('faq.html')
+
 
 
 @app.route('/home', methods=['GET', 'POST'])
@@ -895,6 +917,8 @@ def how_is_the_task(id):
 #         return render_template('home.html', data=data)
 #     return render_template('home.html',data={})
 
+
+
 @app.route('/find_relief/', methods=['GET'])
 def find_relief():
     pincode=request.args.get("pincode")
@@ -913,6 +937,8 @@ def find_relief():
             connect.close()
             return render_template('find_relief.html', data=data, pin=str(pincode))
     return render_template('find_relief.html',data={}, pin=str(pincode))
+
+
 
 @app.route('/initiatives/', methods=['GET'])
 def initiatives():
@@ -960,6 +986,8 @@ def initiatives():
             return render_template('list_of_initiatives.html', data=pdata, type=type, dropdown=list(set(dropdown)))
     return render_template('list_of_initiatives.html',data={}, type=type)
 
+
+
 # @app.route('/searchresult',methods=['GET','POST'])
 # def serch_result():
 #     if request.method=="POST":
@@ -988,13 +1016,14 @@ def initiatives():
 #                 return render_template('searched.html',l=0)
 
 
+
 @app.route('/relief_send', methods=['GET', 'POST'])
 def relief_send():
     if request.method=="POST" and 'name' in request.form and 'for_appl' in request.form and 'help_type' in request.form and 'govtID' in request.form and 'address' in request.form and 'phone' in request.form and 'pin' in request.form and 'msg' in request.form:
         name = request.form['name']
         for_appl = request.form['for_appl']
         h_type = request.form['help_type']
-        id = request.form['govtID']
+        govtID = request.form['govtID']
         address = request.form['address']
         phone = request.form['phone']
         pin = request.form['pin']
@@ -1010,8 +1039,8 @@ def relief_send():
         if len(account)>0:
             for i in account:
                 server=serve()
-                subject = "URHope: Hey "+i[0]+","+name+"needs some help from you."
-                body= "Hello,\n\nThis is a notification from URHope Team. We request you to look into matter as soon as possible and help this needy person.\n\n"+name+" needs help for "+h_type+" for "+for_appl+".\nContact No: "+phone+"\nAddress: "+address+"\nPincode: "+pin+"\nGovernment ID: "+govtID+"\n\n"+name+"has a message for you,\n"+msg+"\n\nRegards,\nURHope Team"
+                subject = "URHope: Hey "+i[0]+","+name+" needs some help from you."
+                body= "Hello,\n\nThis is a notification from URHope Team. We request you to look into matter as soon as possible and help this needy person.\n\n"+name+" needs help for "+h_type+" for "+for_appl+".\nContact No: "+phone+"\nAddress: "+address+"\nPincode: "+pin+"\nGovernment ID: "+govtID+"\n\n"+name+", has a message for you,\n"+msg+"\n\nRegards,\nURHope Team"
                 msg=f"Subject: {subject}\n\n{body} "
 
                 server.sendmail(
@@ -1024,8 +1053,8 @@ def relief_send():
             return redirect(url_for('relief_call'))
         else:
             server=serve()
-            subject = "URHope Messenger :,"+name+"needs some help from you."
-            body= "Hello,\n\nWe request you to look into matter as soon as possible and help this needy person.\n\n"+name+" needs help for "+h_type+" for "+for_appl+".\nContact No: "+phone+"\nAddress: "+address+"\nPincode: "+pin+"\nGovernment ID: "+govtID+"\n\n"+name+"has a message for you,\n"+msg+"\n\nRegards,\nURHope Messenger"
+            subject = "URHope Messenger : "+name+" needs some help from you."
+            body= "Hello,\n\nWe request you to look into matter as soon as possible and help this needy person.\n\n"+name+" needs help for "+h_type+" for "+for_appl+".\nContact No: "+phone+"\nAddress: "+address+"\nPincode: "+pin+"\nGovernment ID: "+govtID+"\n\nAlso, "+name+" has a message for you,\n"+msg+"\n\nRegards,\nURHope Messenger"
             msg=f"Subject: {subject}\n\n{body} "
 
             server.sendmail(
@@ -1093,3 +1122,9 @@ def internal_error(error):
 '''
 if __name__ == '__main__':
     app.run()  # host='0.0.0.0', port=5000
+
+
+
+
+
+
