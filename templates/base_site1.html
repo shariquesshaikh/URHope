@@ -134,13 +134,13 @@
         $('.link-modal-description').html(d['description']);
         var furtherinfo = "";
         if (d['eligibility']) {
-            furtherinfo += '<tr><th>Eligibility:<td class="align-middle"><p>'+d['eligibility']+'</p></td></tr>"'
+            furtherinfo += d['eligibility']+'(Eligibility),'
         }
         if (d['documents']) {
-            furtherinfo += '<tr><th>Documents:<td class="align-middle"><p>'+d['documents']+'</p></td></tr>"'
+            furtherinfo += d['documents']+'(Documents),'
         }
         if (d['duration']) {
-            furtherinfo += '<tr><th>Duration:<td class="align-middle"><p>'+d['duration']+'</p></td></tr>"'
+            furtherinfo += d['duration']+'(Duration),'
         }
         $('.link-modal-furtherinfo').html(furtherinfo);
         $('.link-modal-eligibility').html(d['eligibility']);
