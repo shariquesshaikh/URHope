@@ -132,6 +132,19 @@
     function updateModal(d) {
         $('.link-modal-title').html(d['title']);
         $('.link-modal-description').html(d['description']);
+        var furtherinfo = "";
+        if (d['eligibility']) {
+            furtherinfo += d['eligibility']+'(Eligibility), '
+        }
+        if (d['documents']) {
+            furtherinfo += d['documents']+'(Documents), '
+        }
+        if (d['duration']) {
+            furtherinfo += d['duration']+'(Duration), '
+        }
+        if (furtherinfo) {
+            $('.link-modal-furtherinfo').html(furtherinfo.substring(0, furtherinfo.length-2));
+        }
         $('.link-modal-eligibility').html(d['eligibility']);
         $('.link-modal-relevantinfo').html(d['relevantinfo']);
         $('.link-modal-documents').html(d['documents']);
