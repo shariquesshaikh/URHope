@@ -27,7 +27,6 @@ import random
 import smtplib
 import logging
 import re
-import pyodbc
 import pandas as pd
 
 app = Flask(__name__)
@@ -949,20 +948,24 @@ def initiatives():
         pincode = int(pincode)
         c = connect.cursor()
         counter = 0
+        data = []
         where = ""
         for i in [0,-1,+1,-2,+2,-3,+3,-4,+4]:
             where += "p.pin='"+str(pincode+i) + "' OR "
         query = "select distinct g.statename, g.districtname, title, description, helplinenumbers, link, eligibility, documents, duration, created_on, dropdown, g.id, g.sourcelink, g.relevantinfo from govtdata g join podata p on g.districtname = p.districtname where (" + where[:-4] +")" + " AND type='" + type + "'"
         c.execute(query)
         data = c.fetchall()
-        if not data:
-            query = "select distinct g.statename, g.districtname, title, description, helplinenumbers, link, eligibility, documents, duration, created_on, dropdown, g.id, g.sourcelink, g.relevantinfo from govtdata g join podata p on g.statename = p.statename where (" + where[:-4] +")" + " AND type='" + type + "'"
-            c.execute(query)
-            data = c.fetchall()
-        if data:
-            pdata={'data':[]}
-            dropdown = []
-            for d in data:
+        query = "select distinct g.statename, g.districtname, title, description, helplinenumbers, link, eligibility, documents, duration, created_on, dropdown, g.id, g.sourcelink, g.relevantinfo from govtdata g join podata p on g.statename = p.statename where (" + where[:-4] +")" + " AND type='" + type + "'"
+        c.execute(query)
+        state_data = c.fetchall()
+
+        full_data = data + state_data
+        pdata={'data':[]}
+        dropdown = set()
+        unique_title = set()
+        for count, d in enumerate(full_data):
+            if d and d[2] not in unique_title:
+                unique_title.add(d[2])
                 pdata['data'].append({ 
                     "statename": d[0], 
                     "districtname": d[1], 
@@ -979,13 +982,10 @@ def initiatives():
                     "sourcelink": d[12].replace("\n", "") if d[12] else "",
                     "relevantinfo": d[13]
                 })
-                dropdown.append(d[10])
-        if data:
-            c.close()
-            connect.close()
-            return render_template('list_of_initiatives.html', data=pdata, type=type, dropdown=list(set(dropdown)))
-    return render_template('list_of_initiatives.html',data={}, type=type)
-
+                dropdown.add(d[10])
+    c.close()
+    connect.close()
+    return render_template('list_of_initiatives.html', data=pdata, type=type, dropdown=list(dropdown))
 
 
 # @app.route('/searchresult',methods=['GET','POST'])
