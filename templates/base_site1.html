@@ -132,6 +132,17 @@
     function updateModal(d) {
         $('.link-modal-title').html(d['title']);
         $('.link-modal-description').html(d['description']);
+        var furtherinfo = "";
+        if (d['eligibility']) {
+            furtherinfo += '<tr><th>Eligibility:<td class="align-middle"><p>'+d['eligibility']+'</p></td></tr>"'
+        }
+        if (d['documents']) {
+            furtherinfo += '<tr><th>Documents:<td class="align-middle"><p>'+d['documents']+'</p></td></tr>"'
+        }
+        if (d['duration']) {
+            furtherinfo += '<tr><th>Duration:<td class="align-middle"><p>'+d['duration']+'</p></td></tr>"'
+        }
+        $('.link-modal-furtherinfo').html(furtherinfo);
         $('.link-modal-eligibility').html(d['eligibility']);
         $('.link-modal-relevantinfo').html(d['relevantinfo']);
         $('.link-modal-documents').html(d['documents']);
