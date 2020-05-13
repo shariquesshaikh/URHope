@@ -216,6 +216,28 @@
 
 }
 
+.navbar select {
+    background-color: transparent;
+    border: none;
+    font-weight: 500;
+    font-family: 'Poppins', sans-serif;
+    color: #555555;
+    padding: 8px 0px;
+}
+
+.navbar select:hover {
+    cursor: pointer;
+}
+
+.navbar select:focus {
+    outline: none;
+}
+
+.navbar.active select {
+    color: #555;
+    font-weight: 500;
+}
+
 .nav-link::before {
     display: block;
     content: attr(title);
@@ -233,6 +255,18 @@
     text-decoration: none;
     /*font-weight: 600;*/
     text-shadow: 0 0 .65px #333, 0 0 .65px #333;
+}
+
+.navbar .nav-link,
+.navbar .nav-item,
+.navbar select {
+    font-weight: 500;
+    color: #fff;
+    font-size: medium;
+}
+
+.lang {
+    color: black;
 }
 
 .navbar .navbar-brand {
@@ -272,6 +306,9 @@
     }
 
     .navbar .navbar-brand, .navbar .nav-link {
+        color: #555;
+    }
+    .navbar select{
         color: #555;
     }
 }
