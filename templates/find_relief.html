@@ -28,6 +28,11 @@
                                    aria-describedby="addon-wrapping">
                                 <button type="reset" style="background-color: white" class="btn btn-danger btn-sm pincode-reset-btn" value="Reset"><i
                                     class="fa fa-times-circle"></i></button>
+<script>
+                            $('.pincode-reset-btn').click(function () {
+                                $('#myInput').attr('value', '');
+                            })
+                        </script>
                         </div>
 </div>
                         <div class="col-12 mt-2 justify-content-center" style="text-align: center">
