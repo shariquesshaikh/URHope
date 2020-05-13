@@ -134,15 +134,17 @@
         $('.link-modal-description').html(d['description']);
         var furtherinfo = "";
         if (d['eligibility']) {
-            furtherinfo += d['eligibility']+'(Eligibility),'
+            furtherinfo += d['eligibility']+'(Eligibility), '
         }
         if (d['documents']) {
-            furtherinfo += d['documents']+'(Documents),'
+            furtherinfo += d['documents']+'(Documents), '
         }
         if (d['duration']) {
-            furtherinfo += d['duration']+'(Duration),'
+            furtherinfo += d['duration']+'(Duration), '
         }
-        $('.link-modal-furtherinfo').html(furtherinfo);
+        if (furtherinfo) {
+            $('.link-modal-furtherinfo').html(furtherinfo.substring(0, furtherinfo.length-2));
+        }
         $('.link-modal-eligibility').html(d['eligibility']);
         $('.link-modal-relevantinfo').html(d['relevantinfo']);
         $('.link-modal-documents').html(d['documents']);
