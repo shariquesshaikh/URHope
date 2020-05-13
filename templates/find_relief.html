@@ -17,19 +17,26 @@
                 </div>
                 -->
                 <form action="{{ url_for('find_relief') }}">
-                    <div class="row justify-content-center px-lg-5 px-md-1">
-                        <div class="input-group flex-nowrap">
+                    <div class="row justify-content-center px-lg-5 px-md-3">
+ <div class="line"></div>
+ <div class="col-12">                        <div class="input-group flex-nowrap">
                             <input style="" id="myInput" type="text" name="pincode"
-                                   class="form-control pincode-input-field"
-                                   placeholder="Enter your pincode, city or state"
+                                   class="form-control pincode-input-field mb-2"
+                                   placeholder="Enter your Pincode"
                                    value="{{pin}}"
                                    aria-label="Username"
                                    aria-describedby="addon-wrapping">
-                            <button type="reset" class="btn btn-danger btn-sm pincode-reset-btn" value="Reset"><i
+                                <button type="reset" style="background-color: white" class="btn btn-danger btn-sm pincode-reset-btn" value="Reset"><i
                                     class="fa fa-times-circle"></i></button>
+<script>
+                            $('.pincode-reset-btn').click(function () {
+                                $('#myInput').attr('value', '');
+                            })
+                        </script>
                         </div>
+</div>
                         <div class="col-12 mt-2 justify-content-center" style="text-align: center">
-                            <h6 id="loc"></h6></div>
+                            <p id="loc"></p></div>
                         <button type="submit" class="btn btn-primary mt-3">Change</button>
                     </div>
                 </form>
