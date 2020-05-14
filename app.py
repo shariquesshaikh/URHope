@@ -955,17 +955,16 @@ def initiatives():
         query = "select distinct g.statename, g.districtname, title, description, helplinenumbers, link, eligibility, documents, duration, created_on, dropdown, g.id, g.sourcelink, g.relevantinfo from govtdata g join podata p on g.districtname = p.districtname where (" + where[:-4] +")" + " AND type='" + type + "'"
         c.execute(query)
         data = c.fetchall()
-        query = "select distinct g.statename, g.districtname, title, description, helplinenumbers, link, eligibility, documents, duration, created_on, dropdown, g.id, g.sourcelink, g.relevantinfo from govtdata g join podata p on g.statename = p.statename where (" + where[:-4] +")" + " AND type='" + type + "'"
+
+        query = "select distinct g.statename, g.districtname, title, description, helplinenumbers, link, eligibility, documents, duration, created_on, dropdown, g.id, g.sourcelink, g.relevantinfo from govtdata g join podata p on g.statename = p.statename where (" + where[:-4] +")" + " AND type='" + type + "' AND g.districtname='ALL';"
         c.execute(query)
         state_data = c.fetchall()
 
         full_data = data + state_data
         pdata={'data':[]}
         dropdown = set()
-        unique_title = set()
         for count, d in enumerate(full_data):
-            if d and d[2] not in unique_title:
-                unique_title.add(d[2])
+            if d:
                 pdata['data'].append({ 
                     "statename": d[0], 
                     "districtname": d[1], 
