@@ -963,10 +963,8 @@ def initiatives():
         full_data = data + state_data
         pdata={'data':[]}
         dropdown = set()
-        unique_title = set()
         for count, d in enumerate(full_data):
-            if d and d[2] not in unique_title:
-                unique_title.add(d[2])
+            if d:
                 pdata['data'].append({ 
                     "statename": d[0], 
                     "districtname": d[1], 
