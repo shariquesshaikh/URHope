@@ -931,6 +931,10 @@ def find_relief():
             query = "select distinct p.statename, p.districtname, s.districthelpline, s.statehelpline, s.created_on from statewisehelplinenos s join podata p on s.statename = p.statename where pin='%s'" % pincode
             c.execute(query)
             data = c.fetchone()
+        if not data:
+            query = "select distinct statename from podata where pin='%s'" % pincode
+            c.execute(query)
+            data = c.fetchone()
         if data:
             c.close()
             connect.close()
@@ -982,7 +986,7 @@ def initiatives():
                     "relevantinfo": d[13]
                 })
                 dropdown.add(d[10])
-    c.close()
+        c.close()
     connect.close()
     return render_template('list_of_initiatives.html', data=pdata, type=type, dropdown=list(dropdown))
 
