@@ -87,7 +87,10 @@
                       {% if value[0] == false_id and download == 1 %}
                       <div class="">
                         <a href="{{ url_for('task_list') }}" download="{{ filename }}" class="btn btn-sm btn-success">Download Now</a>
-                        <a href="{{ url_for('task_list') }}" class="btn btn-sm btn-secondary">Go back</a>
+			<!-- <a href="{{ filename }}">press</a> -->
+                        <!-- <a href="{{ filename }}" download>Download Now</a> -->
+                        <!-- <a href="{{ filename }}" target="_blank">Download</a>-->
+                        <a href="{{ url_for('task_list') }}" class="btn btn-sm btn-secondary">Go back</a> 
                       </div>
                       {% else %}
                       <div class="">
