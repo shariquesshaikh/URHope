@@ -1,18 +1,16 @@
-{% extends "base_site_auth.html" %}
+{% extends "base_site1.html" %}
 
 {% block title %} Login {% endblock title %}
 
 {% block content %}
 
 <!-- Page content -->
-<div class="container mt--8 pb-5">
-  <div class="row justify-content-center">
-    <div class="col-lg-5 col-md-7">
-      <div class="card bg-secondary shadow border-0">
-        <div class="card-header bg-transparent pb-5">
-
-          <div class="text-muted text-center mt-2 mb-3">
-            <h1 class="text-center">Login</h1>
+<div class="container mt-0">
+    <div class="row justify-content-center">
+        <div class="col-lg-5 col-12">
+            <div class="card-custom mt-2 mt-lg-0 help-card">
+          <div class=" text-center mt-2 mb-3">
+                    <h3 class="font-weight-bold my-3" style="text-align: center">Login</h3>
             {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
             {% if (message.startswith("Thanks")) %}
             <div class="alert alert-success alert-dismissible" role="alert">
@@ -31,43 +29,34 @@
             {% endfor %} {% endif %} {% endwith %}
 
           </div>
+          {% if not 'logged_in' in session %}
+                <form role="form" method="post" action="">
+                    <div class="input-group mb-3 px-lg-3">
 
-        </div>
-        <div class="card-body px-lg-5 py-lg-5">
+                        <input type="email" class="form-control" name="username" placeholder="Email" aria-label="Username"
+                               aria-describedby="basic-addon1" required>
+                    </div>
+                    <div class="input-group mb-3 px-lg-3">
 
-          <form role="form" method="post" action="">
-
-
-            <div class="form-group mb-3">
-              <div class="input-group input-group-alternative">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="ni ni-single-02"></i></span>
-                </div>
-                <input type="email" class="form-control" placeholder="Email" name="username" required>
-              </div>
+                        <input type="password" name="password" class="form-control" placeholder="Password" aria-label="Username"
+                               aria-describedby="basic-addon1" required>
+                    </div>
+                    <div style="text-align: center" class=" mb-3 px-lg-3">
+                        <button class="btn btn-outline-primary" type="submit" style="width: 100%">Login</button>
+                    </div>
+                    <div style="text-align: center" class=" mb-3 px-lg-3 ">
+                        <a href="{{ url_for('login') }}" class><p>Forgot Password?</p></a>
+                    </div>
+                    <div style="text-align: center" class=" mb-3 px-lg-3 ">
+                        <p>Don't have an account? <a href="{{ url_for('signup') }}">Register</a></p>
+                    </div>
+                </form>
+{% else %}
+<p>You are Already Logged In<a href="{{ url_for('logout') }}"> Please Logout</a></p>
+{% endif %}
             </div>
-            <div class="form-group">
-              <div class="input-group input-group-alternative">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
-                </div>
-                <input type="password" class="form-control" placeholder="Password" name="password" required>
-              </div>
-            </div>
-
-            <div class="text-center">
-              <button type="submit" name="login" class="btn btn-primary my-4">Sign in</button>
-            </div>
-          </form>
         </div>
-      </div>
-      <div class="row mt-3 text-center">
-        <div class="col-12">
-          <a href={{ url_for('signup') }} class="text-light"><small>Create new account</small></a>
-        </div>
-      </div>
     </div>
-  </div>
 </div>
 
 {% endblock content %}

@@ -178,6 +178,25 @@
     box-shadow: none !important;
 }
 
+.pincode-submit-btn {
+    background-color: white !important;
+    color: #495057 !important;
+    border-radius: 5px;
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+    border: none !important;
+    border-color: #ced4da !important;
+    z-index: 10;
+    height: 60px;
+    -webkit-box-shadow: 0 10px 35px rgba(0, 0, 0, .1) !important;
+    box-shadow: -25px 10px 25px rgba(0, 0, 0, .1) !important;
+}
+
+.pincode-submit-btn:focus {
+    outline: none;
+    box-shadow: none !important;
+}
+
 /* PINCODE SEARCH ENDS */
 
 
