@@ -113,7 +113,16 @@ def signup():
         pincode = request.form['pincode']
         phone = request.form['phone']
         role = request.form['role']
-        # address = request.form['address']
+        age = request.form['age']
+        currProfile = request.form['currProfile']
+        gender = request.form['gender']
+        regno = request.form['regno']
+        branch = request.form['branch']
+        website = request.form['website']
+        social = request.form['social']
+        about = request.form['about']
+        govtID = request.form['govtID']
+        address = request.form['address']
         services = request.form['services']
         try:
             db = get_db()
@@ -127,7 +136,7 @@ def signup():
             else:
 
                 if password == confirmpassword:
-                    c.execute('insert into members (name, username, phone, pin, role, services, password ) values (%s, %s, %s, %s, %s, %s, md5(%s))'
+                    c.execute('insert into members (name, username, phone, pin, role, services, rego, branch, sex, age, currProfile, website, social, govtID, address, about, password ) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, md5(%s))'
                               , (
                         name,
                         username,
@@ -135,6 +144,16 @@ def signup():
                         pincode,
                         role,
                         services,
+                        regno,
+                        branch,
+                        gender,
+                        age,
+                        currProfile,
+                        website,
+                        social,
+                        govtID,
+                        address,
+                        about,
                         password,
                         ))
                     db.commit()
