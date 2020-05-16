@@ -9,7 +9,7 @@ db = pymysql.connect(host='localhost', user='root', passwd='',
                          db='covid', charset='utf8mb4')
 cur = db.cursor()
 
-for file in ["UT_helplinesC.csv", "District_and_State_helplines_P1C.csv"]:
+for file in ["UT_helplinesC.csv", "All_except_UT_helplinesC.csv"]:
     with open("./Helplines/"+file) as f:
         for c,i in enumerate(f.readlines()):
             if not c:
