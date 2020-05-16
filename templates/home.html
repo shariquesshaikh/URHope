@@ -16,6 +16,7 @@
                 </div>
             </div>
         </div>
+{% if not 'logged_in' in session %}
         <div class="col-lg-3 col-md-4 col-sm-6 col-6">
             <div class="options" onclick="location.href='/signup';" style="cursor: pointer">
                 <div>
@@ -26,6 +27,30 @@
                 </div>
             </div>
         </div>
+{% elif session['role'] == 'v' %}
+        <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+            <div class="options" onclick="location.href='/task_list';" style="cursor: pointer">
+                <div>
+                    <img src="../static/assets2/img/Volunteer.jpeg" class="options-img"/>
+                </div>
+                <div class="options-title p-2"><i style="font-size: xx-large" class="fa fa-user" aria-hidden="true"></i><br>
+                    Do you want to <br>volunteer?
+                </div>
+            </div>
+        </div>
+{% else %}
+        <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+            <div class="options" onclick="alert('Login as a Volunteer')" style="cursor: pointer">
+                <div>
+                    <img src="../static/assets2/img/Volunteer.jpeg" class="options-img"/>
+                </div>
+                <div class="options-title p-2"><i style="font-size: xx-large" class="fa fa-user" aria-hidden="true"></i><br>
+                    Do you want to <br>volunteer?
+                </div>
+            </div>
+        </div>
+{% endif %}
+{% if not 'logged_in' in session %}
         <div class="col-lg-3 col-md-4 col-sm-6 col-6">
             <div class="options" onclick="location.href='/login';" style="cursor: pointer">
                 <div>
@@ -37,6 +62,32 @@
                 </div>
             </div>
         </div>
+{% elif session['role'] == 'n' %}
+        <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+            <div class="options" onclick="location.href='/create-task';" style="cursor: pointer">
+                <div>
+                    <img src="../static/assets2/img/Find_volunteers.jpeg" class="options-img"/>
+                </div>
+                <div class="options-title p-2"><i style="font-size: xx-large" class="fa fa-search"
+                                                  aria-hidden="true"></i><br>
+                    Find Volunteers
+                </div>
+            </div>
+        </div>
+{% else %}
+        <div class="col-lg-3 col-md-4 col-sm-6 col-6">
+            <div class="options" onclick="alert('Login as a Relief Provider')" style="cursor: pointer">
+                <div>
+                    <img src="../static/assets2/img/Find_volunteers.jpeg" class="options-img"/>
+                </div>
+                <div class="options-title p-2"><i style="font-size: xx-large" class="fa fa-search"
+                                                  aria-hidden="true"></i><br>
+                    Find Volunteers
+                </div>
+            </div>
+        </div>
+{% endif %}
+{% if not 'logged_in' in session %}
         <div class="col-lg-3 col-md-4 col-sm-6 col-6">
             <div class="options" onclick="location.href='/signup';" style="cursor: pointer">
                 <div>
@@ -44,10 +95,12 @@
                 </div>
                 <div class="options-title p-2"><i style="font-size: xx-large" class="fa fa-handshake-o"
                                                   aria-hidden="true"></i><br>
-                    Are you an NGO?
+                    Are you an NGO/
+                    Relief Provider?
                 </div>
             </div>
         </div>
+{% endif %}
     </div>
 </div>
 

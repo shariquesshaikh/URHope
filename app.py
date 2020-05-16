@@ -31,6 +31,7 @@ import pyodbc
 import pandas as pd
 import openpyxl
 
+
 app = Flask(__name__)
 sslify = SSLify(app)
 
@@ -104,12 +105,11 @@ def relief_call():
 
 
 @app.route('/signup/', methods=['GET', 'POST'])
-def signup():   
+def signup():
     if request.method == 'POST':
-        if  'username' in request.form \
-            and 'services' in request.form and 'password' in request.form and 'role' in request.form \
+        if 'username' in request.form \
+            and 'password' in request.form and 'role' in request.form \
             and 'confirm' in request.form:
-
             name = request.form['name']
             username = request.form['username']
             password = request.form['password']
@@ -117,13 +117,22 @@ def signup():
             pincode = request.form['pincode']
             phone = request.form['phone']
             role = request.form['role']
-            # address = request.form['address']
+            age = request.form['age']
+            currProfile = request.form['currProfile']
+            gender = request.form['gender']
+            regno = request.form['regno']
+            branch = request.form['branch']
+            website = request.form['website']
+            social = request.form['social']
+            about = request.form['about']
+            govtID = request.form['govtID']
+            address = request.form['address']
             services = request.form['services']
             try:
                 db = get_db()
                 c = db.cursor()
                 c.execute('select username from members where username = %s'
-                        , username)
+                          , username)
                 account = c.fetchone()
 
                 if account:
@@ -131,14 +140,24 @@ def signup():
                 else:
 
                     if password == confirmpassword:
-                        c.execute('insert into members (name, username, phone, pin, role, services, password ) values (%s, %s, %s, %s, %s, %s, md5(%s))'
-                                , (
+                        c.execute('insert into members (name, username, phone, pin, role, services, rego, branch, sex, age, currProfile, website, social, govtID, address, about, password ) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, md5(%s))'
+                                  , (
                             name,
                             username,
                             phone,
                             pincode,
                             role,
                             services,
+                            regno,
+                            branch,
+                            gender,
+                            age,
+                            currProfile,
+                            website,
+                            social,
+                            govtID,
+                            address,
+                            about,
                             password,
                             ))
                         db.commit()
@@ -161,12 +180,13 @@ def signup():
                         db.close()
 
                         return redirect(url_for('login'))
+
                     else:
-                        flash('Passwords do not match!')
+                         flash('Passwords do not match!')
             except Exception as e:
                 print(e)
-            flash("An error occured. Please try again.")
-            return render_template('register.html')
+                flash("An error occured. Please try again.")
+                return render_template('register.html')
         else:
             flash("Please enter all the details.")
             return render_template('register.html')
