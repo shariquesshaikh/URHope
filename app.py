@@ -27,7 +27,9 @@ import random
 import smtplib
 import logging
 import re
+import pyodbc
 import pandas as pd
+import openpyxl
 
 app = Flask(__name__)
 sslify = SSLify(app)
@@ -102,66 +104,72 @@ def relief_call():
 
 
 @app.route('/signup/', methods=['GET', 'POST'])
-def signup():
-    if request.method == 'POST' and 'username' in request.form \
-        and 'password' in request.form and 'role' in request.form \
-        and 'confirm' in request.form:
-        name = request.form['name']
-        username = request.form['username']
-        password = request.form['password']
-        confirmpassword = request.form['confirm']
-        pincode = request.form['pincode']
-        phone = request.form['phone']
-        role = request.form['role']
-        # address = request.form['address']
-        services = request.form['services']
-        try:
-            db = get_db()
-            c = db.cursor()
-            c.execute('select username from members where username = %s'
-                      , username)
-            account = c.fetchone()
+def signup():   
+    if request.method == 'POST':
+        if  'username' in request.form \
+            and 'services' in request.form and 'password' in request.form and 'role' in request.form \
+            and 'confirm' in request.form:
 
-            if account:
-                flash('Email already exists please try again with another email!')
-            else:
+            name = request.form['name']
+            username = request.form['username']
+            password = request.form['password']
+            confirmpassword = request.form['confirm']
+            pincode = request.form['pincode']
+            phone = request.form['phone']
+            role = request.form['role']
+            # address = request.form['address']
+            services = request.form['services']
+            try:
+                db = get_db()
+                c = db.cursor()
+                c.execute('select username from members where username = %s'
+                        , username)
+                account = c.fetchone()
 
-                if password == confirmpassword:
-                    c.execute('insert into members (name, username, phone, pin, role, services, password ) values (%s, %s, %s, %s, %s, %s, md5(%s))'
-                              , (
-                        name,
-                        username,
-                        phone,
-                        pincode,
-                        role,
-                        services,
-                        password,
-                        ))
-                    db.commit()
-
-                    flash('Registered Successfully, Check your mail for confirmation!')
-
-                    server = serve()
-                    subject = "Notification from URHope Team"
-                    body="Dear "+name+",\n\nYou have regisered successfully on our website.\n\nUsername: "+username+"\nPassword: "+password+"\nClick here to login.\nhttp://urhope.in/login/\n\nThanks for choosing us. Have a nice day :)\n\nRegards\nURHope Team"
-                    msg=f"Subject: {subject}\n\n{body} "
-                    server.sendmail(
-                                    'urhope.ngo@gmail.com',
-                                    str(username), #this might misbehave, typecast/antitype it.
-                                    msg
-                                    )
-
-                    server.quit()
-
-                    c.close()
-                    db.close()
-
-                    return redirect(url_for('login'))
+                if account:
+                    flash('Email already exists please try again with another email!')
                 else:
-                    flash('Passwords do not match!')
-        except Exception as e:
-            print(e)
-        return render_template('register.html')
+
+                    if password == confirmpassword:
+                        c.execute('insert into members (name, username, phone, pin, role, services, password ) values (%s, %s, %s, %s, %s, %s, md5(%s))'
+                                , (
+                            name,
+                            username,
+                            phone,
+                            pincode,
+                            role,
+                            services,
+                            password,
+                            ))
+                        db.commit()
+
+                        flash('Registered Successfully, Check your mail for confirmation!')
+
+                        server = serve()
+                        subject = "Notification from URHope Team"
+                        body="Dear "+name+",\n\nYou have regisered successfully on our website.\n\nUsername: "+username+"\nPassword: "+password+"\nClick here to login.\nhttp://urhope.in/login/\n\nThanks for choosing us. Have a nice day :)\n\nRegards\nURHope Team"
+                        msg=f"Subject: {subject}\n\n{body} "
+                        server.sendmail(
+                                        'urhope.ngo@gmail.com',
+                                        str(username), #this might misbehave, typecast/antitype it.
+                                        msg
+                                        )
+
+                        server.quit()
+
+                        c.close()
+                        db.close()
+
+                        return redirect(url_for('login'))
+                    else:
+                        flash('Passwords do not match!')
+            except Exception as e:
+                print(e)
+            flash("An error occured. Please try again.")
+            return render_template('register.html')
+        else:
+            flash("Please enter all the details.")
+            return render_template('register.html')
     else:
         return render_template('register.html')
 
@@ -330,7 +338,6 @@ def del_ngo(id):
         return redirect(url_for('logout'))
     db = get_db()
     c = db.cursor()
-    role="n"
 
     c.execute('SELECT username FROM members WHERE id = %s', id)
     data = c.fetchone()
@@ -404,19 +411,27 @@ def download_data(id):
     cursor = connect.cursor()
     cursor.execute("SELECT * FROM application WHERE task_id=%s",id)
     data = cursor.fetchall()
-    id=data[0][3]
+    
 
     if(len(data)>0):
-        naming = data[0][7]
+        id=data[0][3]
+        # naming = data[0][7]
         grp_name = data[0][5]
 
         cursor.execute("SELECT vol_name,vol_email,vol_phone FROM application WHERE task_id=%s",id)
-        
-        columns = ['Volunteer Name', 'Volunteer Email','Volunteer Contact No']
         data = cursor.fetchall()
+
+        columns = ['Volunteer Name', 'Volunteer Email','Volunteer Contact No']
         df = pd.DataFrame(list(data), columns=columns)
         
-        filename = naming+"_Volunteers.xlsx"
+        # filename = str(id)+"_Volunteers.xlsx"
+        filename = "volunteer.xlsx"
+        try:
+            os.remove(filename)
+        except OSError:
+            pass
+        
+        # writer = pd.ExcelWriter(filename,engine = "openpyxl"
         writer = pd.ExcelWriter(filename)
         df.to_excel(writer, sheet_name='Task Volunteer')
         
@@ -524,10 +539,13 @@ def update_pro(uname):
                         about,
                         username,
                         ))
-                    connect.commit()
 
+                    exe.execute("UPDATE application SET vol_name=%s, vol_phone=%s WHERE vol_email=%s",(name,phone,username))
+                    
+                    connect.commit()
                     exe.close()
                     connect.close()
+                    flash('Profile was updated successfully.')
                     return redirect(url_for('logout'))
                 else:
                     flash('Profile was not updated')
@@ -568,11 +586,15 @@ def update_pro(uname):
                         about,
                         username,
                         ))
+                    
+                    exe.execute("UPDATE task SET grp=%s, website = %s, phone=%s, abt_grp=%s, location=%s WHERE grp_email=%s",(name,website,phone,about,pin,username))
+                    exe.execute("UPDATE application SET grp_name=%s WHERE grp_email=%s",(name,username))
+                    
                     connect.commit()
-
                     exe.close()
                     connect.close()
 
+                    flash('Profile was updated successfully.')
                     return redirect(url_for('logout'))
                 else:
                     flash('Profile was not updated')
@@ -660,6 +682,9 @@ def edit_task(id):
                 id,
 
                 ))
+
+            exe.execute('UPDATE application SET task_name=%s WHERE task_id = %s',(task,id))
+
             connect.commit()
             exe.close()
             connect.close()
