@@ -18,6 +18,25 @@
                     <li class="nav-item"><a href="/#about" class="nav-link  ">About Us</a></li>
                     <li class="nav-item"><a href="{{ url_for('team') }}" class="nav-link  ">Team</a></li>
                     <li class="nav-item"><a href="/#contact" class="nav-link  ">Contact Us</a></li>
+
+<li class="nav-item dropdown">
+                        <select onchange="doGTranslate(this);">
+                            <option class="lang" value="en|en">English</option>
+                            <option class="lang" value="en|ar">Arabic</option>
+                            <option class="lang" value="en|hi">Hindi</option>
+                            <option class="lang" value="en|fa">Persian</option>
+                            <option class="lang" value="en|ur">Urdu</option>
+                            <option class="lang" value="en|bn">Bengali</option>
+                            <option class="lang" value="en|gu">Gujarati</option>
+                            <option class="lang" value="en|kn">Kannada</option>
+                            <option class="lang" value="en|mr">Marathi</option>
+                            <option class="lang" value="en|ne">Nepali</option>
+                            <option class="lang" value="en|pa">Punjabi</option>
+                            <option class="lang" value="en|ta">Tamil</option>
+                            <option class="lang" value="en|te">Telugu</option>
+                        </select>
+                    </li>
+                    
                     {% if not 'logged_in' in session %}
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ url_for('signup') }}"><button
@@ -44,7 +63,7 @@
                             <a class="dropdown-item" href="{{ url_for('profile', id=session['user_id']) }}">Profile</a>
                             <a class="dropdown-item" href="{{ url_for('task_list') }}">Tasks</a>
                             <a class="dropdown-item" href="{{ url_for('logout') }}"><button
-                                    class="btn btn-sm btn-outline-danger">Logout</button></a>
+                                    class="btn btn-sm btn-outline-danger"><i class='ni ni-user-run' style='color:red'></i>   Logout</button></a>
                             {% endif %}
                             {% endif %}
                         </div>
@@ -62,6 +81,79 @@
     </div>
 </header>
 
+<style type="text/css">
+    <!--
+    a.gflag {
+        vertical-align: middle;
+        font-size: 16px;
+        padding: 1px 0;
+        background-repeat: no-repeat;
+        background-image: url(//gtranslate.net/flags/16.png);
+    }
+
+    a.gflag img {
+        border: 0;
+    }
+
+    a.gflag:hover {
+        background-image: url(//gtranslate.net/flags/16a.png);
+    }
+
+    #goog-gt-tt {
+        display: none !important;
+    }
+
+    .goog-te-banner-frame {
+        display: none !important;
+    }
+
+    .goog-te-menu-value:hover {
+        text-decoration: none !important;
+    }
+
+    body {
+        top: 0 !important;
+    }
+
+    #google_translate_element2 {
+        display: none !important;
+    }
+
+    -->
+</style>
+
+<div id="google_translate_element2"></div>
+<script type="text/javascript">
+    function googleTranslateElementInit2() {
+        new google.translate.TranslateElement({pageLanguage: 'en', autoDisplay: false}, 'google_translate_element2');
+    }
+</script>
+<script type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit2"></script>
+
+
+<script type="text/javascript">
+    /* <![CDATA[ */
+    eval(function (p, a, c, k, e, r) {
+        e = function (c) {
+            return (c < a ? '' : e(parseInt(c / a))) + ((c = c % a) > 35 ? String.fromCharCode(c + 29) : c.toString(36))
+        };
+        if (!''.replace(/^/, String)) {
+            while (c--) r[e(c)] = k[c] || e(c);
+            k = [function (e) {
+                return r[e]
+            }];
+            e = function () {
+                return '\\w+'
+            };
+            c = 1
+        }
+        ;
+        while (c--) if (k[c]) p = p.replace(new RegExp('\\b' + e(c) + '\\b', 'g'), k[c]);
+        return p
+    }('6 7(a,b){n{4(2.9){3 c=2.9("o");c.p(b,f,f);a.q(c)}g{3 c=2.r();a.s(\'t\'+b,c)}}u(e){}}6 h(a){4(a.8)a=a.8;4(a==\'\')v;3 b=a.w(\'|\')[1];3 c;3 d=2.x(\'y\');z(3 i=0;i<d.5;i++)4(d[i].A==\'B-C-D\')c=d[i];4(2.j(\'k\')==E||2.j(\'k\').l.5==0||c.5==0||c.l.5==0){F(6(){h(a)},G)}g{c.8=b;7(c,\'m\');7(c,\'m\')}}', 43, 43, '||document|var|if|length|function|GTranslateFireEvent|value|createEvent||||||true|else|doGTranslate||getElementById|google_translate_element2|innerHTML|change|try|HTMLEvents|initEvent|dispatchEvent|createEventObject|fireEvent|on|catch|return|split|getElementsByTagName|select|for|className|goog|te|combo|null|setTimeout|500'.split('|'), 0, {}))
+    /* ]]> */
+</script>
 
 <script>
 

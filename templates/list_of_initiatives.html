@@ -7,7 +7,7 @@
         <div class="col mt-lg-0">
             <div class="card-custom p-lg-5 step3-table-div">
                 <div class="step3-title row justify-content-between align-items-center mb-4">
-                    <h4 class="mb-0 col-6 font-weight-bold">{{type}}</h4>
+                    <h4 style="font-size:medium;" class="mb-0 col-6 font-weight-bold">{{type}}</h4>
                     <div class="search-filter col-6">
                         <div class="row justify-content-end align-items-center">
 
@@ -34,18 +34,12 @@
                 <div class="row mt-2">
                     <nav class="step3-table-nav">
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home"
+                            <a class="nav-item nav-link active" style="font-size:medium;" id="nav-home-tab" data-toggle="tab" href="#nav-home"
                                role="tab"
                                aria-controls="nav-home" aria-selected="true">Govt.</a>
-                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
+                            <a class="nav-item nav-link" style="font-size:medium;" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
                                role="tab"
-                               aria-controls="nav-profile" aria-selected="false">NGO</a>
-                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact"
-                               role="tab"
-                               aria-controls="nav-contact" aria-selected="false">Community</a>
-                            <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact"
-                               role="tab"
-                               aria-controls="nav-contact" aria-selected="false">Individual</a>
+                               aria-controls="nav-profile" aria-selected="false">Others</a>
                         </div>
                     </nav>
                     <div class="tab-content" id="nav-tabContent" style="width: 100%">
@@ -92,7 +86,7 @@
                                                     {% endfor %}
                                                 </div>
                                             </td>
-                                            <td><a href="{{v.links}}">View</a></td>
+                                            <td><a target="_blank" href="{{v.links}}">View</a></td>
                                             <td class="align-middle" hidden>
                                                 {{v.dropdown}}
                                             </td>
@@ -142,10 +136,16 @@
                             </div>
                         </td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <th class="align-middle font-weight-bold">Eligibility</th>
                         <td class="align-middle">
                             <p class="m-0 link-modal-eligibility">None</p>
+                        </td>
+                    </tr> -->
+                    <tr>
+                        <th class="align-middle font-weight-bold">Further Details</th>
+                        <td class="align-middle">
+                            <p class="m-0 link-modal-furtherinfo">None</p>
                         </td>
                     </tr>
                     <tr>
@@ -154,7 +154,7 @@
                             <p class="m-0 link-modal-relevantinfo">None</p>
                         </td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <th class="align-middle font-weight-bold">Documents</th>
                         <td class="align-middle">
                             <p class="m-0 link-modal-documents">None Required</p>
@@ -165,7 +165,7 @@
                         <td class="align-middle">
                             <p class="m-0 link-modal-duration">6 Months</p>
                         </td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <th class="align-middle font-weight-bold">Source</th>
                         <td class="align-middle">

@@ -2,7 +2,7 @@
 
 # -*- coding: utf-8 -*-
 
-# __author__ = 'URHope Tech Team'
+#__copyright__ = 'URHope'
 
 from __future__ import print_function
 from flask import Flask, render_template, redirect, url_for, request, g
@@ -29,6 +29,7 @@ import logging
 import re
 import pyodbc
 import pandas as pd
+import openpyxl
 
 app = Flask(__name__)
 sslify = SSLify(app)
@@ -73,11 +74,6 @@ def get_db():
     return db
 
 
-# def get_db(): #Sharique's DB Configuration
-#     db = pymysql.connect(host='localhost', user='root', passwd='',
-#                          db='covid', charset='utf8mb4')
-#     return db
-
 
 
 
@@ -108,65 +104,72 @@ def relief_call():
 
 
 @app.route('/signup/', methods=['GET', 'POST'])
-def signup():
-    if request.method == 'POST' and 'username' in request.form \
-        and 'password' in request.form and 'role' in request.form \
-        and 'confirm' in request.form:
-        name = request.form['name']
-        username = request.form['username']
-        password = request.form['password']
-        confirmpassword = request.form['confirm']
-        pincode = request.form['pincode']
-        phone = request.form['phone']
-        role = request.form['role']
-        # address = request.form['address']
-        services = request.form['services']
-        try:
-            db = get_db()
-            c = db.cursor()
-            c.execute('select username from members where username = %s'
-                      , username)
-            account = c.fetchone()
+def signup():   
+    if request.method == 'POST':
+        if  'username' in request.form \
+            and 'services' in request.form and 'password' in request.form and 'role' in request.form \
+            and 'confirm' in request.form:
 
-            if account:
-                flash('Email already exists please try again with another email!')
-            else:
+            name = request.form['name']
+            username = request.form['username']
+            password = request.form['password']
+            confirmpassword = request.form['confirm']
+            pincode = request.form['pincode']
+            phone = request.form['phone']
+            role = request.form['role']
+            # address = request.form['address']
+            services = request.form['services']
+            try:
+                db = get_db()
+                c = db.cursor()
+                c.execute('select username from members where username = %s'
+                        , username)
+                account = c.fetchone()
 
-                if password == confirmpassword:
-                    c.execute('insert into members (name, username, phone, pin, role, services, password ) values (%s, %s, %s, %s, %s, %s, md5(%s))'
-                              , (
-                        name,
-                        username,
-                        phone,
-                        pincode,
-                        role,
-                        services,
-                        password,
-                        ))
-                    db.commit()
-                    c.close()
-                    db.close()
-
-                    flash('Registered Successfully, Check your mail for confirmation!')
-
-                    server = serve()
-                    subject = "Notification from URHope Team"
-                    body="Dear "+name+",\n\nYou have regisered successfully on our website.\n\nUsername: "+username+"\nPassword: "+password+"\nClick here to login.\nhttp://urhope.in/login/\n\nThanks for choosing us. Have a nice day :)\n\nRegards\nURHope Team"
-                    msg=f"Subject: {subject}\n\n{body} "
-                    server.sendmail(
-                                    'urhope.ngo@gmail.com',
-                                    str(username), #this might misbehave, typecast/antitype it.
-                                    msg
-                                    )
-
-                    server.quit()
-
-                    return redirect(url_for('login'))
+                if account:
+                    flash('Email already exists please try again with another email!')
                 else:
-                    flash('Passwords do not match!')
-        except Exception as e:
-            print(e)
-        return render_template('register.html')
+
+                    if password == confirmpassword:
+                        c.execute('insert into members (name, username, phone, pin, role, services, password ) values (%s, %s, %s, %s, %s, %s, md5(%s))'
+                                , (
+                            name,
+                            username,
+                            phone,
+                            pincode,
+                            role,
+                            services,
+                            password,
+                            ))
+                        db.commit()
+
+                        flash('Registered Successfully, Check your mail for confirmation!')
+
+                        server = serve()
+                        subject = "Notification from URHope Team"
+                        body="Dear "+name+",\n\nYou have regisered successfully on our website.\n\nUsername: "+username+"\nPassword: "+password+"\nClick here to login.\nhttp://urhope.in/login/\n\nThanks for choosing us. Have a nice day :)\n\nRegards\nURHope Team"
+                        msg=f"Subject: {subject}\n\n{body} "
+                        server.sendmail(
+                                        'urhope.ngo@gmail.com',
+                                        str(username), #this might misbehave, typecast/antitype it.
+                                        msg
+                                        )
+
+                        server.quit()
+
+                        c.close()
+                        db.close()
+
+                        return redirect(url_for('login'))
+                    else:
+                        flash('Passwords do not match!')
+            except Exception as e:
+                print(e)
+            flash("An error occured. Please try again.")
+            return render_template('register.html')
+        else:
+            flash("Please enter all the details.")
+            return render_template('register.html')
     else:
         return render_template('register.html')
 
@@ -335,7 +338,6 @@ def del_ngo(id):
         return redirect(url_for('logout'))
     db = get_db()
     c = db.cursor()
-    role="n"
 
     c.execute('SELECT username FROM members WHERE id = %s', id)
     data = c.fetchone()
@@ -409,19 +411,27 @@ def download_data(id):
     cursor = connect.cursor()
     cursor.execute("SELECT * FROM application WHERE task_id=%s",id)
     data = cursor.fetchall()
-    id=data[0][3]
+    
 
     if(len(data)>0):
-        naming = data[0][7]
+        id=data[0][3]
+        # naming = data[0][7]
         grp_name = data[0][5]
 
         cursor.execute("SELECT vol_name,vol_email,vol_phone FROM application WHERE task_id=%s",id)
-        
-        columns = ['Volunteer Name', 'Volunteer Email','Volunteer Contact No']
         data = cursor.fetchall()
+
+        columns = ['Volunteer Name', 'Volunteer Email','Volunteer Contact No']
         df = pd.DataFrame(list(data), columns=columns)
         
-        filename = naming+"_Volunteers.xlsx"
+        # filename = str(id)+"_Volunteers.xlsx"
+        filename = "volunteer.xlsx"
+        try:
+            os.remove(filename)
+        except OSError:
+            pass
+        
+        # writer = pd.ExcelWriter(filename,engine = "openpyxl"
         writer = pd.ExcelWriter(filename)
         df.to_excel(writer, sheet_name='Task Volunteer')
         
@@ -529,10 +539,13 @@ def update_pro(uname):
                         about,
                         username,
                         ))
-                    connect.commit()
 
+                    exe.execute("UPDATE application SET vol_name=%s, vol_phone=%s WHERE vol_email=%s",(name,phone,username))
+                    
+                    connect.commit()
                     exe.close()
                     connect.close()
+                    flash('Profile was updated successfully.')
                     return redirect(url_for('logout'))
                 else:
                     flash('Profile was not updated')
@@ -573,11 +586,15 @@ def update_pro(uname):
                         about,
                         username,
                         ))
+                    
+                    exe.execute("UPDATE task SET grp=%s, website = %s, phone=%s, abt_grp=%s, location=%s WHERE grp_email=%s",(name,website,phone,about,pin,username))
+                    exe.execute("UPDATE application SET grp_name=%s WHERE grp_email=%s",(name,username))
+                    
                     connect.commit()
-
                     exe.close()
                     connect.close()
 
+                    flash('Profile was updated successfully.')
                     return redirect(url_for('logout'))
                 else:
                     flash('Profile was not updated')
@@ -665,6 +682,9 @@ def edit_task(id):
                 id,
 
                 ))
+
+            exe.execute('UPDATE application SET task_name=%s WHERE task_id = %s',(task,id))
+
             connect.commit()
             exe.close()
             connect.close()
@@ -936,6 +956,10 @@ def find_relief():
             query = "select distinct p.statename, p.districtname, s.districthelpline, s.statehelpline, s.created_on from statewisehelplinenos s join podata p on s.statename = p.statename where pin='%s'" % pincode
             c.execute(query)
             data = c.fetchone()
+        if not data:
+            query = "select distinct statename from podata where pin='%s'" % pincode
+            c.execute(query)
+            data = c.fetchone()
         if data:
             c.close()
             connect.close()
@@ -953,20 +977,23 @@ def initiatives():
         pincode = int(pincode)
         c = connect.cursor()
         counter = 0
+        data = []
         where = ""
         for i in [0,-1,+1,-2,+2,-3,+3,-4,+4]:
             where += "p.pin='"+str(pincode+i) + "' OR "
         query = "select distinct g.statename, g.districtname, title, description, helplinenumbers, link, eligibility, documents, duration, created_on, dropdown, g.id, g.sourcelink, g.relevantinfo from govtdata g join podata p on g.districtname = p.districtname where (" + where[:-4] +")" + " AND type='" + type + "'"
         c.execute(query)
         data = c.fetchall()
-        if not data:
-            query = "select distinct g.statename, g.districtname, title, description, helplinenumbers, link, eligibility, documents, duration, created_on, dropdown, g.id, g.sourcelink, g.relevantinfo from govtdata g join podata p on g.statename = p.statename where (" + where[:-4] +")" + " AND type='" + type + "'"
-            c.execute(query)
-            data = c.fetchall()
-        if data:
-            pdata={'data':[]}
-            dropdown = []
-            for d in data:
+
+        query = "select distinct g.statename, g.districtname, title, description, helplinenumbers, link, eligibility, documents, duration, created_on, dropdown, g.id, g.sourcelink, g.relevantinfo from govtdata g join podata p on g.statename = p.statename where (" + where[:-4] +")" + " AND type='" + type + "' AND g.districtname='ALL';"
+        c.execute(query)
+        state_data = c.fetchall()
+
+        full_data = data + state_data
+        pdata={'data':[]}
+        dropdown = set()
+        for count, d in enumerate(full_data):
+            if d:
                 pdata['data'].append({ 
                     "statename": d[0], 
                     "districtname": d[1], 
@@ -983,13 +1010,10 @@ def initiatives():
                     "sourcelink": d[12].replace("\n", "") if d[12] else "",
                     "relevantinfo": d[13]
                 })
-                dropdown.append(d[10])
-        if data:
-            c.close()
-            connect.close()
-            return render_template('list_of_initiatives.html', data=pdata, type=type, dropdown=list(set(dropdown)))
-    return render_template('list_of_initiatives.html',data={}, type=type)
-
+                dropdown.add(d[10])
+        c.close()
+    connect.close()
+    return render_template('list_of_initiatives.html', data=pdata, type=type, dropdown=list(dropdown))
 
 
 # @app.route('/searchresult',methods=['GET','POST'])
@@ -1126,9 +1150,6 @@ def internal_error(error):
 '''
 if __name__ == '__main__':
     app.run()  # host='0.0.0.0', port=5000
-
-
-
 
 
 
