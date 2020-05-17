@@ -34,15 +34,21 @@
                 <div class="row mt-2">
                     <nav class="step3-table-nav">
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                            <a class="nav-item nav-link active" style="font-size:medium;" id="nav-home-tab" data-toggle="tab" href="#nav-home"
+                            <a class="nav-item nav-link active" style="font-size:medium;" id="nav-home-tab" data-toggle="tab" onclick="location.href='/initiatives/?type={{type}}&pincode={{pin}}#nav-home';"
                                role="tab"
                                aria-controls="nav-home" aria-selected="true">Govt.</a>
-                            <a class="nav-item nav-link" style="font-size:medium;" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
+                            <a class="nav-item nav-link" style="font-size:medium;" id="nav-ngo-tab" data-toggle="tab" onclick="location.href='/find_ngo/?pincode={{pin}}&service={{type}}#nav-ngo';"
                                role="tab"
-                               aria-controls="nav-profile" aria-selected="false">Others</a>
+                               aria-controls="nav-ngo" aria-selected="false">NGO</a>
+                            <a class="nav-item nav-link" style="font-size:medium;" id="nav-contact-tab" data-toggle="tab" href="#nav-contact"
+                               role="tab"
+                               aria-controls="nav-contact" aria-selected="false">Community</a>
+                            <a class="nav-item nav-link" style="font-size:medium;" id="nav-contact-tab" data-toggle="tab" href="#nav-contact"
+                               role="tab"
+                               aria-controls="nav-contact" aria-selected="false">Individual</a>
                         </div>
                     </nav>
-                    <div class="tab-content" id="nav-tabContent" style="width: 100%">
+                    <div class="tab-content" id="nav-tabContent" style="width: 100%"  onclick="location.href='/initiatives/?type=Shelter_View&pincode={{pin}}';">
                         <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
                              aria-labelledby="nav-home-tab">
 
@@ -55,13 +61,13 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    {% for k,data in data.items() %}
+                                {% for k,data in data.items() %}
                                         {% for v in data %}
                                         <tr>
                                             <td class="align-middle">
                                                 <div class="initiative-heading pt-4">
                                                     <a href="#" data-toggle="modal" data-target="#exampleModalCenter" onclick="
-                                                    updateModal(
+                                                    updateMoNGOdal(
                                                      {
                                                     'title': '{{v.title}}',
                                                     'description': '{{v.description}}',
@@ -98,6 +104,48 @@
                             </table>
                             <center><a target="_blank" href="{{ url_for('relief_call') }}"><button class="btn btn-outline-danger" style="width: 50%">Couldn't get required help?</button></a></center>
                         </div>
+
+
+
+                        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <table class="table step3-table">
+                                <thead>
+                                <tr>
+                                    <th scope="col"><h6>Initiatives</h6></th>
+                                    <th scope="col"><h6>Contact No</h6></th>
+                                    <th scope="col"><h6>Link</h6></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td colspan="3" class="align-middle">
+                                        <p>Nothing to show :(</p>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+                            <table class="table step3-table">
+                                <thead>
+                                <tr>
+                                    <th scope="col"><h6>Initiatives</h6></th>
+                                    <th scope="col"><h6>Contact No</h6></th>
+                                    <th scope="col"><h6>Link</h6></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td colspan="3" class="align-middle">
+                                        <p>Nothing to show :(</p>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+			    <center><a target="_blank" href="{{ url_for('relief_call') }}"><button class="btn btn-outline-danger" style="width: 50%">Couldn't get required help?</button></a></center>
+                        </div>
+                    </div>
+		  
                 </div>
             </div>
         </div>
