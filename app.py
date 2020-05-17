@@ -27,7 +27,6 @@ import random
 import smtplib
 import logging
 import re
-import pyodbc
 import pandas as pd
 import openpyxl
 
@@ -943,24 +942,39 @@ def how_is_the_task(id):
 
 
 
-# @app.route('/search/<pincode>/', methods=['GET'])
-# def search_pincode(pincode):
-#     connect = get_db()
-#     pincode = int(pincode)
-#     c = connect.cursor()
-#     counter = 0
-#     where = ""
-#     for i in [0,-1,+1,-2,+2,-3,+3,-4,+4]:
-#         where += "m.pin='"+str(pincode+i) + "' OR "
-#     query = "select m.pin, phone, services, statename from members m join podata p on m.pin = p.pin where m.role='n' AND (" + where[:-4] +")"
-#     c.execute(query)
-#     data = c.fetchall()
-#     if data:
-#         c.close()
-#         connect.close()
-#         return render_template('home.html', data=data)
-#     return render_template('home.html',data={})
-
+@app.route('/find_ngo/', methods=['GET'])
+def find_ngo():
+    connect = get_db()
+    pincode=request.args.get("pincode")
+    type=" ".join(request.args.get("service").split("_"))
+    pincode = int(pincode)
+    c = connect.cursor()
+    counter = 0
+    where = ""
+    for i in [0,-1,+1,-2,+2,-3,+3,-4,+4]:
+        where += "m.pin='"+str(pincode+i) + "' OR "
+    query = "select m.pin, phone, services, statename, about,website,address, name, username from members m join podata p on m.pin = p.pin where m.role='n' AND (" + where[:-4] +")"
+    c.execute(query)
+    data = c.fetchall()
+    ndata = {'data':[]}
+    if data:
+        for val in data:
+            if type in val[2].split(","):
+                ndata['data'].append({
+                    "pin": val[0],
+                    "phone": [val[1]],
+                    "services": val[2],
+                    "statename": val[3],
+                    "about": val[4],
+                    "website": val[5],\
+                    "address": val[6],
+                    "name": val[7],
+                    "email": val[8]
+                })
+        c.close()
+        connect.close()
+        return render_template('ngo_initiatives.html', ndata=ndata, type=type, pin = pincode, data={})
+    return render_template('ngo_initiatives.html', type=type, pin = pincode, ndata={})
 
 
 @app.route('/find_relief/', methods=['GET'])
@@ -991,6 +1005,8 @@ def find_relief():
 @app.route('/initiatives/', methods=['GET'])
 def initiatives():
     pincode = request.args.get("pincode")
+    pdata={'data':[]}
+    dropdown = set()
     type = " ".join(request.args.get("type").split("_"))
     if pincode and re.fullmatch("[1-9][0-9]{5}", pincode):
         connect = get_db()
@@ -1008,11 +1024,8 @@ def initiatives():
         query = "select distinct g.statename, g.districtname, title, description, helplinenumbers, link, eligibility, documents, duration, created_on, dropdown, g.id, g.sourcelink, g.relevantinfo from govtdata g join podata p on g.statename = p.statename where (" + where[:-4] +")" + " AND type='" + type + "' AND g.districtname='ALL';"
         c.execute(query)
         state_data = c.fetchall()
-
         full_data = data + state_data
-        pdata={'data':[]}
-        dropdown = set()
-        for count, d in enumerate(full_data):
+        for d in full_data:
             if d:
                 pdata['data'].append({ 
                     "statename": d[0], 
@@ -1032,8 +1045,8 @@ def initiatives():
                 })
                 dropdown.add(d[10])
         c.close()
-    connect.close()
-    return render_template('list_of_initiatives.html', data=pdata, type=type, dropdown=list(dropdown))
+        connect.close()
+    return render_template('list_of_initiatives.html', data=pdata, type=type, pin = pincode, dropdown=list(dropdown))
 
 
 # @app.route('/searchresult',methods=['GET','POST'])
