@@ -40,15 +40,9 @@
                             <a class="nav-item nav-link" style="font-size:medium;" id="nav-ngo-tab" data-toggle="tab" onclick="location.href='/find_ngo/?pincode={{pin}}&service={{type}}#nav-ngo';"
                                role="tab"
                                aria-controls="nav-ngo" aria-selected="false">NGO</a>
-                            <a class="nav-item nav-link" style="font-size:medium;" id="nav-contact-tab" data-toggle="tab" href="#nav-contact"
-                               role="tab"
-                               aria-controls="nav-contact" aria-selected="false">Community</a>
-                            <a class="nav-item nav-link" style="font-size:medium;" id="nav-contact-tab" data-toggle="tab" href="#nav-contact"
-                               role="tab"
-                               aria-controls="nav-contact" aria-selected="false">Individual</a>
                         </div>
                     </nav>
-                    <div class="tab-content" id="nav-tabContent" style="width: 100%"  onclick="location.href='/initiatives/?type=Shelter_View&pincode={{pin}}';">
+                    <div class="tab-content" id="nav-tabContent" style="width: 100%">
                         <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
                              aria-labelledby="nav-home-tab">
 
@@ -61,13 +55,13 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                {% for k,data in data.items() %}
+                                    {% for k,data in data.items() %}
                                         {% for v in data %}
                                         <tr>
                                             <td class="align-middle">
                                                 <div class="initiative-heading pt-4">
                                                     <a href="#" data-toggle="modal" data-target="#exampleModalCenter" onclick="
-                                                    updateMoNGOdal(
+                                                    updateModal(
                                                      {
                                                     'title': '{{v.title}}',
                                                     'description': '{{v.description}}',
