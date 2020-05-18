@@ -3,18 +3,15 @@
 {% block title %} Login {% endblock title %}
 
 {% block content %}
-
+<br>
 <!-- Page content -->
 <div class="container mt-0">
     <div class="row justify-content-center">
         <div class="col-lg-5 col-12">
             <div class="card-custom mt-2 mt-lg-0 help-card">
           <div class=" text-center mt-2 mb-3">
-          {% if "logged_in" in session %}
-          <h3> <div align="center">You are already Logged In.<br><a href="{{ url_for('logout') }}">Please Logout</a></div></div></div></h3>
-         {% else %}
-         
-                    <h3 class="font-weight-bold my-3" style="text-align: center">Administrator</h3>
+                    <h3 class="font-weight-bold my-3" style="text-align: center">Forgot Password</h3> <br>
+                    <p style="color:green;">Enter the Email ID associated with URHope account.</p>
             {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
             {% if (message.startswith("Logged")) %}
             <div class="alert alert-success alert-dismissible" role="alert">
@@ -33,24 +30,20 @@
             {% endfor %} {% endif %} {% endwith %}
 
           </div>
-                <form role="form" method="post" action="">
+
+                <form role="form" method="post" action="{{ url_for('forgot_passsword') }}">
                     <div class="input-group mb-3 px-lg-3">
 
                         <input type="email" class="form-control" name="username" placeholder="Email" aria-label="Username"
                                aria-describedby="basic-addon1" required>
                     </div>
-                    <div class="input-group mb-3 px-lg-3">
-
-                        <input type="password" name="password" class="form-control" placeholder="Password" aria-label="Username"
-                               aria-describedby="basic-addon1" required>
-                    </div>
                     <div style="text-align: center" class=" mb-3 px-lg-3">
-                        <button class="btn btn-outline-primary" type="submit" style="width: 100%">Login</button>
+                        <button class="btn btn-outline-primary" type="submit" style="width: 100%">Send</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
 </div>
-{% endif %}
+
 {% endblock content %}
