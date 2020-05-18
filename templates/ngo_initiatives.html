@@ -11,7 +11,7 @@
                     <div class="search-filter col-6">
                         <div class="row justify-content-end align-items-center">
 
-                            <div class="btn-group">
+                            <!-- <div class="btn-group">
                                 <button type="button" class="btn btn-sm btn-light"
                                         data-toggle="dropdown"
                                         aria-haspopup="true"
@@ -23,7 +23,7 @@
                                         {% endfor %}
                                     </select>
                                 </button>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -34,19 +34,20 @@
                 <div class="row mt-2">
                     <nav class="step3-table-nav">
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                            <a class="nav-item nav-link active" style="font-size:medium;" id="nav-home-tab" data-toggle="tab" onclick="location.href='/initiatives/?type={{type}}&pincode={{pin}}#nav-home';"
+                            <a class="nav-item nav-link" style="font-size:medium;" id="nav-home-tab" data-toggle="tab" onclick="location.href='/initiatives/?type={{type}}&pincode={{pin}}#nav-home';"
                                role="tab"
-                               aria-controls="nav-home" aria-selected="true">Govt.</a>
-                            <a class="nav-item nav-link" style="font-size:medium;" id="nav-ngo-tab" data-toggle="tab" onclick="location.href='/find_ngo/?pincode={{pin}}&service={{type}}#nav-ngo';"
+                               aria-controls="nav-home" aria-selected="false">Govt.</a>
+                            <a class="nav-item nav-link active" style="font-size:medium;" id="nav-ngo-tab" data-toggle="tab" onclick="location.href='/find_ngo/?pincode={{pin}}&service={{type}}#nav-ngo';"
                                role="tab"
-                               aria-controls="nav-ngo" aria-selected="false">NGO</a>
+                               aria-controls="nav-ngo" aria-selected="true">NGO</a>
                         </div>
                     </nav>
                     <div class="tab-content" id="nav-tabContent" style="width: 100%">
-                        <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
-                             aria-labelledby="nav-home-tab">
 
-                            <table class="table step3-table filter-this-table">
+
+                        <div class="tab-pane fade show active" id="nav-ngo" role="tabpanel" aria-labelledby="nav-ngo-tab">
+
+                            <table class="table step3-table">
                                 <thead>
                                 <tr>
                                     <th scope="col"><h6>Initiatives</h6></th>
@@ -55,52 +56,43 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    {% for k,data in data.items() %}
-                                        {% for v in data %}
+                                {% for k,data in ndata.items() %}
+                                    {% for v in data %}
                                         <tr>
                                             <td class="align-middle">
-                                                <div class="initiative-heading pt-4">
-                                                    <a href="#" data-toggle="modal" data-target="#exampleModalCenter" onclick="
-                                                    updateModal(
-                                                     {
-                                                    'title': '{{v.title}}',
-                                                    'description': '{{v.description}}',
-                                                    'phone': {{v.helplinenumbers}},
-                                                    'eligibility': '{{v.eligibility}}',
-                                                    'documents': '{{v.documents}}',
-                                                    'duration': '{{v.duration}}',
-                                                    'source': '{{v.sourcelink}}',
-                                                    'relevantinfo': '{{v.relevantinfo}}'
-                                                    }
-                                                   );"><h6 class="font-weight-bold mb-0">{{v.title}}</h6></a>
+                                                <div class="initiative-heading pt-4"><a href="#" data-toggle="modal" data-target="#exampleModalCenter" onclick="
+                                                updateNGOModal(
+                                                 {
+                                                'title': '{{v.name}}',
+                                                'description': '{{v.about}}',
+                                                'phone': {{v.phone}},
+                                                'address': '{{v.address}}',
+                                                'source': '{{v.website}}'
+                                                });">
+                                                    <h6 class="font-weight-bold mb-0">{{v.name}}</h6></a>
 
                                                 </div>
                                                 <div class="initiative-description">
-                                                    <p class="text-muted">{{v.description}}</p>
+                                                    <p class="text-muted">{{v.about}}</p>
                                                 </div>
                                             </td>
                                             <td class="align-middle">
                                                 <div class="initiative-contact align-content-around">
-                                                    {% for phone_no in v.helplinenumbers %}
+                                                    {% for phone_no in v.phone %}
                                                         <button class="btn btn-sm btn-outline-primary mt-1"><a href="tel:{{phone_no}}">{{phone_no}}</a></button>
                                                     {% endfor %}
                                                 </div>
                                             </td>
-                                            <td><a target="_blank" href="{{v.links}}">View</a></td>
-                                            <td class="align-middle" hidden>
-                                                {{v.dropdown}}
-                                            </td>
+                                            <td><a target="_blank" href="{{v.website}}">View</a></td>
                                         </tr>
-                                        
                                     {% endfor %}
                                 {% endfor %}
                                 </tbody>
                             </table>
-                            <center><a target="_blank" href="{{ url_for('relief_call') }}"><button class="btn btn-outline-danger" style="width: 50%">Couldn't get required help?</button></a></center>
+			    <center><a target="_blank" href="{{ url_for('relief_call') }}"><button class="btn btn-outline-danger" style="width: 50%">Couldn't get required help?</button></a></center>
+
+
                         </div>
-
-
-
                         <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
                             <table class="table step3-table">
                                 <thead>
@@ -185,17 +177,17 @@
                         </td>
                     </tr> -->
                     <tr>
-                        <th class="align-middle font-weight-bold">Further Details</th>
+                        <th class="align-middle font-weight-bold">Address</th>
                         <td class="align-middle">
-                            <p class="m-0 link-modal-furtherinfo">None</p>
+                            <p class="m-0 link-modal-address">None</p>
                         </td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <th class="align-middle font-weight-bold">Relevant Information</th>
                         <td class="align-middle">
                             <p class="m-0 link-modal-relevantinfo">None</p>
                         </td>
-                    </tr>
+                    </tr> -->
                     <!-- <tr>
                         <th class="align-middle font-weight-bold">Documents</th>
                         <td class="align-middle">
