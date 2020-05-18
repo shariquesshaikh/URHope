@@ -4,6 +4,7 @@
 
 {% block content %}
 
+<br>
 <!-- Page content -->
 <div class="container mt-0">
     <div class="row justify-content-center">
@@ -30,12 +31,12 @@
 
           </div>
           {% if not 'logged_in' in session %}
-                <form role="form" method="post" action="">
+                <form role="form" method="post" action="/login/">
                     <div class="input-group mb-3 px-lg-3">
 
-                        <input type="email" class="form-control" name="username" placeholder="Email" aria-label="Username"
+                        <input type="text" class="form-control" name="username" placeholder="Email or Phone no" aria-label="Username"
                                aria-describedby="basic-addon1" required>
-                    </div>
+                     </div>
                     <div class="input-group mb-3 px-lg-3">
 
                         <input type="password" name="password" class="form-control" placeholder="Password" aria-label="Username"
@@ -44,15 +45,15 @@
                     <div style="text-align: center" class=" mb-3 px-lg-3">
                         <button class="btn btn-outline-primary" type="submit" style="width: 100%">Login</button>
                     </div>
-                    <div style="text-align: center" class=" mb-3 px-lg-3 ">
-                        <a href="{{ url_for('login') }}" class><p>Forgot Password?</p></a>
-                    </div>
+                    <!-- <div style="text-align: center" class=" mb-3 px-lg-3 ">
+                        <a href="{{ url_for('forgot_passsword') }}" class><p>Forgot Password?</p></a>
+                    </div> -->
                     <div style="text-align: center" class=" mb-3 px-lg-3 ">
                         <p>Don't have an account? <a href="{{ url_for('signup') }}">Register</a></p>
                     </div>
                 </form>
 {% else %}
-<p>You are Already Logged In<a href="{{ url_for('logout') }}"> Please Logout</a></p>
+<p>You are Already Logged In  <a href="{{ url_for('logout') }}" class=" btn btn-outline-danger" style="height: 30px; font-size: 12px;"> <b>Logout</b> </a></p>
 {% endif %}
             </div>
         </div>

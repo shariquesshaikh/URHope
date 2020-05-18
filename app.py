@@ -3,6 +3,7 @@
 # -*- coding: utf-8 -*-
 
 #__copyright__ = 'URHope'
+#__Core Developers__= 'Zuhair, Sharique, Jino, Furqaan'
 
 from __future__ import print_function
 from flask import Flask, render_template, redirect, url_for, request, g
@@ -19,7 +20,6 @@ import requests
 import socket
 import os.path
 import flask
-import re
 import urllib.request
 import logging
 import string
@@ -27,12 +27,11 @@ import random
 import smtplib
 import logging
 import re
-import pyodbc
-import pandas as pd
-import openpyxl
-
+#import pandas as pd
+#import openpyxl
 
 app = Flask(__name__)
+
 sslify = SSLify(app)
 
 app.config['TEMPLATES_AUTO_RELOAD'] = True
@@ -46,6 +45,8 @@ app.debug = True
 app.secret_key = os.urandom(12)
 
 logging.basicConfig(filename='logs.log', level=logging.ERROR)
+
+
 
 
 
@@ -70,9 +71,9 @@ def serve():
 
 
 def get_db():
-    db = pymysql.connect(host=host, user=username, passwd=password,
-                         db=db_name, charset='utf8mb4')
-    return db
+     db = pymysql.connect(host=host, user=username, passwd=password,
+                          db=db_name, charset='utf8mb4')
+     return db
 
 
 
@@ -110,24 +111,24 @@ def signup():
         if 'username' in request.form \
             and 'password' in request.form and 'role' in request.form \
             and 'confirm' in request.form:
-            name = request.form['name']
-            username = request.form['username']
-            password = request.form['password']
-            confirmpassword = request.form['confirm']
-            pincode = request.form['pincode']
-            phone = request.form['phone']
-            role = request.form['role']
-            age = request.form['age']
-            currProfile = request.form['currProfile']
-            gender = request.form['gender']
-            regno = request.form['regno']
-            branch = request.form['branch']
-            website = request.form['website']
-            social = request.form['social']
-            about = request.form['about']
-            govtID = request.form['govtID']
-            address = request.form['address']
-            services = request.form['services']
+            name = request.form.get('name')
+            username = request.form.get('username')
+            password = request.form.get('password')
+            confirmpassword = request.form.get('confirm')
+            pincode = request.form.get('pincode')
+            phone = request.form.get('phone')
+            role = request.form.get('role')
+            age = request.form.get('age')
+            currProfile = request.form.get("currProfile")
+            gender = request.form.get("gender")
+            regno = request.form.get('regno')
+            branch = request.form.get("branch")
+            website = request.form.get("website")
+            social = request.form.get("social")
+            about = request.form.get("about")
+            govtID = request.form.get("govtID")
+            address = request.form.get("address")
+            services = request.form.get("services")
             try:
                 db = get_db()
                 c = db.cursor()
@@ -140,7 +141,7 @@ def signup():
                 else:
 
                     if password == confirmpassword:
-                        c.execute('insert into members (name, username, phone, pin, role, services, rego, branch, sex, age, currProfile, website, social, govtID, address, about, password ) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, md5(%s))'
+                        c.execute('insert into members (name, username, phone, pin, role, services, regno, branch, sex, age, currProfile, website, social, govtID, address, about, password ) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, md5(%s))'
                                   , (
                             name,
                             username,
@@ -202,11 +203,23 @@ def login():
         try:
             username = request.form['username']
             password = request.form['password']
-            db = get_db()
-            c = db.cursor()
-            c.execute('select id,name, username, password, role, phone, pin, regno, age, sex, currProfile, address, social, services, branch, about, govtID,website from members where username = %s and password = md5(%s)'
-                      , (username, password))
-            account = c.fetchone()
+
+            # https://emailregex.com/
+            email_expression = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
+
+            if(re.search(email_expression,username)):
+                db = get_db()
+                c = db.cursor()
+                c.execute('SELECT id,name, username, password, role, phone, pin, regno, age, sex, currProfile, address, social, services, branch, about, govtID, website from members WHERE username = %s and password = md5(%s)'
+                        , (username, password))
+                account = c.fetchone()
+            else:
+                db = get_db()
+                c = db.cursor()
+                c.execute('SELECT id,name, username, password, role, phone, pin, regno, age, sex, currProfile, address, social, services, branch, about, govtID, website from members WHERE phone = %s and password = md5(%s)'
+                        , (username, password))
+                account = c.fetchone()
+            
             if account is not None:
                 session['logged_in'] = True
                 session['user_id'] = account[0]
@@ -218,8 +231,8 @@ def login():
                 session['regno'] = account[7]
                 session['age'] = account[8]
                 session['sex'] = account[9]
-                session['currProfile'] = account[10]
                 session['address'] = account[11]
+                session['currProfile'] = account[10]
                 session['social'] = account[12]
                 session['services'] = account[13]
                 session['branch'] = account[14]
@@ -236,13 +249,100 @@ def login():
                 db.close()
                 return redirect(url_for('home'))
             else:
-                flash('Invalid Username or Password')
+                flash('Invalid Username/Phone Number or Password. Please try again.')
                 return render_template('login.html')
         except Exception as e:
             print(e)
         return render_template('login.html')
     else:
         return render_template('login.html')
+
+
+
+@app.route('/change_password/', methods=['GET', 'POST'])
+def change_password():
+    if request.method == "POST":
+        if 'old_password' in request.form and 'new_password' in request.form and 'confirm' in request.form :
+                old_pass = request.form['old_password']
+                new_pass = request.form['new_password']
+                confirm_new_pass = request.form['confirm']
+
+                username = session['username']
+                db = get_db()
+                cursor = db.cursor()
+                cursor.execute('SELECT * FROM members WHERE username = %s and password = md5(%s)'
+                            , (username, old_pass))
+                account = cursor.fetchone()
+                db.commit()
+                cursor.close()
+                db.close()
+
+                if account is None:
+                    flash("The current password that you have entered is invalid. Please try again.")
+                    return redirect(url_for('account'))  
+                elif new_pass != confirm_new_pass:
+                    flash("New passwords does not match. Make sure confirm password is same as new password.")
+                    return redirect(url_for('account'))
+                else:
+                    try:
+                        db = get_db()
+                        cursor = db.cursor()
+                        cursor.execute('UPDATE members SET password = md5(%s) WHERE username = %s',(new_pass,username))
+                        flash("Password updated successfully.")
+                        db.commit()
+                        cursor.close()
+                        db.close()
+                        return redirect(url_for('logout'))
+                    except Exception as e:
+                        print(e)
+        else:
+            flash("Please fill all the details.")
+            return redirect(url_for('account'))
+    else:
+        return redirect(url_for('account'))
+
+
+
+@app.route('/forgot_password/', methods=['GET', 'POST'])
+def forgot_passsword():
+    flash("We are working on this part. It will be updated soon.")
+    return redirect(url_for('login'))
+
+    #Codes below will be considered after successful implementation of password link generation mechanism
+    if request.method == "POST":
+        email = request.form['username']
+
+        db = get_db()
+        cursor = db.cursor()
+        cursor.execute('SELECT * FROM members WHERE username = %s', (email))
+        account = cursor.fetchone()
+        db.commit()
+        cursor.close()
+        db.close()
+
+        if account is None:
+            flash("Entered Email ID does not exist in our databse. Please try again. In case of any query you can contact us.")
+            return redirect(url_for('forgot_passsword'))
+        else:    
+            x = "We have sent your login details to "+email+". In case of any query you can contact us."
+            flash(x)
+            name = account[1]
+            # password = account[3] #It's md5 password. There isn't any python function to decrypt it
+            password = "none"
+            server = serve()
+            subject = "Notification from URHope Team"
+            body="Dear "+name+",\n\nYour login details.\n\nUsername: "+email+"\nPassword: "+password+"\n\nClick here to login.\nhttp://urhope.in/login/\n\nThanks for choosing us. Have a nice day :)\n\nRegards\nURHope Team"
+            msg=f"Subject: {subject}\n\n{body} "
+            server.sendmail(
+                            'urhope.ngo@gmail.com',
+                            str(email), #this might misbehave, typecast/antitype it.
+                            msg
+                            )
+            server.quit()
+
+            return redirect(url_for('forgot_passsword'))     
+    else:
+        return render_template('forgot_pass.html')
 
 
 
@@ -398,8 +498,7 @@ def del_vol(id):
         return redirect(url_for('login'))
     db = get_db()
     c = db.cursor()
-    role="v"
-    
+
     c.execute('SELECT username FROM members WHERE id = %s', id)
     data = c.fetchone()
     vol_mail = data[0]
@@ -421,6 +520,20 @@ def del_vol(id):
     c.close()   
     db.close()
     return redirect(url_for('reg_vols'))
+
+
+
+@app.route('/logs')
+def logs():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+
+    log_file = open('logs.log', 'r')
+
+    if os.stat("logs.log").st_size == 0:
+        return render_template('log.html',logs=log_file,l=0)
+    else: 
+        return render_template('log.html',logs=log_file,l=1)
 
 
 
@@ -476,19 +589,6 @@ def download_data(id):
 
 
 
-@app.route('/logs')
-def logs():
-    if not session.get('logged_in'):
-        return redirect(url_for('login'))
-
-    log_file = open('logs.log', 'r')
-
-    if os.stat("logs.log").st_size == 0:
-        return render_template('log.html',logs=log_file,l=0)
-    else: 
-        return render_template('log.html',logs=log_file,l=1)
-
-
 
 @app.route('/<id>/', methods=['GET', 'POST'])
 def profile(id):
@@ -504,6 +604,24 @@ def profile(id):
         if session['role'] == 'a':
             return render_template('admin_profile.html',
                                    id=session['user_id'])
+
+
+
+@app.route('/account/', methods=['GET', 'POST'])
+def account():
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
+    else:
+        if session['role'] == 'v':
+            return render_template('volunteers_profile.html',
+                                   id=session['user_id'])
+        if session['role'] == 'n':
+            return render_template('ngo_profile.html',
+                                   id=session['user_id'])
+        if session['role'] == 'a':
+            return render_template('admin_profile.html',
+                                   id=session['user_id'])
+
 
 
 
@@ -523,8 +641,8 @@ def edit_profile(id):
 
 
 
-@app.route('/update/<uname>/', methods=['GET', 'POST'])
-def update_pro(uname):
+@app.route('/update', methods=['GET', 'POST'])
+def update_pro():
     if not session.get('logged_in'):
         return redirect(url_for('login'))
     else:
@@ -557,7 +675,7 @@ def update_pro(uname):
                         currProfile,
                         address,
                         about,
-                        username,
+                        username,                 
                         ))
 
                     exe.execute("UPDATE application SET vol_name=%s, vol_phone=%s WHERE vol_email=%s",(name,phone,username))
@@ -737,7 +855,7 @@ def delete_task(id):
             data=c.fetchall()
             
             if len(data)!=0:
-            	c.execute('DELETE FROM applications WHERE task_id = %s', id)
+            	c.execute('DELETE FROM application WHERE task_id = %s', id)
             
             db.commit()
             c.close()
@@ -906,7 +1024,22 @@ def back_application(id):
     flash("Changes applied successfully.")
     return redirect(url_for('task_list'))        
 
-                             
+
+
+@app.route('/applied_vols/<id>', methods=['GET', 'POST'])
+def applied_vols(id):
+    task_id = id
+
+    db = get_db()
+    c = db.cursor()
+    c.execute('SELECT * FROM application WHERE task_id=%s ORDER BY vol_name',task_id)
+    data = c.fetchall()
+    db.commit() 
+    c.close()
+    db.close()
+    return render_template('applied_vols.html',len=len(data),data=data)
+
+
 
 @app.route('/notification_page/', methods=['GET', 'POST'])
 def notification_page():
@@ -1034,6 +1167,7 @@ def initiatives():
         c.close()
     connect.close()
     return render_template('list_of_initiatives.html', data=pdata, type=type, dropdown=list(dropdown))
+
 
 
 # @app.route('/searchresult',methods=['GET','POST'])
