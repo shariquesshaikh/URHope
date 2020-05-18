@@ -1,194 +1,174 @@
-{% extends "base_site.html" %}
-
-{% block title %} Profile {% endblock title %}
-
-{% block stylesheets %}
-  {{ super() }}
-{% endblock stylesheets %}
+{% extends "base_site1.html" %}
 
 {% block content %}
 
-    {% include "site_template/navigation.html" %}
-      
-    <!-- Header -->
-    <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url(/static/assets/img/theme/profile-cover.png); background-size: cover; background-position: center top;">
-    <!-- Mask -->
-    <span class="mask bg-gradient-default opacity-8"></span>
-    <!-- Header container -->
-    <div class="container-fluid d-flex align-items-center">
-        <div class="row">
-        <div class="col-lg-7 col-md-10">
-            <h1 class="display-2 text-white">Hello {{ session['name'] }}</h1>
-            <p class="text-white mt-0 mb-5">
-                This is your profile page. </p>
-            <a href="{{ url_for('edit_profile', id=session['user_id']) }}" class="btn btn-info">Edit profile</a>
-        </div>
-        </div>
-    </div>
-    </div>
-      
-    <!-- Page content -->
-    <div class="container-fluid mt--7">
+{% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}
+{% if (message.startswith("Logged")) %}
+<div class="alert alert-success alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+      aria-hidden="true">×</span></button>
+  {{message}}
+</div>
+{% else %}
+<div class="alert alert-danger alert-dismissible" role="alert">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+      aria-hidden="true">×</span></button>
+  {{message}}
+</div>
+{% endif %}
 
-        <div class="row">
-            <div class="col-xl-4 order-xl-2 mb-3 mb-xl-0">
-            <div class="card card-profile shadow">
-                <div class="row justify-content-center">
-                <div class="col-lg-3 order-lg-2">
-                    <div class="card-profile-image">
-                    <a href="#">
-                        <img src="/static/assets/img/theme/profile.png" class="rounded-circle">
+{% endfor %} {% endif %} {% endwith %}
+      
+<div class="container-fluid">
+    <div class="col page-title " style="padding-top: 100px; padding-bottom: 25px">
+        <div class="row align-items-center justify-content-center" align="center">
+            <h1 style="color: #000;" class="font-weight-bold">My Account</h1>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-0">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-12 px-lg-3 order-lg-1 order-2">
+
+            <div class="card-custom mt-2 mt-lg-0 help-card">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col">
+                        <h5 class="my-3" style="">Basic Details
+                        </h5>
+                    </div>
+
+                </div>
+                <div class="form-group mb-3 ">
+                    <label for="exampleInputEmail1">Name</label>
+                    <input type="text" class="form-control" value="{{ session['name'] }}" aria-label="Username"
+                           aria-describedby="basic-addon1" disabled>
+                </div>
+                <div class="form-group mb-3 ">
+                    <label for="exampleInputEmail1">Email</label>
+                    <input type="email" class="form-control" placeholder="{{ session['username'] }}" aria-label="Username"
+                           aria-describedby="basic-addon1" disabled>
+                </div>
+                <div class="form-group mb-3 ">
+                    <label for="exampleInputEmail1">Address</label>
+                    <input type="text" class="form-control" aria-label="Username"
+                           aria-describedby="basic-addon1" value="{{ session['address'] }}" disabled> 
+                </div>
+                <div class="form-group mb-3  volunteer-field">
+                    <div class="row">
+                        <div class="col">
+                            <label for="exampleInputEmail1">Pincode</label>
+                            <input type="number" class="form-control" value="{{ session['pin'] }}" aria-label="Username"
+                                   aria-describedby="basic-addon1" disabled>
+                        </div>
+                        <div class="col">
+                            <label for="exampleInputEmail1">Phone No</label>
+                            <input type="tel" class="form-control" value="{{ session['phone'] }}" aria-label="Username"
+                                   aria-describedby="basic-addon1" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mb-3  volunteer-field">
+                    <div class="row">
+                        <div class="col">
+                            <label for="exampleInputEmail1">Registration No</label>
+                            <input type="number" class="form-control" value="{{ session['regno'] }}" aria-label="Username"
+                                   aria-describedby="basic-addon1" style="border-radius: 5px" disabled>
+                        </div>
+                        <div class="col">
+                            <label for="exampleInputEmail1">Branch</label>
+                            <input type="text" class="form-control" value="{{ session['branch'] }}" aria-label="Username"
+                                   aria-describedby="basic-addon1" style="border-radius: 5px" disabled>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group mb-3  volunteer-field">
+                    <div class="row">
+                        <div class="col">
+                            <label for="exampleInputEmail1">Website</label>
+                            <input type="text" class="form-control" value="{{ session['website'] }}" aria-label="Username"
+                                   aria-describedby="basic-addon1" style="border-radius: 5px" disabled>
+                        </div>
+                        <div class="col">
+                             <label for="exampleInputEmail1">Social Media Handle</label>
+                            <input type="text" class="form-control" value="{{ session['social'] }}" aria-label="Username"
+                                   aria-describedby="basic-addon1" style="border-radius: 5px" disabled>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group my-3">
+                    <label for="exampleInputEmail1">About the NGO</label>
+                    <textarea disabled rows="5" class="form-control" aria-label="With textarea"
+                              value="Write something about you...">{{ session['about'] }}</textarea>
+                </div>
+            </div>
+
+<form action="{{ url_for('change_password')}}" method="POST">
+            <div class="card-custom mt-2 help-card ">
+                <h5 class="my-3" >Change Password</h5> 
+                <p>Note: If your password is changed successfully you will be redirected to login page.</p>
+                <div class="form-group mb-3 ">
+
+                    <input type="password" class="form-control" name="old_password" placeholder="Current Password" aria-label="Username"
+                           aria-describedby="basic-addon1">
+                </div>
+                <div class="form-group mb-3 ">
+                    <div class="row">
+                        <div class="col">
+
+                            <input type="password" name="new_password" class="form-control" placeholder="New Password"
+                                   aria-label="Username"
+                                   aria-describedby="basic-addon1" style="border-radius: 5px">
+                        </div>
+                        <div class="col">
+
+                            <input type="password" name="confirm" class="form-control" placeholder="Confirm Password"
+                                   aria-label="Username"
+                                   aria-describedby="basic-addon1" style="border-radius: 5px">
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align: center" class=" mb-3 ">
+                    <button class="btn btn-danger" style="width: 100%">Change Password</button>
+                </div>
+            </div>
+        </div>
+</form>
+
+
+        <div class="col-lg-6 col-12 px-lg-3 order-lg-2 order-md-1 order-1">
+            <div class="card-custom mt-2 mt-lg-0 help-card ">
+                <div class="profile-placeholder mb-3"><img src="/static/assets/img/theme/profile.png"
+                                                           class="profile-pic"></div>
+                <div style="text-align: center" class=" mb-3  ">
+                    <h5 class="font-weight-bold">{{ session['name'] }}<a href="" hidden>&nbsp<sup hidden><i
+                            style="color: black; font-size: small"
+                            class="fa fa-pencil"
+                            aria-hidden="true"></i></sup></a>
+                    </h5>
+                    <h6 class="font-weight-light">NGO</h6>
+                </div>
+                <div style="text-align: center" class=" mb-2 ">
+                    <a href="{{ url_for('task_list') }}">
+                        <button class="btn btn-outline-primary">My Tasks</button>
                     </a>
-                    </div>
                 </div>
+                <div style="text-align: center" class="
+                         mb-3">
+                    <a href="{{ url_for('edit_profile', id=session['user_id']) }}">
+                        <button class="btn btn-dark">Edit Profile &nbsp<i
+                                style=" font-size: small"
+                                class="fa fa-pencil"
+                                aria-hidden="true"></i></button>
+                    </a>
                 </div>
-                <div class="card-header text-center border-0 pt-8 pt-md-8 pb-0 pb-md-4">
-                 <div class="d-flex justify-content-between">
-                      <a href="http://{{ session['social'] }}" class="btn btn-sm btn-info mr-4">Connect</a>
-                      <a href="https://wa.me/{{ session['phone'] }}?text=Contacted%20From%20URHope" class="btn btn-sm btn-default float-right">Message</a>
-                    </div> 
-				  </div>
-                  <div class="card-body pt-0 pt-md-0">
-                    <div class="row">
-                      <div class="col">
-                        <div class="card-profile-stats d-flex justify-content-center mt-md-5">
-                          <div>
-                            <span class="heading">{{ session['username'] }}</span>
-                            <span class="description">{{ session['currProfile'] }}</span>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="text-center">
-                      <h3>
-                        {{ session['name'] }}
-                      </h3>
-                      <div class="h5 font-weight-300">
-                        <i class="ni location_pin mr-2"></i>{{ session['address'] }}
-                      </div>
-                      <hr class="my-4" />
-                      <p>{{ session['about'] }}</p>
-                      <a href="{{ session['website'] }}">Website</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            <div class="col-xl-8 order-xl-1">
-            <div class="card bg-secondary shadow">
-                <div class="card-header bg-white border-0">
-                <div class="row align-items-center">
-                    <div class="col-8">
-                    <center><h3 class="mb-0">My account</h3></center>
-                    </div>
-                </div>
-                </div>
-                <div class="card-body">
-                <form>
-                    <h6 class="heading-small text-muted mb-4">User ID - {{ session['user_id'] }}</h6>
-                    <div class="pl-lg-4">
-                    <div class="row">
-                        <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="form-control-label" for="input-username">Username</label>
-                            <input type="email" id="input-username" class="form-control form-control-alternative" 
-                                   placeholder="Username" value="{{ session['username'] }}" disabled>
-                        </div>
-                        </div>
-                        <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="form-control-label" for="input-first-name">Name</label>
-                            <input type="text" id="input-first-name" class="form-control form-control-alternative" placeholder="Name" value="{{ session['name'] }}" disabled>
-                        </div>
-                        </div>
-                        
-                        <div class="col-lg-6">
-                        <div class="form-group">
-                            <label class="form-control-label" for="input-email">Website</label>
-                            <input type="text" id="input-email" class="form-control form-control-alternative" 
-                                   placeholder="Website" value="{{ session['website'] }}" disabled>
-                        </div>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="form-group">
-                                <label class="form-control-label" for="input-email">Social</label>
-                                <input type="text" id="input-email" class="form-control form-control-alternative" 
-                                       placeholder="Social" value="{{ session['social'] }}" disabled>
-                        </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="form-control-label" for="input-email">Services</label>
-                                <input type="text" id="input-email" class="form-control form-control-alternative" 
-                                       placeholder="Services" value="{{ session['services'] }}" disabled>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="row">
-
-
-                    </div>
-                    </div>
-                    <hr class="my-4" />
-                    <!-- Address -->
-                    <h6 class="heading-small text-muted mb-4">Contact Information</h6>
-                    <div class="pl-lg-4">
-                    <div class="row">
-                        <div class="col-md-12">
-                        <div class="form-group">
-                            <label class="form-control-label" for="input-address">Address</label>
-                            <input id="input-address" class="form-control form-control-alternative" placeholder="Address" value="{{ session['address'] }}" type="text" disabled>
-                        </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label class="form-control-label" for="input-city">Registration No.</label>
-                                <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="Registration No." value="{{ session['regno'] }}" disabled>
-                            </div>
-                            </div>
-                            <div class="col-lg-4">
-                                <div class="form-group">
-                                    <label class="form-control-label" for="input-city">Branch</label>
-                                    <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="Branch" value="{{ session['branch'] }}" disabled>
-                                </div>
-                                </div>
-                        <div class="col-lg-4">
-                        <div class="form-group">
-                            <label class="form-control-label" for="input-city">Phone No</label>
-                            <input type="text" id="input-city" class="form-control form-control-alternative" placeholder="Phone" value="{{ session['phone'] }}" disabled>
-                        </div>
-                        </div>
-                        <div class="col-lg-4">
-                        <div class="form-group">
-                            <label class="form-control-label" for="input-country">Pincode</label>
-                            <input type="number" id="input-postal-code" class="form-control form-control-alternative" placeholder="Postal code" value="{{ session['pin'] }}" disabled>
-                        </div>
-                        </div>
-                    </div>
-                    </div>
-                    <hr class="my-4" />
-                    <!-- Description -->
-                    <h6 class="heading-small text-muted mb-4">About Us</h6>
-                    <div class="pl-lg-4">
-                    <div class="form-group">
-                        <label>About Me</label>
-                        <textarea rows="4" class="form-control form-control-alternative" placeholder="A few words about you ..." disabled>{{ session['about'] }}</textarea>
-                    </div>
-                    </div>
-                </form>
-                </div>
-            </div>
             </div>
         </div>
-    
-        {% include "site_template/footer.html" %}
-        
-    </div>    
 
-{% endblock content %}
 
-{% block javascripts %}
-  {{ super()}}
-{% endblock javascripts %}
+    </div>
+</div>
+</div>
+
+{% endblock %}
