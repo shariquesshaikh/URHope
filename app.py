@@ -27,8 +27,8 @@ import random
 import smtplib
 import logging
 import re
-import pandas as pd
-import openpyxl
+#import pandas as pd
+#import openpyxl
 
 app = Flask(__name__)
 
@@ -117,10 +117,10 @@ def signup():
             confirmpassword = request.form.get('confirm')
             pincode = request.form.get('pincode')
             phone = request.form.get('phone')
-            role = request.form['role']
+            role = request.form.get('role')
             age = request.form.get('age')
-            currProfile = request.form["currProfile"]
-            gender = request.form["gender"]
+            currProfile = request.form.get("currProfile")
+            gender = request.form.get("gender")
             regno = request.form.get('regno')
             branch = request.form.get("branch")
             website = request.form.get("website")
