@@ -86,7 +86,11 @@
                                                     {% endfor %}
                                                 </div>
                                             </td>
+                                            {% if "http" in v.links %}
+                                            <td><a target="_blank" href="{{v.links}}">View</a></td>
+                                            {% else %}
                                             <td><a target="_blank" href="//{{v.links}}">View</a></td>
+                                            {% endif %}
                                             <td class="align-middle" hidden>
                                                 {{v.dropdown}}
                                             </td>
