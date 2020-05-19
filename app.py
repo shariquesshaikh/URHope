@@ -730,8 +730,8 @@ def update_pro():
                             flash("Invalid Phone number. Length of the phone number should be 10.")
                             return redirect(url_for('profile',id=session['user_id']))
 
-                        pi = len(pincode)
-                        if (pi>=7 or pi<=5) or (not pincode.isdigit()):
+                        pi = len(pin)
+                        if (pi>=7 or pi<=5) or (not pin.isdigit()):
                             flash("Invalid pincode. Pincode should be a 6 digit number.")
                             return redirect(url_for('profile',id=session['user_id']))
 
@@ -764,7 +764,7 @@ def update_pro():
                         return redirect(url_for('logout'))
                     else:
                         flash("Please fill all the details.")
-                        url_for('profile',id=session['user_id'])
+                        return redirect(url_for('profile',id=session['user_id']))
                 else:
                     flash('Profile was not updated')
                     return redirect(url_for('profile',id=session['user_id']))
