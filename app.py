@@ -127,6 +127,17 @@ def signup():
             govtID = request.form.get("govtID")
             address = request.form.get("address")
             services = request.form.get("services")
+
+            ph = len(phone)
+            if (ph>=11 or ph<=9) or (not phone.isdigit()):
+                flash("Invalid Phone number. Length of the phone number should be 10.")
+                return redirect(url_for('signup'))
+
+            pi = len(pincode)
+            if (pi>=7 or pi<=5) or (not pincode.isdigit()):
+                flash("Invalid pincode. Pincode should be a 6 digit number.")
+                return redirect(url_for('signup'))
+
             try:
                 db = get_db()
                 c = db.cursor()
@@ -161,7 +172,7 @@ def signup():
                             ))
                         db.commit()
 
-                        flash('Registered Successfully, Check your mail for confirmation!')
+                        flash('Registered Successfully, Check your email for confirmation!')
 
                         server = serve()
                         subject = "Notification from URHope Team"
@@ -169,7 +180,7 @@ def signup():
                         msg=f"Subject: {subject}\n\n{body} "
                         server.sendmail(
                                         'urhope.ngo@gmail.com',
-                                        str(username), #this might misbehave, typecast/antitype it.
+                                        str(username),
                                         msg
                                         )
 
@@ -212,6 +223,11 @@ def login():
                         , (username, password))
                 account = c.fetchone()
             else:
+                ph = len(username)
+                if (ph>=11 or ph<=9) or (not username.isdigit()):
+                    flash("Invalid Email or Phone number. Please try again.")
+                    return redirect(url_for('login'))
+
                 db = get_db()
                 c = db.cursor()
                 c.execute('SELECT id,name, username, password, role, phone, pin, regno, age, sex, currProfile, address, social, services, branch, about, govtID, website from members WHERE phone = %s and password = md5(%s)'
@@ -247,10 +263,11 @@ def login():
                 db.close()
                 return redirect(url_for('home'))
             else:
-                flash('Invalid Username/Phone Number or Password. Please try again.')
+                flash('Invalid credentials. Please try again.')
                 return render_template('login.html')
         except Exception as e:
             print(e)
+        flash('An error occured. Please try again.')
         return render_template('login.html')
     else:
         return render_template('login.html')
@@ -277,10 +294,10 @@ def change_password():
 
                 if account is None:
                     flash("The current password that you have entered is invalid. Please try again.")
-                    return redirect(url_for('account'))  
+                    return redirect(url_for('profile',id=session['user_id']))  
                 elif new_pass != confirm_new_pass:
                     flash("New passwords does not match. Make sure confirm password is same as new password.")
-                    return redirect(url_for('account'))
+                    return redirect(url_for('profile',id=session['user_id']))
                 else:
                     try:
                         db = get_db()
@@ -295,9 +312,9 @@ def change_password():
                         print(e)
         else:
             flash("Please fill all the details.")
-            return redirect(url_for('account'))
+            return redirect(url_for('profile',id=session['user_id']))
     else:
-        return redirect(url_for('account'))
+        return redirect(url_for('profile',id=session['user_id']))
 
 
 
@@ -333,7 +350,7 @@ def forgot_passsword():
             msg=f"Subject: {subject}\n\n{body} "
             server.sendmail(
                             'urhope.ngo@gmail.com',
-                            str(email), #this might misbehave, typecast/antitype it.
+                            str(email),
                             msg
                             )
             server.quit()
@@ -485,7 +502,7 @@ def reg_vols():
         db.commit()
         c.close()
         db.close()
-        return render_template('view_volun.html',data=data,l=len(data))
+        return render_template('view_volun.html',data=data,l=l)
 
 
 
@@ -605,23 +622,6 @@ def profile(id):
 
 
 
-@app.route('/account/', methods=['GET', 'POST'])
-def account():
-    if not session.get('logged_in'):
-        return redirect(url_for('login'))
-    else:
-        if session['role'] == 'v':
-            return render_template('volunteers_profile.html',
-                                   id=session['user_id'])
-        if session['role'] == 'n':
-            return render_template('ngo_profile.html',
-                                   id=session['user_id'])
-        if session['role'] == 'a':
-            return render_template('admin_profile.html',
-                                   id=session['user_id'])
-
-
-
 
 @app.route('/edit/<id>/', methods=['GET', 'POST'])
 def edit_profile(id):
@@ -648,95 +648,127 @@ def update_pro():
             role = session['role']
 
             if role == 'V' or role == 'v':
-                if request.method == 'POST' and 'name' in request.form \
-                    and 'pin' and request.form and 'phone' in request.form \
-                    and 'address' in request.form and 'about' in request.form:
-                    name = request.form['name']
-                    pincode = request.form['pin']
-                    phone = request.form['phone']
-                    services = request.form['services']
-                    address = request.form['address']
-                    age = request.form['age']
-                    currProfile = request.form['currProfile']
-                    about = request.form['about']
+                if request.method == 'POST':
+                    if 'name' in request.form \
+                        and 'pin' and request.form and 'phone' in request.form \
+                        and 'address' in request.form and 'about' in request.form \
+                        and 'services' in request.form and 'age' in request.form\
+                        and 'gender' in request.form and 'currProfile' in request.form:
+                       
+                        name = request.form['name'] 
+                        pincode = request.form['pin']
+                        phone = request.form['phone']
+                        services = request.form['services']
+                        address = request.form['address']
+                        age = request.form['age']
+                        sex = request.form['gender']
+                        currProfile = request.form['currProfile']
+                        about = request.form['about']
 
-                    connect = get_db()
-                    exe = connect.cursor()
+                        ph = len(phone)
+                        if (ph>=11 or ph<=9) or (not phone.isdigit()):
+                            flash("Invalid Phone number. Length of the phone number should be 10.")
+                            return redirect(url_for('profile',id=session['user_id']))
 
-                    exe.execute('UPDATE members SET name=%s,pin=%s, phone=%s, services=%s, age=%s, currProfile=%s, address=%s,about=%s WHERE username = %s '
-                                , (
-                        name,
-                        pincode,
-                        phone,
-                        services,
-                        age,
-                        currProfile,
-                        address,
-                        about,
-                        username,                 
-                        ))
+                        pi = len(pincode)
+                        if (pi>=7 or pi<=5) or (not pincode.isdigit()):
+                            flash("Invalid pincode. Pincode should be a 6 digit number.")
+                            return redirect(url_for('profile',id=session['user_id']))                           
 
-                    exe.execute("UPDATE application SET vol_name=%s, vol_phone=%s WHERE vol_email=%s",(name,phone,username))
-                    
-                    connect.commit()
-                    exe.close()
-                    connect.close()
-                    flash('Profile was updated successfully.')
-                    return redirect(url_for('logout'))
+                        connect = get_db()
+                        exe = connect.cursor()
+
+                        exe.execute('UPDATE members SET name=%s,pin=%s, phone=%s, services=%s, age=%s, sex=%s, currProfile=%s, address=%s,about=%s WHERE username = %s '
+                                    , (
+                            name,
+                            pincode,
+                            phone,
+                            services,
+                            age,
+                            sex,
+                            currProfile,
+                            address,
+                            about,
+                            username,                 
+                            ))
+
+                        exe.execute("UPDATE application SET vol_name=%s, vol_phone=%s WHERE vol_email=%s",(name,phone,username))
+                        
+                        connect.commit()
+                        exe.close()
+                        connect.close()
+                        flash('Profile was updated successfully.')
+                        return redirect(url_for('logout'))
+                    else:
+                        flash('Please fill all the details.')
+                        return redirect(url_for('profile',id=session['user_id']))                        
                 else:
                     flash('Profile was not updated')
-                    return redirect(url_for('home'))
+                    return redirect(url_for('profile',id=session['user_id']))
 
             elif role == 'n' or role == 'N':
-                if request.method == 'POST' and 'name' in request.form \
-                    and 'website' in request.form and 'social' in request.form \
-                    and 'services' in request.form and 'address' \
-                    in request.form and 'regno' in request.form and 'branch' \
-                    in request.form and 'phone' in request.form and 'pin' \
-                    in request.form and 'about' in request.form:
-                    name = request.form['name']
-                    website = request.form['website']
-                    social = request.form['social']
-                    services = request.form['services']
-                    address = request.form['address']
-                    regno = request.form['regno']
-                    branch = request.form['branch']
-                    phone = request.form['phone']
-                    pin = request.form['pin']
-                    about = request.form['about']
+                if request.method == 'POST':
+                    if 'name' in request.form \
+                        and 'services' in request.form and 'address' \
+                        in request.form and 'regno' in request.form \
+                        and 'phone' in request.form and 'pin' \
+                        in request.form and 'about' in request.form:
 
-                    connect = get_db()
-                    exe = connect.cursor()
+                        name = request.form['name']
+                        website = request.form['website']
+                        social = request.form['social']
+                        services = request.form['services']
+                        address = request.form['address']
+                        regno = request.form['regno']
+                        branch = request.form['branch']
+                        phone = request.form['phone']
+                        pin = request.form['pin']
+                        about = request.form['about']
 
-                    exe.execute('UPDATE members SET name=%s,website=%s, social=%s,services=%s,address=%s,regno=%s,branch=%s,phone=%s,pin=%s,about=%s WHERE username = %s '
-                                , (
-                        name,
-                        website,
-                        social,
-                        services,
-                        address,
-                        regno,
-                        branch,
-                        phone,
-                        pin,
-                        about,
-                        username,
-                        ))
-                    
-                    exe.execute("UPDATE task SET grp=%s, website = %s, phone=%s, abt_grp=%s, location=%s WHERE grp_email=%s",(name,website,phone,about,pin,username))
-                    exe.execute("UPDATE application SET grp_name=%s WHERE grp_email=%s",(name,username))
-                    
-                    connect.commit()
-                    exe.close()
-                    connect.close()
+                        ph = len(phone)
+                        if (ph>=11 or ph<=9) or (not phone.isdigit()):
+                            flash("Invalid Phone number. Length of the phone number should be 10.")
+                            return redirect(url_for('profile',id=session['user_id']))
 
-                    flash('Profile was updated successfully.')
-                    return redirect(url_for('logout'))
+                        pi = len(pincode)
+                        if (pi>=7 or pi<=5) or (not pincode.isdigit()):
+                            flash("Invalid pincode. Pincode should be a 6 digit number.")
+                            return redirect(url_for('profile',id=session['user_id']))
+
+                        connect = get_db()
+                        exe = connect.cursor()
+
+                        exe.execute('UPDATE members SET name=%s,website=%s, social=%s,services=%s,address=%s,regno=%s,branch=%s,phone=%s,pin=%s,about=%s WHERE username = %s '
+                                    , (
+                            name,
+                            website,
+                            social,
+                            services,
+                            address,
+                            regno,
+                            branch,
+                            phone,
+                            pin,
+                            about,
+                            username,
+                            ))
+                        
+                        exe.execute("UPDATE task SET grp=%s, website = %s, phone=%s, abt_grp=%s, location=%s WHERE grp_email=%s",(name,website,phone,about,pin,username))
+                        exe.execute("UPDATE application SET grp_name=%s WHERE grp_email=%s",(name,username))
+                        
+                        connect.commit()
+                        exe.close()
+                        connect.close()
+
+                        flash('Profile was updated successfully.')
+                        return redirect(url_for('logout'))
+                    else:
+                        flash("Please fill all the details.")
+                        url_for('profile',id=session['user_id'])
                 else:
                     flash('Profile was not updated')
-                    return redirect(url_for('home'))
+                    return redirect(url_for('profile',id=session['user_id']))
             else:
-
                 flash("Sorry! You can't update.")
                 return redirect(url_for('logout'))
 
