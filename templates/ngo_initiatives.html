@@ -83,7 +83,11 @@
                                                     {% endfor %}
                                                 </div>
                                             </td>
+                                            {% if "http" in v.links %}
+                                            <td><a target="_blank" href="{{v.website}}">View</a></td>
+                                            {% else %}
                                             <td><a target="_blank" href="//{{v.website}}">View</a></td>
+                                            {% endif %}
                                         </tr>
                                     {% endfor %}
                                 {% endfor %}
