@@ -39,7 +39,7 @@
                     </div>
 
                 </div>
-<form action="/update" method="POST">
+<form action="{{ url_for('update_pro')}}" method="POST">
                 <div class="form-group mb-3 ">
                     <label for="exampleInputEmail1">Name</label>
                     <input type="text" class="form-control" name="name" value="{{ session['name'] }}" aria-label="Username"
@@ -57,7 +57,7 @@
                 </div>
                             <label for="exampleInputEmail1">Select services that you provide</label>
                 <div class="form-group mb-3 ">
-                    <select class="custom-select" name="services" id="inputGroupSelect03">
+                    <select class="custom-select" multiple name="services" id="inputGroupSelect03">
                         <option disabled>--- Select Services ---</option>
                         <option value="Food">Food</option>
                         <option value="Healthcare">Healthcare</option>
@@ -71,12 +71,12 @@
                     <div class="row">
                         <div class="col">
                             <label for="exampleInputEmail1">Pincode</label>
-                            <input type="number" class="form-control" placeholder="{{ session['pin'] }}" aria-label="Username"
+                            <input type="number" class="form-control" value="{{ session['pin'] }}" aria-label="Username"
                                    aria-describedby="basic-addon1">
                         </div>
                         <div class="col">
                             <label for="exampleInputEmail1">Phone No</label>
-                            <input type="tel" name="phone" class="form-control" placeholder="{{ session['phone'] }}" aria-label="Username"
+                            <input type="tel" name="phone" class="form-control" value="{{ session['phone'] }}" aria-label="Username"
                                    aria-describedby="basic-addon1">
                         </div>
                     </div>
@@ -85,7 +85,7 @@
                     <div class="row">
                         <div class="col">
                             <label for="exampleInputEmail1">Age</label>
-                            <input type="number" name="age" class="form-control" placeholder="{{ session['age'] }}" aria-label="Username"
+                            <input type="number" name="age" class="form-control" value="{{ session['age'] }}" aria-label="Username"
                                    aria-describedby="basic-addon1" style="border-radius: 5px">
                         </div>
                         <div class="col">
