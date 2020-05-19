@@ -18,10 +18,10 @@
                     <li class="nav-item"><a href="/#about" class="nav-link  ">About Us</a></li>
                     <li class="nav-item"><a href="{{ url_for('team') }}" class="nav-link  ">Team</a></li>
                     <li class="nav-item"><a href="/#contact" class="nav-link  ">Contact Us</a></li>
-
-                    <li class="nav-item dropdown">
+                    
+                    <li class="nav-item btn dropdown">
                         <select onchange="doGTranslate(this);">
-                            <option class="lang" value="en|en">English</option>
+                            <option class="lang" value="en|en">English</option>                            
                             <option class="lang" value="en|ar">Arabic</option>
                             <option class="lang" value="en|hi">Hindi</option>
                             <option class="lang" value="en|fa">Persian</option>
@@ -68,6 +68,7 @@
                                     class="btn btn-sm btn-outline-danger"><i class='ni ni-user-run' style='color:red'></i>   Logout</button></a>
                             {% endif %}
                             {% endif %}
+                            
                         </div>
                     </li>
                 </ul>

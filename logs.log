@@ -1574,3 +1574,577 @@ INFO:werkzeug:127.0.0.1 - - [18/May/2020 10:09:03] "[37mGET /login/ HTTP/1.1[0
 INFO:werkzeug:127.0.0.1 - - [18/May/2020 10:09:06] "[32mGET /logout HTTP/1.1[0m" 302 -
 INFO:werkzeug:127.0.0.1 - - [18/May/2020 10:09:06] "[37mGET /login/ HTTP/1.1[0m" 200 -
 INFO:werkzeug:127.0.0.1 - - [18/May/2020 10:11:08] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:16:36] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:16:36] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:16:39] "[37mGET /static/assets2/css/custom-css/index.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:16:39] "[37mGET /static/assets/js/plugins/nucleo/css/nucleo.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:16:39] "[37mGET /static/assets2/css/font-awesome.min.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:16:40] "[37mGET /static/assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:16:43] "[37mGET /static/assets2/img/Logos/Logo2.jpeg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:16:43] "[37mGET /static/assets2/img/Logos/Logo3.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:16:43] "[37mGET /static/assets/js/plugins/moment.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:16:44] "[37mGET /static/assets/js/plugins/nouislider.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:16:44] "[37mGET /static/assets/js/plugins/bootstrap-datepicker.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:16:44] "[37mGET /static/assets2/img/BG.jpeg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:16:44] "[37mGET /static/assets/js/plugins/bootstrap-switch.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:16:44] "[37mGET /static/assets2/fonts/fontawesome-webfont.woff2?v=4.7.0 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:16:44] "[37mGET /static/assets/js/plugins/datetimepicker.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:16:44] "[37mGET /static/assets2/img/background.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:16:45] "[37mGET /static/assets2/img/Volunteer.jpeg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:16:45] "[37mGET /static/assets2/img/Find_volunteers.jpeg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:16:45] "[37mGET /static/assets2/img/NPO.jpeg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:17:01] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:17:09] "[37mGET /signup/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:18:16] "[32mPOST /signup/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:18:16] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:18:31] "[37mPOST /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:18:46] "[37mPOST /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:28:39] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:28:51] "[37mPOST /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:29:54] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:30:04] "[37mPOST /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:30:59] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:31:06] "[32mPOST /login/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:31:06] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:31:28] "[32mPOST /login/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:31:28] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:31:41] "[37mPOST /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:40:36] "[37mGET /signup/ HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 01:52:19] "[37mGET /signup/ HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:17:45] "[32mPOST /signup/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:17:45] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:19:59] "[37mGET /signup/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:20:55] "[32mPOST /signup/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:20:55] "[37mGET /signup/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:21:56] "[32mPOST /signup/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:21:56] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:25:00] "[32mPOST /login/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:25:00] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:25:21] "[37mPOST /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:34:59] "[37mGET /signup/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:35:43] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:35:56] "[37mPOST /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:37:01] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:37:06] "[37mPOST /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:37:14] "[37mGET /signup/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:38:51] "[32mPOST /signup/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:38:51] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:40:21] "[32mPOST /login/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:40:21] "[37mGET /home HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:40:21] "[37mGET /static/assets2/img/BG.jpeg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:40:22] "[37mGET /static/assets2/img/Volunteer.jpeg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:40:22] "[37mGET /static/assets2/img/Find_volunteers.jpeg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:40:25] "[37mGET /static/assets/js/plugins/nucleo/fonts/nucleo-icons.woff2 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:40:29] "[37mGET /27/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:40:29] "[37mGET /static/assets/img/theme/profile.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:43:37] "[37mGET /edit/27/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:43:40] "[33mGET /edit/static/assets2/img/background.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:43:40] "[33mGET /edit/static/assets2/img/Logos/Logo3.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:44:27] "[32mPOST /update HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:44:27] "[37mGET /27/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:44:41] "[37mGET /edit/27/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:44:41] "[33mGET /edit/static/assets2/img/Logos/Logo3.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:44:41] "[33mGET /edit/static/assets2/img/background.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:46:32] "[37mGET /edit/27/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:46:32] "[33mGET /edit/static/assets2/img/Logos/Logo3.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:46:32] "[33mGET /edit/static/assets2/img/background.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:47:14] "[32mPOST /update HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:47:14] "[32mGET /update HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:47:14] "[37mGET /27/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 02:49:01] "[37mGET /27/ HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:18:14] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:18:15] "[37mGET /static/assets2/img/Logos/Logo2.jpeg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:18:15] "[37mGET /static/assets/js/plugins/nucleo/css/nucleo.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:18:15] "[37mGET /static/assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:18:15] "[37mGET /static/assets2/img/Logos/Logo3.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:18:15] "[37mGET /static/assets2/css/custom-css/index.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:18:15] "[37mGET /static/assets2/css/font-awesome.min.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:18:15] "[37mGET /static/assets2/img/Volunteer.jpeg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:18:15] "[37mGET /static/assets2/img/BG.jpeg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:18:15] "[37mGET /static/assets2/img/Find_volunteers.jpeg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:18:15] "[37mGET /static/assets/js/plugins/bootstrap-switch.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:18:16] "[37mGET /static/assets2/img/NPO.jpeg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:18:16] "[37mGET /static/assets/js/plugins/nouislider.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:18:16] "[37mGET /static/assets/js/plugins/moment.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:18:16] "[37mGET /static/assets/js/plugins/datetimepicker.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:18:16] "[37mGET /static/assets/js/plugins/bootstrap-datepicker.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:18:17] "[37mGET /static/assets2/img/background.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:18:17] "[37mGET /static/assets2/fonts/fontawesome-webfont.woff2?v=4.7.0 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:18:21] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:18:35] "[32mPOST /login/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:18:35] "[37mGET /home HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:18:37] "[37mGET /static/assets/js/plugins/nucleo/fonts/nucleo-icons.woff2 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:18:38] "[37mGET /27/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:18:38] "[37mGET /static/assets/img/theme/profile.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:18:44] "[37mGET /edit/27/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:18:45] "[33mGET /edit/static/assets2/img/background.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:18:45] "[33mGET /edit/static/assets2/img/Logos/Logo3.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:18:47] "[32mPOST /update HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:18:47] "[37mGET /27/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:18:53] "[37mGET /edit/27/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:18:53] "[33mGET /edit/static/assets2/img/Logos/Logo3.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:18:53] "[33mGET /edit/static/assets2/img/background.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:19:17] "[32mPOST /update HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:19:17] "[32mGET /logout HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:19:17] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:19:38] "[32mPOST /login/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:19:38] "[37mGET /home HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:19:41] "[37mGET /27/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:19:55] "[37mGET /edit/27/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:19:55] "[33mGET /edit/static/assets2/img/Logos/Logo3.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:19:55] "[33mGET /edit/static/assets2/img/background.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:20:31] "[32mPOST /change_password/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:20:31] "[37mGET /27/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:20:45] "[32mPOST /change_password/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:20:45] "[37mGET /27/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:21:00] "[32mPOST /change_password/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:21:00] "[32mGET /logout HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:21:00] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:21:06] "[32mGET /27/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:21:06] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:21:19] "[37mPOST /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:21:35] "[32mPOST /login/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:21:35] "[37mGET /home HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:21:38] "[37mGET /27/ HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:26:39] "[35m[1mGET /logout HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:26:39] "[37mGET /logout?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:26:40] "[37mGET /logout?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:26:40] "[37mGET /logout?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:26:41] "[37mGET /logout?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:26:41] "[37mGET /logout?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:26:41] "[37mGET /logout?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:26:45] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:26:48] "[37mGET /signup/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:29:36] "[32mPOST /signup/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:29:36] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:30:56] "[32mPOST /login/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:30:56] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:31:08] "[37mPOST /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:31:16] "[32mPOST /login/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:31:16] "[37mGET /home HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:31:19] "[37mGET /28/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:31:35] "[32mPOST /change_password/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:31:36] "[32mGET /logout HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:31:36] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:31:42] "[32mPOST /login/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:31:42] "[37mGET /home HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:36:01] "[32mGET /home HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:36:01] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:36:07] "[32mPOST /login/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:36:07] "[37mGET /home HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:36:11] "[37mGET /28/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:36:16] "[37mGET /edit/28/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:36:16] "[33mGET /edit/static/assets2/img/Logos/Logo3.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:36:16] "[33mGET /edit/static/assets2/img/background.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:36:28] "[35m[1mPOST /update HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:36:28] "[37mGET /update?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:36:29] "[37mGET /update?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:36:29] "[37mGET /update?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:36:29] "[37mGET /update?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:36:29] "[37mGET /update?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:36:29] "[37mGET /update?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:38:02] "[32mGET /update HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:38:02] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:38:08] "[32mPOST /login/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:38:08] "[37mGET /home HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:38:12] "[37mGET /28/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:38:15] "[37mGET /edit/28/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:38:15] "[33mGET /edit/static/assets2/img/Logos/Logo3.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:38:16] "[33mGET /edit/static/assets2/img/background.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:38:19] "[35m[1mPOST /update HTTP/1.1[0m" 500 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:38:20] "[37mGET /update?__debugger__=yes&cmd=resource&f=style.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:38:20] "[37mGET /update?__debugger__=yes&cmd=resource&f=jquery.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:38:20] "[37mGET /update?__debugger__=yes&cmd=resource&f=debugger.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:38:20] "[37mGET /update?__debugger__=yes&cmd=resource&f=ubuntu.ttf HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:38:20] "[37mGET /update?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:38:20] "[37mGET /update?__debugger__=yes&cmd=resource&f=console.png HTTP/1.1[0m" 200 -
+INFO:werkzeug: * Detected change in 'E:\\ProjectsLive\\URHope\\app.py', reloading
+INFO:werkzeug: * Restarting with stat
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 513-641-553
+INFO:werkzeug: * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:38:57] "[32mGET /update HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:38:57] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:39:14] "[32mPOST /login/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:39:14] "[37mGET /home HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:39:17] "[37mGET /28/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:39:22] "[37mGET /edit/28/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:39:22] "[33mGET /edit/static/assets2/img/Logos/Logo3.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:39:22] "[33mGET /edit/static/assets2/img/background.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:39:25] "[32mPOST /update HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:39:25] "[37mGET /28/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:39:32] "[37mGET /edit/28/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:39:32] "[33mGET /edit/static/assets2/img/Logos/Logo3.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:39:33] "[33mGET /edit/static/assets2/img/background.png HTTP/1.1[0m" 404 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:39:40] "[32mPOST /update HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:39:40] "[32mGET /logout HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:39:40] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:39:52] "[32mPOST /login/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:39:52] "[37mGET /home HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:39:55] "[37mGET /28/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:40:08] "[37mGET /task_list HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:40:08] "[37mGET /static/assets/js/plugins/%40fortawesome/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:40:09] "[37mGET /static/assets/css/argon-dashboard.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:40:09] "[37mGET /static/assets/js/argon-dashboard.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:40:09] "[37mGET /static/assets/js/plugins/chart.js/dist/Chart.extension.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:40:09] "[37mGET /static/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:40:09] "[37mGET /static/assets/img/brand/blue.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:40:09] "[37mGET /static/assets/js/plugins/jquery/dist/jquery.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:40:09] "[37mGET /static/assets/js/plugins/chart.js/dist/Chart.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:40:09] "[37mGET /static/assets/js/plugins/%40fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:40:09] "[37mGET /static/assets/img/brand/favicon.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:40:14] "[37mGET /create-task HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:40:41] "[37mPOST /create-task HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:40:51] "[37mGET /task_list HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:40:58] "[37mGET /applied_vols/13 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:41:35] "[37mGET /applied_vols/13 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:41:41] "[37mGET /notification_page/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:41:48] "[32mGET /logout HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:41:48] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:42:05] "[37mPOST /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:42:10] "[32mPOST /login/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:42:10] "[37mGET /home HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:42:14] "[37mGET /task_list HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:43:40] "[32mGET /apply/13/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:43:40] "[37mGET /task_list HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:12] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:13] "[37mGET /static/assets/js/plugins/@fortawesome/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:13] "[37mGET /static/assets2/css/custom-css/index.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:13] "[37mGET /static/assets/js/plugins/nucleo/css/nucleo.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:13] "[37mGET /static/assets2/css/font-awesome.min.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:13] "[37mGET /static/assets2/img/Logos/Logo2.jpeg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:13] "[37mGET /static/assets2/img/Volunteer.jpeg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:13] "[37mGET /static/assets2/img/NPO.jpeg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:13] "[37mGET /static/assets2/img/Find_volunteers.jpeg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:13] "[37mGET /static/assets2/img/Logos/Logo3.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:13] "[37mGET /static/assets/js/plugins/bootstrap-switch.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:13] "[37mGET /static/assets2/img/BG.jpeg HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:13] "[37mGET /static/assets/js/plugins/nouislider.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:13] "[37mGET /static/assets/js/plugins/datetimepicker.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:13] "[37mGET /static/assets/js/plugins/bootstrap-datepicker.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:13] "[37mGET /static/assets/js/plugins/moment.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:14] "[37mGET /static/assets2/img/background.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:14] "[37mGET /static/assets2/fonts/fontawesome-webfont.woff2?v=4.7.0 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:17] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:25] "[32mPOST /login/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:25] "[37mGET /home HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:30] "[37mGET /task_list HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:30] "[37mGET /static/assets/js/plugins/%40fortawesome/fontawesome-free/css/all.min.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:30] "[37mGET /static/assets/css/argon-dashboard.css HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:30] "[37mGET /static/assets/js/plugins/jquery/dist/jquery.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:30] "[37mGET /static/assets/js/plugins/chart.js/dist/Chart.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:30] "[37mGET /static/assets/js/plugins/bootstrap/dist/js/bootstrap.bundle.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:30] "[37mGET /static/assets/js/plugins/chart.js/dist/Chart.extension.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:30] "[37mGET /static/assets/js/argon-dashboard.min.js HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:30] "[37mGET /static/assets/img/brand/blue.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:30] "[37mGET /static/assets/img/theme/profile.png HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:31] "[37mGET /static/assets/js/plugins/nucleo/fonts/nucleo-icons.woff2 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:31] "[37mGET /static/assets/js/plugins/%40fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:35] "[37mGET /applied_vols/13 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:40] "[37mGET /notification_page/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:54] "[32mGET /how_is_the_task/13/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:44:54] "[37mGET /notification_page/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:45:13] "[32mGET /logout HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:45:13] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:45:25] "[32mGET /back_application/13/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:45:25] "[37mGET /task_list HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:45:39] "[32mPOST /login/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:45:39] "[37mGET /home HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:45:42] "[37mGET /28/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:45:48] "[37mGET /notification_page/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:45:54] "[37mGET /task_list HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:45:57] "[37mGET /applied_vols/13 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:47:18] "[37mGET /applied_vols/13 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:48:14] "[37mGET /applied_vols/13 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:48:31] "[37mGET /task_list HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:48:35] "[37mGET /applied_vols/13 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:48:59] "[37mGET /applied_vols/13 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:49:09] "[37mGET /notification_page/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:49:18] "[32mGET /logout HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:49:18] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:49:48] "[32mGET /logout HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:49:48] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:52:16] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:52:22] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:52:30] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:53:15] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:54:32] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:54:57] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:55:05] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:55:06] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:55:07] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:55:31] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 03:58:03] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:01:36] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:01:36] "[37mGET /static/assets/js/plugins/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2 HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:02:20] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:02:27] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:04:04] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:04:57] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:05:14] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:07:10] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:07:56] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:08:24] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:09:00] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:09:10] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:09:21] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:09:32] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:09:55] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:10:16] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:10:40] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:11:37] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:12:05] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:12:28] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:12:45] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:13:01] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:13:21] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:14:50] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:14:55] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:15:57] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:17:31] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:18:44] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:19:54] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:20:24] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:20:49] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:21:47] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:22:24] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:22:49] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:23:33] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:23:52] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:24:34] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:24:49] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:25:14] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:25:37] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:25:51] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:31:09] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:32:16] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:32:28] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:33:29] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:34:55] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:35:31] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:39:36] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:40:25] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:41:24] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:42:39] "[37mGET / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:42:53] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:43:14] "[32mPOST /login/ HTTP/1.1[0m" 302 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:43:14] "[37mGET /login/ HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [20/May/2020 04:44:12] "[37mGET /login/ HTTP/1.1[0m" 200 -
