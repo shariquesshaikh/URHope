@@ -34,6 +34,14 @@
                         <input type="text" class="form-control" name="name" placeholder="Name" aria-label="name"
                             aria-describedby="basic-addon1" required>
                     </div>
+                    
+                    <div class="form-group mb-3  who-are-you">
+                        <select class="custom-select" name="role" id="inputGroupSelect03">
+                            <option disabled selected>--- Who are you? ---</option>
+                            <option value="v">Volunteer</option>
+                            <option value="n">NGO</option>
+                        </select>
+                    </div>
                     <div class="form-group mb-3 ">
                     <input type="email" name="username" class="form-control" placeholder="Email" aria-label="Username"
                     aria-describedby="basic-addon1" required>
@@ -58,8 +66,8 @@
                                aria-describedby="basic-addon1" required>
                     </div>
                     <div class="form-group mb-3 ">
-                        <select class="custom-select" name="services" id="inputGroupSelect03">
-                            <option disabled selected>--- Select Services ---</option>
+                        <select class="custom-select" multiple name="services" id="inputGroupSelect03">
+                            <option disabled>--- Select Services ---</option>
                             <option value="Food View">Food</option>
                             <option value="Health View">Healthcare</option>
                             <option value="Shelter View">Shelter</option>
@@ -75,13 +83,6 @@
                     <div class="form-group mb-3 ">
                         <input type="text" class="form-control" name="address" placeholder="Address" aria-label="address"
  aria-describedby="basic-addon1" required>
-                    </div>
-                    <div class="form-group mb-3  who-are-you">
-                        <select class="custom-select" name="role" id="inputGroupSelect03">
-                            <option disabled selected>--- Who are you? ---</option>
-                            <option value="v">Volunteer</option>
-                            <option value="n">NGO</option>
-                        </select>
                     </div>
                     <div class="form-group mb-3  volunteer-field">
                         <select class="custom-select" name="gender" id="inputGroupSelect03">

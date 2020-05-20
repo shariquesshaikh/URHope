@@ -413,7 +413,7 @@ def home():
 
 
 
-@app.route('/panel') #Admin Login
+@app.route('/panel/') #Admin Login
 def admin_panel():
     return render_template('adminlogin.html')
 
@@ -648,22 +648,23 @@ def update_pro():
             role = session['role']
 
             if role == 'V' or role == 'v':
+              
                 if request.method == 'POST':
                     if 'name' in request.form \
                         and 'pin' and request.form and 'phone' in request.form \
                         and 'address' in request.form and 'about' in request.form \
                         and 'services' in request.form and 'age' in request.form\
                         and 'gender' in request.form and 'currProfile' in request.form:
-                       
-                        name = request.form['name'] 
-                        pincode = request.form['pin']
-                        phone = request.form['phone']
-                        services = request.form['services']
-                        address = request.form['address']
-                        age = request.form['age']
-                        sex = request.form['gender']
-                        currProfile = request.form['currProfile']
-                        about = request.form['about']
+                      
+                        name = request.form.get('name')
+                        pincode = request.form.get('pin')
+                        phone = request.form.get('phone')
+                        services = request.form.getlist('services')
+                        address = request.form.get('address')
+                        age = request.form.get('age')
+                        sex = request.form.get('gender')
+                        currProfile = request.form.get('currProfile')
+                        about = request.form.get('about')                     
 
                         ph = len(phone)
                         if (ph>=11 or ph<=9) or (not phone.isdigit()):
@@ -713,17 +714,17 @@ def update_pro():
                         in request.form and 'regno' in request.form \
                         and 'phone' in request.form and 'pin' \
                         in request.form and 'about' in request.form:
-
-                        name = request.form['name']
-                        website = request.form['website']
-                        social = request.form['social']
-                        services = request.form['services']
-                        address = request.form['address']
-                        regno = request.form['regno']
-                        branch = request.form['branch']
-                        phone = request.form['phone']
-                        pin = request.form['pin']
-                        about = request.form['about']
+        
+                        name = request.form.get('name')
+                        website = request.form.get('website')
+                        social = request.form.get('social')
+                        services = request.form.getlist('services')
+                        address = request.form.get('address')
+                        regno = request.form.get('regno')
+                        branch = request.form.get('branch')
+                        phone = request.form.get('phone')
+                        pin = request.form.get('pin')
+                        about = request.form.get('about')                        
 
                         ph = len(phone)
                         if (ph>=11 or ph<=9) or (not phone.isdigit()):

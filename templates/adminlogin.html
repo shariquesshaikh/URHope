@@ -33,7 +33,7 @@
             {% endfor %} {% endif %} {% endwith %}
 
           </div>
-                <form role="form" method="post" action="">
+                <form role="form" method="post" action="{{ url_for('admin_check')}}">
                     <div class="input-group mb-3 px-lg-3">
 
                         <input type="email" class="form-control" name="username" placeholder="Email" aria-label="Username"
