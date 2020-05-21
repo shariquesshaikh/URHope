@@ -76,10 +76,6 @@ def get_db():
                           db=db_name, charset='utf8mb4')
      return db
 
-# def get_db():
-#      db = pymysql.connect(host='localhost', user='root', passwd='',
-#                           db='covid', charset='utf8mb4')
-#      return db
 
 
 
