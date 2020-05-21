@@ -27,6 +27,9 @@ import random
 import smtplib
 import logging
 import re
+# import pandas as pd
+# import openpyxl
+# import xlsxwriter
 
 app = Flask(__name__)
 
@@ -73,6 +76,11 @@ def get_db():
                           db=db_name, charset='utf8mb4')
      return db
 
+# def get_db():
+#      db = pymysql.connect(host='localhost', user='root', passwd='',
+#                           db='covid', charset='utf8mb4')
+#      return db
+
 
 
 
@@ -108,7 +116,7 @@ def signup():
     if request.method == 'POST':
         if 'username' in request.form \
             and 'password' in request.form and 'role' in request.form \
-            and 'confirm' in request.form:
+            and 'confirm' in request.form and 'serve' in request.form:
             name = request.form.get('name')
             username = request.form.get('username')
             password = request.form.get('password')
@@ -126,7 +134,11 @@ def signup():
             about = request.form.get("about")
             govtID = request.form.get("govtID")
             address = request.form.get("address")
-            services = request.form.get("services")
+            serve = request.form.getlist("serve")
+
+            services = ''
+            for s in serve:
+                services = services + s + ','
 
             ph = len(phone)
             if (ph>=11 or ph<=9) or (not phone.isdigit()):
@@ -342,7 +354,7 @@ def forgot_passsword():
             x = "We have sent your login details to "+email+". In case of any query you can contact us."
             flash(x)
             name = account[1]
-            # password = account[3] #It's md5 password. There isn't any python function to decrypt it
+            # password = account[3] #It's hashed password. There isn't any python function to decrypt it
             password = "none"
             server = serve()
             subject = "Notification from URHope Team"
@@ -555,6 +567,7 @@ def logs():
 @app.route('/download_data/<id>/',methods=["GET","POST"])
 def download_data(id):
     id=id
+    new = id
     connect = get_db()
     cursor = connect.cursor()
     cursor.execute("SELECT * FROM application WHERE task_id=%s",id)
@@ -564,7 +577,7 @@ def download_data(id):
     if(len(data)>0):
         id=data[0][3]
         # naming = data[0][7]
-        grp_name = data[0][5]
+        # grp_name = data[0][5]
 
         cursor.execute("SELECT vol_name,vol_email,vol_phone FROM application WHERE task_id=%s",id)
         data = cursor.fetchall()
@@ -573,19 +586,20 @@ def download_data(id):
         df = pd.DataFrame(list(data), columns=columns)
         
         # filename = str(id)+"_Volunteers.xlsx"
-        filename = "volunteer.xlsx"
-        try:
-            os.remove(filename)
-        except OSError:
-            pass
+        
+        # try:
+        #     os.remove("templates/downloaded_data/Volunteer.xlsx")
+        # except OSError:
+        #     pass
+        path = "templates/downloaded_data/Volunteer.xlsx"
         
         # writer = pd.ExcelWriter(filename,engine = "openpyxl"
-        writer = pd.ExcelWriter(filename)
+        writer = pd.ExcelWriter(path, engine='xlsxwriter')
         df.to_excel(writer, sheet_name='Task Volunteer')
         
         writer.save()
 
-        cursor.execute('select * from task where grp = %s', grp_name)
+        cursor.execute('select * from application where task_id = %s', new)
         data = cursor.fetchall()
 
         connect.commit()
@@ -593,8 +607,9 @@ def download_data(id):
         connect.close()
         
         download =1
+        # ,download=download,false_id=id,filename=filename
 
-        return render_template('task_list_n.html',len=len(data), data=data,download=download,false_id=id,filename=filename)
+        return render_template('applied_vols.html',len=len(data), data=data)
     else:
         connect.commit()
         cursor.close()
@@ -653,18 +668,22 @@ def update_pro():
                     if 'name' in request.form \
                         and 'pin' and request.form and 'phone' in request.form \
                         and 'address' in request.form and 'about' in request.form \
-                        and 'services' in request.form and 'age' in request.form\
+                        and 'serve' in request.form and 'age' in request.form\
                         and 'gender' in request.form and 'currProfile' in request.form:
                       
                         name = request.form.get('name')
                         pincode = request.form.get('pin')
                         phone = request.form.get('phone')
-                        services = request.form.getlist('services')
                         address = request.form.get('address')
                         age = request.form.get('age')
                         sex = request.form.get('gender')
                         currProfile = request.form.get('currProfile')
-                        about = request.form.get('about')                     
+                        about = request.form.get('about')
+                        serve = request.form.getlist("serve")
+
+                        services = ''
+                        for s in serve:
+                            services = services + s + ','                     
 
                         ph = len(phone)
                         if (ph>=11 or ph<=9) or (not phone.isdigit()):
@@ -710,7 +729,7 @@ def update_pro():
             elif role == 'n' or role == 'N':
                 if request.method == 'POST':
                     if 'name' in request.form \
-                        and 'services' in request.form and 'address' \
+                        and 'serve' in request.form and 'address' \
                         in request.form and 'regno' in request.form \
                         and 'phone' in request.form and 'pin' \
                         in request.form and 'about' in request.form:
@@ -718,13 +737,17 @@ def update_pro():
                         name = request.form.get('name')
                         website = request.form.get('website')
                         social = request.form.get('social')
-                        services = request.form.getlist('services')
                         address = request.form.get('address')
                         regno = request.form.get('regno')
                         branch = request.form.get('branch')
                         phone = request.form.get('phone')
                         pin = request.form.get('pin')
-                        about = request.form.get('about')                        
+                        about = request.form.get('about')
+                        serve = request.form.getlist("serve")
+
+                        services = ''
+                        for s in serve:
+                            services = services + s + ','                                                
 
                         ph = len(phone)
                         if (ph>=11 or ph<=9) or (not phone.isdigit()):
