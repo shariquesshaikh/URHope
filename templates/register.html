@@ -65,17 +65,41 @@
                         <input type="tel" class="form-control" name="phone" placeholder="Phone No" aria-label="Username"
                                aria-describedby="basic-addon1" required>
                     </div>
+                    
                     <div class="form-group mb-3 ">
-                        <select class="custom-select" multiple name="services" id="inputGroupSelect03">
-                            <option disabled>--- Select Services ---</option>
-                            <option value="Food View">Food</option>
-                            <option value="Health View">Healthcare</option>
-                            <option value="Shelter View">Shelter</option>
-                            <option value="Clothing">Clothing</option>
-                            <option value="Medical Equipments">Medical Equipments</option>
-                            <option value="Others">Others</option>
-                        </select>
+                        <table style="margin-left:15px;">
+                            <tr>
+                                <td align="left"><b>Select one or more services</b></td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td align="left"><input type="checkbox" name='serve' value="Food View"> Food</td>
+                            </tr>
+
+                            <tr>
+                                <td align="left"><input type="checkbox" name='serve' value="Health View"> Healthcare</td>
+                            </tr>
+
+                            <tr>
+                                <td align="left"><input type="checkbox" name='serve' value="Shelter View"> Shelter</td>
+                            </tr>
+
+                            <tr>
+                                <td align="left"><input type="checkbox" name='serve' value="Clothing"> Clothing</td>
+                            </tr>
+
+                            <tr>
+                                <td align="left"><input type="checkbox" name='serve' value="Medical Equipments"> Medical Equipments</td>
+                            </tr>
+
+                            <tr>
+                                <td align="left"><input type="checkbox" name='serve' value="Others"> Others</td>
+                            </tr>
+                                
+                        </table>
                     </div>
+
                     <div class="form-group mb-3  volunteer-field">
                         <input type="number" name="age" class="form-control" placeholder="Age" aria-label="Username"
                                aria-describedby="basic-addon1">
