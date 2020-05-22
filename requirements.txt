@@ -32,3 +32,4 @@ regex==2020.4.4
 pyodbc==4.0.30
 pandas==1.0.3
 openpyxl==3.0.3
+Xlsxwriter==1.2.8

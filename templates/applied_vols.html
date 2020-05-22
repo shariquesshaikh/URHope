@@ -1,0 +1,137 @@
+{% extends "base_site.html" %}
+
+{% block title %} Profile {% endblock title %}
+
+{% block stylesheets %}
+  {{ super() }}
+  <style>
+
+.fa-whatsapp  {
+  color:#fff;
+  background:
+  linear-gradient(#25d366,#25d366)10px 84%/10px 15px no-repeat,
+  radial-gradient(#25d366 60%,transparent 0);
+}
+
+.fa-envelope{
+  color:rgb(231, 73, 73);
+}
+  </style>
+{% endblock stylesheets %}
+
+{% block content %}
+
+    {% include "site_template/navigation.html" %}
+      
+    <!-- Header -->
+    <div class="header pb-3 pt-5 pt-lg-3 d-flex align-items-center" style=" background-size: cover; background-position: center top;">
+    <!-- Mask -->
+    <!-- Header container -->
+    </div>
+      
+    <!-- Page content -->
+                  
+                    
+<div align="center">
+<div class="row mt-5" >
+        <div class="col-xl-8 ml-2 mb-5 mb-xl-0">
+          <div class="card shadow">
+            <div class="card-header border-0">
+              <div class="row align-items-center">
+                <div class="col">
+                  <h1 class="text-center mb-4">Voluteers' List</h1>
+                  <!-- <a class="btn btn-outline-info" href="">Download List</a> <br> <br>
+                  <a class="btn" href="" title="Go back"><i class="fas fa-chevron-left"></i></a>
+                  <a class="btn btn-success" href="">Download Now <i class="fas fa-download"></i></a><br> <br> -->
+
+                </div>
+                                     {% with messages = get_flashed_messages() %} {% if messages %} {% for message in messages %}  
+                                                      {% if (message.startswith("Thanks")) %}
+                                                      <div class="alert alert-success alert-dismissible" role="alert">
+                                                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                          {{message}}
+                                                      </div>
+                                                      {% else %}
+                                                      <div class="alert alert-danger alert-dismissible" role="alert">
+                                                          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                          {{message}}
+                                                      </div>
+                                                      {% endif %}
+
+                                                      {% endfor %} {% endif %} {% endwith %}  
+               
+  
+            </div>
+            {% if len>0 %}
+            <div class="table-responsive">
+              <!-- Projects table -->
+              <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                  
+                  <tr align="center">
+                    <th scope="col">Volunteer Name</th>
+                    <th scope="col">Email ID</th>
+                    <th scope="col">Contact No</th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for value in data %}
+                  <tr align="center">
+                    <td style="font-size:large;">
+                      {{value[6]}}
+                    </td>
+                    <td>
+                      {{value[2]}} 
+                    </td>
+                    <td>
+                      {{value[8]}}
+                    </td>  
+                    <td>
+                      <!-- (enable->chrome://settings/handlers) -->
+                      <!-- https://stackoverflow.com/questions/34129707/href-mailto-is-not-working-on-any-of-the-browsers -->
+                      <a href="mailto:{{value[2]}}" title="Send an email to {{value[6]}}"><i class="far fa-envelope fa-3x"></i></a>
+                    </td>                    
+                    <td>
+                      <a href="https://web.whatsapp.com/send?phone=+91{{value[8]}}&text=Dear%20{{value[6]}}%2C%0D%0A%0D%0AWe%20are%20glad%20that%20you%20have%20opted%20to%20volunteer%20for%20the%20task:%20{{value[7]}},%20created%20by%20us.%0D%0A%0D%0AThank you so much.%0D%0A%0D%0AFor%20any%20queries%20you%20can%20contact%20us.%0D%0A%0D%0ARegards,%0D%0A{{session['name']}}" title="Chat with {{value[6]}}"><i class="fab fa-whatsapp fa-3x"></i></a>
+
+                    </td>
+                  </tr> 
+                  {% endfor %}
+                  {% else %}
+                  <tr>
+                      <div class="">
+                        
+                        <h3>There are no volunteers who has applied for this task.</h3>
+
+                          <br>
+                          <p>Note: If you don't see any volunteer who was present here before then, probably he/she has taken back their application.</p>
+                      </div>
+                    </tr>  
+                  {% endif %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+    </div></div>
+    </div>   
+  </div> 
+    <script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+
+    
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">
+
+    <script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script> -->
+
+	
+{% endblock content %}
+

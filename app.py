@@ -3,6 +3,7 @@
 # -*- coding: utf-8 -*-
 
 #__copyright__ = 'URHope'
+#__Core Developers__= 'Zuhair, Sharique, Jino, Furqaan'
 
 from __future__ import print_function
 from flask import Flask, render_template, redirect, url_for, request, g
@@ -19,7 +20,6 @@ import requests
 import socket
 import os.path
 import flask
-import re
 import urllib.request
 import logging
 import string
@@ -27,11 +27,12 @@ import random
 import smtplib
 import logging
 import re
-import pyodbc
-import pandas as pd
-import openpyxl
+# import pandas as pd
+# import openpyxl
+# import xlsxwriter
 
 app = Flask(__name__)
+
 sslify = SSLify(app)
 
 app.config['TEMPLATES_AUTO_RELOAD'] = True
@@ -45,6 +46,8 @@ app.debug = True
 app.secret_key = os.urandom(12)
 
 logging.basicConfig(filename='logs.log', level=logging.ERROR)
+
+
 
 
 
@@ -69,9 +72,14 @@ def serve():
 
 
 def get_db():
-    db = pymysql.connect(host=host, user=username, passwd=password,
-                         db=db_name, charset='utf8mb4')
-    return db
+     db = pymysql.connect(host=host, user=username, passwd=password,
+                          db=db_name, charset='utf8mb4')
+     return db
+
+# def get_db():
+#      db = pymysql.connect(host='localhost', user='root', passwd='',
+#                           db='covid', charset='utf8mb4')
+#      return db
 
 
 
@@ -104,26 +112,49 @@ def relief_call():
 
 
 @app.route('/signup/', methods=['GET', 'POST'])
-def signup():   
+def signup():
     if request.method == 'POST':
-        if  'username' in request.form \
-            and 'services' in request.form and 'password' in request.form and 'role' in request.form \
-            and 'confirm' in request.form:
+        if 'username' in request.form \
+            and 'password' in request.form and 'role' in request.form \
+            and 'confirm' in request.form and 'serve' in request.form:
+            name = request.form.get('name')
+            username = request.form.get('username')
+            password = request.form.get('password')
+            confirmpassword = request.form.get('confirm')
+            pincode = request.form.get('pincode')
+            phone = request.form.get('phone')
+            role = request.form.get('role')
+            age = request.form.get('age')
+            currProfile = request.form.get("currProfile")
+            gender = request.form.get("gender")
+            regno = request.form.get('regno')
+            branch = request.form.get("branch")
+            website = request.form.get("website")
+            social = request.form.get("social")
+            about = request.form.get("about")
+            govtID = request.form.get("govtID")
+            address = request.form.get("address")
+            serve = request.form.getlist("serve")
 
-            name = request.form['name']
-            username = request.form['username']
-            password = request.form['password']
-            confirmpassword = request.form['confirm']
-            pincode = request.form['pincode']
-            phone = request.form['phone']
-            role = request.form['role']
-            # address = request.form['address']
-            services = request.form['services']
+            services = ''
+            for s in serve:
+                services = services + s + ','
+
+            ph = len(phone)
+            if (ph>=11 or ph<=9) or (not phone.isdigit()):
+                flash("Invalid Phone number. Length of the phone number should be 10.")
+                return redirect(url_for('signup'))
+
+            pi = len(pincode)
+            if (pi>=7 or pi<=5) or (not pincode.isdigit()):
+                flash("Invalid pincode. Pincode should be a 6 digit number.")
+                return redirect(url_for('signup'))
+
             try:
                 db = get_db()
                 c = db.cursor()
                 c.execute('select username from members where username = %s'
-                        , username)
+                          , username)
                 account = c.fetchone()
 
                 if account:
@@ -131,19 +162,29 @@ def signup():
                 else:
 
                     if password == confirmpassword:
-                        c.execute('insert into members (name, username, phone, pin, role, services, password ) values (%s, %s, %s, %s, %s, %s, md5(%s))'
-                                , (
+                        c.execute('insert into members (name, username, phone, pin, role, services, regno, branch, sex, age, currProfile, website, social, govtID, address, about, password ) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, md5(%s))'
+                                  , (
                             name,
                             username,
                             phone,
                             pincode,
                             role,
                             services,
+                            regno,
+                            branch,
+                            gender,
+                            age,
+                            currProfile,
+                            website,
+                            social,
+                            govtID,
+                            address,
+                            about,
                             password,
                             ))
                         db.commit()
 
-                        flash('Registered Successfully, Check your mail for confirmation!')
+                        flash('Registered Successfully, Check your email for confirmation!')
 
                         server = serve()
                         subject = "Notification from URHope Team"
@@ -151,7 +192,7 @@ def signup():
                         msg=f"Subject: {subject}\n\n{body} "
                         server.sendmail(
                                         'urhope.ngo@gmail.com',
-                                        str(username), #this might misbehave, typecast/antitype it.
+                                        str(username),
                                         msg
                                         )
 
@@ -161,12 +202,13 @@ def signup():
                         db.close()
 
                         return redirect(url_for('login'))
+
                     else:
-                        flash('Passwords do not match!')
+                         flash('Passwords do not match!')
             except Exception as e:
                 print(e)
-            flash("An error occured. Please try again.")
-            return render_template('register.html')
+                flash("An error occured. Please try again.")
+                return render_template('register.html')
         else:
             flash("Please enter all the details.")
             return render_template('register.html')
@@ -182,11 +224,28 @@ def login():
         try:
             username = request.form['username']
             password = request.form['password']
-            db = get_db()
-            c = db.cursor()
-            c.execute('select id,name, username, password, role, phone, pin, regno, age, sex, currProfile, address, social, services, branch, about, govtID,website from members where username = %s and password = md5(%s)'
-                      , (username, password))
-            account = c.fetchone()
+
+            # https://emailregex.com/
+            email_expression = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
+
+            if(re.search(email_expression,username)):
+                db = get_db()
+                c = db.cursor()
+                c.execute('SELECT id,name, username, password, role, phone, pin, regno, age, sex, currProfile, address, social, services, branch, about, govtID, website from members WHERE username = %s and password = md5(%s)'
+                        , (username, password))
+                account = c.fetchone()
+            else:
+                ph = len(username)
+                if (ph>=11 or ph<=9) or (not username.isdigit()):
+                    flash("Invalid Email or Phone number. Please try again.")
+                    return redirect(url_for('login'))
+
+                db = get_db()
+                c = db.cursor()
+                c.execute('SELECT id,name, username, password, role, phone, pin, regno, age, sex, currProfile, address, social, services, branch, about, govtID, website from members WHERE phone = %s and password = md5(%s)'
+                        , (username, password))
+                account = c.fetchone()
+            
             if account is not None:
                 session['logged_in'] = True
                 session['user_id'] = account[0]
@@ -198,8 +257,8 @@ def login():
                 session['regno'] = account[7]
                 session['age'] = account[8]
                 session['sex'] = account[9]
-                session['currProfile'] = account[10]
                 session['address'] = account[11]
+                session['currProfile'] = account[10]
                 session['social'] = account[12]
                 session['services'] = account[13]
                 session['branch'] = account[14]
@@ -216,13 +275,101 @@ def login():
                 db.close()
                 return redirect(url_for('home'))
             else:
-                flash('Invalid Username or Password')
+                flash('Invalid credentials. Please try again.')
                 return render_template('login.html')
         except Exception as e:
             print(e)
+        flash('An error occured. Please try again.')
         return render_template('login.html')
     else:
         return render_template('login.html')
+
+
+
+@app.route('/change_password/', methods=['GET', 'POST'])
+def change_password():
+    if request.method == "POST":
+        if 'old_password' in request.form and 'new_password' in request.form and 'confirm' in request.form :
+                old_pass = request.form['old_password']
+                new_pass = request.form['new_password']
+                confirm_new_pass = request.form['confirm']
+
+                username = session['username']
+                db = get_db()
+                cursor = db.cursor()
+                cursor.execute('SELECT * FROM members WHERE username = %s and password = md5(%s)'
+                            , (username, old_pass))
+                account = cursor.fetchone()
+                db.commit()
+                cursor.close()
+                db.close()
+
+                if account is None:
+                    flash("The current password that you have entered is invalid. Please try again.")
+                    return redirect(url_for('profile',id=session['user_id']))  
+                elif new_pass != confirm_new_pass:
+                    flash("New passwords does not match. Make sure confirm password is same as new password.")
+                    return redirect(url_for('profile',id=session['user_id']))
+                else:
+                    try:
+                        db = get_db()
+                        cursor = db.cursor()
+                        cursor.execute('UPDATE members SET password = md5(%s) WHERE username = %s',(new_pass,username))
+                        flash("Password updated successfully.")
+                        db.commit()
+                        cursor.close()
+                        db.close()
+                        return redirect(url_for('logout'))
+                    except Exception as e:
+                        print(e)
+        else:
+            flash("Please fill all the details.")
+            return redirect(url_for('profile',id=session['user_id']))
+    else:
+        return redirect(url_for('profile',id=session['user_id']))
+
+
+
+@app.route('/forgot_password/', methods=['GET', 'POST'])
+def forgot_passsword():
+    flash("We are working on this part. It will be updated soon.")
+    return redirect(url_for('login'))
+
+    #Codes below will be considered after successful implementation of password link generation mechanism
+    if request.method == "POST":
+        email = request.form['username']
+
+        db = get_db()
+        cursor = db.cursor()
+        cursor.execute('SELECT * FROM members WHERE username = %s', (email))
+        account = cursor.fetchone()
+        db.commit()
+        cursor.close()
+        db.close()
+
+        if account is None:
+            flash("Entered Email ID does not exist in our databse. Please try again. In case of any query you can contact us.")
+            return redirect(url_for('forgot_passsword'))
+        else:    
+            x = "We have sent your login details to "+email+". In case of any query you can contact us."
+            flash(x)
+            name = account[1]
+            # password = account[3] #It's hashed password. There isn't any python function to decrypt it
+            password = "none"
+            server = serve()
+            subject = "Notification from URHope Team"
+            body="Dear "+name+",\n\nYour login details.\n\nUsername: "+email+"\nPassword: "+password+"\n\nClick here to login.\nhttp://urhope.in/login/\n\nThanks for choosing us. Have a nice day :)\n\nRegards\nURHope Team"
+            msg=f"Subject: {subject}\n\n{body} "
+            server.sendmail(
+                            'urhope.ngo@gmail.com',
+                            str(email),
+                            msg
+                            )
+            server.quit()
+
+            return redirect(url_for('forgot_passsword'))     
+    else:
+        return render_template('forgot_pass.html')
 
 
 
@@ -278,7 +425,7 @@ def home():
 
 
 
-@app.route('/panel') #Admin Login
+@app.route('/panel/') #Admin Login
 def admin_panel():
     return render_template('adminlogin.html')
 
@@ -367,7 +514,7 @@ def reg_vols():
         db.commit()
         c.close()
         db.close()
-        return render_template('view_volun.html',data=data,l=len(data))
+        return render_template('view_volun.html',data=data,l=l)
 
 
 
@@ -378,8 +525,7 @@ def del_vol(id):
         return redirect(url_for('login'))
     db = get_db()
     c = db.cursor()
-    role="v"
-    
+
     c.execute('SELECT username FROM members WHERE id = %s', id)
     data = c.fetchone()
     vol_mail = data[0]
@@ -404,58 +550,6 @@ def del_vol(id):
 
 
 
-@app.route('/download_data/<id>/',methods=["GET","POST"])
-def download_data(id):
-    id=id
-    connect = get_db()
-    cursor = connect.cursor()
-    cursor.execute("SELECT * FROM application WHERE task_id=%s",id)
-    data = cursor.fetchall()
-    
-
-    if(len(data)>0):
-        id=data[0][3]
-        # naming = data[0][7]
-        grp_name = data[0][5]
-
-        cursor.execute("SELECT vol_name,vol_email,vol_phone FROM application WHERE task_id=%s",id)
-        data = cursor.fetchall()
-
-        columns = ['Volunteer Name', 'Volunteer Email','Volunteer Contact No']
-        df = pd.DataFrame(list(data), columns=columns)
-        
-        # filename = str(id)+"_Volunteers.xlsx"
-        filename = "volunteer.xlsx"
-        try:
-            os.remove(filename)
-        except OSError:
-            pass
-        
-        # writer = pd.ExcelWriter(filename,engine = "openpyxl"
-        writer = pd.ExcelWriter(filename)
-        df.to_excel(writer, sheet_name='Task Volunteer')
-        
-        writer.save()
-
-        cursor.execute('select * from task where grp = %s', grp_name)
-        data = cursor.fetchall()
-
-        connect.commit()
-        cursor.close()
-        connect.close()
-        
-        download =1
-
-        return render_template('task_list_n.html',len=len(data), data=data,download=download,false_id=id,filename=filename)
-    else:
-        connect.commit()
-        cursor.close()
-        connect.close()        
-        flash("You can't download because there aren't any volunteer who has applied for this task") 
-        return redirect(url_for('task_list'))
-
-
-
 @app.route('/logs')
 def logs():
     if not session.get('logged_in'):
@@ -467,6 +561,62 @@ def logs():
         return render_template('log.html',logs=log_file,l=0)
     else: 
         return render_template('log.html',logs=log_file,l=1)
+
+
+
+@app.route('/download_data/<id>/',methods=["GET","POST"])
+def download_data(id):
+    id=id
+    new = id
+    connect = get_db()
+    cursor = connect.cursor()
+    cursor.execute("SELECT * FROM application WHERE task_id=%s",id)
+    data = cursor.fetchall()
+    
+
+    if(len(data)>0):
+        id=data[0][3]
+        # naming = data[0][7]
+        # grp_name = data[0][5]
+
+        cursor.execute("SELECT vol_name,vol_email,vol_phone FROM application WHERE task_id=%s",id)
+        data = cursor.fetchall()
+
+        columns = ['Volunteer Name', 'Volunteer Email','Volunteer Contact No']
+        df = pd.DataFrame(list(data), columns=columns)
+        
+        # filename = str(id)+"_Volunteers.xlsx"
+        
+        # try:
+        #     os.remove("templates/downloaded_data/Volunteer.xlsx")
+        # except OSError:
+        #     pass
+        path = "templates/downloaded_data/Volunteer.xlsx"
+        
+        # writer = pd.ExcelWriter(filename,engine = "openpyxl"
+        writer = pd.ExcelWriter(path, engine='xlsxwriter')
+        df.to_excel(writer, sheet_name='Task Volunteer')
+        
+        writer.save()
+
+        cursor.execute('select * from application where task_id = %s', new)
+        data = cursor.fetchall()
+
+        connect.commit()
+        cursor.close()
+        connect.close()
+        
+        download =1
+        # ,download=download,false_id=id,filename=filename
+
+        return render_template('applied_vols.html',len=len(data), data=data)
+    else:
+        connect.commit()
+        cursor.close()
+        connect.close()        
+        flash("You can't download because there aren't any volunteer who has applied for this task") 
+        return redirect(url_for('task_list'))
+
 
 
 
@@ -487,6 +637,7 @@ def profile(id):
 
 
 
+
 @app.route('/edit/<id>/', methods=['GET', 'POST'])
 def edit_profile(id):
     if not session.get('logged_in'):
@@ -503,8 +654,8 @@ def edit_profile(id):
 
 
 
-@app.route('/update/<uname>/', methods=['GET', 'POST'])
-def update_pro(uname):
+@app.route('/update', methods=['GET', 'POST'])
+def update_pro():
     if not session.get('logged_in'):
         return redirect(url_for('login'))
     else:
@@ -512,95 +663,136 @@ def update_pro(uname):
             role = session['role']
 
             if role == 'V' or role == 'v':
-                if request.method == 'POST' and 'name' in request.form \
-                    and 'pin' and request.form and 'phone' in request.form \
-                    and 'address' in request.form and 'about' in request.form:
-                    name = request.form['name']
-                    pincode = request.form['pin']
-                    phone = request.form['phone']
-                    services = request.form['services']
-                    address = request.form['address']
-                    age = request.form['age']
-                    currProfile = request.form['currProfile']
-                    about = request.form['about']
+              
+                if request.method == 'POST':
+                    if 'name' in request.form \
+                        and 'pin' and request.form and 'phone' in request.form \
+                        and 'address' in request.form and 'about' in request.form \
+                        and 'serve' in request.form and 'age' in request.form\
+                        and 'gender' in request.form and 'currProfile' in request.form:
+                      
+                        name = request.form.get('name')
+                        pincode = request.form.get('pin')
+                        phone = request.form.get('phone')
+                        address = request.form.get('address')
+                        age = request.form.get('age')
+                        sex = request.form.get('gender')
+                        currProfile = request.form.get('currProfile')
+                        about = request.form.get('about')
+                        serve = request.form.getlist("serve")
 
-                    connect = get_db()
-                    exe = connect.cursor()
+                        services = ''
+                        for s in serve:
+                            services = services + s + ','                     
 
-                    exe.execute('UPDATE members SET name=%s,pin=%s, phone=%s, services=%s, age=%s, currProfile=%s, address=%s,about=%s WHERE username = %s '
-                                , (
-                        name,
-                        pincode,
-                        phone,
-                        services,
-                        age,
-                        currProfile,
-                        address,
-                        about,
-                        username,
-                        ))
+                        ph = len(phone)
+                        if (ph>=11 or ph<=9) or (not phone.isdigit()):
+                            flash("Invalid Phone number. Length of the phone number should be 10.")
+                            return redirect(url_for('profile',id=session['user_id']))
 
-                    exe.execute("UPDATE application SET vol_name=%s, vol_phone=%s WHERE vol_email=%s",(name,phone,username))
-                    
-                    connect.commit()
-                    exe.close()
-                    connect.close()
-                    flash('Profile was updated successfully.')
-                    return redirect(url_for('logout'))
+                        pi = len(pincode)
+                        if (pi>=7 or pi<=5) or (not pincode.isdigit()):
+                            flash("Invalid pincode. Pincode should be a 6 digit number.")
+                            return redirect(url_for('profile',id=session['user_id']))                           
+
+                        connect = get_db()
+                        exe = connect.cursor()
+
+                        exe.execute('UPDATE members SET name=%s,pin=%s, phone=%s, services=%s, age=%s, sex=%s, currProfile=%s, address=%s,about=%s WHERE username = %s '
+                                    , (
+                            name,
+                            pincode,
+                            phone,
+                            services,
+                            age,
+                            sex,
+                            currProfile,
+                            address,
+                            about,
+                            username,                 
+                            ))
+
+                        exe.execute("UPDATE application SET vol_name=%s, vol_phone=%s WHERE vol_email=%s",(name,phone,username))
+                        
+                        connect.commit()
+                        exe.close()
+                        connect.close()
+                        flash('Profile was updated successfully.')
+                        return redirect(url_for('logout'))
+                    else:
+                        flash('Please fill all the details.')
+                        return redirect(url_for('profile',id=session['user_id']))                        
                 else:
                     flash('Profile was not updated')
-                    return redirect(url_for('home'))
+                    return redirect(url_for('profile',id=session['user_id']))
 
             elif role == 'n' or role == 'N':
-                if request.method == 'POST' and 'name' in request.form \
-                    and 'website' in request.form and 'social' in request.form \
-                    and 'services' in request.form and 'address' \
-                    in request.form and 'regno' in request.form and 'branch' \
-                    in request.form and 'phone' in request.form and 'pin' \
-                    in request.form and 'about' in request.form:
-                    name = request.form['name']
-                    website = request.form['website']
-                    social = request.form['social']
-                    services = request.form['services']
-                    address = request.form['address']
-                    regno = request.form['regno']
-                    branch = request.form['branch']
-                    phone = request.form['phone']
-                    pin = request.form['pin']
-                    about = request.form['about']
+                if request.method == 'POST':
+                    if 'name' in request.form \
+                        and 'serve' in request.form and 'address' \
+                        in request.form and 'regno' in request.form \
+                        and 'phone' in request.form and 'pin' \
+                        in request.form and 'about' in request.form:
+        
+                        name = request.form.get('name')
+                        website = request.form.get('website')
+                        social = request.form.get('social')
+                        address = request.form.get('address')
+                        regno = request.form.get('regno')
+                        branch = request.form.get('branch')
+                        phone = request.form.get('phone')
+                        pin = request.form.get('pin')
+                        about = request.form.get('about')
+                        serve = request.form.getlist("serve")
 
-                    connect = get_db()
-                    exe = connect.cursor()
+                        services = ''
+                        for s in serve:
+                            services = services + s + ','                                                
 
-                    exe.execute('UPDATE members SET name=%s,website=%s, social=%s,services=%s,address=%s,regno=%s,branch=%s,phone=%s,pin=%s,about=%s WHERE username = %s '
-                                , (
-                        name,
-                        website,
-                        social,
-                        services,
-                        address,
-                        regno,
-                        branch,
-                        phone,
-                        pin,
-                        about,
-                        username,
-                        ))
-                    
-                    exe.execute("UPDATE task SET grp=%s, website = %s, phone=%s, abt_grp=%s, location=%s WHERE grp_email=%s",(name,website,phone,about,pin,username))
-                    exe.execute("UPDATE application SET grp_name=%s WHERE grp_email=%s",(name,username))
-                    
-                    connect.commit()
-                    exe.close()
-                    connect.close()
+                        ph = len(phone)
+                        if (ph>=11 or ph<=9) or (not phone.isdigit()):
+                            flash("Invalid Phone number. Length of the phone number should be 10.")
+                            return redirect(url_for('profile',id=session['user_id']))
 
-                    flash('Profile was updated successfully.')
-                    return redirect(url_for('logout'))
+                        pi = len(pin)
+                        if (pi>=7 or pi<=5) or (not pin.isdigit()):
+                            flash("Invalid pincode. Pincode should be a 6 digit number.")
+                            return redirect(url_for('profile',id=session['user_id']))
+
+                        connect = get_db()
+                        exe = connect.cursor()
+
+                        exe.execute('UPDATE members SET name=%s,website=%s, social=%s,services=%s,address=%s,regno=%s,branch=%s,phone=%s,pin=%s,about=%s WHERE username = %s '
+                                    , (
+                            name,
+                            website,
+                            social,
+                            services,
+                            address,
+                            regno,
+                            branch,
+                            phone,
+                            pin,
+                            about,
+                            username,
+                            ))
+                        
+                        exe.execute("UPDATE task SET grp=%s, website = %s, phone=%s, abt_grp=%s, location=%s WHERE grp_email=%s",(name,website,phone,about,pin,username))
+                        exe.execute("UPDATE application SET grp_name=%s WHERE grp_email=%s",(name,username))
+                        
+                        connect.commit()
+                        exe.close()
+                        connect.close()
+
+                        flash('Profile was updated successfully.')
+                        return redirect(url_for('logout'))
+                    else:
+                        flash("Please fill all the details.")
+                        return redirect(url_for('profile',id=session['user_id']))
                 else:
                     flash('Profile was not updated')
-                    return redirect(url_for('home'))
+                    return redirect(url_for('profile',id=session['user_id']))
             else:
-
                 flash("Sorry! You can't update.")
                 return redirect(url_for('logout'))
 
@@ -717,7 +909,7 @@ def delete_task(id):
             data=c.fetchall()
             
             if len(data)!=0:
-            	c.execute('DELETE FROM applications WHERE task_id = %s', id)
+            	c.execute('DELETE FROM application WHERE task_id = %s', id)
             
             db.commit()
             c.close()
@@ -886,7 +1078,22 @@ def back_application(id):
     flash("Changes applied successfully.")
     return redirect(url_for('task_list'))        
 
-                             
+
+
+@app.route('/applied_vols/<id>', methods=['GET', 'POST'])
+def applied_vols(id):
+    task_id = id
+
+    db = get_db()
+    c = db.cursor()
+    c.execute('SELECT * FROM application WHERE task_id=%s ORDER BY vol_name',task_id)
+    data = c.fetchall()
+    db.commit() 
+    c.close()
+    db.close()
+    return render_template('applied_vols.html',len=len(data),data=data)
+
+
 
 @app.route('/notification_page/', methods=['GET', 'POST'])
 def notification_page():
@@ -923,24 +1130,39 @@ def how_is_the_task(id):
 
 
 
-# @app.route('/search/<pincode>/', methods=['GET'])
-# def search_pincode(pincode):
-#     connect = get_db()
-#     pincode = int(pincode)
-#     c = connect.cursor()
-#     counter = 0
-#     where = ""
-#     for i in [0,-1,+1,-2,+2,-3,+3,-4,+4]:
-#         where += "m.pin='"+str(pincode+i) + "' OR "
-#     query = "select m.pin, phone, services, statename from members m join podata p on m.pin = p.pin where m.role='n' AND (" + where[:-4] +")"
-#     c.execute(query)
-#     data = c.fetchall()
-#     if data:
-#         c.close()
-#         connect.close()
-#         return render_template('home.html', data=data)
-#     return render_template('home.html',data={})
-
+@app.route('/find_ngo/', methods=['GET'])
+def find_ngo():
+    connect = get_db()
+    pincode=request.args.get("pincode")
+    type=" ".join(request.args.get("service").split("_"))
+    pincode = int(pincode)
+    c = connect.cursor()
+    counter = 0
+    where = ""
+    for i in [0,-1,+1,-2,+2,-3,+3,-4,+4]:
+        where += "m.pin='"+str(pincode+i) + "' OR "
+    query = "select distinct m.pin, phone, services, statename, about,website,address, name, username from members m join podata p on m.pin = p.pin where m.role='n' AND (" + where[:-4] +")"
+    c.execute(query)
+    data = c.fetchall()
+    ndata = {'data':[]}
+    if data:
+        for val in data:
+            if type in val[2].split(","):
+                ndata['data'].append({
+                    "pin": val[0],
+                    "phone": [val[1]],
+                    "services": val[2],
+                    "statename": val[3],
+                    "about": val[4],
+                    "website": val[5],\
+                    "address": val[6],
+                    "name": val[7],
+                    "email": val[8]
+                })
+        c.close()
+        connect.close()
+        return render_template('ngo_initiatives.html', ndata=ndata, type=type, pin = pincode, data={})
+    return render_template('ngo_initiatives.html', type=type, pin = pincode, ndata={})
 
 
 @app.route('/find_relief/', methods=['GET'])
@@ -971,6 +1193,8 @@ def find_relief():
 @app.route('/initiatives/', methods=['GET'])
 def initiatives():
     pincode = request.args.get("pincode")
+    pdata={'data':[]}
+    dropdown = set()
     type = " ".join(request.args.get("type").split("_"))
     if pincode and re.fullmatch("[1-9][0-9]{5}", pincode):
         connect = get_db()
@@ -988,11 +1212,8 @@ def initiatives():
         query = "select distinct g.statename, g.districtname, title, description, helplinenumbers, link, eligibility, documents, duration, created_on, dropdown, g.id, g.sourcelink, g.relevantinfo from govtdata g join podata p on g.statename = p.statename where (" + where[:-4] +")" + " AND type='" + type + "' AND g.districtname='ALL';"
         c.execute(query)
         state_data = c.fetchall()
-
         full_data = data + state_data
-        pdata={'data':[]}
-        dropdown = set()
-        for count, d in enumerate(full_data):
+        for d in full_data:
             if d:
                 pdata['data'].append({ 
                     "statename": d[0], 
@@ -1012,8 +1233,9 @@ def initiatives():
                 })
                 dropdown.add(d[10])
         c.close()
-    connect.close()
-    return render_template('list_of_initiatives.html', data=pdata, type=type, dropdown=list(dropdown))
+        connect.close()
+    return render_template('list_of_initiatives.html', data=pdata, type=type, pin = pincode, dropdown=list(dropdown))
+
 
 
 # @app.route('/searchresult',methods=['GET','POST'])

@@ -84,29 +84,30 @@
                       {{value[7]}}
                     </td>
                     <td>
-                      {% if value[0] == false_id and download == 1 %}
-                      <div class="">
-                        <a href="{{ url_for('task_list') }}" download="{{ filename }}" class="btn btn-sm btn-success">Download Now</a>
-                        <a href="{{ filename }}">press</a>
+                      <!-- {% if value[0] == false_id and download == 1 %} -->
+                      <!-- <div class=""> -->
+                        <!-- <a href="{{ url_for('task_list') }}" download="{{ filename }}" class="btn btn-sm btn-success">Download Now</a> -->
+			                  <!-- <a href="{{ filename }}">press</a> -->
                         <!-- <a href="{{ filename }}" download>Download Now</a> -->
                         <!-- <a href="{{ filename }}" target="_blank">Download</a>-->
-                        <a href="{{ url_for('task_list') }}" class="btn btn-sm btn-secondary">Go back</a> 
-                      </div>
-                      {% else %}
+                        <!-- <a href="{{ url_for('task_list') }}" class="btn btn-sm btn-secondary">Go back</a>  -->
+                      <!-- </div> -->
+                      <!-- {% else %} -->
                       <div class="">
-                        <p align="center"> {{value[11]}} volunteers have applied for this task.</p>
-                        <a href="{{ url_for('download_data', id=value[0])}}">Click here to download the details of applied volunteers for this task</a>
+                        <p align="center"> <b> {{ value[11]}} volunteers have applied for this task. </b></p>
+                        <!-- <a href="{{ url_for('download_data', id=value[0])}}">Click here to download the details of applied volunteers for this task</a> -->
+                        <a href="{{ url_for('applied_vols', id=value[0])}}" class="btn btn-sm btn-outline-success" style="margin-left: 70px;">View Details</a>
                       </div>
-                      {% endif %}                      
+                      <!-- {% endif %}-->
                     </td>
                     <td>
                       <div class="col text-right">
-                        <a href="{{ url_for('edit_task', id=value[0])}}" class="btn btn-sm btn-primary">Edit</a>
+                        <a href="{{ url_for('edit_task', id=value[0])}}" class="btn btn-primary">Edit</a>
                       </div>
                     </td>  
                     <td>
                       <div class="col text-right">
-                        <a href="{{ url_for('delete_task', id=value[0])}}" class="btn btn-sm btn-danger">Delete</a>
+                        <a href="{{ url_for('delete_task', id=value[0])}}" class="btn btn-danger">Delete</a>
                       </div>
                     </td>                      
                   </tr> 
@@ -125,10 +126,10 @@
           </div>
         </div>
     </div></div>
-        {% include "site_template/footer.html" %}
         
     </div>   
   </div> 
-	
+  
+
 {% endblock content %}
 

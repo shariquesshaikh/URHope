@@ -51,8 +51,7 @@
               <table class="table align-items-center table-flush">
                 <thead class="thead-light">
                   <tr>
-                    <th scope="col" style="font-size: 12px;">Task ID</th>
-                    <th scope="col" style="font-size: 12px;">Task</th>
+                    <th scope="col" style="font-size: 12px;">Task Name</th>
                     <th scope="col" style="font-size: 12px;">Task Details</th>
                     <th scope="col" style="font-size: 12px;">Task Creator</th>
                     <th scope="col" style="font-size: 12px;">Location or Pincode</th>
@@ -66,9 +65,6 @@
                 <tbody>
                   {% for value in data %}
                   <tr>
-                    <td scope="col">
-                      {{value[0]}}
-                    </td>
                     <td scope="col">
                       {{value[1]}}
                     </td>
