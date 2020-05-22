@@ -40,6 +40,7 @@
               <div class="row align-items-center">
                 <div class="col">
                   <h1 class="text-center mb-4">Voluteers' List</h1>
+                  
                   <!-- <a class="btn btn-outline-info" href="">Download List</a> <br> <br>
                   <a class="btn" href="" title="Go back"><i class="fas fa-chevron-left"></i></a>
                   <a class="btn btn-success" href="">Download Now <i class="fas fa-download"></i></a><br> <br> -->
@@ -89,14 +90,15 @@
                       {{value[8]}}
                     </td>  
                     <td>
-                      <!-- (enable->chrome://settings/handlers) -->
-                      <!-- https://stackoverflow.com/questions/34129707/href-mailto-is-not-working-on-any-of-the-browsers -->
                       <a href="mailto:{{value[2]}}" title="Send an email to {{value[6]}}"><i class="far fa-envelope fa-3x"></i></a>
                     </td>                    
                     <td>
-                      <a href="https://web.whatsapp.com/send?phone=+91{{value[8]}}&text=Dear%20{{value[6]}}%2C%0D%0A%0D%0AWe%20are%20glad%20that%20you%20have%20opted%20to%20volunteer%20for%20the%20task:%20{{value[7]}},%20created%20by%20us.%0D%0A%0D%0AThank you so much.%0D%0A%0D%0AFor%20any%20queries%20you%20can%20contact%20us.%0D%0A%0D%0ARegards,%0D%0A{{session['name']}}" title="Chat with {{value[6]}}"><i class="fab fa-whatsapp fa-3x"></i></a>
-
+                     <form action="{{ url_for('whatsapp',id=value[0]) }}" method="POST">
+                            <!-- <input type="hidden" name="ua" id="UserAgent"> -->
+                            <button name="action" style="background-color: white; border:none;" title="Chat with {{value[6]}}"><i class="fab fa-whatsapp fa-3x"></i></button>                       
+                      </form>  
                     </td>
+                  
                   </tr> 
                   {% endfor %}
                   {% else %}
@@ -120,7 +122,9 @@
   </div> 
     <script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
-    
+   <!-- <script>
+   document.getElementById('UserAgent').value = navigator.userAgent;
+   </script>  -->
     <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">
 

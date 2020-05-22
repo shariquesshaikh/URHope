@@ -6,6 +6,7 @@
 #__Core Developers__= 'Zuhair, Sharique, Jino, Furqaan'
 
 from __future__ import print_function
+from config import host, username,password, db_name, urhope_mail, urhope_pass
 from flask import Flask, render_template, redirect, url_for, request, g
 from flask import session, abort, flash, jsonify
 from flask_sslify import SSLify
@@ -13,7 +14,6 @@ from flask_caching import Cache
 from flask_mysqlpool import MySQLPool
 import json
 import os
-from config import host, username,password, db_name, urhope_mail, urhope_pass
 import datetime
 import pymysql
 import requests
@@ -27,6 +27,8 @@ import random
 import smtplib
 import logging
 import re
+import webbrowser
+from device_detector import SoftwareDetector
 # import pandas as pd
 # import openpyxl
 # import xlsxwriter
@@ -46,6 +48,8 @@ app.debug = True
 app.secret_key = os.urandom(12)
 
 logging.basicConfig(filename='logs.log', level=logging.ERROR)
+
+
 
 
 
@@ -85,7 +89,6 @@ def get_db():
 
 
 
-
 '''
                         WRITE ROUTES HERE
 '''
@@ -98,7 +101,7 @@ def base():
 @app.route('/relief/', methods=['GET'])
 def relief():
     return render_template('relief_pincode_page.html')
-
+    
 
 
 @app.route('/relief_call/', methods=['GET'])
@@ -153,10 +156,17 @@ def signup():
                           , username)
                 account = c.fetchone()
 
+                c.execute('select phone from members where phone = %s'
+                          , username)
+                phone = c.fetchone()
+
                 if account:
                     flash('Email already exists please try again with another email!')
+                    return render_template('register.html')
+                elif phone:
+                    flash('The phone number already exists please try again with another phone number.')
+                    return render_template('register.html')
                 else:
-
                     if password == confirmpassword:
                         c.execute('insert into members (name, username, phone, pin, role, services, regno, branch, sex, age, currProfile, website, social, govtID, address, about, password ) values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, md5(%s))'
                                   , (
@@ -201,6 +211,7 @@ def signup():
 
                     else:
                          flash('Passwords do not match!')
+                         return render_template('register.html')
             except Exception as e:
                 print(e)
                 flash("An error occured. Please try again.")
@@ -221,7 +232,6 @@ def login():
             username = request.form['username']
             password = request.form['password']
 
-            # https://emailregex.com/
             email_expression = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
 
             if(re.search(email_expression,username)):
@@ -569,7 +579,6 @@ def download_data(id):
     cursor.execute("SELECT * FROM application WHERE task_id=%s",id)
     data = cursor.fetchall()
     
-
     if(len(data)>0):
         id=data[0][3]
         # naming = data[0][7]
@@ -612,7 +621,6 @@ def download_data(id):
         connect.close()        
         flash("You can't download because there aren't any volunteer who has applied for this task") 
         return redirect(url_for('task_list'))
-
 
 
 
@@ -1079,6 +1087,8 @@ def back_application(id):
 @app.route('/applied_vols/<id>', methods=['GET', 'POST'])
 def applied_vols(id):
     task_id = id
+    if not session.get('logged_in'):
+        return redirect(url_for('login'))
 
     db = get_db()
     c = db.cursor()
@@ -1088,6 +1098,45 @@ def applied_vols(id):
     c.close()
     db.close()
     return render_template('applied_vols.html',len=len(data),data=data)
+
+
+
+@app.route('/whatsapp/<id>',methods=['GET','POST'])
+def whatsapp(id):
+    id = id
+    db = get_db()
+    c = db.cursor()
+    c.execute('select task_name,vol_name,vol_phone,task_id from application where id = %s and grp_email = %s',(id,session['username']))
+    task = c.fetchone()
+
+    task_name = task[0]
+    name = task[1]
+    phone = task[2]
+    task_id = task[3]
+    
+    r = request.headers.get('User-Agent')
+    dev = SoftwareDetector(r).parse()
+    opsys =dev.os_name()
+
+    MobOS = ['Android','iOS','BlackBerry OS','BlackBerry 10','BlackBerry PlayBook OS',
+                'Windows Phone','Windows RT','Windows Mobile','Bada','Symbian OS','Aliyun OS',
+                'Firefox OS','Ubuntu Touch','Nokia Asha','Palm OS','Series 40','Sailfish OS',
+                'GridOS','Mer project','Brew','SHR','Web OS','Tizen','Dnager OS','Limo 4',
+                'Maemo','MeeGo','KaiOS','Nucleus RTOS','PostMarketOS','HarmonyOS']
+    
+    if opsys in MobOS:
+        x = "https://api.whatsapp.com/send?phone=+91"+phone+"&text=Dear%20"+name+"%2C%0D%0A%0D%0AWe%20are%20glad%20that%20you%20have%20opted%20to%20volunteer%20for%20the%20task:%20"+task_name+",%20created%20by%20us.%0D%0A%0D%0AThank you so much.%0D%0A%0D%0AFor%20any%20queries%20you%20can%20contact%20us.%0D%0A%0D%0ARegards,%0D%0A"+session['name']
+        webbrowser.open_new_tab(x)
+        flash("Message Sent")
+        return redirect(url_for('applied_vols',id=task_id))
+    else: 
+        x = "https://web.whatsapp.com/send?phone=+91"+phone+"&text=Dear%20"+name+"%2C%0D%0A%0D%0AWe%20are%20glad%20that%20you%20have%20opted%20to%20volunteer%20for%20the%20task:%20"+task_name+",%20created%20by%20us.%0D%0A%0D%0AThank you so much.%0D%0A%0D%0AFor%20any%20queries%20you%20can%20contact%20us.%0D%0A%0D%0ARegards,%0D%0A"+session['name']
+        webbrowser.open_new_tab(x)
+        flash("Message Sent")
+        return redirect(url_for('applied_vols',id=task_id))
+
+    flash("An Error occured or you are on an invalid URL. Can't send the message.")
+    return redirect(url_for('applied_vols',id=task_id))
 
 
 
@@ -1159,6 +1208,7 @@ def find_ngo():
         connect.close()
         return render_template('ngo_initiatives.html', ndata=ndata, type=type, pin = pincode, data={})
     return render_template('ngo_initiatives.html', type=type, pin = pincode, ndata={})
+
 
 
 @app.route('/find_relief/', methods=['GET'])
@@ -1363,11 +1413,15 @@ def internal_error(error):
 
 
 
+
 '''
                         APP RUNNER
 '''
 if __name__ == '__main__':
     app.run()  # host='0.0.0.0', port=5000
+
+
+
 
 
 
