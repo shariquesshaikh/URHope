@@ -29,7 +29,7 @@ Flask-SSLify==0.1.5
 Flask-Caching==1.8.0
 flask-mysqlpool==1.0.4
 regex==2020.4.4
-pyodbc==4.0.30
 pandas==1.0.3
 openpyxl==3.0.3
 Xlsxwriter==1.2.8
+device-detector==0.10
